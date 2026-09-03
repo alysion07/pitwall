@@ -66,7 +66,8 @@
   .cal { flex:1 1 auto; display:flex; flex-direction:column; }
   .cal .week { flex:1 1 auto; }
   .col2 > .card, .col3 > .card { flex:0 0 auto; }
-  .col2 > .card.grow, .col3 > .card.grow { flex:1 1 0; min-height:0; display:flex; flex-direction:column; }
+  .col2 > .card.grow, .col3 > .card.grow { flex:1 1 auto; min-height:0; display:flex; flex-direction:column; }
+  .col3 > .card.grow { flex-basis:0; }   /* col3는 contain:size라 순위표가 남는 높이만 채움 */
   .col-stand { display:flex; flex-direction:column; }
   .card.grow .up { flex:1; min-height:0; overflow:auto; display:flex; flex-direction:column; justify-content:space-evenly; }
   .card.grow .up li { flex:1 0 auto; display:flex; align-items:stretch; }
@@ -158,6 +159,9 @@
   .sess li:last-child { border-bottom:none; }
   .sess .dt { font-weight:700; min-width:68px; color:var(--text-dim); font-variant-numeric:tabular-nums; font-size:12px; }
   .sess .final { color:var(--accent); font-weight:700; }
+  .sess b { font-weight:700; color:var(--text); font-variant-numeric:tabular-nums; }
+  .sess .final b { color:var(--accent); }
+  .tz { font-size:11px; color:var(--text-dim); margin-top:8px; text-align:right; }
   .circ { display:block; margin-top:14px; padding:14px 16px; border-radius:12px; background:var(--bg-soft); border:1px solid var(--border-soft); text-decoration:none; transition:.15s; }
   .circ:hover { border-color:var(--accent); background:var(--accent-soft); }
   .circ-h { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
@@ -176,7 +180,7 @@
   /* 다가오는 일정 */
   .up { list-style:none; margin:0; padding:6px 0; }
   .up li { padding:0; border-bottom:1px solid var(--border-soft); }
-  .up-a { display:flex; align-items:center; gap:12px; padding:10px 18px; text-decoration:none; width:100%; transition:background .15s; }
+  .up-a { display:flex; align-items:center; gap:12px; padding:8px 18px; text-decoration:none; width:100%; transition:background .15s; }
   .up-a:hover { background:var(--bg-soft); }
   .up li:last-child { border-bottom:none; }
   .up .rn { font-size:11px; font-weight:800; color:var(--text-dim); letter-spacing:.04em; min-width:34px; height:24px; display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:7px; background:var(--chip-bg); }
@@ -444,6 +448,14 @@
   renderCal();
 
   // ---------- 다음 레이스 ----------
+  // 세션 이름 → data.js times 키. KST 변환은 브라우저 Intl로.
+  var SK = { 'FP1':'FP1', 'FP2':'FP2', 'FP3':'FP3', '예선':'Q', '스프린트 예선':'SQ', '스프린트':'S', '결승':'R' };
+  function kst(isoUtc, rowDate) {
+    var dt = new Date(isoUtc); if (isNaN(dt)) return '';
+    var o = {}; new Intl.DateTimeFormat('ko-KR', { timeZone:'Asia/Seoul', month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit', hourCycle:'h23' }).formatToParts(dt).forEach(function (p) { o[p.type] = p.value; });
+    var t = o.hour + ':' + o.minute, same = (+o.month) === (rowDate.getMonth()+1) && (+o.day) === rowDate.getDate();
+    return same ? t : (+o.month) + '/' + (+o.day) + ' ' + t;
+  }
   var next = null, done = 0, nowR = null;
   D.calendar.forEach(function (r) {
     var e = parse(r.end), s = parse(r.start);
@@ -460,9 +472,11 @@
     h += '<ul class="sess">';
     next.sessions.forEach(function (x) {
       var d = parse(x.date);
-      h += '<li><span class="dt">'+(d.getMonth()+1)+'/'+d.getDate()+' ('+DOW[d.getDay()]+')</span><span'+(x.list.indexOf('결승')>=0?' class="final"':'')+'>'+x.list.join(' · ')+'</span></li>';
+      var parts = x.list.map(function (nm) { var k = SK[nm], t = next.times && k && next.times[k]; return nm + (t ? ' <b>' + kst(t, d) + '</b>' : ''); });
+      h += '<li><span class="dt">'+(d.getMonth()+1)+'/'+d.getDate()+' ('+DOW[d.getDay()]+')</span><span'+(x.list.indexOf('결승')>=0?' class="final"':'')+'>'+parts.join(' · ')+'</span></li>';
     });
     h += '</ul>';
+    if (next.times) h += '<div class="tz">세션 시각은 한국 시간(KST) 기준 · 날짜가 다르면 앞에 표시</div>';
     var ci = window.F1CIRCUITS && window.F1CIRCUITS[next.round];
     if (ci) {
       h += '<a class="circ" href="circuit.html?round='+next.round+'">';
