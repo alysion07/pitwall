@@ -80,21 +80,26 @@
 
   /* 트랙 맵 */
   .mapgrid { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:32px; align-items:start; }
-  .mapcol { position:sticky; top:118px; }
+  .mapcol { min-width:0; }
   .mapinfo { display:flex; gap:18px; flex-wrap:wrap; margin-top:14px; }
   .mapinfo span { font-size:12px; color:var(--text-dim); }
   .mapinfo b { display:block; font-size:18px; font-weight:800; color:var(--text); letter-spacing:-0.02em; line-height:1.15; font-variant-numeric:tabular-nums; }
-  .cornercol { min-width:0; }
+  .cornercol { min-width:0; display:flex; flex-direction:column; background:var(--card); border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow); overflow:hidden; }
+  .ctabs { display:flex; gap:4px; padding:10px 12px; border-bottom:1px solid var(--border-soft); background:var(--card); flex:0 0 auto; }
+  .ctab { font:inherit; font-size:13px; font-weight:700; color:var(--text-mid); background:transparent; border:1px solid transparent; padding:7px 14px; border-radius:999px; cursor:pointer; transition:.15s; }
+  .ctab span { margin-left:6px; font-size:11px; opacity:.55; }
+  .ctab:hover { color:var(--text); }
+  .ctab.on { background:var(--text); color:var(--bg); }
+  .cbody { flex:1 1 auto; min-height:0; overflow:auto; padding:12px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
+  .cpane.hidden { display:none; }
+  .cornercol .turns, .cornercol .corners { grid-template-columns:1fr; gap:10px; }
+  .cornercol .turn, .cornercol .cn { box-shadow:none; border-color:var(--border-soft); background:var(--bg-soft); }
   .cornercol .turns, .cornercol .corners { grid-template-columns:1fr; }
-  .sub-h { display:flex; align-items:baseline; gap:10px; font-size:16px; font-weight:800; letter-spacing:-0.02em; margin:26px 0 12px; scroll-margin-top:118px; }
-  .sub-h:first-child { margin-top:0; }
-  .sub-h span { font-size:12px; color:var(--text-dim); font-weight:600; }
   @media (max-width:900px) {
     .mapgrid { grid-template-columns:1fr; gap:16px; }
-    .mapcol { position:sticky; top:96px; z-index:5; background:var(--bg); padding:6px 0; }
     .mapcol .map { padding:12px; }
-    .mapcol .map img { max-height:190px; }
-    .mapinfo, .mapcol .note { display:none; }
+    .mapcol .map img { max-height:260px; }
+    .cornercol { height:62vh; }
   }
   .map { background:var(--card); border-radius:18px; padding:26px; border:1px solid var(--border); box-shadow:var(--shadow); }
   .map img { display:block; width:100%; max-height:min(820px, calc(100vh - 260px)); object-fit:contain; margin:0 auto; }
@@ -182,24 +187,28 @@
 
   // ---------- 트랙 맵 & 코너: 왼쪽 지도는 sticky, 오른쪽에 핵심 코너 → 전체 코너 ----------
   var ac = window.F1CORNERS && window.F1CORNERS[round];
-  h += '<section id="map" data-tab="트랙 맵 · 코너"><div class="sec-h"><h2>트랙 맵 & 코너</h2><span class="n">코너를 내려 읽는 동안 지도는 화면에 고정됩니다</span></div>';
+  h += '<section id="map" data-tab="트랙 맵 · 코너"><div class="sec-h"><h2>트랙 맵 & 코너</h2><span class="n">오른쪽 목록은 지도 높이 안에서 스크롤됩니다</span></div>';
   h += '<div class="mapgrid"><div class="mapcol">';
   if (c.map) h += '<div class="map"><img src="'+c.map+'" alt="'+esc(c.name)+' 트랙 맵"></div>';
   h += '<div class="mapinfo"><span><b>'+c.length.toFixed(3)+'</b>km</span><span><b>'+c.corners+'</b>코너</span><span><b>'+c.drs+'</b>DRS 존</span><span><b>'+c.laps+'</b>랩</span></div>';
   h += '<p class="note">Formula1.com 공식 트랙맵 · 지도의 코너 번호 = 오른쪽 목록의 번호. 색 구간은 섹터, 초록 상자는 직선 모드(DRS) 감지·작동 존.</p>';
-  h += '</div><div class="cornercol">';
-  h += '<h3 class="sub-h">핵심 코너 <span>'+c.turns.length+'개 구간 · 이 서킷의 관전 포인트가 되는 곳</span></h3><div class="turns">';
+  h += '</div><div class="cornercol" id="cornercol">';
+  // 코너 열: 상단 탭(핵심/전체) + 스크롤 영역. 높이는 JS가 트랙맵 높이에 맞춘다.
+  h += '<div class="ctabs" role="tablist"><button class="ctab on" data-pane="key" role="tab">핵심 코너<span>'+c.turns.length+'</span></button>'+(ac&&ac.list&&ac.list.length?'<button class="ctab" data-pane="all" role="tab">전체 코너<span>'+ac.list.length+'</span></button>':'')+'</div>';
+  h += '<div class="cbody" id="cbody">';
+  h += '<div class="cpane" data-pane="key"><div class="turns">';
   c.turns.forEach(function (t) {
     h += '<div class="turn"><div class="tn">'+esc(t.n||'—')+'</div><div class="tb">'+(t.name?'<div class="tname">'+esc(t.name)+'</div>':'')+'<div class="tnote">'+esc(t.note)+'</div></div></div>';
   });
-  h += '</div>';
+  h += '</div></div>';
   if (ac && ac.list && ac.list.length) {
-    h += '<h3 class="sub-h" id="corners">전체 코너 <span>'+ac.list.length+'개 · 트랙맵 번호 순</span></h3><ol class="corners">';
+    h += '<div class="cpane hidden" data-pane="all" id="corners"><ol class="corners">';
     ac.list.forEach(function (t) {
       h += '<li class="cn"><span class="no">T'+t.n+'</span><div>'+(t.name?'<div class="cname">'+esc(t.name)+'</div>':'')+'<div class="cnote">'+esc(t.note)+'</div></div></li>';
     });
-    h += '</ol>'+(ac.caveat?'<p class="note">'+esc(ac.caveat)+'</p>':'');
+    h += '</ol>'+(ac.caveat?'<p class="note">'+esc(ac.caveat)+'</p>':'')+'</div>';
   }
+  h += '</div>';
   h += '</div></div></section>';
 
   h += '<section id="history" data-tab="역사"><div class="sec-h"><h2>서킷의 역사</h2><span class="n">과거 시즌 · 스포일러 아님</span></div><div class="tl">';
@@ -213,6 +222,20 @@
   h += '</div>';
   h += '<footer><span class="b">PIT WALL</span> · 서킷 가이드 · 수치는 공식 자료 기준, 랩 레코드는 2025 시즌 종료 기준</footer>';
   root.innerHTML = h;
+
+  // ---------- 코너 열: 탭 전환 + 높이를 트랙맵에 맞춤 ----------
+  var ccol = document.getElementById('cornercol'), cbody = document.getElementById('cbody'), mcol = document.querySelector('.mapcol');
+  if (ccol && mcol) {
+    var ctabs = Array.prototype.slice.call(ccol.querySelectorAll('.ctab')), panes = Array.prototype.slice.call(ccol.querySelectorAll('.cpane'));
+    function showPane(id) { ctabs.forEach(function (t) { t.classList.toggle('on', t.getAttribute('data-pane') === id); }); panes.forEach(function (p) { p.classList.toggle('hidden', p.getAttribute('data-pane') !== id); }); cbody.scrollTop = 0; }
+    ctabs.forEach(function (t) { t.addEventListener('click', function () { showPane(t.getAttribute('data-pane')); }); });
+    if (location.hash === '#corners') showPane('all');
+    function syncH() { if (window.innerWidth > 900) ccol.style.height = mcol.offsetHeight + 'px'; else ccol.style.height = ''; }
+    if (window.ResizeObserver) new ResizeObserver(syncH).observe(mcol);
+    window.addEventListener('resize', syncH);
+    var mimg = mcol.querySelector('img'); if (mimg) mimg.addEventListener('load', syncH);
+    syncH();
+  }
 
   // ---------- 섹션 탭 (data-tab 자동 수집) ----------
   var tabsEl = document.getElementById('tabs'), secs = Array.prototype.slice.call(root.querySelectorAll('[data-tab]'));
