@@ -65,7 +65,7 @@ window.F1TEAMS = {
     chassis:"FW48", pu:"메르세데스 (Mercedes)", first:1978, titles:8,
     drivers:["카를로스 사인츠 (Carlos Sainz)", "알렉산더 알본 (Alexander Albon)"],
     car:"https://media.formula1.com/image/upload/c_fill,w_1200,h_430/q_auto/v1740000001/common/f1/2026/williams/2026williamscarright.jpg",
-    intro:"컨스트럭터 타이틀 9회(공식 집계 8회+)의 명문이지만 2010년대 후반 침체를 겪었고, 전 메르세데스 전략가 보울스가 재건을 이끌고 있다. 2026년 새 규정 초반 신뢰성 문제로 어려움을 겪었다. 사인츠와 알본 모두 2027년 계약을 마쳐 라인업이 안정적이다."
+    intro:"컨스트럭터 타이틀 8회의 명문이지만 2010년대 후반 침체를 겪었고, 전 메르세데스 전략가 보울스가 재건을 이끌고 있다. 2026년 새 규정 초반 신뢰성 문제로 어려움을 겪었다. 사인츠와 알본 모두 2027년 계약을 마쳐 라인업이 안정적이다."
   },
   "Aston Martin": {
     slug:"astonmartin", full:"Aston Martin Aramco Formula One Team", base:"실버스톤, 영국", chief:"에이드리언 뉴이 (Adrian Newey)", tech:"엔리코 카르딜레 (Enrico Cardile)",

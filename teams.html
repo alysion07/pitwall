@@ -27,42 +27,78 @@
   .btn.dis { opacity:.35; pointer-events:none; }
   footer { margin-top:56px; padding:24px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
   footer .b { color:var(--accent); font-weight:700; }
-  .hero { padding:52px 0 28px; }
+  /* 팀 선택 스트립 (상단 고정 바 두 번째 줄) */
+  .tstrip { display:flex; gap:6px; overflow-x:auto; padding:0 24px 10px; scrollbar-width:none; }
+  .tstrip::-webkit-scrollbar { display:none; }
+  .tchip { flex:0 0 auto; display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:650; color:var(--text-mid); text-decoration:none; padding:6px 12px 6px 9px; border-radius:999px; border:1px solid var(--border); background:var(--chip-bg); transition:.15s; white-space:nowrap; }
+  .tchip i { width:9px; height:9px; border-radius:50%; background:var(--tc); box-shadow:0 0 0 2px color-mix(in srgb, var(--tc) 30%, transparent); }
+  .tchip:hover { color:var(--text); border-color:var(--tc); }
+  .tchip.on { background:var(--text); color:var(--bg); border-color:var(--text); }
+  /* 목록(파라미터 없을 때) */
+  .hero { padding:52px 0 8px; }
   .hero .kicker { font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:12px; }
   .hero h1 { margin:0 0 12px; font-size:clamp(30px,5vw,42px); font-weight:800; letter-spacing:-0.035em; line-height:1.1; }
   .hero p { margin:0; color:var(--text-mid); font-size:15px; max-width:720px; line-height:1.7; }
   .pu-legend { display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0; }
   .pu-legend span { font-size:12px; font-weight:600; color:var(--text-mid); background:var(--chip-bg); border:1px solid var(--border); padding:5px 11px; border-radius:999px; }
   .pu-legend b { color:var(--text); }
-  .teams { display:grid; grid-template-columns:repeat(auto-fill, minmax(500px,1fr)); gap:18px; padding:28px 0 0; }
-  .team { background:var(--card); border:1px solid var(--border); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column; border-top:4px solid var(--tc); scroll-margin-top:90px; }
-  .team .car { background:var(--bg-soft); border-bottom:1px solid var(--border-soft); }
-  .team .car img { display:block; width:100%; aspect-ratio:1200/430; object-fit:cover; }
-  .team .body { padding:18px 20px 20px; display:flex; flex-direction:column; gap:14px; }
-  .team .name { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
-  .team .name h2 { margin:0; font-size:22px; font-weight:800; letter-spacing:-0.03em; }
-  .team .name .en { font-size:12.5px; color:var(--text-dim); }
-  .team .chassis { margin-left:auto; font-size:13px; font-weight:800; color:var(--tc); background:color-mix(in srgb, var(--tc) 14%, transparent); border:1px solid color-mix(in srgb, var(--tc) 40%, transparent); padding:3px 10px; border-radius:999px; letter-spacing:.02em; }
-  .team .intro { margin:0; font-size:14px; color:var(--text-mid); line-height:1.7; }
-  .facts { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin:0; }
-  .facts div { display:flex; flex-direction:column; gap:2px; padding:8px 0; border-top:1px solid var(--border-soft); }
-  .facts dt { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); }
-  .facts dd { margin:0; font-size:13.5px; font-weight:600; line-height:1.45; }
-  .drv { display:flex; gap:8px; flex-wrap:wrap; }
-  .drv span { font-size:13px; font-weight:600; background:var(--chip-bg); border:1px solid var(--border); padding:6px 12px; border-radius:10px; }
-  .drv span::before { content:""; display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--tc); margin-right:8px; }
+  .tgrid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:14px; padding:28px 0 0; }
+  .tile { display:block; text-decoration:none; background:var(--card); border:1px solid var(--border); border-top:4px solid var(--tc); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); transition:.15s; }
+  .tile:hover { transform:translateY(-2px); border-color:var(--tc); }
+  .tile img { display:block; width:100%; aspect-ratio:1200/430; object-fit:cover; background:var(--bg-soft); }
+  .tile .tb { padding:12px 14px 14px; }
+  .tile .tn { font-size:16px; font-weight:800; letter-spacing:-0.02em; }
+  .tile .ts { font-size:12px; color:var(--text-dim); margin-top:3px; }
+  .tile .ts b { color:var(--tc); font-weight:800; }
+  /* 팀 상세 */
+  .thero { padding:40px 0 28px; display:grid; grid-template-columns:minmax(0,1fr) 440px; gap:36px; align-items:center; }
+  .thero .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:12px; }
+  .thero .kicker i { width:10px; height:10px; border-radius:50%; background:var(--tc); }
+  .thero h1 { margin:0 0 4px; font-size:clamp(32px,5vw,46px); font-weight:800; letter-spacing:-0.035em; line-height:1.08; }
+  .thero .full { font-size:14px; color:var(--text-dim); margin:0 0 18px; }
+  .thero .intro { margin:0; color:var(--text-mid); font-size:15px; line-height:1.75; }
+  .carbox { background:var(--card); border:1px solid var(--border); border-top:4px solid var(--tc); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); }
+  .carbox img { display:block; width:100%; aspect-ratio:1200/430; object-fit:cover; background:var(--bg-soft); }
+  .carbox .cap { display:flex; align-items:center; gap:10px; padding:12px 16px; border-top:1px solid var(--border-soft); font-size:12.5px; color:var(--text-dim); }
+  .carbox .cap b { font-size:16px; font-weight:800; color:var(--tc); letter-spacing:.02em; }
+  .carbox .cap span:last-child { margin-left:auto; }
+  section { padding-top:36px; }
+  .sec-h { display:flex; align-items:baseline; gap:12px; margin-bottom:18px; padding-bottom:12px; border-bottom:2px solid var(--text); }
+  .sec-h h2 { margin:0; font-size:20px; font-weight:800; letter-spacing:-0.03em; }
+  .sec-h .n { font-size:12px; color:var(--text-dim); margin-left:auto; }
+  .facts { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:12px; margin:0; }
+  .facts div { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px 16px; box-shadow:var(--shadow); }
+  .facts dt { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px; }
+  .facts dd { margin:0; font-size:15px; font-weight:700; line-height:1.45; letter-spacing:-0.01em; }
+  .facts dd small { color:var(--accent); font-weight:800; margin-left:6px; }
+  .drv { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .drv div { display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px 16px; box-shadow:var(--shadow); font-size:15px; font-weight:700; }
+  .drv div::before { content:""; width:10px; height:10px; border-radius:50%; background:var(--tc); flex:0 0 auto; }
+  .drv .role { margin-left:auto; font-size:11px; font-weight:700; color:var(--text-dim); letter-spacing:.06em; text-transform:uppercase; }
+  .pager { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:44px; }
+  .pager a { display:block; text-decoration:none; padding:16px 18px; border:1px solid var(--border); border-radius:14px; background:var(--card); transition:.15s; }
+  .pager a:hover { border-color:var(--text); }
+  .pager a.next { text-align:right; }
+  .pager .lab { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px; }
+  .pager .nm { font-size:15px; font-weight:750; }
   .note { margin:26px 0 0; font-size:12.5px; color:var(--text-dim); line-height:1.6; }
-  @media (max-width:760px) { .wrap { padding:0 18px; } .teams { grid-template-columns:1fr; } .facts { grid-template-columns:1fr; } }
+  .empty { padding:60px 0; text-align:center; color:var(--text-dim); }
+  @media (max-width:900px) { .thero { grid-template-columns:1fr; gap:22px; } }
+  @media (max-width:760px) { .wrap { padding:0 18px; } .drv { grid-template-columns:1fr; } .pager { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
-<div class="top"><div class="wrap top-inner">
+<div class="top">
+<div class="wrap top-inner">
   <a class="brand" href="index.html" style="text-decoration:none"><span class="dot"></span>PIT<span class="accent">WALL</span></a>
-  <div class="crumb">팀 & 머신 · 2026</div>
+  <div class="crumb" id="crumb">팀 & 머신 · 2026</div>
   <div class="sp"></div>
   <a class="btn" id="circLink" href="circuit.html">서킷 가이드</a>
   <a class="btn" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>대시보드</a>
-</div></div>
+</div>
+<!-- 팀 선택 스트립: teams.js의 팀 목록에서 자동 생성 -->
+<nav class="wrap tstrip" id="tstrip" aria-label="팀 선택"></nav>
+</div>
 
 <div class="wrap" id="main"></div>
 
@@ -77,36 +113,63 @@
   var next = D.calendar.filter(function (r) { return parse(r.end) >= today; })[0];
   if (next) document.getElementById('circLink').href = 'circuit.html?round=' + next.round;
 
-  // 파워유닛별 공급 현황 (팀 데이터에서 자동 집계)
-  var byPu = {};
-  Object.keys(T).forEach(function (k) { var pu = T[k].pu; (byPu[pu] = byPu[pu] || []).push(D.teams[k] ? D.teams[k].ko : k); });
+  // 표시 순서 = data.js teams 순서(고정, 순위와 무관)
+  var keys = Object.keys(D.teams).filter(function (k) { return T[k]; });
+  var slug = new URLSearchParams(location.search).get('team');
+  var curKey = keys.filter(function (k) { return T[k].slug === slug; })[0] || null;
 
-  var h = '<div class="hero"><div class="kicker">' + D.meta.season + ' Season · 11 Teams</div><h1>팀 & <span style="color:var(--accent)">머신</span></h1>';
-  h += '<p>2026년은 파워유닛(엔진+전기 시스템)과 공력 규정이 함께 바뀐 첫해입니다. 각 팀의 섀시 이름, 어떤 엔진을 쓰는지, 누가 이끄는지와 정규 드라이버를 정리했습니다. 이번 시즌 순위·결과는 담지 않습니다.</p>';
-  h += '<div class="pu-legend">' + Object.keys(byPu).map(function (pu) { return '<span><b>' + esc(pu) + '</b> → ' + esc(byPu[pu].join(' · ')) + '</span>'; }).join('') + '</div></div>';
+  // ---------- 팀 스트립 ----------
+  document.getElementById('tstrip').innerHTML = '<a class="tchip' + (curKey ? '' : ' on') + '" href="teams.html" style="--tc:var(--accent)"><i></i>전체</a>' + keys.map(function (k) {
+    return '<a class="tchip' + (k === curKey ? ' on' : '') + '" href="teams.html?team=' + T[k].slug + '" style="--tc:' + D.teams[k].color + '"><i></i>' + esc(D.teams[k].ko) + '</a>';
+  }).join('');
 
-  // 표시 순서: data.js teams 순서(고정, 순위와 무관)
-  h += '<div class="teams">';
-  Object.keys(D.teams).forEach(function (k) {
-    var t = T[k], m = D.teams[k]; if (!t) return;
-    h += '<article class="team" id="' + t.slug + '" style="--tc:' + m.color + '">';
-    if (t.car) h += '<div class="car"><img src="' + t.car + '" alt="' + esc(m.ko) + ' ' + esc(t.chassis) + '" loading="lazy"></div>';
-    h += '<div class="body">';
-    h += '<div class="name"><h2>' + esc(m.ko) + '</h2><span class="en">' + esc(t.full) + '</span><span class="chassis">' + esc(t.chassis) + '</span></div>';
-    h += '<p class="intro">' + esc(t.intro) + '</p>';
-    h += '<div class="drv">' + t.drivers.map(function (d) { return '<span>' + esc(d) + '</span>'; }).join('') + '</div>';
-    h += '<dl class="facts">';
+  var h = '';
+  if (!curKey) {
+    // ---------- 목록 ----------
+    var byPu = {};
+    keys.forEach(function (k) { var pu = T[k].pu; (byPu[pu] = byPu[pu] || []).push(D.teams[k].ko); });
+    h += '<div class="hero"><div class="kicker">' + D.meta.season + ' Season · ' + keys.length + ' Teams</div><h1>팀 & <span style="color:var(--accent)">머신</span></h1>';
+    h += '<p>2026년은 파워유닛(엔진+전기 시스템)과 공력 규정이 함께 바뀐 첫해입니다. 팀을 고르면 섀시·파워유닛·수뇌부·정규 라인업과 2026년 상황을 볼 수 있습니다. 이번 시즌 순위·결과는 담지 않습니다.</p>';
+    h += '<div class="pu-legend">' + Object.keys(byPu).map(function (pu) { return '<span><b>' + esc(pu) + '</b> → ' + esc(byPu[pu].join(' · ')) + '</span>'; }).join('') + '</div></div>';
+    h += '<div class="tgrid">' + keys.map(function (k) {
+      var t = T[k], m = D.teams[k];
+      return '<a class="tile" href="teams.html?team=' + t.slug + '" style="--tc:' + m.color + '">' + (t.car ? '<img src="' + t.car + '" alt="" loading="lazy">' : '') + '<div class="tb"><div class="tn">' + esc(m.ko) + '</div><div class="ts"><b>' + esc(t.chassis) + '</b> · ' + esc(t.pu.replace(/\s*\(.*\)$/, '')) + '</div></div></a>';
+    }).join('') + '</div>';
+    h += '<p class="note">머신 사진과 팀 정보는 Formula1.com 공식 팀 페이지 기준(2026-09-03). 이번 시즌 순위·포인트·우승 기록은 스포일러 방지를 위해 싣지 않습니다.</p>';
+    document.title = '팀 & 머신 — PIT WALL';
+  } else {
+    // ---------- 팀 상세 ----------
+    var t = T[curKey], m = D.teams[curKey], idx = keys.indexOf(curKey);
+    document.title = m.ko + ' ' + t.chassis + ' — 팀 & 머신 · PIT WALL';
+    document.getElementById('crumb').textContent = '팀 & 머신 · ' + m.ko;
+    h += '<div class="thero" style="--tc:' + m.color + '"><div>';
+    h += '<div class="kicker"><i></i>' + D.meta.season + ' · Team ' + (idx+1) + ' / ' + keys.length + (t.first === D.meta.season ? ' <span style="color:var(--accent)">신생 팀</span>' : '') + '</div>';
+    h += '<h1>' + esc(m.ko) + '</h1><p class="full">' + esc(t.full) + '</p>';
+    h += '<p class="intro">' + esc(t.intro) + '</p></div>';
+    h += '<div class="carbox">' + (t.car ? '<img src="' + t.car + '" alt="' + esc(m.ko) + ' ' + esc(t.chassis) + '">' : '') + '<div class="cap"><b>' + esc(t.chassis) + '</b><span>' + D.meta.season + ' 시즌 머신</span><span>PU · ' + esc(t.pu.replace(/\s*\(.*\)$/, '')) + '</span></div></div>';
+    h += '</div>';
+
+    h += '<section style="--tc:' + m.color + '"><div class="sec-h"><h2>정규 드라이버</h2><span class="n">시즌 개막 라인업 · 대체 출전은 브리핑 참조</span></div><div class="drv">';
+    t.drivers.forEach(function (d, i) { h += '<div>' + esc(d) + '<span class="role">Car ' + (i+1) + '</span></div>'; });
+    h += '</div></section>';
+
+    h += '<section><div class="sec-h"><h2>팀 정보</h2><span class="n">Formula1.com 기준</span></div><dl class="facts">';
+    h += '<div><dt>섀시</dt><dd>' + esc(t.chassis) + '</dd></div>';
     h += '<div><dt>파워유닛</dt><dd>' + esc(t.pu) + '</dd></div>';
     h += '<div><dt>베이스</dt><dd>' + esc(t.base) + '</dd></div>';
     h += '<div><dt>팀 대표</dt><dd>' + esc(t.chief) + '</dd></div>';
     h += '<div><dt>기술 책임</dt><dd>' + esc(t.tech) + '</dd></div>';
-    h += '<div><dt>첫 참가</dt><dd>' + t.first + (t.first === D.meta.season ? ' <small style="color:var(--accent);font-weight:800">NEW</small>' : '') + '</dd></div>';
+    h += '<div><dt>첫 참가</dt><dd>' + t.first + (t.first === D.meta.season ? '<small>NEW</small>' : '') + '</dd></div>';
     h += '<div><dt>컨스트럭터 타이틀</dt><dd>' + (t.titles ? t.titles + '회' : '없음') + '</dd></div>';
-    h += '</dl></div></article>';
-  });
-  h += '</div>';
-  h += '<p class="note">머신 사진과 팀 정보는 Formula1.com 공식 팀 페이지 기준(2026-09-03). 컨스트럭터 타이틀은 2025 시즌 종료 기준이며, 이번 시즌 순위·포인트·우승 기록은 스포일러 방지를 위해 싣지 않습니다.</p>';
-  h += '<footer><span class="b">PIT WALL</span> · 팀 & 머신 · 2026</footer>';
+    h += '</dl><p class="note">컨스트럭터 타이틀은 2025 시즌 종료 기준. 이번 시즌 순위·포인트·우승 기록은 스포일러 방지를 위해 싣지 않습니다.</p></section>';
+
+    var pk = keys[idx-1], nk = keys[idx+1];
+    h += '<div class="pager">';
+    h += pk ? '<a href="teams.html?team=' + T[pk].slug + '"><div class="lab">← 이전 팀</div><div class="nm">' + esc(D.teams[pk].ko) + ' · ' + esc(T[pk].chassis) + '</div></a>' : '<a href="teams.html"><div class="lab">← 전체 목록</div><div class="nm">팀 & 머신</div></a>';
+    h += nk ? '<a class="next" href="teams.html?team=' + T[nk].slug + '"><div class="lab">다음 팀 →</div><div class="nm">' + esc(D.teams[nk].ko) + ' · ' + esc(T[nk].chassis) + '</div></a>' : '<a class="next" href="teams.html"><div class="lab">전체 목록 →</div><div class="nm">팀 & 머신</div></a>';
+    h += '</div>';
+  }
+  h += '<footer><span class="b">PIT WALL</span> · 팀 & 머신 · ' + D.meta.season + '</footer>';
   root.innerHTML = h;
 })();
 </script>
