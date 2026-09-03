@@ -29,7 +29,13 @@ briefings/      ← 오늘 브리핑 추가
 쿼리 예: `F1 Formula 1 latest news today`, `F1 transfer news`, `F1 technical regulations`, `{다음 GP명} preview`.
 
 ### 1-B. 기사 페이지 fetch — 생략 금지
-카드로 실을 기사는 각 페이지를 WebFetch로 반드시 연다. 메타에서 `og:image`(썸네일), `og:url`/canonical(정식 URL), `og:title`, `article:published_time`을 뽑고 본문을 읽는다. 본문은 스포일러 판별 근거이자 상세 번역 재료다.
+카드로 실을 기사는 각 페이지를 반드시 연다. 두 도구를 나눠 쓴다.
+- **메타 태그 → Bash `curl`** (WebFetch는 페이지를 마크다운으로 바꾸면서 `<meta>`를 버리므로 og:image를 못 준다 — 2026-09-03 검증). `og:image`(썸네일), `og:url`/canonical(정식 URL), `og:title`, `article:published_time`을 뽑는다:
+  ```bash
+  curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/128 Safari/537.36" --max-time 25 "$URL" | grep -oiE '<meta[^>]+(og:image|og:url|og:title|article:published_time)[^>]*>|<link[^>]+canonical[^>]*>'
+  ```
+  여러 URL은 for 루프로 한 번에 돌린다.
+- **본문 → WebFetch** (prompt에 "본문을 요약하고, 순위·최근 레이스 결과 언급이 있으면 그대로 인용"을 넣는다). 본문은 스포일러 판별 근거이자 상세 번역 재료다.
 - fetch는 3~4개씩 병렬. 큰 사이트 한 곳을 열면 "Latest/Related" 목록에서 실제 기사 URL을 대량 확보할 수 있다.
 - PlanetF1 `-496x280.jpg` 썸네일은 저해상도 → 접미사 제거 또는 `-1320x742.jpg`. Formula1.com Cloudinary는 `w_352`→`w_960` 가능.
 - **og:image를 못 얻은 기사는 싣지 않는다.** 플레이스홀더로 채우고 둘러대지 않는다.
@@ -72,6 +78,7 @@ git push
 - 커밋 메시지 본문에는 **비스포일러 헤드라인 3개**만 쓴다. 스포일러 항목은 `🏁 OO GP 관련 소식 — 스포일러 섹션 참조` 형식.
 - 푸시 대상은 `main`. 브랜치가 다르게 잡히면 PR을 만들되 제목·본문에도 같은 스포일러 규칙 적용.
 - 푸시 실패 시 원인을 그대로 보고하고 둘러대지 않는다.
+- 실행 종료 시 채팅 보고문에도 같은 스포일러 규칙을 적용한다. 스포일러 항목은 `🏁 OO GP 관련 소식 — 스포일러 섹션 참조` 형식만.
 
 ## 8. 마무리 검증 (생략 금지)
 1. 모든 `<summary>`에 결과 표현 없음
