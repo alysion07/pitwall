@@ -224,7 +224,8 @@
   root.innerHTML = h;
 
   // ---------- 코너 열: 탭 전환 + 높이를 트랙맵에 맞춤 ----------
-  var ccol = document.getElementById('cornercol'), cbody = document.getElementById('cbody'), mcol = document.querySelector('.mapcol');
+  // 기준은 지도 카드(.map) 높이 — 그 아래 수치·설명 텍스트는 포함하지 않는다
+  var ccol = document.getElementById('cornercol'), cbody = document.getElementById('cbody'), mcol = document.querySelector('.mapcol .map') || document.querySelector('.mapcol');
   if (ccol && mcol) {
     var ctabs = Array.prototype.slice.call(ccol.querySelectorAll('.ctab')), panes = Array.prototype.slice.call(ccol.querySelectorAll('.cpane'));
     function showPane(id) { ctabs.forEach(function (t) { t.classList.toggle('on', t.getAttribute('data-pane') === id); }); panes.forEach(function (p) { p.classList.toggle('hidden', p.getAttribute('data-pane') !== id); }); cbody.scrollTop = 0; }
