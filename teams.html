@@ -13,7 +13,7 @@
   body { margin:0; background:var(--bg); color:var(--text); font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif; font-size:15.5px; line-height:1.7; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em; }
   @media (prefers-color-scheme: dark) { body { background:radial-gradient(1200px 600px at 20% -10%, rgba(255,59,48,.07), transparent 60%), var(--bg); } }
   a { color:inherit; }
-  .wrap { max-width:1100px; margin:0 auto; padding:0 32px; }
+  .wrap { max-width:1680px; margin:0 auto; padding:0 32px; }   /* 대시보드와 같은 폭 */
   .top { position:sticky; top:0; z-index:30; background:var(--bar-bg); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--border-soft); }
   .top-inner { display:flex; align-items:center; gap:14px; padding:14px 0; }
   .brand { display:flex; align-items:center; gap:10px; font-weight:900; font-size:19px; letter-spacing:.02em; font-style:italic; text-decoration:none; }
@@ -42,7 +42,7 @@
   .pu-legend { display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0; }
   .pu-legend span { font-size:12px; font-weight:600; color:var(--text-mid); background:var(--chip-bg); border:1px solid var(--border); padding:5px 11px; border-radius:999px; }
   .pu-legend b { color:var(--text); }
-  .tgrid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:14px; padding:28px 0 0; }
+  .tgrid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:16px; padding:28px 0 0; }
   .tile { display:block; text-decoration:none; background:var(--card); border:1px solid var(--border); border-top:4px solid var(--tc); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); transition:.15s; }
   .tile:hover { transform:translateY(-2px); border-color:var(--tc); }
   .tile img { display:block; width:100%; aspect-ratio:1200/430; object-fit:cover; background:var(--bg-soft); }
@@ -51,12 +51,12 @@
   .tile .ts { font-size:12px; color:var(--text-dim); margin-top:3px; }
   .tile .ts b { color:var(--tc); font-weight:800; }
   /* 팀 상세 */
-  .thero { padding:40px 0 28px; display:grid; grid-template-columns:minmax(0,1fr) 440px; gap:36px; align-items:center; }
+  .thero { padding:40px 0 28px; display:grid; grid-template-columns:minmax(0,1fr) minmax(440px,52%); gap:44px; align-items:center; }
   .thero .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:12px; }
   .thero .kicker i { width:10px; height:10px; border-radius:50%; background:var(--tc); }
   .thero h1 { margin:0 0 4px; font-size:clamp(32px,5vw,46px); font-weight:800; letter-spacing:-0.035em; line-height:1.08; }
   .thero .full { font-size:14px; color:var(--text-dim); margin:0 0 18px; }
-  .thero .intro { margin:0; color:var(--text-mid); font-size:15px; line-height:1.75; }
+  .thero .intro { margin:0; color:var(--text-mid); font-size:15px; line-height:1.75; max-width:720px; }
   .carbox { background:var(--card); border:1px solid var(--border); border-top:4px solid var(--tc); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); }
   .carbox img { display:block; width:100%; aspect-ratio:1200/430; object-fit:cover; background:var(--bg-soft); }
   .carbox .cap { display:flex; align-items:center; gap:10px; padding:12px 16px; border-top:1px solid var(--border-soft); font-size:12.5px; color:var(--text-dim); }
