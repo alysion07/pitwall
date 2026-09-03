@@ -82,9 +82,11 @@
   .mapgrid { display:grid; grid-template-columns:minmax(0,1fr) 400px; gap:28px; align-items:start; }
   @media (max-width:1200px) { .mapgrid { grid-template-columns:minmax(0,1.4fr) minmax(300px,1fr); } }
   .mapcol { min-width:0; }
-  .mapinfo { display:flex; gap:18px; flex-wrap:wrap; margin-top:14px; }
-  .mapinfo span { font-size:12px; color:var(--text-dim); }
-  .mapinfo b { display:block; font-size:18px; font-weight:800; color:var(--text); letter-spacing:-0.02em; line-height:1.15; font-variant-numeric:tabular-nums; }
+  .mapfoot { display:flex; align-items:baseline; gap:20px; flex-wrap:wrap; margin-top:12px; }
+  .mapfoot .note { margin:0 0 0 auto; }
+  .mapinfo { display:flex; align-items:baseline; gap:16px; }
+  .mapinfo span { font-size:12px; color:var(--text-dim); white-space:nowrap; }
+  .mapinfo b { font-size:17px; font-weight:800; color:var(--text); letter-spacing:-0.02em; margin-right:4px; font-variant-numeric:tabular-nums; }
   .cornercol { min-width:0; display:flex; flex-direction:column; background:var(--card); border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow); overflow:hidden; }
   .ctabs { display:flex; gap:4px; padding:10px 12px; border-bottom:1px solid var(--border-soft); background:var(--card); flex:0 0 auto; }
   .ctab { font:inherit; font-size:13px; font-weight:700; color:var(--text-mid); background:transparent; border:1px solid transparent; padding:7px 14px; border-radius:999px; cursor:pointer; transition:.15s; }
@@ -194,8 +196,8 @@
   h += '<section id="map" data-tab="트랙 맵 · 코너"><div class="sec-h"><h2>트랙 맵 & 코너</h2><span class="n">오른쪽 목록은 지도 높이 안에서 스크롤됩니다</span></div>';
   h += '<div class="mapgrid"><div class="mapcol">';
   if (c.map) h += '<div class="map"><img src="'+c.map+'" alt="'+esc(c.name)+' 트랙 맵"></div>';
-  h += '<div class="mapinfo"><span><b>'+c.length.toFixed(3)+'</b>km</span><span><b>'+c.corners+'</b>코너</span><span><b>'+c.drs+'</b>DRS 존</span><span><b>'+c.laps+'</b>랩</span></div>';
-  h += '<p class="note">Formula1.com 공식 트랙맵 · 지도의 코너 번호 = 오른쪽 목록의 번호. 색 구간은 섹터, 초록 상자는 직선 모드(DRS) 감지·작동 존.</p>';
+  h += '<div class="mapfoot"><div class="mapinfo"><span><b>'+c.length.toFixed(3)+'</b>km</span><span><b>'+c.corners+'</b>코너</span><span><b>'+c.drs+'</b>DRS 존</span><span><b>'+c.laps+'</b>랩</span></div>';
+  h += '<p class="note">Formula1.com 공식 트랙맵 · 코너 번호 = 오른쪽 목록 번호 · 색 구간은 섹터 · 초록 상자는 직선 모드(DRS) 존</p></div>';
   h += '</div><div class="cornercol" id="cornercol">';
   // 코너 열: 상단 탭(핵심/전체) + 스크롤 영역. 높이는 JS가 트랙맵 높이에 맞춘다.
   h += '<div class="ctabs" role="tablist"><button class="ctab on" data-pane="key" role="tab">핵심 코너<span>'+c.turns.length+'</span></button>'+(ac&&ac.list&&ac.list.length?'<button class="ctab" data-pane="all" role="tab">전체 코너<span>'+ac.list.length+'</span></button>':'')+'</div>';
