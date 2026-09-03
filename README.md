@@ -8,6 +8,8 @@
 index.html        대시보드 (달력 · 다음 레이스 · 시즌 진행 · 순위표 · 아카이브)
 circuit.html      서킷 가이드 템플릿 — circuit.html?round=13
 data.js           시즌 일정(세션 UTC 시각 포함) · 순위 · 브리핑 목록  ← 매일 갱신
+teams.html        팀 & 머신 페이지 (2026 섀시·파워유닛·수뇌부·라인업)
+teams.js          팀 & 머신 데이터 ← 인사·차량 변경 시 갱신
 circuits.js       23개 서킷 데이터 (핵심 코너 · 역사 · 관전 포인트 · 트랙맵 URL)
 corners.js        23개 서킷 전체 코너 목록 (circuit.html '전체 코너' 섹션)
 briefings/        날짜별 브리핑 HTML

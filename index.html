@@ -46,6 +46,8 @@
   .brand .yr { font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--text-dim); border:1px solid var(--border); padding:2px 7px; border-radius:6px; margin-left:2px; }
   .top .meta { color:var(--text-dim); font-size:12.5px; margin-left:8px; padding-left:14px; border-left:1px solid var(--border); }
   .top .sp { flex:1; }
+  .topnav { display:flex; gap:8px; }
+  @media (max-width:760px) { .topnav .btn span { display:none; } }
   .btn { border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:600; padding:7px 14px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:.15s; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
   .btn:hover { color:var(--text); border-color:var(--text); }
   .btn.unlock { border-color:var(--spoiler-border); background:var(--spoiler-bg); color:var(--accent); }
@@ -290,6 +292,7 @@
   <div class="brand"><span class="dot"></span>PIT<span class="accent">WALL</span><span class="yr" id="yrTag"></span></div>
   <div class="meta" id="metaTxt"></div>
   <div class="sp"></div>
+  <nav class="topnav" aria-label="바로가기"><a class="btn" id="navCircuit" href="circuit.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14c0-5 3-8 8-8s8 3 8 8-3 6-8 6-8-1-8-6z"/><circle cx="12" cy="14" r="2"/></svg><span>서킷 가이드</span></a><a class="btn" href="teams.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-5h9l4 5h3v4H3z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span>팀 & 머신</span></a></nav>
   <button class="btn unlock" id="unlockAll" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path class="shackle" d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>순위표 펼치기</span></button>
 </div></div>
 
@@ -464,6 +467,7 @@
     if (!next && e >= today) next = r;
   });
   var nb = document.getElementById('nextBody');
+  if (next) document.getElementById('navCircuit').href = 'circuit.html?round=' + next.round;
   if (next) {
     var dd = Math.round((parse(next.end)-today)/86400000);
     document.getElementById('nextSub').textContent = 'ROUND ' + next.round + ' / ' + D.calendar.length;
