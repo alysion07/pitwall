@@ -78,7 +78,23 @@
   .tl-d { font-size:14.5px; color:var(--text-mid); max-width:720px; }
 
   /* 트랙 맵 */
-  .mapsec { margin-top:36px; }
+  .mapgrid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:28px; align-items:start; }
+  .mapcol { position:sticky; top:118px; }
+  .mapinfo { display:flex; gap:18px; flex-wrap:wrap; margin-top:14px; }
+  .mapinfo span { font-size:12px; color:var(--text-dim); }
+  .mapinfo b { display:block; font-size:18px; font-weight:800; color:var(--text); letter-spacing:-0.02em; line-height:1.15; font-variant-numeric:tabular-nums; }
+  .cornercol { min-width:0; }
+  .cornercol .turns, .cornercol .corners { grid-template-columns:1fr; }
+  .sub-h { display:flex; align-items:baseline; gap:10px; font-size:16px; font-weight:800; letter-spacing:-0.02em; margin:26px 0 12px; scroll-margin-top:118px; }
+  .sub-h:first-child { margin-top:0; }
+  .sub-h span { font-size:12px; color:var(--text-dim); font-weight:600; }
+  @media (max-width:900px) {
+    .mapgrid { grid-template-columns:1fr; gap:16px; }
+    .mapcol { position:sticky; top:96px; z-index:5; background:var(--bg); padding:6px 0; }
+    .mapcol .map { padding:12px; }
+    .mapcol .map img { max-height:190px; }
+    .mapinfo, .mapcol .note { display:none; }
+  }
   .map { background:var(--card); border-radius:18px; padding:26px; border:1px solid var(--border); box-shadow:var(--shadow); }
   .map img { display:block; width:100%; max-height:560px; object-fit:contain; margin:0 auto; }
   /* 공식 지도는 밝은 회색 배경이 박혀 있음 → 다크 모드에선 반전+색상 복원으로 어둡게 */
@@ -157,32 +173,33 @@
   else h += '<div class="stat wide"><div class="k">랩 레코드</div><div class="v" style="font-size:18px">아직 없음</div><div class="sub">'+D.meta.season+'년 첫 개최</div></div>';
   h += '</div></div>';
 
-  if (c.map) {
-    h += '<section class="mapsec" id="map" data-tab="트랙 맵"><div class="sec-h"><h2>트랙 맵</h2><span class="n">코너 번호 · 섹터 · 직선 모드(DRS) 존</span></div>';
-    h += '<div class="map"><img src="'+c.map+'" alt="'+esc(c.name)+' 트랙 맵" loading="lazy"></div>';
-    h += '<p class="note">Formula1.com 공식 트랙맵. 아래 코너 가이드의 번호는 이 지도의 번호와 같습니다.</p></section>';
-  }
-
   if (c.watch && !past) {
     h += '<section id="watch" data-tab="관전 포인트"><div class="sec-h"><h2>이번 주말 관전 포인트</h2><span class="n">순위·결과 언급 없음</span></div><div class="watch">';
     c.watch.forEach(function (w) { h += '<div class="wp">'+esc(w)+'</div>'; });
     h += '</div></section>';
   }
 
-  h += '<section id="turns" data-tab="핵심 코너"><div class="sec-h"><h2>핵심 코너 가이드</h2><span class="n">'+c.turns.length+'개 구간</span></div><div class="turns">';
+  // ---------- 트랙 맵 & 코너: 왼쪽 지도는 sticky, 오른쪽에 핵심 코너 → 전체 코너 ----------
+  var ac = window.F1CORNERS && window.F1CORNERS[round];
+  h += '<section id="map" data-tab="트랙 맵 · 코너"><div class="sec-h"><h2>트랙 맵 & 코너</h2><span class="n">코너를 내려 읽는 동안 지도는 화면에 고정됩니다</span></div>';
+  h += '<div class="mapgrid"><div class="mapcol">';
+  if (c.map) h += '<div class="map"><img src="'+c.map+'" alt="'+esc(c.name)+' 트랙 맵"></div>';
+  h += '<div class="mapinfo"><span><b>'+c.length.toFixed(3)+'</b>km</span><span><b>'+c.corners+'</b>코너</span><span><b>'+c.drs+'</b>DRS 존</span><span><b>'+c.laps+'</b>랩</span></div>';
+  h += '<p class="note">Formula1.com 공식 트랙맵 · 지도의 코너 번호 = 오른쪽 목록의 번호. 색 구간은 섹터, 초록 상자는 직선 모드(DRS) 감지·작동 존.</p>';
+  h += '</div><div class="cornercol">';
+  h += '<h3 class="sub-h">핵심 코너 <span>'+c.turns.length+'개 구간 · 이 서킷의 관전 포인트가 되는 곳</span></h3><div class="turns">';
   c.turns.forEach(function (t) {
     h += '<div class="turn"><div class="tn">'+esc(t.n||'—')+'</div><div class="tb">'+(t.name?'<div class="tname">'+esc(t.name)+'</div>':'')+'<div class="tnote">'+esc(t.note)+'</div></div></div>';
   });
-  h += '</div></section>';
-
-  var ac = window.F1CORNERS && window.F1CORNERS[round];
+  h += '</div>';
   if (ac && ac.list && ac.list.length) {
-    h += '<section id="corners" data-tab="전체 코너"><div class="sec-h"><h2>전체 코너</h2><span class="n">'+ac.list.length+'개 코너 · 트랙맵 번호 순</span></div><ol class="corners">';
+    h += '<h3 class="sub-h" id="corners">전체 코너 <span>'+ac.list.length+'개 · 트랙맵 번호 순</span></h3><ol class="corners">';
     ac.list.forEach(function (t) {
       h += '<li class="cn"><span class="no">T'+t.n+'</span><div>'+(t.name?'<div class="cname">'+esc(t.name)+'</div>':'')+'<div class="cnote">'+esc(t.note)+'</div></div></li>';
     });
-    h += '</ol>'+(ac.caveat?'<p class="note">'+esc(ac.caveat)+'</p>':'')+'</section>';
+    h += '</ol>'+(ac.caveat?'<p class="note">'+esc(ac.caveat)+'</p>':'');
   }
+  h += '</div></div></section>';
 
   h += '<section id="history" data-tab="역사"><div class="sec-h"><h2>서킷의 역사</h2><span class="n">과거 시즌 · 스포일러 아님</span></div><div class="tl">';
   c.history.forEach(function (x) { h += '<div class="tl-item"><div class="tl-y">'+x.y+'</div><div class="tl-t">'+esc(x.t)+'</div><div class="tl-d">'+esc(x.d)+'</div></div>'; });
