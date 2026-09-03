@@ -14,7 +14,7 @@ window.F1DATA = {
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
     { date: "2026-09-03", file: "briefings/f1-news-2026-09-03.html", count: 20, spoilers: 5,
-      headline: "페라리 몬차 파워유닛 업그레이드 · 맥라렌 H-윙 데뷔 · 레드불 로슨 출전 확정" },
+      headline: "레드불 몬차 라인업 확정 — FP1 이와사·결승 로슨 · 페라리 ADUO 2차 엔진 업그레이드 · 맥라렌 H-윙 첫 실전 투입" },
     { date: "2026-08-22", file: "briefings/f1-news-2026-08-22.html", count: 15, spoilers: 1,
       headline: "페르스타펜, 레드불과 2030년까지 재계약 · 하자르 손목 부상 — 로슨·츠노다 긴급 투입" },
     { date: "2026-08-19", file: "briefings/f1-news-2026-08-19.html", count: 15, spoilers: 3,
