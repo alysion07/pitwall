@@ -59,7 +59,12 @@
   /* 레이아웃 */
   .grid { display:grid; grid-template-columns:minmax(0,1fr) 340px 380px; gap:24px; padding:28px 0 0; align-items:stretch; }
   .col2, .col3 { display:flex; flex-direction:column; gap:18px; min-height:0; }
-  @media (min-width:1321px) { .col2, .col3 { contain:size; } }   /* 컬럼 자체 높이 기여를 0으로 → 달력 높이에 맞춰 늘어남 */
+  /* col3만 높이 기여 0(순위표가 행 높이를 끌어올리지 않게). col2는 자연 높이로 두고, 행 높이 = max(달력, col2). */
+  @media (min-width:1321px) { .col3 { contain:size; } }
+  /* 달력 카드는 행 높이에 맞춰 늘어나고, 남는 높이는 주(week) 행들이 나눠 가진다 */
+  #calCard { display:flex; flex-direction:column; }
+  .cal { flex:1 1 auto; display:flex; flex-direction:column; }
+  .cal .week { flex:1 1 auto; }
   .col2 > .card, .col3 > .card { flex:0 0 auto; }
   .col2 > .card.grow, .col3 > .card.grow { flex:1 1 0; min-height:0; display:flex; flex-direction:column; }
   .col-stand { display:flex; flex-direction:column; }
