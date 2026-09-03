@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="referrer" content="no-referrer">
+<title>F1 데일리 브리핑 — 2026.08.22</title>
+<style>
+  :root {
+    --bg:#ffffff; --bg-soft:#f7f7f9; --card:#ffffff; --card-hover:#fbfbfc;
+    --text:#14141a; --text-mid:#4a4a57; --text-dim:#86868f;
+    --border:#e6e6ec; --border-soft:#f0f0f4;
+    --accent:#E10600; --accent-soft:rgba(225,6,0,.08);
+    --spoiler-bg:#fbf7f7; --spoiler-border:#ecdcdc; --chip-bg:#f2f2f5;
+    --shadow:0 1px 2px rgba(20,20,26,.04),0 8px 24px -12px rgba(20,20,26,.10);
+    --bar-bg:rgba(255,255,255,.82);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0e0e11; --bg-soft:#141419; --card:#16161b; --card-hover:#1b1b21;
+      --text:#f0f0f3; --text-mid:#b6b6c0; --text-dim:#82828e;
+      --border:#26262e; --border-soft:#1e1e25;
+      --accent:#FF3B30; --accent-soft:rgba(255,59,48,.12);
+      --spoiler-bg:#1a1416; --spoiler-border:#3a2528; --chip-bg:#1e1e25;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+      --bar-bg:rgba(14,14,17,.82);
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;
+    font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0 24px; }
+  header { padding:72px 0 32px; }
+  .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+  .kicker .dot { width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  h1 { font-size:clamp(34px,7vw,46px); line-height:1.12; margin:0 0 20px; font-weight:800; letter-spacing:-0.035em; }
+  h1 .accent { color:var(--accent); }
+  .lede { font-size:15px; color:var(--text-mid); margin:0; padding-bottom:28px; border-bottom:1px solid var(--border); }
+  .lede b { color:var(--text); font-weight:600; }
+  .digest { margin:28px 0 0; padding:20px 22px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:14px; }
+  .digest h2 { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:0 0 12px; }
+  .digest ol { margin:0; padding-left:20px; }
+  .digest li { font-size:14.5px; color:var(--text-mid); margin-bottom:7px; }
+  .digest li:last-child { margin-bottom:0; }
+  .digest li b { color:var(--text); font-weight:600; }
+  .bar { position:sticky; top:0; z-index:20; margin:36px 0 8px; padding:12px 0; background:var(--bar-bg); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--border-soft); }
+  .bar-inner { display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap; }
+  .chips { display:flex; gap:7px; flex-wrap:wrap; flex:1 1 auto; scrollbar-width:none; -ms-overflow-style:none; padding:2px 0; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip { flex:0 0 auto; border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:500; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s,color .15s,border-color .15s; }
+  .chip:hover { color:var(--text); }
+  .chip[aria-pressed="true"] { background:var(--text); color:var(--bg); border-color:var(--text); }
+  .chip .n { opacity:.5; margin-left:4px; font-variant-numeric:tabular-nums; }
+  .unlock { flex:0 0 auto; border:1px solid var(--spoiler-border); background:var(--spoiler-bg); color:var(--accent); font:inherit; font-size:13px; font-weight:600; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s; }
+  .unlock:hover { background:var(--accent-soft); }
+  section { padding-top:44px; scroll-margin-top:70px; }
+  section.hidden { display:none; }
+  .sec-head { display:flex; align-items:baseline; gap:10px; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--text); }
+  .sec-head h2 { font-size:19px; font-weight:750; margin:0; letter-spacing:-0.02em; }
+  .sec-head .count { font-size:12px; color:var(--text-dim); font-variant-numeric:tabular-nums; margin-left:auto; font-weight:500; }
+  .art { display:flex; flex-direction:column; align-items:stretch; gap:16px; padding:26px 0; border-bottom:1px solid var(--border-soft); }
+  .art:last-child { border-bottom:none; }
+  .thumb { width:100%; height:340px; border-radius:14px; overflow:hidden; background:linear-gradient(135deg,var(--accent) 0%,#600 100%); border:1px solid var(--border-soft); }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .art-body { min-width:0; }
+  .art h3 { font-size:21px; font-weight:750; line-height:1.36; margin:0 0 6px; letter-spacing:-0.025em; }
+  .orig { font-size:13px; color:var(--text-dim); margin:0 0 11px; font-style:italic; line-height:1.45; }
+  .meta { display:flex; align-items:center; gap:7px; flex-wrap:wrap; font-size:12px; color:var(--text-dim); margin-bottom:12px; }
+  .src { font-weight:650; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:5px; font-size:11.5px; }
+  .sum { font-size:15px; color:var(--text-mid); margin:0 0 4px; line-height:1.75; }
+  details.more { margin:8px 0 14px; }
+  details.more > summary { list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:650; color:var(--accent); padding:7px 0; user-select:none; }
+  details.more > summary::-webkit-details-marker { display:none; }
+  details.more > summary .caret { transition:transform .18s; font-size:10px; }
+  details.more[open] > summary .caret { transform:rotate(90deg); }
+  .detail-body { margin-top:4px; padding:14px 16px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:12px; }
+  .detail-body p { margin:0 0 10px; font-size:14.5px; color:var(--text-mid); line-height:1.8; }
+  .detail-body p:last-child { margin-bottom:0; }
+  .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
+  .go:hover { border-color:var(--text); background:var(--bg-soft); }
+  .go svg { width:11px; height:11px; }
+  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
+  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler > summary::-webkit-details-marker { display:none; }
+  details.spoiler > summary:hover { background:var(--accent-soft); }
+  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
+  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
+  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
+  details.spoiler[open] > summary .hint::after { content:"접기"; }
+  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
+  details.spoiler .art { padding:18px; border-bottom:none; }
+  .glossary { margin-top:12px; }
+  .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
+  .term:last-child { border-bottom:none; }
+  .term dt { font-size:14.5px; font-weight:700; margin-bottom:3px; }
+  .term dt span { color:var(--text-dim); font-weight:500; font-size:13px; }
+  .term dd { margin:0; font-size:14px; color:var(--text-mid); line-height:1.65; }
+  footer { margin-top:64px; padding:28px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
+  footer .brand { color:var(--accent); font-weight:650; }
+  @media (max-width:560px) {
+    .wrap { padding:0 18px; }
+    header { padding:48px 0 24px; }
+    .thumb { height:210px; }
+    .art h3 { font-size:19px; }
+    .sec-head h2 { font-size:17px; }
+    .bar-inner { flex-wrap:nowrap; flex-direction:column; align-items:stretch; }
+    .chips { flex-wrap:nowrap; overflow-x:auto; width:100%; }
+    .unlock { width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker"><span class="dot"></span> 2026년 8월 22일 토요일 <a href="../index.html" style="margin-left:auto;color:var(--text-dim);text-decoration:none;font-weight:600;letter-spacing:0;text-transform:none">← PIT WALL</a></div>
+    <h1>F1 데일리 <span class="accent">브리핑</span></h1>
+    <p class="lede">해외 주요 매체 <b>5곳</b>에서 <b>기사 15건</b>을 모았습니다. 이 중 <b>1건</b>은 챔피언십 순위가 드러날 수 있어 가려두었습니다. 여름 휴식기가 끝나고 시즌이 재개되면서 잔드보르트(Zandvoort) 소식과 계약 뉴스가 한꺼번에 쏟아진 하루였습니다.</p>
+    <div class="digest">
+      <h2>오늘의 요약</h2>
+      <ol>
+        <li><b>막스 페르스타펜(Max Verstappen)이 레드불(Red Bull)과 2030년까지 재계약</b>했습니다. 이적설이 정리되면서 2027 드라이버 시장의 판이 크게 달라졌습니다.</li>
+        <li><b>이자크 하자르(Isack Hadjar)의 손목 부상</b>으로 리암 로슨(Liam Lawson)이 레드불에, 유키 츠노다(Yuki Tsunoda)가 레이싱불스(Racing Bulls)에 급히 투입됐습니다.</li>
+        <li>🏁 잔드보르트 페라리(Ferrari) 업그레이드 관련 기사 1건은 <b>챔피언십 포인트 순위가 포함</b>돼 가려두었습니다 — 아래 스포일러 카드를 열어 확인하세요.</li>
+      </ol>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="bar-inner">
+      <div class="chips" role="group" aria-label="카테고리 필터">
+        <button class="chip" data-cat="all" aria-pressed="true">전체<span class="n">15</span></button>
+        <button class="chip" data-cat="race" aria-pressed="false">🏁 레이스 위크<span class="n">3</span></button>
+        <button class="chip" data-cat="transfer" aria-pressed="false">🔄 이적/계약<span class="n">5</span></button>
+        <button class="chip" data-cat="tech" aria-pressed="false">🔧 기술/규정<span class="n">2</span></button>
+        <button class="chip" data-cat="people" aria-pressed="false">👤 드라이버/팀<span class="n">3</span></button>
+        <button class="chip" data-cat="etc" aria-pressed="false">📰 기타<span class="n">2</span></button>
+        <button class="chip" data-cat="glossary" aria-pressed="false">📖 용어</button>
+      </div>
+      <button class="unlock" id="unlockAll" aria-pressed="false">🔓 스포일러 모두 펼치기</button>
+    </div>
+  </div>
+
+  <!-- ================= 레이스 위크 ================= -->
+  <section id="race" data-cat="race">
+    <div class="sec-head"><h2>🏁 레이스 위크</h2><span class="count">3건 · 스포일러 0건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/08/XPB_1430268_HiRes.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>잔드보르트 유일한 프랙티스 세션, 안토넬리가 선두</h3>
+        <p class="orig">What happened in only Dutch GP F1 2026 practice session</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>8월 21일 20:46 (KST)</span></div>
+        <p class="sum">스프린트 주말이라 프랙티스가 단 한 세션뿐이었던 잔드보르트에서 키미 안토넬리(Kimi Antonelli)가 1분12초949로 가장 빠른 기록을 냈습니다. 란도 노리스(Lando Norris)가 0.121초 차 2위, 조지 러셀(George Russell)이 3위로 뒤를 이었습니다. 페라리(Ferrari)의 루이스 해밀턴(Lewis Hamilton)과 샤를 르클레르(Charles Leclerc)는 4·5위였지만 선두와의 격차는 3초의 1 이내였습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>안토넬리는 소프트 타이어를 낀 두 번째 플라잉 랩에서 기록을 세웠습니다. 첫 시도에서는 앞차에 막혀 제대로 된 랩을 만들지 못했고, 세션 초반에는 10번 코너 출구에서 가벼운 스핀을 겪기도 했습니다. 큰 손상은 없었고 곧바로 주행을 재개했습니다.</p>
+            <p>중위권에서는 아우디(Audi)의 니코 휠켄베르크(Nico Hulkenberg)가 미디엄 타이어로 7위에 올라 선두를 잡았습니다. 8위는 알핀(Alpine)의 대형 업그레이드를 단 피에르 가슬리(Pierre Gasly)였고, 팀메이트 프랑코 콜라핀토(Franco Colapinto)는 다음 몬차(Monza) 대회에서 같은 사양을 받습니다. 아르비드 린드블라드(Arvid Lindblad)가 레이싱불스로 10위에 올랐습니다.</p>
+            <p>레드불에게는 까다로운 세션이었습니다. 막스 페르스타펜(Max Verstappen)은 언더스티어에 시달렸고, 이번 주 초에야 출전이 확정된 리암 로슨(Liam Lawson)은 RB22 적응에 애를 먹으며 14위로 마쳤습니다. 페르스타펜과의 격차는 약 6초의 1이었고, 마지막 플라잉 랩에서는 11·12번 시케인에서 흔들리는 장면도 있었습니다.</p>
+            <p>애스턴마틴(Aston Martin)의 새 혼다(Honda) 엔진 업그레이드는 49랩을 소화하며 페르난도 알론소(Fernando Alonso)를 12위에 올려놓았습니다. 유키 츠노다(Yuki Tsunoda)는 레이싱불스 복귀 첫 세션에서 17위를 기록했고, 카를로스 사인츠(Carlos Sainz)는 코스 이탈이 두 차례 나오며 22위로 마감했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/what-happened-in-only-dutch-gp-f1-2026-practice-session/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/08/XPB_1430498_HiRes.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>러셀, 0.041초 차로 스프린트 폴 획득 — 상위 4명이 1초의 10분의 1 안에</h3>
+        <p class="orig">Russell upstages Antonelli with Dutch GP sprint pole</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>8월 22일 00:31 (KST)</span></div>
+        <p class="sum">조지 러셀(George Russell)이 1분11초567로 잔드보르트 스프린트 폴을 잡았습니다. 상위 4명이 0.1초 안에 몰린 초접전이었고, 노리스(+0.041s)·르클레르(+0.055s)·피아스트리(+0.099s)가 뒤를 이었습니다. 이번 시즌 러셀의 세 번째 스프린트 폴입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>러셀은 폴 확정 후 "약혼반지 때문에 몸이 좀 가벼워진 모양"이라며 여름 휴식기에 했던 프러포즈를 농담 소재로 삼았습니다. 중간 섹터가 상대적으로 느렸는데도 폴을 따냈다는 점에서 마지막 소프트 타이어 한 방 승부가 잘 맞아떨어진 셈입니다.</p>
+            <p>맥라렌(McLaren)은 주름진 리어윙 엔드플레이트 업그레이드를 달고 SQ3 상위권에 두 대를 모두 올린 유일한 팀이었습니다. 안토넬리는 프랙티스에서 스핀한 데 이어 SQ1에서 12번 코너를 이탈했고, 최종 슛아웃에서 5위에 그쳤습니다. 페르스타펜은 SQ1에서 해밀턴 진로 방해 가능성으로 조사 대상에 올랐지만 곧바로 무혐의 처리됐고 6위로 마쳤습니다. 해밀턴은 1번 코너 오버스티어와 9번 코너 턴인 문제로 7위였습니다.</p>
+            <p>레드불 주니어 프로그램 내부의 경쟁 구도도 볼거리였습니다. 로슨은 SQ1에서 페르스타펜을 앞서는 놀라운 랩을 냈지만 SQ2에서는 이야기가 달라졌습니다. B팀 레이싱불스의 린드블라드가 로슨을 SQ2에서 탈락시켰고, 로슨은 "무슨 일이 있었는지 모르겠다"며 언더스티어를 호소했습니다. 다만 레드불 머신 첫 주행에서 페르스타펜과 3초의 10분의 1 남짓 차이라는 점은 나쁘지 않은 결과입니다.</p>
+            <p>츠노다는 팀메이트 린드블라드와 0.3초 차였는데, 2026년형 머신을 이날 처음 몰았다는 점을 감안하면 준수했습니다. 애스턴마틴은 헝가리에서의 큰 진전을 재현하지 못했고, 알론소는 직선에서의 진동과 작동하지 않는 리어윙 스트레이트 모드를 지적하며 최하위로 마감했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/dutch-gp-f1-sprint-qualifying-2026-russell-pole/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-08/xpb_1430592_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>잔드보르트 스프린트 레이스 전체 그리드 확정</h3>
+        <p class="orig">F1 2026 Dutch Grand Prix: Full starting grid for Zandvoort sprint race</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>8월 22일 00:51 (KST)</span></div>
+        <p class="sum">24랩 스프린트 레이스의 22대 전체 출발 순서가 확정됐습니다. 프런트로는 러셀과 노리스, 두 번째 줄은 르클레르와 피아스트리입니다. 스프린트 시작 시각에 잔드보르트에 비가 올 가능성이 있다고 전해졌습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>그리드 상위 10위는 러셀 · 노리스 · 르클레르 · 피아스트리 · 안토넬리 · 페르스타펜 · 해밀턴 · 가슬리 · 보르톨레토 · 린드블라드 순입니다. 홈 그랑프리를 치르는 페르스타펜은 3열에서 출발합니다.</p>
+            <p>11위부터는 로슨 · 츠노다 · 콜라핀토 · 휠켄베르크 · 오콘 · 알본 · 베어먼 · 사인츠 · 스트롤 · 보타스 · 페레스 · 알론소 순입니다. 하스(Haas)와 윌리엄스(Williams)에서는 각각 오콘과 알본이 세션 막판 기록 향상으로 팀메이트를 눌렀습니다.</p>
+            <p>알론소는 리어윙 문제가 발생한 신형 업그레이드 애스턴마틴으로 최후미인 22번 그리드에 섭니다. 캐딜락(Cadillac) 두 대는 애스턴마틴 두 대 사이에 끼어 20·21번 그리드를 차지했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1102700/1/f1-2026-dutch-grand-prix-full-starting-grid-zandvoort-sprint-race" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 이적/계약 ================= -->
+  <section id="transfer" data-cat="transfer">
+    <div class="sec-head"><h2>🔄 이적 / 계약</h2><span class="count">5건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/08/SI202608200356_hires_jpeg_24bit_rgb.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>페르스타펜은 왜 갑자기 2030년까지 레드불에 남기로 했나</h3>
+        <p class="orig">Why Verstappen has suddenly committed to Red Bull until 2030</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>8월 20일 22:17 (KST)</span></div>
+        <p class="sum">막스 페르스타펜(Max Verstappen)이 레드불과 2030년까지 계약을 연장했습니다. 성사되면 해밀턴-메르세데스를 넘어서는 F1 역사상 최장 드라이버-팀 파트너십이 됩니다. 그는 "팀을 옮기는 것보다 은퇴가 더 가까웠다"고 털어놨습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>페르스타펜은 크리스천 호너(Christian Horner) 이후 로랑 메키(Laurent Mekies) 체제에서의 관계가 "매우 열려 있고 투명했다"고 말했습니다. 그는 디트리히 마테시츠(Dietrich Mateschitz) 생전부터 이 팀에서 커리어를 마무리하는 것이 목표였다고 밝히며, 계약 연장이 그 목표에 한 걸음 다가간 것이라고 설명했습니다.</p>
+            <p>메키 대표는 우승 사이클을 다시 여는 데 필요한 세 기둥으로 드라이버, 밀턴키인스의 인재, 그리고 새 풍동을 포함한 "전략적 결정들"을 꼽았습니다. 페르스타펜을 붙잡는 것이 인력 유치에도 결정적이라는 판단입니다.</p>
+            <p>2026 규정에 가장 목소리를 높여 비판해 온 인물이 페르스타펜이었던 만큼, 규정 개선이 결정에 큰 영향을 줬습니다. 그는 시즌 초반 메키에게 "미래 얘기는 꺼내지도 말라, F1에 남고 싶은지조차 모르겠다"고 했다고 밝혔지만, FIA·F1과의 논의를 거치며 "점점 나아지고 있다"고 평가했습니다. 2031년 V8 도입 가능성도 잔류 이유 중 하나로 언급됐습니다.</p>
+            <p>맥라렌·메르세데스와 실제 협상이 있었다는 점은 인정하면서도 "이기려고 굳이 팀을 바꾸고 싶다는 마음은 없었다"고 말했습니다. 뉘르부르크링 등 F1 외 레이스 출전 자유를 유지한 것도 잔류를 택한 큰 이유로 꼽힙니다. 다만 모든 계약에 탈출 조항이 있듯 이번 계약도 예외는 아니어서, 2030년까지 완주가 보장된 것은 아닙니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/why-max-verstappen-suddenly-committed-red-bull-f1-2030/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://d3cm515ijfiu6w.cloudfront.net/wp-content/uploads/2026/08/20175314/max-verstappen-red-bull-contract-clause-1320x742.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>페르스타펜 "탈출 조항은 그대로다" — 새 계약의 숨은 조건</h3>
+        <p class="orig">Max Verstappen makes escape clause confession in new Red Bull contract</p>
+        <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>8월 21일 13:59 (KST)</span></div>
+        <p class="sum">2030년까지 연장했지만 계약 안의 탈출 조항(exit clause)은 이전과 "그대로"라고 페르스타펜이 밝혔습니다. 구체적인 내용은 끝내 공개하지 않았습니다. 대신 F1 외 내구 레이스 출전 자유가 유지된다는 점은 확인했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>페르스타펜과 레드불은 잔드보르트 주말을 앞둔 목요일에 계약 연장을 발표했습니다. 이로써 팀 이적설은 물론 은퇴설까지 일단락됐습니다. 다만 그는 "계약 내용은 한 번도 공개한 적이 없다, 그러니 그대로다"라며 조항의 세부 내용은 함구했습니다.</p>
+            <p>기자회견장에서 옛 팀메이트 세르지오 페레스(Sergio Perez)가 "말해달라"고 농담을 던지자, 페르스타펜은 웃으며 "체코, 저녁 먹으면서 알려줄게"라고 받아쳤습니다.</p>
+            <p>그가 확인해 준 유일한 조항은 F1 외 활동의 자유입니다. 올해 F1 휴식 주간에 뉘르부르크링 24시간 레이스에 출전했던 그는 "24시간 레이스 같은 내구 레이스는 계속하고 싶다"며, 다만 빡빡한 F1 캘린더가 변수라고 덧붙였습니다.</p>
+            <p>레드불 대표 로랑 메키(Laurent Mekies) 역시 "우리와 막스가 2030년까지 서로 헌신하기로 했다는 것이 핵심이고, 나머지는 우리 내부 문제"라며 세부 공개를 거부했습니다. PlanetF1은 복수의 소식통을 인용해 페르스타펜이 맥라렌과 최종 단계 협상까지 갔었다고 전했지만, 본인은 "그게 중요한가"라며 답을 피했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.planetf1.com/news/max-verstappen-red-bull-exit-clause-stays-the-same" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/08/XPB_1427383_HiRes.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>페르스타펜 계약 이후, 드라이버 시장에 남은 질문들</h3>
+        <p class="orig">What's next for F1's driver market after Verstappen's new deal</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>8월 21일 17:32 (KST)</span></div>
+        <p class="sum">상위 4개 팀의 2027년 라인업은 사실상 굳어졌지만, 그 아래에서는 아직 정리되지 않은 자리가 여럿 남아 있습니다. 레드불 주니어 인사, 알론소의 거취, 알핀과 하스의 두 번째 시트가 핵심 변수입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>레드불 진영의 셈법이 오히려 복잡해졌습니다. 하자르는 잔류가 유력하지만 부상과 로슨의 대체 출전이 변수가 될 수 있습니다. F2에서 챔피언십을 이끌고 있는 니콜라 촐로프(Nikola Tsolov)의 승격 압박이 커지는 가운데, 레드불은 린드블라드를 F1에 남기고 싶어 하고 로슨 역시 제 몫을 하고 있어 B팀 두 자리를 두고 고민이 깊어졌습니다.</p>
+            <p>알론소는 결정을 미뤘습니다. 8월 중 거취를 정하겠다던 그는 휴가에서 돌아온 뒤에도 결론을 내지 않았고, 로런스 스트롤(Lawrence Stroll)·에이드리언 뉴이(Adrian Newey)와의 면담이 먼저라고 밝혔습니다. The Race는 애스턴마틴의 2027년 경쟁력이 실질적 변수이며, 결국 연장 쪽으로 흐를 가능성이 크다고 봤습니다. 페르스타펜과 사인츠 등 대체 후보들이 모두 다른 팀에 묶이면서 서두를 이유도 줄었습니다.</p>
+            <p>알핀에서는 플라비오 브리아토레(Flavio Briatore)가 메르세데스 상황을 지켜보겠다며 결정을 미뤄왔지만 그 문이 닫히면서, 콜라핀토의 계약 연장 가능성이 커졌습니다. 브리아토레는 "작년 대비 100% 성장했다"고 평가하면서도 더 많은 것을 요구하고 있습니다.</p>
+            <p>하스의 남은 한 자리를 두고는 경쟁이 치열합니다. 에스테반 오콘(Esteban Ocon)이 여전히 후보지만, 맥라렌에서 임대 가능한 F2 선두 레오나르도 포르나롤리(Leonardo Fornaroli), 페라리가 미는 하파엘 카마라(Rafael Camara), 그리고 히라카와 료(Ryo Hirakawa)와 잭 두한(Jack Doohan)까지 이름이 오르내립니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/what-next-for-f1s-driver-market-after-verstappens-new-deal/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_1600/q_auto/v1740000001/fom-website/2026/China/GettyImages-2265574174.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>알본과 사인츠가 부진 속에서도 윌리엄스를 택한 이유</h3>
+        <p class="orig">Albon and Sainz explain why they have kept faith in Williams despite 2026 'blip'</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>8월 21일 18:37 (KST)</span></div>
+        <p class="sum">알렉스 알본(Alex Albon)과 카를로스 사인츠(Carlos Sainz)가 2027년까지 윌리엄스(Williams) 잔류를 확정했습니다. 두 사람 모두 올해를 "일시적 부진(blip)"으로 규정하며 팀의 근본적 체질 개선을 잔류 이유로 들었습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>알본의 잔류는 화요일에, 사인츠의 잔류는 그 24시간 뒤에 발표됐습니다. 올해 FW48은 개발이 늦었고 무거웠으며 경쟁력도 부족했습니다. 상황이 나아지긴 했지만 팀이 원하는 수준과는 여전히 거리가 있습니다.</p>
+            <p>알본은 "정말 답답한 한 해였지만, 처음으로 팀이 문제를 깊이 파고드는 모습을 봤다"고 말했습니다. 그는 지난해에는 좋은 결과에 가려 머신의 근본적 문제가 넘어갔지만 올해는 다운포스가 줄면서 그 문제가 그대로 드러났고, 그래서 오히려 제대로 손을 대게 됐다고 설명했습니다.</p>
+            <p>사인츠는 "상황이 가장 나쁠 때 배를 버리는 건 내 성격이 아니다"라고 잘라 말했습니다. 2년 전 프로젝트에 대한 확신을 공개적으로 밝혔던 만큼, 첫 번째 큰 난관에서 떠나는 선택은 하고 싶지 않았다는 것입니다.</p>
+            <p>두 사람 모두 팀 대표 제임스 보울스(James Vowles)의 영입 드라이브와 방법론 개편을 근거로 들었습니다. 사인츠는 "중장기 계획이 여전히 희망을 준다"면서도, 2027년에는 반드시 반등하는 모습을 보여야 한다고 못박았습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/albon-and-sainz-explain-why-they-have-kept-faith-in-williams-despite-2026-blip.3NJSyES6rh2yDPi5mSl9Ru" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://d3cm515ijfiu6w.cloudfront.net/wp-content/uploads/2026/08/20182323/fernando-alonso-media-pen-dutch-gp-planetf1-1320x742.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>알론소 "거취 결정에 시한은 없다" — 스트롤·뉴이와 면담 예정</h3>
+        <p class="orig">Fernando Alonso reveals he has no timeline for Formula 1 future decision</p>
+        <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>8월 21일 15:10 (KST)</span></div>
+        <p class="sum">여름 휴식기 이후 거취를 밝히겠다던 페르난도 알론소(Fernando Alonso)가 결정을 미뤘습니다. "시한은 없다"며 로런스 스트롤, 에이드리언 뉴이와 먼저 이야기하겠다는 입장입니다. 다만 어떤 형태로든 애스턴마틴에 남는다는 점은 분명히 했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>알론소는 "방금 휴가에서 돌아왔다, 며칠 뒤일지 몇 주 뒤일지 몇 달 뒤일지 지켜보자"며 웃었습니다. 이번 주말 잔드보르트에 오는 스트롤과 점심이나 커피를 할 예정이고, 마드리드 시뮬레이션을 위해 곧 실버스톤 공장을 방문할 때 뉴이와도 만날 수 있다고 했습니다.</p>
+            <p>애스턴마틴은 헝가리에서 AMR26 섀시에 상당한 업데이트를 투입해 중위권에 근접했고, 이번 잔드보르트에는 혼다의 개선된 파워 유닛을 가져왔습니다. 알론소의 판단은 결국 이 팀이 얼마나 빨리 앞으로 갈 수 있는지에 달려 있습니다.</p>
+            <p>그는 2023년 애스턴마틴에 합류하면서 은퇴 후 앰배서더 역할까지 포함한 조건에 서명했습니다. F1을 떠나더라도 레이싱 자체를 그만두지는 않겠다는 입장이고, 인디애나폴리스 500 재도전 가능성도 열어뒀습니다. 인디 500에서 우승하면 그는 역사상 두 번째 트리플 크라운 달성자가 됩니다.</p>
+            <p>"규정이 최고는 아니고, 몰기에 가장 즐거운 머신도 아니다"라고 인정하면서도 "F1은 언제나 내 삶이었고 내 마음은 여기 있다"고 말했습니다. 팀이 필요로 한다면 계속 운전하겠지만, 다른 자리에서 더 가치 있다면 그것도 받아들이겠다는 것입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.planetf1.com/news/fernando-alonso-future-update-no-decision" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 기술/규정 ================= -->
+  <section id="tech" data-cat="tech">
+    <div class="sec-head"><h2>🔧 기술 / 규정</h2><span class="count">2건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/08/McLaren-MCL40-rear-wing-endplate-comparison---highlighted.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>맥라렌의 '주름진' 리어윙, 잔드보르트 업그레이드 경쟁의 화제작</h3>
+        <p class="orig">Crinkled McLaren rear wing among Dutch GP F1 upgrades</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>8월 21일 19:47 (KST)</span></div>
+        <p class="sum">맥라렌이 여러 개의 주름선(swage line)이 들어간 독특한 리어윙 엔드플레이트를 잔드보르트에 들고 나와 패독의 눈길을 끌었습니다. 헝가리에서 시작된 개발 패키지의 2단계로, 리어윙·중앙 바디워크·리어 브레이크 덕트가 함께 바뀌었습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>주름의 목적은 뒷타이어에서 흘러나오는 공기 흐름을 더 잘 제어해 윙 끝단에서 생기는 소용돌이(vortex)에 미치는 영향을 다스리는 것입니다. 엔드플레이트에 이런 주름선을 넣는 흐름은 2023년 모나코에서 알핀과 애스턴마틴이 동시에 도입하면서 시작됐고, 이후 다른 팀들이 따라 했습니다.</p>
+            <p>맥라렌의 이번 해석은 그중에서도 한 단계 더 나아간 형태입니다. 규정이 엔드플레이트 두께를 엄격히 제한하기 때문에, 이런 설계는 정교하면서도 고속에서 받는 공력 하중을 견딜 만큼 구조적으로 튼튼해야 합니다. 기술 분석가 게리 앤더슨(Gary Anderson)은 엔드플레이트 바깥면에 추가된 터닝 베인이 리어 브레이크 덕트의 흐름과 맞물려 디퓨저 성능을 돕는다고 봤습니다.</p>
+            <p>다른 팀들도 움직였습니다. 애스턴마틴은 헝가리에 가져온 새 프런트윙 콘셉트를 손봐 바깥쪽 마지막 요소의 코드를 줄이고 인보드 풋을 개선했으며, 플로어 펜스와 디퓨저 윙렛도 수정했습니다. 페라리는 플로어 브레이스 배치와 베인 구성을 바꾸고 디퓨저·빔윙과 연동되도록 다듬어 전 속도 영역에서 다운포스를 늘리는 데 초점을 맞췄습니다.</p>
+            <p>알핀의 대형 업그레이드는 가슬리의 머신에만 먼저 적용됐고, 콜라핀토는 몬차에서 받습니다. 플로어 바디·플로어 보드·플로어 에지·디퓨저를 새로 다듬고 사이드포드 바디워크와 리어 브레이크 드럼까지 바꿔, 시즌 내내 발목을 잡은 고속 밸런스 문제를 해결하려는 시도입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/crinkled-mclaren-rear-wing-among-dutch-gp-f1-upgrades/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 페라리 업그레이드 분석 — 본문에 챔피언십 포인트 순위 포함 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="art-body">
+          <h3>페라리, 잔드보르트에 업그레이드 5종 투입</h3>
+          <p class="orig">Ferrari unleash multiple upgrades at Dutch GP as Lewis Hamilton steps up F1 title bid</p>
+          <div class="meta"><span class="src">GPFans</span><span>·</span><span>8월 21일 23:30 (KST)</span></div>
+          <p class="sum">페라리가 SF-26의 플로어·디퓨저·빔윙 세 영역에 걸쳐 다섯 가지 업그레이드를 투입했다는 내용의 기사입니다. 몬차에서는 엔진 업데이트도 예정돼 있습니다. 다만 이 기사는 본문에 드라이버·컨스트럭터 챔피언십 포인트 순위와 격차를 그대로 싣고 있어, 최근 레이스 결과가 드러날 수 있습니다. 자세한 내용은 원문에서 확인하세요.</p>
+          <a class="go" href="https://www.gpfans.com/en/f1-news/1089274/f1-ferrari-upgrades-dutch-grand-prix-lewis-hamilton-title-fight-2026/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ================= 드라이버/팀 ================= -->
+  <section id="people" data-cat="people">
+    <div class="sec-head"><h2>👤 드라이버 / 팀 뉴스</h2><span class="count">3건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/c_lfill,w_1600/q_auto/v1740000001/fom-website/2026/Red%20Bull/16x9%20single%20image%20-%202026-08-19T090219.768.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>레드불, 하자르 결장 공식 확인 — 로슨 승격·츠노다 복귀</h3>
+        <p class="orig">Red Bull confirm Hadjar to miss Dutch Grand Prix as Lawson steps up and Tsunoda returns</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>8월 19일 20:02 (KST)</span></div>
+        <p class="sum">이자크 하자르(Isack Hadjar)가 손목 부상으로 더치 그랑프리에 나서지 못합니다. 레이싱불스의 리암 로슨(Liam Lawson)이 레드불 시트로 올라가고, 비어 있는 레이싱불스 자리는 리저브 드라이버 유키 츠노다(Yuki Tsunoda)가 채웁니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>하자르는 여름 셧다운 기간에 손목을 다쳤습니다. 하필 팀메이트 페르스타펜의 홈 레이스가 열리는 잔드보르트 주말을 놓치게 됐습니다.</p>
+            <p>로슨은 2025년 시즌 초반 두 라운드 동안 레드불에서 뛰다 자매팀으로 강등된 경험이 있습니다. 이후 중위권의 스타로 자리 잡았고, 이번이 강등 이후 처음으로 다시 레드불 머신에 오르는 경우입니다.</p>
+            <p>츠노다는 지난 시즌을 끝으로 풀타임 시트를 잃고 두 팀의 테스트·리저브 드라이버로 보직을 옮겼습니다. 이번 주말에는 신인 아르비드 린드블라드(Arvid Lindblad)와 짝을 이룹니다.</p>
+            <p>레드불은 공식 성명에서 "하자르가 여름 셧다운 중 손목을 다쳐 2026 더치 그랑프리에 출전할 수 없다"며 "이번 주말 RB22는 로슨이 맡는다, 이자크의 빠른 회복을 바라며 급히 나서준 리암에게 감사한다"고 밝혔습니다. 레이싱불스도 "리암과 유키의 적응력에 감사한다"는 입장을 냈습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/red-bull-confirm-hadjar-to-miss-dutch-grand-prix-as-lawson-steps-up-and-tsunoda-returns.3D3k7oc9dUwwEBZC7upjR1" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/c_lfill,w_1600/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Netherlands___Previews/2291256198.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>츠노다 "차에 타고 싶어 죽을 지경이었다" — 그리스 휴가 중 걸려온 전화</h3>
+        <p class="orig">'I've been dying to be in the car' – Tsunoda details the last-minute call that sparked his F1 return</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>8월 20일 23:06 (KST)</span></div>
+        <p class="sum">유키 츠노다(Yuki Tsunoda)가 그리스 해변에서 휴가를 보내던 화요일에 출전 가능성을 알리는 전화를 받았다고 밝혔습니다. 준비 기간은 이틀이 채 되지 않았고, 2026년형 머신을 실제로 모는 것은 이번이 처음입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>츠노다는 "소식을 들었을 때 그리스에서 훈련과 휴식을 섞어 지내고 있었다, 그 순간엔 아마 해변에 누워 있었을 것"이라며 웃었습니다. 화요일에 전화를 받았을 때는 "반은 신났고 반은 못 믿었다"고 했습니다.</p>
+            <p>지난 시즌을 끝으로 풀타임 시트를 잃은 그는 두 자매팀의 테스트·리저브 드라이버로 올해 대부분의 그랑프리에 동행하며, 페르스타펜·하자르·로슨·린드블라드가 새 규정에 어떻게 접근하는지 가까이서 지켜봤습니다. TPC(구형 머신 테스트)도 몇 차례 소화했지만 현행 머신 주행은 이번이 처음입니다.</p>
+            <p>출전 범위에 대해서는 "일단 이번 주말이고, 다음은 이자크의 회복에 달렸다"며 하자르의 빠른 회복을 바란다고 했습니다. 목표에 대해서는 "일단 즐기는 것"이라며, 오랫동안 화면만 보고 있었던 만큼 100%를 쏟겠다고 말했습니다.</p>
+            <p>2027년 그리드의 빈자리가 빠르게 사라지고 있는 상황에서 이번 출전은 자신을 증명할 기회이기도 합니다. 츠노다는 "말보다 직접 달려서 보여주는 게 항상 낫다"며 "내년 시트를 원하지만 내가 통제할 수 있는 일이 아니니 지금은 생각하지 않겠다"고 했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/ive-been-dying-to-be-in-the-car-tsunoda-details-the-last-minute-call-that-sparked-his-f1-return.6VvvGN9Bno3ixUaRwpBanA" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://d3cm515ijfiu6w.cloudfront.net/wp-content/uploads/2026/08/21062800/yuki-tsunoda-hand-on-head-isack-hadjar-circle-1-1320x742.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>하자르가 츠노다에게 보낸 세 단어 "Have fun bro"</h3>
+        <p class="orig">Isack Hadjar delivers classy three-word reply to Yuki Tsunoda after injury setback</p>
+        <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>8월 21일 14:30 (KST)</span></div>
+        <p class="sum">츠노다가 SNS에 "복귀하게 돼 기쁘다, 하자르의 빠른 회복을 바란다"는 글을 올리자, 하자르는 "Have fun bro(재밌게 타, 형제)"라는 짧고 담백한 답을 남겼습니다. 부상 이후 하자르의 사실상 첫 공개 반응입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>하자르는 부상 발표 하루 전 잔드보르트용 헬멧을 공개했는데, 지난해 레이싱불스가 그의 3위 세리머니 도중 깨뜨린 트로피가 그림으로 들어가 있었습니다. 그 직후 결장 소식이 전해지면서 헬멧 공개가 더 아쉽게 남았습니다.</p>
+            <p>레드불이 결장을 공식 확인한 뒤 로슨이 승격했고, 그 자리를 리저브 드라이버 츠노다가 채우는 연쇄 이동이 이뤄졌습니다. 하자르 본인은 부상에 대해 공개적으로 언급하지 않았지만, 츠노다의 글에 남긴 짧은 답글이 화제가 됐습니다.</p>
+            <p>츠노다는 이번 주말이 2026년형 머신을 실제로 처음 몰아보는 자리라고 밝혔습니다. 시뮬레이터 작업과 네 차례 비공개 TPC 주행은 있었지만 실전 감각은 다르다는 것입니다.</p>
+            <p>그는 "매우 예상 밖의 일이었지만 오히려 차분하다"며 "슬퍼할 수가 없다, 내가 기다리던 순간"이라고 말했습니다. 레드불이 아닌 레이싱불스 머신이라는 점에 대해서도 "어느 차든 상관없다, 시트가 있다는 것만으로 감사하다"며 "이 흰색 저지를 입는 순간 집에 온 기분"이라고 했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.planetf1.com/news/isack-hadjar-yuki-tsunoda-message-dutch-gp-injury" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 기타 ================= -->
+  <section id="etc" data-cat="etc">
+    <div class="sec-head"><h2>📰 기타</h2><span class="count">2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/08/XPB_1428410_HiRes.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>전 주영 미국대사, 애스턴마틴 F1 팀 지분 인수</h3>
+        <p class="orig">Ex-US ambassador takes stake in Aston Martin F1 team</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>8월 21일 00:57 (KST)</span></div>
+        <p class="sum">전 주영 미국대사이자 NFL 뉴욕 제츠 구단주인 로버트 우드 존슨(Robert Wood Johnson)이 애스턴마틴 F1 팀의 소수 지분을 인수했습니다. 순수 상업적 투자이며 일상 경영에는 관여하지 않습니다. 지분율은 공개되지 않았습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>존슨은 2017년부터 2021년까지 주영 미국대사를 지냈고, 존슨앤드존슨 제약 가문의 상속인입니다. 잉글랜드 축구 클럽 크리스털 팰리스 지분 43%도 보유하고 있습니다.</p>
+            <p>애스턴마틴은 존슨이 "일상적 경영 업무는 맡지 않는다"고 명시했습니다. 팀의 경영과 통제권은 여전히 로런스 스트롤(Lawrence Stroll)에게 있습니다.</p>
+            <p>존슨은 "대사 재임 중 애스턴마틴의 역사와 스트롤의 전략적 비전, 기업가 정신에 깊은 인상을 받았다"며 "최고 수준에서 경쟁할 수 있는 조직을 만드는 데 기여하고 싶다, 미국 팬층 확대라는 목표도 공유한다"고 밝혔습니다.</p>
+            <p>애스턴마틴 F1 팀은 AMR GP라는 비상장 회사가 소유·운영하며, 아르크토스 파트너스(Arctos Partners)와 에이드리언 뉴이(Adrian Newey)가 소수 주주로 참여하고 있습니다. 지배 지분은 스트롤의 유트리 컨소시엄(Yew Tree Consortium)이 갖고 있습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/business/ex-us-ambassador-takes-stake-in-aston-martin-f1-team/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/08/XPB_1429165_HiRes--1-.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>캐딜락 F1 모기업 "팀 매각은 검토한 적 없다"</h3>
+        <p class="orig">Cadillac F1 team owner issues firm statement over sale talk</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>8월 20일 19:22 (KST)</span></div>
+        <p class="sum">캐딜락(Cadillac) F1 팀을 소유한 TWG 그룹이 매각설을 공식 부인했습니다. 억만장자 마크 월터(Mark Walter)를 둘러싼 미국 연방 조사가 불씨였지만, TWG는 "캐딜락을 포함해 어떤 모터스포츠 자산도 매각을 검토하지 않는다"고 못박았습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>월터의 사업 제국 내 중개 회사 네 곳이 자사 간 미공개 대출 의혹으로 미국에서 조사를 받고 있습니다. 그가 LA 레이커스 지분을 인수 14개월 만에 매각하면서, 첼시 FC·LA 다저스·TWG 모터스포츠 산하 자산들의 향방에도 관측이 몰렸습니다.</p>
+            <p>TWG 모터스포츠는 더치 그랑프리를 앞두고 낸 성명에서 "캐딜락 팀을 비롯한 TWG 모터스포츠의 어떤 부분도 매각을 검토하고 있지 않다"고 밝혔습니다.</p>
+            <p>공교롭게도 팀은 지난주 그레임 라우던(Graeme Lowdon)을 경질하고 마르친 부트코프스키(Marcin Budkowski)를 새 팀 대표로 선임했습니다. 부트코프스키는 "소유주와 주주, 최고 경영진의 결정이었다"며 "라우던이 맨바닥에서 팀을 세운 성취에 존경과 감탄을 갖고 있다"고 말했습니다.</p>
+            <p>연방 조사는 아직 기소로 이어지지 않았고, 캐딜락 F1의 인디애나 본사를 개발 중인 브래드퍼드 앨런(Bradford Allen)이나 팀 자체가 연루된 정황도 없습니다. 부트코프스키는 "그 문제에 대한 논의는 전혀 없었고 영향도 없다고 확신한다"며 새 공장과 곧 발표될 핵심 인력 영입이 프로젝트에 대한 투자 의지를 보여준다고 강조했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/business/cadillac-f1-owner-twg-firm-statement-team-sale-talk/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 용어 사전 ================= -->
+  <section id="glossary" data-cat="glossary">
+    <div class="sec-head"><h2>📖 오늘의 용어</h2><span class="count">9개</span></div>
+    <dl class="glossary">
+      <div class="term"><dt>스프린트 주말 <span>(Sprint Weekend)</span></dt><dd>금요일에 프랙티스 1회와 스프린트 퀄리파잉, 토요일에 짧은 스프린트 레이스와 본 퀄리파잉, 일요일에 결승을 치르는 형식입니다. 연습 시간이 크게 줄어 팀들이 세팅을 맞출 여유가 거의 없습니다.</dd></div>
+      <div class="term"><dt>스프린트 퀄리파잉 <span>(Sprint Qualifying / SQ1–SQ3)</span></dt><dd>스프린트 레이스의 출발 순서를 정하는 예선입니다. 일반 예선처럼 3단계로 진행되며, 단계마다 하위권 드라이버가 탈락합니다.</dd></div>
+      <div class="term"><dt>플라잉 랩 <span>(Flying Lap)</span></dt><dd>가속 구간을 미리 거친 뒤 기록 측정을 위해 전력으로 도는 한 바퀴입니다. 예선 순위는 사실상 이 한 바퀴로 결정됩니다.</dd></div>
+      <div class="term"><dt>언더스티어 <span>(Understeer)</span></dt><dd>코너에서 앞바퀴가 원하는 만큼 돌아가지 않고 바깥으로 밀려나가는 현상입니다. 반대로 뒤가 먼저 미끄러지는 것을 오버스티어라고 합니다.</dd></div>
+      <div class="term"><dt>엔드플레이트 <span>(Endplate)</span></dt><dd>윙 양 끝에 세로로 붙은 판입니다. 윙 위아래의 공기가 옆으로 새는 것을 막고 소용돌이를 정리해 다운포스와 항력에 큰 영향을 줍니다.</dd></div>
+      <div class="term"><dt>디퓨저 <span>(Diffuser)</span></dt><dd>머신 바닥 뒤쪽에서 위로 벌어지는 구조물입니다. 바닥 아래 공기를 빠르게 빨아내 차를 노면으로 눌러주는 다운포스를 만듭니다.</dd></div>
+      <div class="term"><dt>빔 윙 <span>(Beam Wing)</span></dt><dd>리어윙 아래쪽에 가로로 놓인 작은 날개입니다. 디퓨저에서 나온 공기 흐름과 상호작용하며 뒤쪽 전체의 공력 성능을 끌어올립니다.</dd></div>
+      <div class="term"><dt>TPC <span>(Testing of Previous Cars)</span></dt><dd>2년 이상 지난 구형 머신으로 진행하는 비공개 테스트입니다. 현행 머신 테스트가 엄격히 제한돼 있어, 리저브 드라이버가 감각을 유지하는 주요 수단입니다.</dd></div>
+      <div class="term"><dt>탈출 조항 <span>(Exit Clause)</span></dt><dd>계약 기간이 남아 있어도 특정 조건이 충족되면 드라이버가 팀을 떠날 수 있게 하는 조항입니다. 보통 특정 시점의 챔피언십 순위 같은 성적 기준이 붙습니다.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span class="brand">Claude</span>가 번역·정리한 F1 뉴스 · 2026.08.22<br>
+    원문 저작권은 각 매체에 있으며, 핵심 요약만 제공합니다.
+  </footer>
+
+</div>
+<script>
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-cat]'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var cat = chip.dataset.cat;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      sections.forEach(function (s) { s.classList.toggle('hidden', cat !== 'all' && s.dataset.cat !== cat); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  var btn = document.getElementById('unlockAll');
+  var spoilers = Array.prototype.slice.call(document.querySelectorAll('details.spoiler'));
+  function render(open) { btn.setAttribute('aria-pressed', String(open)); btn.textContent = open ? '🔒 스포일러 모두 접기' : '🔓 스포일러 모두 펼치기'; }
+  btn.addEventListener('click', function () { var open = btn.getAttribute('aria-pressed') !== 'true'; spoilers.forEach(function (d) { d.open = open; }); render(open); });
+  spoilers.forEach(function (d) { d.addEventListener('toggle', function () { render(spoilers.every(function (x) { return x.open; })); }); });
+  render(false);
+})();
+</script>
+</body>
+</html>

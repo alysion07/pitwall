@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>서킷 가이드 — PIT WALL</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root { --bg:#ffffff; --bg-soft:#f7f7f9; --card:#ffffff; --text:#14141a; --text-mid:#4a4a57; --text-dim:#86868f; --border:#e6e6ec; --border-soft:#f0f0f4; --accent:#E10600; --accent-soft:rgba(225,6,0,.08); --chip-bg:#f2f2f5; --bar-bg:rgba(255,255,255,.85); --shadow:0 1px 2px rgba(20,20,26,.04),0 10px 30px -14px rgba(20,20,26,.12); }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0e0e11; --bg-soft:#141419; --card:#16161b; --text:#f0f0f3; --text-mid:#b6b6c0; --text-dim:#82828e; --border:#26262e; --border-soft:#1e1e25; --accent:#FF3B30; --accent-soft:rgba(255,59,48,.12); --chip-bg:#1e1e25; --bar-bg:rgba(14,14,17,.85); --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7); } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif; font-size:15.5px; line-height:1.7; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em; }
+  @media (prefers-color-scheme: dark) { body { background:radial-gradient(1200px 600px at 20% -10%, rgba(255,59,48,.07), transparent 60%), var(--bg); } }
+  a { color:inherit; }
+  .wrap { max-width:1100px; margin:0 auto; padding:0 32px; }
+  .top { position:sticky; top:0; z-index:30; background:var(--bar-bg); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--border-soft); }
+  .top-inner { display:flex; align-items:center; gap:14px; padding:14px 0; }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:900; font-size:19px; letter-spacing:.02em; font-style:italic; text-decoration:none; }
+  .brand .dot { width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--accent-soft); }
+  .brand .accent { color:var(--accent); }
+  .top .crumb { color:var(--text-dim); font-size:12.5px; margin-left:8px; padding-left:14px; border-left:1px solid var(--border); }
+  .top .sp { flex:1; }
+  .btn { border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:600; padding:7px 14px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:.15s; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
+  .btn:hover { color:var(--text); border-color:var(--text); }
+  .btn svg { width:14px; height:14px; }
+  .btn.dis { opacity:.35; pointer-events:none; }
+
+  /* 히어로 */
+  .hero { padding:56px 0 36px; display:grid; grid-template-columns:minmax(0,1fr) 380px; gap:40px; align-items:end; }
+  .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:16px; }
+  .kicker .cc { font-size:11px; font-weight:800; background:var(--text); color:var(--bg); border-radius:5px; padding:2px 7px; letter-spacing:.06em; }
+  .kicker .sprint { background:#7c3aed; color:#fff; font-size:10px; padding:2px 7px; border-radius:999px; letter-spacing:.06em; }
+  h1 { font-size:clamp(36px,5vw,54px); line-height:1.08; margin:0 0 10px; font-weight:800; letter-spacing:-0.04em; }
+  h1 small { display:block; font-size:16px; font-weight:500; color:var(--text-dim); letter-spacing:0; margin-top:10px; }
+  .intro { font-size:16px; color:var(--text-mid); margin:22px 0 0; max-width:640px; }
+  .stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .stat { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow); }
+  .stat .k { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); }
+  .stat .v { font-size:26px; font-weight:800; letter-spacing:-0.03em; line-height:1.15; margin-top:4px; font-variant-numeric:tabular-nums; }
+  .stat .v small { font-size:13px; font-weight:600; color:var(--text-dim); letter-spacing:0; margin-left:3px; }
+  .stat.wide { grid-column:1 / -1; }
+  .stat .sub { font-size:12px; color:var(--text-dim); margin-top:2px; }
+
+  /* 섹션 */
+  section { margin-top:48px; }
+  .sec-h { display:flex; align-items:baseline; gap:12px; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--text); }
+  .sec-h h2 { margin:0; font-size:20px; font-weight:800; letter-spacing:-0.03em; }
+  .sec-h .n { font-size:12px; color:var(--text-dim); margin-left:auto; }
+
+  /* 코너 */
+  .turns { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:14px; }
+  .turn { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow); display:flex; gap:14px; }
+  .turn .tn { flex:0 0 auto; min-width:52px; text-align:center; font-size:12px; font-weight:800; color:var(--accent); background:var(--accent-soft); border-radius:8px; padding:6px 8px; height:fit-content; letter-spacing:.02em; }
+  .turn .tb { min-width:0; }
+  .turn .tname { font-size:15.5px; font-weight:750; letter-spacing:-0.02em; margin-bottom:4px; }
+  .turn .tnote { font-size:13.5px; color:var(--text-mid); line-height:1.6; }
+
+  /* 역사 타임라인 */
+  .tl { position:relative; padding-left:28px; }
+  .tl::before { content:""; position:absolute; left:8px; top:8px; bottom:8px; width:2px; background:var(--border); }
+  .tl-item { position:relative; padding:0 0 26px; }
+  .tl-item:last-child { padding-bottom:0; }
+  .tl-item::before { content:""; position:absolute; left:-24px; top:8px; width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--bg); }
+  .tl-y { font-size:12px; font-weight:800; color:var(--accent); letter-spacing:.06em; }
+  .tl-t { font-size:17px; font-weight:750; letter-spacing:-0.02em; margin:2px 0 6px; }
+  .tl-d { font-size:14.5px; color:var(--text-mid); max-width:720px; }
+
+  /* 트랙 맵 */
+  .mapsec { margin-top:36px; }
+  .map { background:var(--card); border-radius:18px; padding:26px; border:1px solid var(--border); box-shadow:var(--shadow); }
+  .map img { display:block; width:100%; max-height:560px; object-fit:contain; margin:0 auto; }
+  /* 공식 지도는 밝은 회색 배경이 박혀 있음 → 다크 모드에선 반전+색상 복원으로 어둡게 */
+  @media (prefers-color-scheme: dark) { .map img { filter:invert(1) hue-rotate(180deg) brightness(.92) contrast(1.05); mix-blend-mode:screen; } }
+
+  /* 관전 포인트 */
+  .watch { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .wp { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px 20px; box-shadow:var(--shadow); font-size:14.5px; color:var(--text-mid); line-height:1.65; position:relative; }
+  .wp::before { content:counter(wp, decimal-leading-zero); counter-increment:wp; display:block; font-size:12px; font-weight:800; color:var(--accent); letter-spacing:.1em; margin-bottom:8px; }
+  .watch { counter-reset:wp; }
+  .note { font-size:12.5px; color:var(--text-dim); margin-top:14px; }
+
+  /* 네비 */
+  .pager { display:flex; justify-content:space-between; gap:12px; margin-top:56px; padding-top:24px; border-top:1px solid var(--border); }
+  .pager a { flex:1; text-decoration:none; padding:16px 18px; border:1px solid var(--border); border-radius:14px; background:var(--card); transition:.15s; }
+  .pager a:hover { border-color:var(--text); }
+  .pager a.dis { opacity:.35; pointer-events:none; }
+  .pager .lab { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); }
+  .pager .nm { font-size:16px; font-weight:750; letter-spacing:-0.02em; margin-top:2px; }
+  .pager a.next { text-align:right; }
+  footer { margin-top:56px; padding:24px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
+  footer .b { color:var(--accent); font-weight:700; }
+  .empty { padding:80px 0; text-align:center; color:var(--text-dim); }
+
+  @media (max-width:900px) {
+    .wrap { padding:0 18px; }
+    .hero { grid-template-columns:1fr; gap:24px; padding-top:36px; }
+    .watch { grid-template-columns:1fr; }
+    .top .crumb { display:none; }
+  }
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap top-inner">
+  <a class="brand" href="index.html"><span class="dot"></span>PIT<span class="accent">WALL</span></a>
+  <div class="crumb" id="crumb">서킷 가이드</div>
+  <div class="sp"></div>
+  <a class="btn" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>대시보드</a>
+</div></div>
+
+<div class="wrap" id="main"></div>
+
+<script src="data.js"></script>
+<script src="circuits.js"></script>
+<script>
+(function () {
+  var D = window.F1DATA, C = window.F1CIRCUITS, root = document.getElementById('main');
+  var q = new URLSearchParams(location.search), round = parseInt(q.get('round'), 10);
+  var cal = D.calendar, race = cal.filter(function (r) { return r.round === round; })[0], c = C[round];
+  if (!race || !c) { root.innerHTML = '<div class="empty">서킷 정보를 찾을 수 없습니다. <a href="index.html">대시보드로 돌아가기</a></div>'; return; }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  function cc(r){ var s=''; for (var i=0;i<r.flag.length;i++){ var ch=r.flag.codePointAt(i); if(ch>=0x1F1E6&&ch<=0x1F1FF){ s+=String.fromCharCode(ch-0x1F1E6+65); i++; } } return s||'?'; }
+  function parse(s){ var p=s.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
+  var today = new Date(); today.setHours(0,0,0,0);
+  var s = parse(race.start), e = parse(race.end), past = e < today, isNext = !past && !cal.some(function (r) { return parse(r.end) >= today && r.round < race.round; });
+  var dateTxt = (s.getMonth()+1)+'월 '+s.getDate()+'일 – '+(e.getMonth()!==s.getMonth()?(e.getMonth()+1)+'월 ':'')+e.getDate()+'일';
+  document.title = c.name + ' — 서킷 가이드 · PIT WALL';
+  document.getElementById('crumb').textContent = 'Round ' + race.round + ' · ' + race.name + ' GP';
+
+  var h = '';
+  h += '<div class="hero"><div>';
+  h += '<div class="kicker"><span class="cc">'+cc(race)+'</span>Round '+race.round+' · '+D.meta.season+(race.sprint?' <span class="sprint">Sprint</span>':'')+(isNext?' <span style="color:var(--accent)">다음 레이스</span>':past?' <span>종료</span>':'')+'</div>';
+  h += '<h1>'+esc(c.name)+'<small>'+esc(c.official)+' · '+esc(c.city)+' · '+dateTxt+'</small></h1>';
+  h += '<p class="intro">'+esc(c.intro)+'</p>';
+  h += '</div><div class="stats">';
+  h += '<div class="stat"><div class="k">서킷 길이</div><div class="v">'+c.length.toFixed(3)+'<small>km</small></div></div>';
+  h += '<div class="stat"><div class="k">랩 수</div><div class="v">'+c.laps+'<small>laps</small></div><div class="sub">총 '+c.dist+' km</div></div>';
+  h += '<div class="stat"><div class="k">코너</div><div class="v">'+c.corners+'</div><div class="sub">DRS 존 '+c.drs+'개</div></div>';
+  h += '<div class="stat"><div class="k">첫 개최</div><div class="v">'+c.first+'</div><div class="sub">'+esc(c.type)+' 서킷</div></div>';
+  if (c.record) h += '<div class="stat wide"><div class="k">랩 레코드</div><div class="v">'+c.record.time+'<small>'+esc(c.record.driver)+' · '+c.record.year+'</small></div><div class="sub">2025 시즌 종료 기준 · 결승 중 기록</div></div>';
+  else h += '<div class="stat wide"><div class="k">랩 레코드</div><div class="v" style="font-size:18px">아직 없음</div><div class="sub">'+D.meta.season+'년 첫 개최</div></div>';
+  h += '</div></div>';
+
+  if (c.map) {
+    h += '<section class="mapsec"><div class="sec-h"><h2>트랙 맵</h2><span class="n">코너 번호 · 섹터 · 직선 모드(DRS) 존</span></div>';
+    h += '<div class="map"><img src="'+c.map+'" alt="'+esc(c.name)+' 트랙 맵" loading="lazy"></div>';
+    h += '<p class="note">Formula1.com 공식 트랙맵. 아래 코너 가이드의 번호는 이 지도의 번호와 같습니다.</p></section>';
+  }
+
+  if (c.watch && !past) {
+    h += '<section><div class="sec-h"><h2>이번 주말 관전 포인트</h2><span class="n">순위·결과 언급 없음</span></div><div class="watch">';
+    c.watch.forEach(function (w) { h += '<div class="wp">'+esc(w)+'</div>'; });
+    h += '</div></section>';
+  }
+
+  h += '<section><div class="sec-h"><h2>코너 가이드</h2><span class="n">'+c.turns.length+'개 구간</span></div><div class="turns">';
+  c.turns.forEach(function (t) {
+    h += '<div class="turn"><div class="tn">'+esc(t.n||'—')+'</div><div class="tb">'+(t.name?'<div class="tname">'+esc(t.name)+'</div>':'')+'<div class="tnote">'+esc(t.note)+'</div></div></div>';
+  });
+  h += '</div></section>';
+
+  h += '<section><div class="sec-h"><h2>서킷의 역사</h2><span class="n">과거 시즌 · 스포일러 아님</span></div><div class="tl">';
+  c.history.forEach(function (x) { h += '<div class="tl-item"><div class="tl-y">'+x.y+'</div><div class="tl-t">'+esc(x.t)+'</div><div class="tl-d">'+esc(x.d)+'</div></div>'; });
+  h += '</div><p class="note">역사 항목은 이전 시즌의 공개된 기록입니다. 이번 시즌 결과나 챔피언십 순위는 포함하지 않습니다.</p></section>';
+
+  var prev = cal.filter(function (r) { return r.round === round-1; })[0], nxt = cal.filter(function (r) { return r.round === round+1; })[0];
+  h += '<div class="pager">';
+  h += prev ? '<a href="circuit.html?round='+prev.round+'"><div class="lab">← Round '+prev.round+'</div><div class="nm">'+esc(prev.name)+' GP · '+esc(C[prev.round]?C[prev.round].name:'')+'</div></a>' : '<a class="dis"><div class="lab">시즌 개막</div></a>';
+  h += nxt ? '<a class="next" href="circuit.html?round='+nxt.round+'"><div class="lab">Round '+nxt.round+' →</div><div class="nm">'+esc(nxt.name)+' GP · '+esc(C[nxt.round]?C[nxt.round].name:'')+'</div></a>' : '<a class="dis next"><div class="lab">시즌 최종전</div></a>';
+  h += '</div>';
+  h += '<footer><span class="b">PIT WALL</span> · 서킷 가이드 · 수치는 공식 자료 기준, 랩 레코드는 2025 시즌 종료 기준</footer>';
+  root.innerHTML = h;
+})();
+</script>
+</body>
+</html>

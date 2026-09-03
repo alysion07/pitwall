@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="referrer" content="no-referrer">
+<title>F1 데일리 브리핑 — 2026.08.19</title>
+<style>
+  :root {
+    --bg:#ffffff; --bg-soft:#f7f7f9; --card:#ffffff; --card-hover:#fbfbfc;
+    --text:#14141a; --text-mid:#4a4a57; --text-dim:#86868f;
+    --border:#e6e6ec; --border-soft:#f0f0f4;
+    --accent:#E10600; --accent-soft:rgba(225,6,0,.08);
+    --spoiler-bg:#fbf7f7; --spoiler-border:#ecdcdc; --chip-bg:#f2f2f5;
+    --shadow:0 1px 2px rgba(20,20,26,.04),0 8px 24px -12px rgba(20,20,26,.10);
+    --bar-bg:rgba(255,255,255,.82);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0e0e11; --bg-soft:#141419; --card:#16161b; --card-hover:#1b1b21;
+      --text:#f0f0f3; --text-mid:#b6b6c0; --text-dim:#82828e;
+      --border:#26262e; --border-soft:#1e1e25;
+      --accent:#FF3B30; --accent-soft:rgba(255,59,48,.12);
+      --spoiler-bg:#1a1416; --spoiler-border:#3a2528; --chip-bg:#1e1e25;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+      --bar-bg:rgba(14,14,17,.82);
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;
+    font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0 24px; }
+  header { padding:72px 0 32px; }
+  .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+  .kicker .dot { width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  h1 { font-size:clamp(34px,7vw,46px); line-height:1.12; margin:0 0 20px; font-weight:800; letter-spacing:-0.035em; }
+  h1 .accent { color:var(--accent); }
+  .lede { font-size:15px; color:var(--text-mid); margin:0; padding-bottom:28px; border-bottom:1px solid var(--border); }
+  .lede b { color:var(--text); font-weight:600; }
+  .digest { margin:28px 0 0; padding:20px 22px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:14px; }
+  .digest h2 { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:0 0 12px; }
+  .digest ol { margin:0; padding-left:20px; }
+  .digest li { font-size:14.5px; color:var(--text-mid); margin-bottom:7px; }
+  .digest li:last-child { margin-bottom:0; }
+  .digest li b { color:var(--text); font-weight:600; }
+  .bar { position:sticky; top:0; z-index:20; margin:36px 0 8px; padding:12px 0; background:var(--bar-bg); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--border-soft); }
+  .bar-inner { display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap; }
+  .chips { display:flex; gap:7px; flex-wrap:wrap; flex:1 1 auto; scrollbar-width:none; -ms-overflow-style:none; padding:2px 0; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip { flex:0 0 auto; border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:500; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s,color .15s,border-color .15s; }
+  .chip:hover { color:var(--text); }
+  .chip[aria-pressed="true"] { background:var(--text); color:var(--bg); border-color:var(--text); }
+  .chip .n { opacity:.5; margin-left:4px; font-variant-numeric:tabular-nums; }
+  .unlock { flex:0 0 auto; border:1px solid var(--spoiler-border); background:var(--spoiler-bg); color:var(--accent); font:inherit; font-size:13px; font-weight:600; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s; }
+  .unlock:hover { background:var(--accent-soft); }
+  section { padding-top:44px; scroll-margin-top:70px; }
+  section.hidden { display:none; }
+  .sec-head { display:flex; align-items:baseline; gap:10px; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--text); }
+  .sec-head h2 { font-size:19px; font-weight:750; margin:0; letter-spacing:-0.02em; }
+  .sec-head .count { font-size:12px; color:var(--text-dim); font-variant-numeric:tabular-nums; margin-left:auto; font-weight:500; }
+  .art { display:flex; flex-direction:column; align-items:stretch; gap:16px; padding:26px 0; border-bottom:1px solid var(--border-soft); }
+  .art:last-child { border-bottom:none; }
+  .thumb { width:100%; height:340px; border-radius:14px; overflow:hidden; background:linear-gradient(135deg,var(--accent) 0%,#600 100%); border:1px solid var(--border-soft); }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .art-body { min-width:0; }
+  .art h3 { font-size:21px; font-weight:750; line-height:1.36; margin:0 0 6px; letter-spacing:-0.025em; }
+  .orig { font-size:13px; color:var(--text-dim); margin:0 0 11px; font-style:italic; line-height:1.45; }
+  .meta { display:flex; align-items:center; gap:7px; flex-wrap:wrap; font-size:12px; color:var(--text-dim); margin-bottom:12px; }
+  .src { font-weight:650; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:5px; font-size:11.5px; }
+  .sum { font-size:15px; color:var(--text-mid); margin:0 0 4px; line-height:1.75; }
+  details.more { margin:8px 0 14px; }
+  details.more > summary { list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:650; color:var(--accent); padding:7px 0; user-select:none; }
+  details.more > summary::-webkit-details-marker { display:none; }
+  details.more > summary .caret { transition:transform .18s; font-size:10px; }
+  details.more[open] > summary .caret { transform:rotate(90deg); }
+  .detail-body { margin-top:4px; padding:14px 16px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:12px; }
+  .detail-body p { margin:0 0 10px; font-size:14.5px; color:var(--text-mid); line-height:1.8; }
+  .detail-body p:last-child { margin-bottom:0; }
+  .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
+  .go:hover { border-color:var(--text); background:var(--bg-soft); }
+  .go svg { width:11px; height:11px; }
+  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
+  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler > summary::-webkit-details-marker { display:none; }
+  details.spoiler > summary:hover { background:var(--accent-soft); }
+  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
+  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
+  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
+  details.spoiler[open] > summary .hint::after { content:"접기"; }
+  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
+  details.spoiler .art { padding:18px; border-bottom:none; }
+  .glossary { margin-top:12px; }
+  .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
+  .term:last-child { border-bottom:none; }
+  .term dt { font-size:14.5px; font-weight:700; margin-bottom:3px; }
+  .term dt span { color:var(--text-dim); font-weight:500; font-size:13px; }
+  .term dd { margin:0; font-size:14px; color:var(--text-mid); line-height:1.65; }
+  footer { margin-top:64px; padding:28px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
+  footer .brand { color:var(--accent); font-weight:650; }
+  @media (max-width:560px) {
+    .wrap { padding:0 18px; }
+    header { padding:48px 0 24px; }
+    .thumb { height:210px; }
+    .art h3 { font-size:19px; }
+    .sec-head h2 { font-size:17px; }
+    .bar-inner { flex-wrap:nowrap; flex-direction:column; align-items:stretch; }
+    .chips { flex-wrap:nowrap; overflow-x:auto; width:100%; }
+    .unlock { width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker"><span class="dot"></span> 2026년 8월 19일 수요일 <a href="../index.html" style="margin-left:auto;color:var(--text-dim);text-decoration:none;font-weight:600;letter-spacing:0;text-transform:none">← PIT WALL</a></div>
+    <h1>F1 데일리 <span class="accent">브리핑</span></h1>
+    <p class="lede">해외 주요 매체 <b>3곳</b>에서 <b>기사 15건</b>을 모았습니다. 이 중 <b>3건</b>은 최근 레이스 성적이나 챔피언십 순위가 드러날 수 있어 가려두었습니다. 여름 휴식기가 끝나고 잔드보르트(Zandvoort) 레이스 주간이 시작되면서 기사량이 다시 늘어나는 중입니다.</p>
+    <div class="digest">
+      <h2>오늘의 요약</h2>
+      <ol>
+        <li><b>알렉스 알본(Alex Albon)</b>이 윌리엄스(Williams)와 2027 시즌 재계약을 확정했습니다. 팀 역사상 최다 출전 기록도 이미 경신한 상태입니다.</li>
+        <li><b>잔드보르트 고별 주간</b> — 서킷의 마지막 F1 개최이자 첫 스프린트 주말이며, 토요일 비 예보와 혼다(Honda)의 신형 파워 유닛 투입이 최대 관전 포인트입니다.</li>
+        <li>⚠️ 최근 레이스 성적·챔피언십 순위가 본문에 포함된 기사 <b>3건</b>은 아래 스포일러 섹션에 접어두었습니다. 필요할 때만 열어보세요.</li>
+      </ol>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="bar-inner">
+      <div class="chips" role="group" aria-label="카테고리 필터">
+        <button class="chip" data-cat="all" aria-pressed="true">전체<span class="n">15</span></button>
+        <button class="chip" data-cat="race" aria-pressed="false">🏁 레이스 위크<span class="n">2</span></button>
+        <button class="chip" data-cat="transfer" aria-pressed="false">🔄 이적/계약<span class="n">4</span></button>
+        <button class="chip" data-cat="tech" aria-pressed="false">🔧 기술/규정<span class="n">3</span></button>
+        <button class="chip" data-cat="people" aria-pressed="false">👤 드라이버/팀<span class="n">4</span></button>
+        <button class="chip" data-cat="etc" aria-pressed="false">📰 기타<span class="n">2</span></button>
+        <button class="chip" data-cat="glossary" aria-pressed="false">📖 용어</button>
+      </div>
+      <button class="unlock" id="unlockAll" aria-pressed="false">🔓 스포일러 모두 펼치기</button>
+    </div>
+  </div>
+
+  <!-- ===================== 레이스 위크 ===================== -->
+  <section id="race" data-cat="race">
+    <div class="sec-head"><h2>🏁 레이스 위크</h2><span class="count">2건 · 스포일러 0건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-08/xpb_1232243_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>잔드보르트에 비가 올까? 더치 GP 주말 날씨 전망</h3>
+        <p class="orig">Is it going to rain at the Dutch Grand Prix? Full Zandvoort weather report</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.08.17</span></div>
+        <p class="sum">2026 시즌은 11개 레이스 주말을 치르는 동안 단 한 번도 젖은 노면 세션을 치르지 못했습니다. 토요일 스프린트 레이스 직전 강수 확률이 60%로 예보되면서, 새 규정 머신의 첫 우천 주행이 잔드보르트(Zandvoort)에서 나올 가능성이 커졌습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>새 기술 규정으로 바뀐 2026년 머신은 아직 비를 만난 적이 없습니다. 마이애미 GP는 뇌우를 피하려고 결승 시각을 3시간 앞당겼지만 결국 완전 건조 노면에서 치러졌고, 캐나다도 '레인 해저드(Rain Hazard)' 레이스로 지정됐으나 끝까지 말랐습니다. 벨기에 주말에도 비는 세션을 비껴갔습니다.</p>
+            <p>바르셀로나 프리시즌 셰이크다운에서 일부 팀이 젖은 노면을 조금 달려본 것을 빼면, 대부분의 팀은 새 규정 머신이 빗속에서 어떻게 움직이는지 아직 모릅니다. 유럽을 덮친 폭염 속에서 레이스를 이어온 F1은 이번 주 북해 연안의 서늘하고 변덕스러운 날씨를 만나게 됩니다.</p>
+            <p>BBC 웨더 예보 기준으로 금요일은 최고 19도에 소나기 가능성이 낮게 있고, 토요일 오전에는 강수 확률 60%로 스프린트 레이스가 비에 노출될 수 있습니다. 오후 퀄리파잉 시점에는 확률이 낮아지고 기온은 18도 안팎, 일요일 결승은 맑고 17도로 건조할 전망입니다.</p>
+            <p>잔드보르트는 2023년에도 비가 큰 변수였습니다. 1랩부터 소나기가 쏟아져 전략이 갈렸고, 노면이 마른 뒤 종반에 다시 폭우가 내리며 혼전이 벌어졌습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1102513/1/it-going-rain-dutch-grand-prix-full-zandvoort-weather-report" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-08/hpqzeglwoaaz4da.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>페르스타펜, 잔드보르트 고별전용 특별 헬멧 공개</h3>
+        <p class="orig">Max Verstappen reveals special helmet design for Zandvoort F1 farewell</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.08.14</span></div>
+        <p class="sum">막스 페르스타펜(Max Verstappen)이 마지막 홈 그랑프리를 기념해 원오프 헬멧 디자인을 공개했습니다. 더치 GP는 2026년을 끝으로 F1 캘린더에서 빠지며, 페르스타펜은 "네덜란드와 잔드보르트에 바치는 헌사"라고 설명했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>더치 그랑프리는 1985년 이후 자취를 감췄다가 2021년 F1 캘린더로 돌아왔습니다. 오렌지 군단(Orange Army)이 그랜드스탠드를 가득 채우고 오렌지색 연막을 피우는 축제 분위기 덕분에 순식간에 캘린더에서 가장 인기 있는 이벤트 중 하나가 됐지만, 6년간의 복귀 기간은 이번 주말로 막을 내립니다.</p>
+            <p>페르스타펜은 SNS에 헬멧을 공개하며 "상징적인 그랑프리, 평생 남을 잊지 못할 기억들. 마지막 홈 레이스, 특별한 헬멧, 네덜란드와 잔드보르트에 대한 헌사"라고 적었습니다. 그는 이 서킷에서 통산 3승을 거둔 바 있습니다.</p>
+            <p>여름 셧다운 직전 인터뷰에서 그는 "홈 그랑프리니까 확실히 많이 즐길 것"이라며 "F1은 더 이상 오지 않겠지만 다른 시리즈는 계속 이곳에서 달리고, 트랙데이도 가능하니 서킷 자체가 사라지는 건 아니다"라고 말했습니다.</p>
+            <p>또 "이 대회를 되살려낸 것 자체가 대단한 일이었고, 첫 개최 당시 다른 그랑프리들에게 어떻게 운영하고 팬을 즐겁게 할지를 보여준 좋은 사례였다"고 평가했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1102461/1/max-verstappen-reveals-special-helmet-design-zandvoort-f1-farewell" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ===================== 이적 / 계약 ===================== -->
+  <section id="transfer" data-cat="transfer">
+    <div class="sec-head"><h2>🔄 이적 / 계약</h2><span class="count">4건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_960/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Belgium___Qualifying/2286604839.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>윌리엄스, 알본과 2027 시즌 재계약 확정</h3>
+        <p class="orig">Williams confirm Albon will remain with the team in 2027</p>
+        <div class="meta"><span class="src">Formula1.com (공식)</span><span>·</span><span>2026.08.18</span></div>
+        <p class="sum">알렉스 알본(Alex Albon)이 윌리엄스(Williams)와 2027 시즌까지 함께합니다. 2022년 합류 이후 팀 역사상 최다 출전 기록을 세운 그는 "한 해가 힘들었다고 전체 그림이 설명되진 않는다"며 재도약 의지를 밝혔습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>알본은 레드불(Red Bull) 리저브 드라이버로 1년을 보낸 뒤 2022년 윌리엄스에 합류했고, 이후 그로브(Grove) 팀의 재건 프로젝트의 중심축 역할을 해왔습니다. 2026 시즌은 팀에게 쉽지 않은 해였지만 그는 잔류를 택했습니다.</p>
+            <p>알본은 "2022년 합류 이후 이 팀이 이뤄낸 변화는 말로 표현하기 어렵다. 한 해가 힘들었다고 전체 그림이 설명되지는 않는다. 오히려 공장과 팬들과 함께 계속 쌓아 올릴 동기가 더 커졌다. 우리 이야기는 아직 끝나지 않았다"고 말했습니다.</p>
+            <p>제임스 보울스(James Vowles) 팀 대표는 "알렉스는 첫날부터 이 변혁 프로젝트의 리더였고, 아직 끝내지 못한 일이 많다. 그는 그리드 최고 드라이버 중 한 명이며, 재계약은 우리 두 사람이 방향에 대해 갖는 믿음을 보여준다"고 밝혔습니다.</p>
+            <p>알본은 바르셀로나-카탈루냐 그랑프리에서 통산 96번째 윌리엄스 출전으로 나이젤 만셀(Nigel Mansell)의 팀 최다 출전 기록을 넘어섰고, 이후 네 라운드 뒤 헝가리에서 윌리엄스 소속 100번째 그랑프리를 채웠습니다. 팀은 아제르바이잔 GP에 업그레이드 패키지를 준비 중입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/williams-confirm-albon-will-remain-with-the-team-in-2027.3ZwdrAmEY4MGL5Ce1eXHIQ" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-08/xpb_1428332_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>"내 자리는 이미 찼다" — 보르톨레토, 사인츠 대체설 일축</h3>
+        <p class="orig">"My spot is filled" - Audi driver rubbishes Carlos Sainz replacement rumours</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.08.18</span></div>
+        <p class="sum">가브리엘 보르톨레토(Gabriel Bortoleto)가 카를로스 사인츠(Carlos Sainz)에게 아우디(Audi) 시트를 내줄 수 있다는 소문을 정면으로 부인했습니다. 그는 "해지 조항이 없는 장기 계약"이라며 2027년 이후까지 팀에 남는다고 못 박았습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>아우디는 최근 윌리엄스(Williams) 소속 사인츠와 꾸준히 연결돼 왔고, 그 여파로 보르톨레토와 팀메이트 니코 휠켄베르크(Nico Hulkenberg)의 거취를 두고 추측이 퍼졌습니다. 소문의 무게는 경험 많은 휠켄베르크 쪽에 쏠려 있었지만, 보르톨레토는 잔드보르트 개막 전에 자신의 이름부터 지웠습니다.</p>
+            <p>그는 브라질판 <em>Motorsport.com</em>에 "계약 내용은 기밀이지만, 해지 조항은 없다고 말할 수 있다. 아우디와 장기 계약을 맺었고 내년뿐 아니라 그 이후 몇 년도 아우디에 있을 것"이라고 밝혔습니다. 이어 "마티아 비노토(Mattia Binotto)는 늘 2030년까지의 프로젝트를 이야기한다"고 덧붙였습니다.</p>
+            <p>아우디는 자우버(Sauber) 조직을 대부분 그대로 이어받았지만, 캐딜락(Cadillac)처럼 파워 유닛 자체 개발을 뒤로 미루지 않고 처음부터 인하우스 엔진으로 참전하는 길을 택했습니다. 상위 네 팀이 포인트권을 사실상 독식하는 상황에서도 보르톨레토는 벨기에와 실버스톤에서 8위를 기록하며 팀의 시즌 최고 성적을 냈습니다.</p>
+            <p>그는 팀메이트에 대해서도 "다른 사람 계약에 대해서는 말하지 않겠지만, 니코와 일하는 게 정말 즐겁다. 빠르고 경험이 많으며 팀에 긍정적인 것을 많이 가져다주는 선수"라고 평가했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1102522/1/my-spot-filled-audi-driver-rubbishes-carlos-sainz-replacement-rumours" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-08/xpb_1379092_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>츠노다 유키, 2027년 인디카 전향설 부상</h3>
+        <p class="orig">Red Bull F1 veteran tipped for sensational IndyCar switch for 2027</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.08.18</span></div>
+        <p class="sum">올해 레이스 시트가 없는 츠노다 유키(Yuki Tsunoda)가 인디카(IndyCar) 마이어 솅크 레이싱(Meyer Shank Racing)의 66번 시트 후보로 거론되고 있습니다. 츠노다는 과거 인디카행에 대해 "기회가 오고 시기가 맞다면 하고 싶다"고 말한 바 있습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>최근 몇 년 사이 F1 출신 드라이버들의 인디카 도전이 늘었습니다. 현역 로스터에는 로맹 그로장(Romain Grosjean)과 마커스 에릭손(Marcus Ericsson)이 남아 있고, 츠노다에게 더 직접적인 참고 사례는 혼다(Honda) 계열 선배인 사토 다쿠마(Takuma Sato)입니다. 사토는 2017년과 2020년 인디 500 우승자입니다.</p>
+            <p>츠노다는 여전히 혼다의 지원을 받는 드라이버이며, 2024년 라스베이거스 그랑프리에 앞서 라스베이거스 모터 스피드웨이에서 칩 가나시 레이싱(Chip Ganassi Racing) 머신을 테스트한 경험도 있습니다.</p>
+            <p><em>Motorsport.com</em>은 마커스 암스트롱(Marcus Armstrong)이 펠릭스 로젠크비스트(Felix Rosenqvist)의 맥라렌 복귀로 비는 60번 차에 올라타면서, 츠노다가 66번 시트 후보군에 들었다고 보도했습니다.</p>
+            <p>정작 츠노다 본인은 라스베이거스 테스트 직후 "미국을 좋아하고 여기 사는 것도 나쁘지 않다"면서도 "매 랩 시속 200마일 이상으로 두 시간 넘게 달리는 인디애나폴리스는 솔직히 무섭다. 지금은 인디카를 목표로 하고 있진 않지만, 미래에는 왜 안 되겠나"라며 여지를 남겼습니다. 마이어 솅크는 "모든 옵션을 보고 있다"며 연결설을 부인하지 않았습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/indycar/news/1102520/1/red-bull-f1-veteran-tipped-sensational-indycar-switch-2027" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 특정 드라이버의 2027년 거취 분석 — 최근 레이스 성적 언급 포함 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="art-body">
+          <h3>페르스타펜이 애스턴 마틴의 행보를 지켜보는 이유</h3>
+          <p class="orig">Why Max Verstappen will be keeping an eye on Aston Martin's F1 progress</p>
+          <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.08.15</span></div>
+          <p class="sum">막스 페르스타펜(Max Verstappen)의 2027년 행선지 후보로 애스턴 마틴(Aston Martin)을 놓고 분석한 칼럼입니다. 팀의 헝가리 대형 업그레이드, 애드리안 뉴이(Adrian Newey)의 존재, 혼다(Honda)와의 오랜 인연을 근거로 들면서, 본문에 최근 그랑프리에서의 성적이 구체적으로 언급되어 있어 접어두었습니다. 상세 내용은 원문에서 확인하세요.</p>
+          <a class="go" href="https://www.crash.net/f1/feature/1102454/1/why-max-verstappen-will-be-keeping-eye-aston-martins-f1-progress" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ===================== 기술 / 규정 ===================== -->
+  <section id="tech" data-cat="tech">
+    <div class="sec-head"><h2>🔧 기술 / 규정</h2><span class="count">3건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-07/2287598267.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>혼다, 잔드보르트에 투입할 업그레이드 엔진의 "비밀" 일부 공개</h3>
+        <p class="orig">Honda reveals key "secrets" to upgraded F1 engine coming to Zandvoort</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.08.11</span></div>
+        <p class="sum">혼다(Honda)가 더치 GP에 투입하는 스펙2(Spec 2) 파워 유닛의 개선 포인트를 일부 밝혔습니다. 프리 챔버 형상 변경과 피스톤 형상 수정으로 연소 속도를 높였고, 윤활 계통을 손봐 마찰을 줄였다고 합니다. 출력 향상 폭은 30~50마력으로 추정됩니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>혼다와 애스턴 마틴(Aston Martin)의 첫 시즌 전반기는 실망스러웠습니다. 섀시와 파워 유닛이 모두 경쟁력이 부족해 두 대가 그리드 후미에 머무는 일이 잦았고, 그 이전에는 페르난도 알론소(Fernando Alonso)와 랜스 스트롤(Lance Stroll)의 손목에 영구 손상 위험을 줄 정도의 진동 문제까지 있었습니다.</p>
+            <p>팀은 헝가리 그랑프리에 대규모 섀시 업그레이드를 투입하며 흐름을 바꿨습니다. 사실상 B스펙(B-spec)에 가까운 패키지로 미드필드 싸움에 복귀했고, 스트롤이 12위, 알론소가 13위로 체커기를 받았습니다.</p>
+            <p>혼다 트랙사이드 총괄 겸 수석 엔지니어 오리하라 신타로(Shintaro Orihara)는 "연소를 더 빠르게 만드는 데 집중했다. 비밀이지만 조금만 공개하면, 프리 챔버를 바꿔 연소 속도를 높였고 피스톤 형상도 좋은 연소를 위해 변경했다. 윤활 시스템도 수정해 마찰을 줄였다"고 설명했습니다.</p>
+            <p>구체적인 마력 수치에 대해서는 "자세한 숫자는 밝힐 수 없지만 내부 목표는 달성했고, HRC 사쿠라 공장이 스펙2 엔진에서 이뤄낸 결과에 자신이 있다"고 말했습니다. 애스턴 마틴은 잔드보르트에 신규 부품 일부를 추가로 가져오며, 몬차와 바쿠에도 추가 에어로 업그레이드가 예정돼 있습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1102414/1/honda-reveals-key-secrets-upgraded-f1-engine-coming-zandvoort" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-08/xpb_1423270_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>설명: 2026년 F1 스프린트 포맷은 어떻게 진행되나</h3>
+        <p class="orig">Explained: How does the F1 sprint race format work in 2026?</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.08.17</span></div>
+        <p class="sum">이번 주말 잔드보르트(Zandvoort)는 2021년 스프린트 도입 이후 처음으로 스프린트 주말을 개최합니다. 금요일 1시간 연습 후 스프린트 퀄리파잉, 토요일 오전 스프린트 레이스와 오후 정규 퀄리파잉, 일요일 결승 순으로 진행됩니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>2026 시즌 6번의 스프린트 중 다섯 번째가 8월 21~23일 더치 그랑프리 주말에 열립니다. 잔드보르트는 스프린트를 개최하는 13번째 서킷이 됩니다.</p>
+            <p>스프린트 퀄리파잉은 정규 퀄리파잉과 마찬가지로 세 세션(SQ1·SQ2·SQ3)으로 나뉘며 각각 12분, 10분, 8분입니다. SQ1과 SQ2에서 각각 가장 느린 6명이 탈락하고, 남은 10명이 SQ3에서 폴 포지션과 1~10번 그리드를 다툽니다.</p>
+            <p>스프린트 레이스는 토요일에 100km 거리로 치러지며 보통 30분 내외로 끝납니다. 포인트는 1위부터 8위까지 8-7-6-5-4-3-2-1점이 주어지고, 폴 포지션이나 패스티스트 랩에는 포인트가 없습니다.</p>
+            <p>올해 스프린트 개최지는 중국과 마이애미(3년 연속), 캐나다·잔드보르트·싱가포르(첫 개최), 그리고 2021년 첫 스프린트를 열었던 실버스톤입니다. 통산 스프린트 최다 우승자는 13승의 막스 페르스타펜(Max Verstappen)입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1095662/1/explained-how-does-f1-sprint-race-format-work-2026" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 차기 기술 규정 논의 — 원문 페이지에 챔피언십 순위표가 노출됩니다 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="art-body">
+          <h3>도메니칼리, 차기 기술 규정 방향 확인 — "최대한 단순하게"</h3>
+          <p class="orig">Stefano Domenicali confirms F1 approach to next set of technical regulations</p>
+          <div class="meta"><span class="src">Motorsport Week</span><span>·</span><span>2026.08.16</span></div>
+          <p class="sum">스테파노 도메니칼리(Stefano Domenicali) F1 CEO가 2030~2031년 시행 예정인 차기 기술 규정의 방향을 밝혔습니다. 핵심 목표는 "최대한 단순하게" — 지속가능 연료와 전동화를 유지하되 더 가벼운 머신, 그리고 드라이버가 특정 모드에서 마음껏 푸시할 수 있는 여지를 남기는 것입니다. 연내에 논의 패키지를 정리하겠다는 계획도 함께 나왔습니다. 원문 페이지 사이드바에 드라이버 챔피언십 순위표가 표시되므로 접어두었습니다.</p>
+          <a class="go" href="https://www.motorsportweek.com/2026/08/16/stefano-domenicali-confirms-f1-approach-to-next-set-of-technical-regulations/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ===================== 드라이버 / 팀 ===================== -->
+  <section id="people" data-cat="people">
+    <div class="sec-head"><h2>👤 드라이버 / 팀 뉴스</h2><span class="count">4건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-08/xpb_1418242_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>윌리엄스는 왜 무너졌나 — 보울스 대표는 압박을 느껴야 할까</h3>
+        <p class="orig">What has gone wrong at Williams and should James Vowles be feeling the pressure?</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.08.18</span></div>
+        <p class="sum">애스턴 마틴(Aston Martin)이 반등하면서 이제 시선은 윌리엄스(Williams)로 향합니다. 낡은 시설, 상대적으로 적은 예산, 20년간 이어진 개발력 부재를 짚으며 제임스 보울스(James Vowles) 대표의 적합성까지 되묻는 칼럼입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>윌리엄스는 역사책에서는 최고의 팀 중 하나지만, 2000년대 이후로 보면 이야기가 다릅니다. BMW와의 협업으로 2002~2003년 컨스트럭터 2위까지 올랐던 것이 마지막 정점이었고, 2004년 이후 거둔 그랑프리 승리는 단 두 번, 가장 최근이 2012년 스페인 GP입니다.</p>
+            <p>2026년은 새 규정을 발판 삼아 도약할 해로 기대됐지만 출발부터 어긋났습니다. 바르셀로나 프리시즌 셰이크다운에 나오지 못한 유일한 팀이었고, 트랙에 나왔을 때는 무겁고 개발이 덜 된 머신이었습니다. 개막전용으로 계획했던 패키지는 4라운드 마이애미에 와서야 도착했습니다.</p>
+            <p>구조적 원인으로는 1996년에 문을 연 그로브(Grove) 공장이 꼽힙니다. 2023년에야 다년간의 현대화 작업이 시작됐고, 2025년에는 구형 1번 풍동을 철거하고 새 설비로 교체한다는 발표가 나왔습니다. 예산은 대부분의 팀보다 적습니다.</p>
+            <p>필자는 보울스가 메르세데스(Mercedes)에서 챔피언십을 경험한 유능한 인물이지만, "강등 싸움을 하는 팀에 프리미어리그 우승 감독을 데려오지는 않는다"는 축구 비유로 시점의 미스매치를 지적합니다. 다만 카를로스 사인츠(Carlos Sainz) 영입과 알본(Albon)의 재계약을 이끌어낸 점은 분명한 성과라고 인정합니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1102530/1/what-has-gone-wrong-williams-and-should-james-vowles-be-feeling-pressure" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-08/xpb_1309813_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>슈타이너, "하스에 2년 더 오래 머물렀다" 고백</h3>
+        <p class="orig">Guenther Steiner makes Haas confession amid F1 return speculation</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.08.18</span></div>
+        <p class="sum">귄터 슈타이너(Guenther Steiner)가 하스(Haas) 팀 대표직에 "2년은 더 오래 있었다"고 인정했습니다. 구단주 진 하스(Gene Haas)와 비전 차이가 커졌음에도 스스로 떠나지 못했다는 것입니다. 현재 모토GP 팀 Tech3를 이끄는 그는 조건이 맞으면 F1 복귀도 열어뒀습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>슈타이너는 2000년대 후반 하스 F1 프로젝트의 사업계획을 직접 만들고 진 하스와 버니 에클스톤(Bernie Ecclestone)을 설득한 창단의 핵심 인물입니다. 2014~2023년 팀 대표로 일하는 동안 팀 성적은 견실한 미드필더와 최하위권 사이를 오갔고, 그 과정에서 구단주와의 관계가 서서히 틀어졌습니다.</p>
+            <p>특히 2023년을 사실상 포기하고 이듬해 머신에 집중하자는 그의 주장이 갈등을 키웠습니다. 실제로 그 계획대로 2024년 출발이 좋아졌지만, 지휘봉은 아야오 고마쓰(Ayao Komatsu)에게 넘어갔습니다.</p>
+            <p>그는 <em>High Performance Podcast</em>에서 "2년 더 오래 있었다고 생각한다. 더 잘했어야 할 것은 내 비전을 구단주에게 더 잘 파는 일이었는데, 결국 해내지 못했다. 그냥 '이건 안 되니 나는 떠난다'고 말했어야 했다"고 돌아봤습니다.</p>
+            <p>다만 결정이 자신의 손을 떠난 것에 대해서는 "오히려 다행이었다. 팀이 가는 방향에 동의하지 않았기 때문"이라며 "문 하나가 닫히면 두 개가 열린다고 믿는데, 지금은 너무 바빠서 열린 문이 너무 많다"고 말했습니다. 그는 최근 "마음에 드는 프로젝트라면 돌아가겠다. 단지 일을 하러 가는 것이라면 아니다"라며 F1 복귀 가능성을 시사했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1102525/1/guenther-steiner-makes-haas-confession-amid-f1-return-speculation" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-08/xpb_1301822_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>조니 허버트, "페르스타펜 열성 팬들이 최악이었다"</h3>
+        <p class="orig">Johnny Herbert brands diehard Max Verstappen F1 fans "the worst" for abuse</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.08.17</span></div>
+        <p class="sum">전 F1 드라이버이자 스튜어드였던 조니 허버트(Johnny Herbert)가 막스 페르스타펜(Max Verstappen)의 열성 팬층으로부터 받은 비방이 커리어 중 가장 심했다고 밝혔습니다. 2024년 멕시코시티 GP 관련 발언 이후 벌어진 논란이 배경입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>통산 3승을 거둔 62세의 허버트는 스카이스포츠 F1 해설자이자 FIA 스튜어드로 활동했습니다. 2024년 멕시코시티 그랑프리에서 페르스타펜이 란도 노리스(Lando Norris)와의 같은 랩 두 차례 접촉으로 10초 페널티를 두 번 받은 사건에 대해 그가 베팅 매체에 밝힌 의견이 발단이었습니다.</p>
+            <p>당시 그는 페르스타펜의 주행이 "과했다"며 "상대 드라이버를 트랙 밖으로 밀어내 이득을 얻으려는 좋지 않은 사고방식에 빠졌다"고 말했습니다. 이에 페르스타펜 본인과 아버지 요스(Jos), 그리고 팬층의 반발이 이어졌고, 요스는 "FIA가 스튜어드 구성과 이해충돌 소지를 들여다봐야 한다"고 주장했습니다.</p>
+            <p>이듬해 1월 허버트는 2025 시즌을 앞두고 FIA 스튜어드직에서 해임됐습니다.</p>
+            <p>그는 최근 인터뷰에서 가장 심한 비방을 준 팬층을 묻자 "쉽다. 내가 페르스타펜에게 의문을 제기한 것에 반발한 네덜란드 팬들"이라며 "'허버트에게 죽음을' 같은 말까지 나왔다. 최악이었다"고 답했습니다. 다만 "우리도 '플라잉 더치맨'에게 감탄한다"며 응원과 객관성은 별개라고 덧붙였습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1102512/1/johnny-herbert-brands-diehard-max-verstappen-f1-fans-worst-abuse" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 페라리 드라이버 라인업 관련 인터뷰 — 챔피언십 순위·포디움 언급 포함 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="art-body">
+          <h3>베어먼, "해밀턴의 반등은 내 커리어엔 이상적이지 않다"</h3>
+          <p class="orig">Ollie Bearman admits Lewis Hamilton's F1 resurgence "not ideal" for his career</p>
+          <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.08.17</span></div>
+          <p class="sum">페라리(Ferrari) 아카데미 소속으로 하스(Haas)에 임대돼 있는 올리 베어먼(Ollie Bearman)이, 루이스 해밀턴(Lewis Hamilton)의 반등으로 자신의 페라리 승격이 미뤄지는 상황을 담담히 받아들인 인터뷰입니다. 본문에 올 시즌 챔피언십 순위와 포디움 관련 내용이 구체적으로 담겨 있어 접어두었습니다. 상세 내용은 원문에서 확인하세요.</p>
+          <a class="go" href="https://www.crash.net/f1/news/1102505/1/ollie-bearman-admits-lewis-hamiltons-f1-resurgence-not-ideal-his-career" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ===================== 기타 ===================== -->
+  <section id="etc" data-cat="etc">
+    <div class="sec-head"><h2>📰 기타</h2><span class="count">2건 · 스포일러 0건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-08/xpb_1428155_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>캐딜락, 시즌 도중 팀 대표 전격 교체 — 부트코프스키 선임</h3>
+        <p class="orig">Cadillac appoints new team principal in shock leadership change</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.08.12</span></div>
+        <p class="sum">캐딜락(Cadillac)이 창단 첫 시즌 도중 그레이엄 로던(Graeme Lowdon)을 물러나게 하고 전 알핀(Alpine) 임원 마르친 부트코프스키(Marcin Budkowski)를 새 팀 대표로 선임했습니다. 팀은 "계획된 리더십 전환"이라고 설명했지만 사전 징후는 없었습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>캐딜락은 아직 포인트를 따지 못했지만 신생팀치고는 기대 이상의 출발을 했다는 평가를 받았습니다. 다만 여름 셧다운 직전까지 신뢰성 문제가 끊이지 않았습니다.</p>
+            <p>댄 타우리스(Dan Towriss) 캐딜락 F1 CEO는 "처음부터 우리 목표는 단순히 F1에 참가하는 것이 아니라 맨 앞에서 싸울 수 있는 차세대 팀을 만드는 것이었다"며 "마르친은 뛰어난 F1 경험과 기술적 전문성, 전략적 리더십을 갖췄다"고 밝혔습니다. 로던에 대해서는 "팀을 맨바닥에서 세운 공로에 감사한다"고 덧붙였습니다.</p>
+            <p>로던은 과거 버진/마노(Virgin/Manor) 팀 CEO 출신으로, 캐딜락의 엔트리 확보 단계부터 참여해 2024년 12월 팀 대표로 확정된 인물입니다. 교체 이유에 대한 구체적 설명은 나오지 않았습니다.</p>
+            <p>후임 부트코프스키는 프로스트, 페라리, 맥라렌, 알핀, 그리고 FIA에서 요직을 거친 폴란드계 프랑스인 엔지니어입니다. 그는 "코스트 캡 안에서 머신 개발을 극대화하고 모든 팀 기능을 경쟁 모드로 전환하는 것이 명확한 목표"라며 "잔드보르트부터 시작한다"고 밝혔습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1102434/1/cadillac-appoints-new-team-principal-shock-leadership-change" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-08/hw_fc14714-copy.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"></div>
+      <div class="art-body">
+        <h3>"몇 년 안에 여성 F1 드라이버 나온다" — 50년 공백을 향한 전망</h3>
+        <p class="orig">Female F1 breakthrough predicted in "a few years" after half-century wait</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.08.12</span></div>
+        <p class="sum">애스턴 마틴(Aston Martin) 앰버서더 제시카 호킨스(Jessica Hawkins)가 F1 아카데미(F1 Academy)의 성장 덕분에 "몇 년 안에" 여성 드라이버가 F1에 등장할 것으로 내다봤습니다. 마지막 여성 그랑프리 출전은 1976년 렐라 롬바르디(Lella Lombardi)였습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>F1에서 여성 드라이버가 그랑프리에 출전한 것은 1976년 오스트리아 GP의 렐라 롬바르디가 마지막입니다. 그는 1975년 스페인 GP에서 0.5점을 획득한, 지금까지 유일하게 F1 포인트를 기록한 여성 드라이버이기도 합니다. 이후 수지 울프(Susie Wolff)가 2014~2015년 윌리엄스(Williams) 소속으로 프리 프랙티스에 나섰고, 예선에 도전한 마지막 사례는 1992년 브라밤(Brabham)의 조반나 아마티(Giovanna Amati)였습니다.</p>
+            <p>4년째를 맞은 F1 아카데미는 폐지된 W 시리즈의 뒤를 이어 트랙 안팎에서 여성 인재를 육성하고 있습니다. 아직 F3 이상으로 승격한 드라이버는 없지만, W 시리즈 출신이자 애스턴 마틴 F1 아카데미 총괄인 호킨스는 시간문제라고 봅니다.</p>
+            <p>그는 "몇 년은 더 걸릴 것 같지만 반드시 일어날 것이라고 믿는다"며 "아니라고 말한다면 내가 서 있는 모든 것에 어긋나는 일"이라고 말했습니다. 자신이 어렸을 때는 롤 모델이 거의 없었던 반면 "지금 F1 아카데미를 보면 내 나이 때 꿈만 꿀 수 있던 환경"이라고 덧붙였습니다.</p>
+            <p>2023년 9월 헝가로링에서 애스턴 마틴 F1 머신을 몬 첫 여성이 된 그는 체력이 장벽이라는 통념도 반박했습니다. "레이스 거리의 절반을 달려봤는데 전체 거리도 가능했다. 목이 힘들었지만, 그건 F1 머신을 처음 타는 사람이라면 누구나 겪는 일이지 여성이라서가 아니었다"고 말했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1102433/1/female-f1-breakthrough-predicted-few-years-after-half-century-wait" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ===================== 용어 사전 ===================== -->
+  <section id="glossary" data-cat="glossary">
+    <div class="sec-head"><h2>📖 오늘의 용어</h2><span class="count">9개</span></div>
+    <dl class="glossary">
+      <div class="term"><dt>스프린트 <span>(Sprint)</span></dt><dd>토요일에 열리는 100km 거리의 짧은 레이스로 보통 30분 정도면 끝납니다. 1~8위에게 8-7-6-5-4-3-2-1점이 주어지며, 일요일 결승과는 별개의 결과입니다.</dd></div>
+      <div class="term"><dt>스프린트 퀄리파잉 <span>(Sprint Qualifying, SQ1·SQ2·SQ3)</span></dt><dd>스프린트 레이스의 출발 순서를 정하는 예선입니다. 정규 예선처럼 3단계로 나뉘며 각 단계에서 느린 드라이버들이 탈락합니다.</dd></div>
+      <div class="term"><dt>파워 유닛 <span>(Power Unit, PU)</span></dt><dd>F1의 엔진을 부르는 정식 명칭입니다. 내연기관과 전기 모터, 배터리, 제어 장치를 하나로 묶은 복합 동력 장치를 뜻합니다.</dd></div>
+      <div class="term"><dt>프리 챔버 <span>(Pre-chamber)</span></dt><dd>연소실 앞에 붙는 작은 방으로, 여기서 먼저 불을 붙여 본 연소실 전체를 빠르게 태웁니다. 연소 속도가 빨라지면 같은 연료로 더 큰 출력을 낼 수 있습니다.</dd></div>
+      <div class="term"><dt>B스펙 <span>(B-spec)</span></dt><dd>시즌 도중 머신을 사실상 새로 설계한 수준으로 뜯어고친 대형 업그레이드를 부르는 말입니다.</dd></div>
+      <div class="term"><dt>셰이크다운 <span>(Shakedown)</span></dt><dd>새 머신을 짧게 굴려보며 기본 작동과 조립 상태를 점검하는 사전 주행입니다. 본격적인 테스트 전에 진행합니다.</dd></div>
+      <div class="term"><dt>코스트 캡 <span>(Cost Cap)</span></dt><dd>팀이 한 해에 쓸 수 있는 지출 상한선입니다. 자금력 차이를 줄여 경쟁을 평준화하려는 목적으로 도입됐습니다.</dd></div>
+      <div class="term"><dt>팀 프린시펄 <span>(Team Principal)</span></dt><dd>레이싱 팀의 총괄 책임자로, 흔히 '팀 대표'로 옮깁니다. 서킷에서의 운영과 팀 전체 전략을 책임집니다.</dd></div>
+      <div class="term"><dt>레인 해저드 레이스 <span>(Rain Hazard Race)</span></dt><dd>강수 가능성이 높다고 판단돼 사전에 지정되는 상태로, 팀과 관계자들이 우천 대비 절차를 미리 준비하도록 알리는 장치입니다.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span class="brand">Claude</span>가 번역·정리한 F1 뉴스 · 2026.08.19<br>
+    원문 저작권은 각 매체에 있으며, 핵심 요약만 제공합니다.
+  </footer>
+
+</div>
+<script>
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-cat]'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var cat = chip.dataset.cat;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      sections.forEach(function (s) { s.classList.toggle('hidden', cat !== 'all' && s.dataset.cat !== cat); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  var btn = document.getElementById('unlockAll');
+  var spoilers = Array.prototype.slice.call(document.querySelectorAll('details.spoiler'));
+  function render(open) { btn.setAttribute('aria-pressed', String(open)); btn.textContent = open ? '🔒 스포일러 모두 접기' : '🔓 스포일러 모두 펼치기'; }
+  btn.addEventListener('click', function () { var open = btn.getAttribute('aria-pressed') !== 'true'; spoilers.forEach(function (d) { d.open = open; }); render(open); });
+  spoilers.forEach(function (d) { d.addEventListener('toggle', function () { render(spoilers.every(function (x) { return x.open; })); }); });
+  render(false);
+})();
+</script>
+</body>
+</html>

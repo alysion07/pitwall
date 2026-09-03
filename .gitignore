@@ -1,0 +1,14 @@
+# Obsidian / editor
+.obsidian/
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# temp
+*.tmp
+*.bak
+~$*
