@@ -46,8 +46,17 @@
   .brand .yr { font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--text-dim); border:1px solid var(--border); padding:2px 7px; border-radius:6px; margin-left:2px; }
   .top .meta { color:var(--text-dim); font-size:12.5px; margin-left:8px; padding-left:14px; border-left:1px solid var(--border); }
   .top .sp { flex:1; }
-  .topnav { display:flex; gap:8px; }
+  .topnav { display:flex; gap:8px; align-items:center; }
   @media (max-width:760px) { .topnav .btn span { display:none; } }
+  /* 자매 사이트(외부 링크) 구분 — 내부 F1 페이지 버튼과 시각적으로 갈라 놓는다 */
+  .navsep { flex:0 0 auto; width:1px; height:18px; background:var(--border); margin:0 2px; }
+  .btn.ext { color:var(--text-dim); }
+  .btn.ext:hover { color:#DA291C; border-color:#DA291C; }
+  .btn.ext .ext-ar { width:10px; height:10px; opacity:.55; }
+  @media (prefers-color-scheme: dark) { .btn.ext:hover { color:#FF5A4A; border-color:#FF5A4A; } }
+  @media (max-width:760px) { .btn.ext .ext-ar { display:none; } }
+  /* 버튼이 한 줄에 다 안 들어가는 폭에서는 브랜드 아래로 내비를 접는다 (가로 스크롤 방지) */
+  @media (max-width:900px) { .top-inner { flex-wrap:wrap; gap:10px 8px; } .top .sp { flex:1 1 100%; height:0; } }
   .btn { border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:600; padding:7px 14px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:.15s; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
   .btn:hover { color:var(--text); border-color:var(--text); }
   .btn.unlock { border-color:var(--spoiler-border); background:var(--spoiler-bg); color:var(--accent); }
@@ -258,6 +267,9 @@
 
   footer { margin-top:48px; padding:24px 0 48px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
   footer .brand-f { color:var(--accent); font-weight:700; }
+  footer .sister { display:inline-block; margin-top:9px; color:var(--text-dim); text-decoration:none; border-bottom:1px solid var(--border); padding-bottom:1px; }
+  footer .sister:hover { color:#DA291C; border-bottom-color:#DA291C; }
+  @media (prefers-color-scheme: dark) { footer .sister:hover { color:#FF5A4A; border-bottom-color:#FF5A4A; } }
 
   @media (max-width:1320px) {
     .grid { grid-template-columns:minmax(0,1fr) 320px; }
@@ -292,7 +304,7 @@
   <div class="brand"><span class="dot"></span>PIT<span class="accent">WALL</span><span class="yr" id="yrTag"></span></div>
   <div class="meta" id="metaTxt"></div>
   <div class="sp"></div>
-  <nav class="topnav" aria-label="바로가기"><a class="btn" id="navCircuit" href="circuit.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14c0-5 3-8 8-8s8 3 8 8-3 6-8 6-8-1-8-6z"/><circle cx="12" cy="14" r="2"/></svg><span>서킷 가이드</span></a><a class="btn" href="teams.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-5h9l4 5h3v4H3z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span>팀 & 머신</span></a></nav>
+  <nav class="topnav" aria-label="바로가기"><a class="btn" id="navCircuit" href="circuit.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14c0-5 3-8 8-8s8 3 8 8-3 6-8 6-8-1-8-6z"/><circle cx="12" cy="14" r="2"/></svg><span>서킷 가이드</span></a><a class="btn" href="teams.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-5h9l4 5h3v4H3z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span>팀 & 머신</span></a><span class="navsep" aria-hidden="true"></span><a class="btn ext" href="https://javasubin.github.io/red-devils-hub/" target="_blank" rel="noopener" title="RED DEVILS HUB — 맨체스터 유나이티드 대시보드 (새 탭에서 열림)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5l4.28 3.11-1.63 5.03H9.35l-1.63-5.03z"/><path d="M12 7.5V3M16.28 10.61l4.28-1.39M14.65 15.64l3.29 3.64M9.35 15.64l-3.29 3.64M7.72 10.61L3.44 9.22"/></svg><span>RED DEVILS</span><svg class="ext-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a></nav>
   <button class="btn unlock" id="unlockAll" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path class="shackle" d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>순위표 펼치기</span></button>
 </div></div>
 
@@ -364,7 +376,7 @@
     <ul class="arch-list" id="archList"></ul>
   </section>
 
-  <footer><span class="brand-f">PIT WALL</span> · Claude가 매일 아침 갱신하는 F1 대시보드 · 순위표는 기본적으로 가려져 있습니다.</footer>
+  <footer><span class="brand-f">PIT WALL</span> · Claude가 매일 아침 갱신하는 F1 대시보드 · 순위표는 기본적으로 가려져 있습니다.<br><a class="sister" href="https://javasubin.github.io/red-devils-hub/" target="_blank" rel="noopener">자매 사이트 — RED DEVILS HUB · 맨체스터 유나이티드 대시보드 ↗</a></footer>
 </div>
 
 <script src="data.js"></script>

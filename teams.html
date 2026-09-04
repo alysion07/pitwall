@@ -25,6 +25,18 @@
   .btn:hover { color:var(--text); border-color:var(--text); }
   .btn svg { width:14px; height:14px; }
   .btn.dis { opacity:.35; pointer-events:none; }
+  /* 자매 사이트(외부 링크) 구분 */
+  .navsep { flex:0 0 auto; width:1px; height:18px; background:var(--border); margin:0 2px; align-self:center; }
+  .btn.ext { color:var(--text-dim); }
+  .btn.ext:hover { color:#DA291C; border-color:#DA291C; }
+  .btn.ext .ext-ar { width:10px; height:10px; opacity:.55; }
+  @media (prefers-color-scheme: dark) { .btn.ext:hover { color:#FF5A4A; border-color:#FF5A4A; } }
+  @media (max-width:760px) { .btn.ext .lbl, .btn.ext .ext-ar { display:none; } }
+  /* 좁은 화면: 브랜드 아래로 내비를 접어 상단 바가 가로로 넘치지 않게 한다 */
+  @media (max-width:900px) { .top-inner { flex-wrap:wrap; gap:10px 8px; } .top .sp { flex:1 1 100%; height:0; } }
+  footer .sister { display:inline-block; margin-top:9px; color:var(--text-dim); text-decoration:none; border-bottom:1px solid var(--border); padding-bottom:1px; }
+  footer .sister:hover { color:#DA291C; border-bottom-color:#DA291C; }
+  @media (prefers-color-scheme: dark) { footer .sister:hover { color:#FF5A4A; border-bottom-color:#FF5A4A; } }
   footer { margin-top:56px; padding:24px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
   footer .b { color:var(--accent); font-weight:700; }
   /* 팀 선택 스트립 (상단 고정 바 두 번째 줄) */
@@ -95,6 +107,8 @@
   <div class="sp"></div>
   <a class="btn" id="circLink" href="circuit.html">서킷 가이드</a>
   <a class="btn" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>대시보드</a>
+  <span class="navsep" aria-hidden="true"></span>
+  <a class="btn ext" href="https://javasubin.github.io/red-devils-hub/" target="_blank" rel="noopener" title="RED DEVILS HUB — 맨체스터 유나이티드 대시보드 (새 탭에서 열림)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5l4.28 3.11-1.63 5.03H9.35l-1.63-5.03z"/><path d="M12 7.5V3M16.28 10.61l4.28-1.39M14.65 15.64l3.29 3.64M9.35 15.64l-3.29 3.64M7.72 10.61L3.44 9.22"/></svg><span class="lbl">RED DEVILS</span><svg class="ext-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
 </div>
 <!-- 팀 선택 스트립: teams.js의 팀 목록에서 자동 생성 -->
 <nav class="wrap tstrip" id="tstrip" aria-label="팀 선택"></nav>
@@ -169,7 +183,7 @@
     h += nk ? '<a class="next" href="teams.html?team=' + T[nk].slug + '"><div class="lab">다음 팀 →</div><div class="nm">' + esc(D.teams[nk].ko) + ' · ' + esc(T[nk].chassis) + '</div></a>' : '<a class="next" href="teams.html"><div class="lab">전체 목록 →</div><div class="nm">팀 & 머신</div></a>';
     h += '</div>';
   }
-  h += '<footer><span class="b">PIT WALL</span> · 팀 & 머신 · ' + D.meta.season + '</footer>';
+  h += '<footer><span class="b">PIT WALL</span> · 팀 & 머신 · ' + D.meta.season + '<br><a class="sister" href="https://javasubin.github.io/red-devils-hub/" target="_blank" rel="noopener">자매 사이트 — RED DEVILS HUB · 맨체스터 유나이티드 대시보드 ↗</a></footer>';
   root.innerHTML = h;
 })();
 </script>
