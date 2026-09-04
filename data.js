@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-09-03",
+    updatedAt: "2026-09-04",
     season: 2026,
     standingsAsOf: { round: 12, name: "네덜란드 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-09-04", file: "briefings/f1-news-2026-09-04.html", count: 19, spoilers: 3,
+      headline: "2027년부터 결승 거리 305km→290km 단축 팀 전원 합의 · 몬차 회생 한도 5MJ — '요요 레이싱' 논쟁 · 하스, 페라리 신형 엔진 한 기만 받아 베어먼에 우선 투입" },
     { date: "2026-09-03", file: "briefings/f1-news-2026-09-03.html", count: 20, spoilers: 5,
       headline: "레드불 몬차 라인업 확정 — FP1 이와사·결승 로슨 · 페라리 ADUO 2차 엔진 업그레이드 · 맥라렌 H-윙 첫 실전 투입" },
     { date: "2026-08-22", file: "briefings/f1-news-2026-08-22.html", count: 15, spoilers: 1,
