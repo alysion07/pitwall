@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>F1 데일리 브리핑 — 2026.09.08</title>
+<style>
+  :root {
+    --bg:#ffffff; --bg-soft:#f7f7f9; --card:#ffffff; --card-hover:#fbfbfc;
+    --text:#14141a; --text-mid:#4a4a57; --text-dim:#86868f;
+    --border:#e6e6ec; --border-soft:#f0f0f4;
+    --accent:#E10600; --accent-soft:rgba(225,6,0,.08);
+    --spoiler-bg:#fbf7f7; --spoiler-border:#ecdcdc; --chip-bg:#f2f2f5;
+    --shadow:0 1px 2px rgba(20,20,26,.04),0 8px 24px -12px rgba(20,20,26,.10);
+    --bar-bg:rgba(255,255,255,.82);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0e0e11; --bg-soft:#141419; --card:#16161b; --card-hover:#1b1b21;
+      --text:#f0f0f3; --text-mid:#b6b6c0; --text-dim:#82828e;
+      --border:#26262e; --border-soft:#1e1e25;
+      --accent:#FF3B30; --accent-soft:rgba(255,59,48,.12);
+      --spoiler-bg:#1a1416; --spoiler-border:#3a2528; --chip-bg:#1e1e25;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+      --bar-bg:rgba(14,14,17,.82);
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;
+    font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0 24px; }
+  header { padding:72px 0 32px; }
+  .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+  .kicker .dot { width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  h1 { font-size:clamp(34px,7vw,46px); line-height:1.12; margin:0 0 20px; font-weight:800; letter-spacing:-0.035em; }
+  h1 .accent { color:var(--accent); }
+  .lede { font-size:15px; color:var(--text-mid); margin:0; padding-bottom:28px; border-bottom:1px solid var(--border); }
+  .lede b { color:var(--text); font-weight:600; }
+  .digest { margin:28px 0 0; padding:20px 22px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:14px; }
+  .digest h2 { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:0 0 12px; }
+  .digest ol { margin:0; padding-left:20px; }
+  .digest li { font-size:14.5px; color:var(--text-mid); margin-bottom:7px; }
+  .digest li:last-child { margin-bottom:0; }
+  .digest li b { color:var(--text); font-weight:600; }
+  .bar { position:sticky; top:0; z-index:20; margin:36px 0 8px; padding:12px 0; background:var(--bar-bg); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--border-soft); }
+  .bar-inner { display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap; }
+  .chips { display:flex; gap:7px; flex-wrap:wrap; flex:1 1 auto; scrollbar-width:none; -ms-overflow-style:none; padding:2px 0; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip { flex:0 0 auto; border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:500; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s,color .15s,border-color .15s; }
+  .chip:hover { color:var(--text); }
+  .chip[aria-pressed="true"] { background:var(--text); color:var(--bg); border-color:var(--text); }
+  .chip .n { opacity:.5; margin-left:4px; font-variant-numeric:tabular-nums; }
+  .unlock { flex:0 0 auto; border:1px solid var(--spoiler-border); background:var(--spoiler-bg); color:var(--accent); font:inherit; font-size:13px; font-weight:600; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s; }
+  .unlock:hover { background:var(--accent-soft); }
+  section { padding-top:44px; scroll-margin-top:70px; }
+  section.hidden { display:none; }
+  .sec-head { display:flex; align-items:baseline; gap:10px; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--text); }
+  .sec-head h2 { font-size:19px; font-weight:750; margin:0; letter-spacing:-0.02em; }
+  .sec-head .count { font-size:12px; color:var(--text-dim); font-variant-numeric:tabular-nums; margin-left:auto; font-weight:500; }
+  .art { display:flex; flex-direction:column; align-items:stretch; gap:16px; padding:26px 0; border-bottom:1px solid var(--border-soft); }
+  .art:last-child { border-bottom:none; }
+  .thumb { width:100%; height:340px; border-radius:14px; overflow:hidden; background:linear-gradient(135deg,var(--accent) 0%,#600 100%); border:1px solid var(--border-soft); }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .art-body { min-width:0; }
+  .art h3 { font-size:21px; font-weight:750; line-height:1.36; margin:0 0 6px; letter-spacing:-0.025em; }
+  .orig { font-size:13px; color:var(--text-dim); margin:0 0 11px; font-style:italic; line-height:1.45; }
+  .meta { display:flex; align-items:center; gap:7px; flex-wrap:wrap; font-size:12px; color:var(--text-dim); margin-bottom:12px; }
+  .src { font-weight:650; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:5px; font-size:11.5px; }
+  .sum { font-size:15px; color:var(--text-mid); margin:0 0 4px; line-height:1.75; }
+  details.more { margin:8px 0 14px; }
+  details.more > summary { list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:650; color:var(--accent); padding:7px 0; user-select:none; }
+  details.more > summary::-webkit-details-marker { display:none; }
+  details.more > summary .caret { transition:transform .18s; font-size:10px; }
+  details.more[open] > summary .caret { transform:rotate(90deg); }
+  .detail-body { margin-top:4px; padding:14px 16px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:12px; }
+  .detail-body p { margin:0 0 10px; font-size:14.5px; color:var(--text-mid); line-height:1.8; }
+  .detail-body p:last-child { margin-bottom:0; }
+  .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
+  .go:hover { border-color:var(--text); background:var(--bg-soft); }
+  .go svg { width:11px; height:11px; }
+  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
+  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler > summary::-webkit-details-marker { display:none; }
+  details.spoiler > summary:hover { background:var(--accent-soft); }
+  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
+  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
+  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
+  details.spoiler[open] > summary .hint::after { content:"접기"; }
+  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
+  details.spoiler .art { padding:18px; border-bottom:none; }
+  .glossary { margin-top:12px; }
+  .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
+  .term:last-child { border-bottom:none; }
+  .term dt { font-size:14.5px; font-weight:700; margin-bottom:3px; }
+  .term dt span { color:var(--text-dim); font-weight:500; font-size:13px; }
+  .term dd { margin:0; font-size:14px; color:var(--text-mid); line-height:1.65; }
+  footer { margin-top:64px; padding:28px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
+  footer .brand { color:var(--accent); font-weight:650; }
+  @media (max-width:560px) {
+    .wrap { padding:0 18px; }
+    header { padding:48px 0 24px; }
+    .thumb { height:210px; }
+    .art h3 { font-size:19px; }
+    .sec-head h2 { font-size:17px; }
+    .bar-inner { flex-wrap:nowrap; flex-direction:column; align-items:stretch; }
+    .chips { flex-wrap:nowrap; overflow-x:auto; width:100%; }
+    .unlock { width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker"><span class="dot"></span> 2026년 9월 8일 화요일 <a href="../index.html" style="margin-left:auto;color:var(--text-dim);text-decoration:none;font-weight:600;letter-spacing:0;text-transform:none">← PIT WALL</a></div>
+    <h1>F1 데일리 <span class="accent">브리핑</span></h1>
+    <p class="lede">해외 주요 매체 <b>9곳</b>(Formula1.com · Autosport · The Race · Motorsport.com · Motorsport Week · PlanetF1 · Crash.net · RaceFans · Grandprix.com)에서 <b>기사 19건</b>을 모았습니다. 이 중 <b>4건</b>은 직전 라운드 결승 결과나 챔피언십 순위가 드러날 수 있어 가려두었습니다. 이번 주말에는 F1이 처음 찾아가는 마드리드의 <b>마드링(Madring)</b>에서 스페인 GP가 열립니다. 첫 자유주행은 한국 시각 <b>9월 11일 금요일 저녁 8시 30분</b>입니다.</p>
+    <div class="digest">
+      <h2>오늘의 요약</h2>
+      <ol>
+        <li>마드리드 데뷔전의 라인업이 정해졌습니다. 이자크 하자르(Isack Hadjar)가 손목 부상으로 <b>세 경기 연속 결장</b>하면서 리암 로슨(Liam Lawson)이 레드불(Red Bull)에서, 유키 츠노다(Yuki Tsunoda)가 레이싱 불스(Racing Bulls)에서 계속 뜁니다. 새 서킷 마드링은 5.4km·22개 코너에 <b>550m 길이의 24% 뱅크 코너</b>가 들어가 있고, 피렐리(Pirelli)는 2스톱을 유도하는 <b>C2·C3·C4</b>를 골랐습니다.</li>
+        <li>기술 쪽 화두는 여전히 <b>2026년 머신의 속도</b>입니다. 알핀(Alpine)은 개막 3경기에서만 썼던 <b>접이식 리어윙</b>을 다시 꺼내 피에르 가슬리(Pierre Gasly)의 팀 첫 폴 포지션을 만들어냈고, 페르난도 알론소(Fernando Alonso)는 몬차 최고속도가 <b>312km/h</b>대에 그쳤다며 "더 이상 스피드의 성전이 아니다"라고 말했습니다. 막스 페르스타펜(Max Verstappen)의 "종이로 만든 차" 발언은 차체 뒤쪽 부품이 부서지는 문제를 가리킨 것이었습니다.</li>
+        <li>🏁 이탈리아 GP 관련 소식 <b>4건</b> — 각 섹션의 스포일러 카드를 열어 확인하세요.</li>
+      </ol>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="bar-inner">
+      <div class="chips" role="group" aria-label="카테고리 필터">
+        <button class="chip" data-cat="all" aria-pressed="true">전체<span class="n">19</span></button>
+        <button class="chip" data-cat="race" aria-pressed="false">🏁 레이스 위크<span class="n">5</span></button>
+        <button class="chip" data-cat="tech" aria-pressed="false">🔧 기술/규정<span class="n">4</span></button>
+        <button class="chip" data-cat="fia" aria-pressed="false">⚖️ FIA/거버넌스<span class="n">3</span></button>
+        <button class="chip" data-cat="transfer" aria-pressed="false">🔄 이적/계약<span class="n">2</span></button>
+        <button class="chip" data-cat="people" aria-pressed="false">👤 드라이버/팀<span class="n">3</span></button>
+        <button class="chip" data-cat="etc" aria-pressed="false">📰 기타<span class="n">2</span></button>
+        <button class="chip" data-cat="glossary" aria-pressed="false">📖 용어</button>
+      </div>
+      <button class="unlock" id="unlockAll" aria-pressed="false">🔓 스포일러 모두 펼치기</button>
+    </div>
+  </div>
+
+  <!-- ============================ 🏁 레이스 위크 ============================ -->
+  <section id="race" data-cat="race">
+    <div class="sec-head"><h2>🏁 레이스 위크</h2><span class="count">5건 · 스포일러 2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Italy___Previews/2293312252.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>하자르 세 경기 연속 결장 — 마드리드에서도 로슨이 레드불, 츠노다가 레이싱 불스</h3>
+        <p class="orig">Lawson to continue in place of Hadjar at Red Bull in Madrid</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.09.07</span></div>
+        <p class="sum">이자크 하자르(Isack Hadjar)의 손목 부상 회복이 아직 끝나지 않아, 이번 주말 마드리드 스페인 GP도 건너뜁니다. 세 경기 연속 결장입니다. 리암 로슨(Liam Lawson)이 레드불(Red Bull) 자리를 그대로 이어받고, 유키 츠노다(Yuki Tsunoda)가 레이싱 불스(Racing Bulls)에서 계속 출전합니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>레드불은 성명에서 "이자크의 회복이 계속 순조롭게 진행되고 있다는 판단에 따라 내린 결정"이라며 "아직 콕핏에 복귀할 준비는 되지 않았지만, 마드리드에는 팀을 지원하러 올 것"이라고 밝혔습니다. 복귀 시점은 못 박지 않았습니다.</p>
+            <p>이 인사이동은 두 팀에 동시에 걸쳐 있습니다. 로슨은 원래 자매 팀인 레이싱 불스 소속이지만 하자르의 자리를 메우기 위해 레드불로 올라와 있고, 그 빈자리를 츠노다가 채우는 구조입니다. 결국 한 명의 부상으로 세 명의 드라이버가 자리를 옮긴 셈입니다.</p>
+            <p>대타 기간이 길어지면서 성격도 달라졌습니다. 애초 한두 경기짜리 임시 조치였던 것이 세 번째 주말로 늘어났고, 로슨에게는 2027년 계약이 걸린 사실상의 장기 오디션이 됐습니다. 레드불 계열 두 팀의 2027년 네 자리는 아직 어느 것도 공식 확정되지 않았습니다.</p>
+            <p>마드링은 모든 드라이버가 처음 달리는 서킷이라는 점에서, 대타로 들어온 드라이버에게는 오히려 덜 불리한 조건이기도 합니다. 기존 서킷에서 쌓아둔 주행 경험의 차이가 없기 때문입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/lawson-to-stay-at-red-bull-for-third-race-weekend-in-madrid-as-hadjars-recovery-continues.Bxrk9FOVDChcWCo5vxY8v" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F07%2F29112501%2Fmadring-being-built-1.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>마드링, 22개 코너에 550m 뱅크 — 피렐리는 2스톱을 노린 C2·C3·C4</h3>
+        <p class="orig">Crucial Madring information revealed ahead of Formula 1 debut</p>
+        <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.07.30</span></div>
+        <p class="sum">이번 주말 F1의 <b>81번째 서킷</b>으로 데뷔하는 마드링(Madring)은 공도와 전용 트랙을 섞은 5.4km·22개 코너 레이아웃입니다. 하이라이트는 550m 동안 최대 24% 경사가 이어지는 뱅크 코너 '라 모뉴멘탈(La Monumental)'입니다. 피렐리(Pirelli)는 타이어에 걸리는 하중이 실버스톤·스파급이라고 보고 중간 범위 컴파운드 C2·C3·C4를 골랐습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>마드링은 마드리드 국제전시장(IFEMA) 일대를 도는 하이브리드 서킷입니다. 전시장 건물 사이의 좁은 스트리트 구간과 고저차가 있는 전용 트랙 구간이 짧은 터널로 연결됩니다. 느린 코너·중속 코너·고속 코너·뱅크 코너가 한 바퀴 안에 모두 들어가 있어, 세팅을 어느 한쪽에 몰아주기 어려운 구조입니다.</p>
+            <p>가장 큰 변수는 '라 모뉴멘탈'입니다. 550m 길이에 경사 24%로, 현재 F1 캘린더에서 가장 긴 뱅크 코너입니다. 뱅크(경사진 노면)가 있으면 원심력의 일부를 노면이 받아주기 때문에 코너를 훨씬 빠르게 돌 수 있고, 대신 타이어와 서스펜션에 걸리는 수직 하중이 크게 올라갑니다. 샤를 르클레르(Charles Leclerc)는 이 코너가 "시즌에서 가장 상징적인 코너 중 하나가 될 수 있다"고 말했습니다.</p>
+            <p>피렐리의 컴파운드 선택은 이 하중 계산에서 나왔습니다. 시뮬레이션 결과 타이어가 받는 부하가 실버스톤이나 스파-프랑코르샹에 가깝다고 보고, 가장 무른 쪽 대신 중간 범위인 C2·C3·C4를 배정했습니다. 피렐리는 이 선택이 "2스톱 전략을 유도하고, 기온이 높을 때 과열 위험으로부터 보호하기 위한 것"이라고 설명했습니다. 마드리드의 9월 낮 기온이 30도를 넘길 수 있다는 점을 감안한 판단입니다.</p>
+            <p>마드리드에서 F1 월드 챔피언십 경기가 열리는 것은 1981년 하라마(Jarama) 이후 처음이고, 도시 안에서 열리는 것은 이번이 처음입니다. 스페인 GP를 치른 서킷으로는 페드랄베스·몬주익·하라마·헤레스·카탈루냐에 이어 여섯 번째입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.planetf1.com/news/f1-spanish-grand-prix-crucial-madring-information" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-09/xpb_1434711_hires.jpg?width=1600&aspect_ratio=16:9" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>"엉망이 될 수도" — 캐딜락이 마드링의 혼란에 거는 기대</h3>
+        <p class="orig">'Could be messy' - F1 backmarker eyes rare F1 chance in Madrid</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.09.07</span></div>
+        <p class="sum">데뷔 시즌을 보내고 있는 캐딜락(Cadillac)의 발테리 보타스(Valtteri Bottas)와 세르히오 페레스(Sergio Perez)는, 아무도 달려본 적 없는 새 서킷의 혼란이 하위권 팀에게 흔치 않은 기회가 될 수 있다고 봅니다. 앞서 열린 포뮬러 3 테스트에서 적기(세션 중단 신호)가 19번이나 나왔을 만큼 실수가 나오기 쉬운 트랙입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>새 서킷은 상위 팀이 쌓아둔 데이터의 우위를 지워줍니다. 모든 팀이 시뮬레이터 결과만 들고 오기 때문에, 금요일 자유주행에서 세팅을 빨리 맞추는 쪽이 예상 밖의 자리에 올라설 여지가 생깁니다. 여기에 벽이 가까운 스트리트 구간이 섞여 있으면 세이프티카나 적기 상황이 잦아지고, 그럴 때마다 순서가 뒤섞입니다.</p>
+            <p>보타스는 "트랙이 좋아 보인다. 어렵고, 모두에게 큰 도전이 될 것 같다. 엉망이 될 수도 있다고 생각한다"고 말했습니다. 여기서 '엉망(messy)'은 부정적인 뜻이라기보다 변수가 많아진다는 의미에 가깝습니다.</p>
+            <p>페레스도 같은 결의 기대를 내비쳤습니다. "재미있을 것 같다. 우리에게 기회가 있을 수 있다고 생각한다"는 것이 그의 말입니다. 두 사람 모두 상위 팀에서 오래 뛴 경험이 있어, 혼전 상황에서의 판단이 신생 팀의 자산이 될 수 있다는 계산도 깔려 있습니다.</p>
+            <p>포뮬러 3 테스트에서 나온 적기 19회는 이 서킷의 난이도를 보여주는 숫자입니다. 다만 F3 머신과 F1 머신은 다운포스와 브레이킹 성능이 크게 달라 그대로 대입하기는 어렵고, 실제 난이도는 금요일 자유주행에서 드러날 전망입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1104013/1/could-be-messy-f1-backmarker-eyes-rare-f1-chance-madrid" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 이탈리아 GP 결승 결과 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="art-body">
+          <h3>9월 6일 몬차에서 열린 결승의 결과를 정리한 기사</h3>
+          <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.09.06</span></div>
+          <p class="sum">직전 라운드 결승의 최종 순위와 획득 포인트를 정리한 기사입니다. 아직 경기를 보지 않으셨다면 열지 마세요.</p>
+          <a class="go" href="https://www.planetf1.com/news/2026-italian-grand-prix-f1-race-results" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 이탈리아 GP 결승 중 한 팀 내부에서 벌어진 사건 분석 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="art-body">
+          <h3>결승에서 나온 팀메이트 간 접촉과 그 여파를 다룬 분석</h3>
+          <div class="meta"><span class="src">Autosport</span><span>·</span><span>2026.09.07</span></div>
+          <p class="sum">결승 초반에 벌어진 같은 팀 두 드라이버의 접촉을 놓고, 무전 내용과 스튜어드(경기 심판) 판단을 짚은 분석 기사입니다. 본문에 리타이어 여부와 완주 순위가 그대로 나와 가려두었습니다.</p>
+          <a class="go" href="https://www.autosport.com/f1/news/what-doesnt-make-sense-about-hamilton-and-leclercs-italian-gp-clash/10853389/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ============================ 🔧 기술 / 규정 ============================ -->
+  <section id="tech" data-cat="tech">
+    <div class="sec-head"><h2>🔧 기술 / 규정</h2><span class="count">4건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-5.motorsport.com/images/amp/68Vwo8Q2/s6/ala-alpine.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>알핀, 봉인해뒀던 접이식 리어윙 복귀 — 그리고 팀 첫 폴 포지션</h3>
+        <p class="orig">Alpine brings back folding rear wing at Italian GP as Gasly grabs pole</p>
+        <div class="meta"><span class="src">Autosport</span><span>·</span><span>2026.09.06</span></div>
+        <p class="sum">알핀(Alpine)이 개막 3경기에서만 쓰고 창고에 넣어뒀던 접이식 리어윙을 몬차에서 다시 꺼냈습니다. 공기 저항을 최대한 줄이는 이 구성으로 피에르 가슬리(Pierre Gasly)가 예선에서 팀의 첫 폴 포지션(예선 1위, 결승 맨 앞자리)을 잡았습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>2026년 규정의 핵심 중 하나는 액티브 에어로(active aerodynamics), 즉 앞뒤 날개를 주행 중에 눕혔다 세웠다 하는 장치입니다. 직선에서는 날개를 눕혀 저항을 줄이는 '스트레이트 모드', 코너에서는 세워서 접지력을 얻는 '코너 모드'로 전환합니다. 팀마다 이 전환 장치를 어떻게 설계하느냐가 성능 차이로 이어집니다.</p>
+            <p>알핀은 시즌 개막전인 호주부터 중국, 일본(스즈카)까지 세 경기에서 이 접이식 리어윙 사양을 썼다가 이후 보류했습니다. 새로 들어온 다른 패키지와의 궁합이나 신뢰성 문제 등이 이유로 거론됐습니다.</p>
+            <p>몬차는 한 바퀴의 대부분을 전개(全開)로 달리는 서킷이라 저항이 곧 랩타임입니다. 알핀은 이 서킷에 맞춰 봉인했던 사양을 다시 꺼냈고, 팀 관계자는 낮은 저항 패키지와 그로부터 나오는 경쟁력 있는 최고속도를 예선 결과의 주된 요인으로 꼽았습니다.</p>
+            <p>예선에서 나온 이 결과는 알핀이 F1에 참가한 이래 처음 잡은 폴 포지션입니다. 여기까지가 예선 이야기이고, 결승에 대한 내용은 이 브리핑에서 다루지 않습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.autosport.com/f1/news/alpine-brings-back-folding-rear-wing-ahead-of-pierre-gaslys-monza-pole/10852931/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-09/xpb_1432172_hires.jpg?width=1600&aspect_ratio=16:9" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>알론소 "몬차가 더 이상 스피드의 성전이 아니다" — 최고속도 312km/h</h3>
+        <p class="orig">'No longer the Temple of Speed' - Fernando Alonso slams Monza F1 spectacle</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.09.07</span></div>
+        <p class="sum">페르난도 알론소(Fernando Alonso)가 2026년 머신의 몬차 최고속도를 두고 "더 이상 스피드의 성전이 아니다"라고 말했습니다. 그의 설명으로는 바르셀로나에서 350~360km/h, 부다페스트에서 355km/h가 나왔는데 몬차에서는 약 312km/h에 그쳤습니다. F1에서 가장 빠른 서킷이 가장 느린 축이 된 셈입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>숫자만 보면 앞뒤가 맞지 않습니다. 몬차는 캘린더에서 직선이 가장 길고 코너가 가장 적은 서킷이라, 원래대로면 그해 최고속도가 나와야 할 곳이기 때문입니다.</p>
+            <p>원인은 2026년 파워유닛(내연기관과 전기모터를 합친 동력 묶음)의 에너지 수지에 있습니다. 출력의 절반 가까이가 배터리에서 나오는데, 배터리는 감속할 때 회수(회생)해서 채웁니다. 몬차는 브레이킹 구간이 몇 곳뿐이라 채울 기회 자체가 적고, FIA는 여기에 랩당 회생 한도까지 시즌 최저 수준으로 묶어두었습니다. 그 결과 긴 직선의 후반부에서 전기 출력이 먼저 끊기는 클리핑(clipping)이 심하게 나타납니다.</p>
+            <p>알론소가 문제 삼은 것은 단순한 속도 숫자가 아니라 관전 요소입니다. 그는 규정이 만들어낸 지금의 주행 방식이 드라이버에게도 관중에게도 흥미로운 F1이 아니라는 견해를 여러 차례 밝혀왔습니다. 몬차의 최고속도 하락은 그 주장을 가장 직관적으로 보여주는 사례가 됐습니다.</p>
+            <p>같은 문제를 두고 시각은 갈립니다. 에너지가 남은 차가 앞차를 쉽게 지나칠 수 있어 추월 자체는 늘었다는 반론도 있고, 그 추월이 드라이버의 기량보다 배터리 잔량에 좌우된다는 비판도 함께 나옵니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1104009/1/no-longer-temple-speed-fernando-alonso-slams-monza-f1-spectacle" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-6.motorsport.com/images/amp/0arExZ42/s6/max-verstappen-red-bull-racing-2.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>"종이로 만든 차 같다" — 페르스타펜 발언의 진짜 의미</h3>
+        <p class="orig">Verstappen's "Red Bull car made out of paper" comment explained</p>
+        <div class="meta"><span class="src">Autosport</span><span>·</span><span>2026.09.05</span></div>
+        <p class="sum">막스 페르스타펜(Max Verstappen)이 레드불(Red Bull) RB22를 두고 "종이로 만든 것 같다"고 한 말은 차체 뒤쪽 부품이 주행 중에 부러지거나 움직여야 할 부분이 고착되는 문제를 가리킨 것이었습니다. 요철과 커브(연석)를 제대로 흡수하지 못해 랩타임 손실이 크다는 설명입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>페르스타펜은 "차의 부품이 부러지거나 고착되는 상황을 겪곤 한다. 이번 시즌 내내 꽤 자주 그런 느낌을 받았다"고 말했습니다. 특정 한 경기의 사고가 아니라 시즌 전체에 걸친 패턴이라는 뜻입니다.</p>
+            <p>문제가 되는 지점은 커브를 타고 넘는 순간입니다. F1 머신은 커브에 올라탈 때 서스펜션과 차체가 충격을 받아내야 하는데, 뒤쪽 구조가 이를 견디지 못하면 드라이버는 커브를 피해 돌아가야 하고 그만큼 라인이 길어집니다. 몬차처럼 시케인에서 커브를 적극적으로 타야 하는 서킷에서는 손실이 특히 큽니다.</p>
+            <p>그래서 그는 일부 구간에서 의도적으로 위험을 덜 감수하고 있다고 밝혔습니다. 한계까지 밀어붙였다가 부품이 상하면 그 주말 전체를 잃을 수 있기 때문입니다.</p>
+            <p>페르스타펜은 이 문제가 올해 갑자기 생긴 것이 아니라 레드불이 몇 년째 씨름해온 사안이라고도 지적했습니다. 2026년 규정으로 차가 30kg 가벼워지면서 구조 여유가 줄어든 점이 이를 더 두드러지게 만들었다는 해석이 나옵니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.autosport.com/f1/news/verstappens-red-bull-car-made-out-of-paper-comment-explained/10852703/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 페라리 엔진 업그레이드 이후의 출력 격차 (완주 순위·챔피언십 포인트 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="art-body">
+          <h3>2차 ADUO 업그레이드 이후에도 "순수 출력이 부족하다"</h3>
+          <div class="meta"><span class="src">Motorsport Week</span><span>·</span><span>2026.09.07</span></div>
+          <p class="sum">페라리(Ferrari)가 몬차에 두 번째 ADUO 엔진 업그레이드를 넣고도 출력 격차를 좁히지 못했다는 팀 대표의 인정을 다룬 기사입니다. 기술적인 내용이지만 본문에 결승 완주 순위와 챔피언십 포인트 격차가 그대로 들어 있어 가려두었습니다.</p>
+          <a class="go" href="https://www.motorsportweek.com/2026/09/07/ferrari-pure-power-f1/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ============================ ⚖️ FIA / 거버넌스 ============================ -->
+  <section id="fia" data-cat="fia">
+    <div class="sec-head"><h2>⚖️ FIA / 거버넌스</h2><span class="count">3건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1433531_HiRes.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>아우디, 츠노다 재시작 절차 무혐의 판정에 항소 의사 통보</h3>
+        <p class="orig">Audi to appeal stewards' decision in Tsunoda aborted start case</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.06</span></div>
+        <p class="sum">이탈리아 GP 재시작 과정에서 유키 츠노다(Yuki Tsunoda)가 자기 그리드 자리를 잘못 찾아 들어갔다가 되돌아온 일에 스튜어드(경기 심판)가 무혐의 판정을 내렸고, 아우디(Audi)가 여기에 항소 의사를 통보했습니다. 실제 항소 여부는 96시간 안에 결정합니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>상황은 이렇습니다. 츠노다는 재시작 시 14번 그리드 자리에 서야 했는데 처음에 15번 자리 쪽으로 향했고, 곧바로 방향을 바꿔 14번 자리에 차를 세웠습니다. 레이스 디렉터(경기 운영 책임자)는 차의 정렬 상태가 적절하지 않다고 판단해 포메이션 랩(출발 전 대형을 갖추며 도는 바퀴)을 한 바퀴 더 돌게 했습니다.</p>
+            <p>스튜어드는 추가로 돈 포메이션 랩의 책임이 츠노다에게 있지 않다고 봤습니다. 차를 최종적으로는 올바른 자리에 세웠다는 점이 근거였습니다.</p>
+            <p>아우디가 문제 삼는 것은 스포츠 규정 B5.9.4 조항의 해석입니다. 이 조항이 어떤 상황을 위반으로 보는지에 대해 스튜어드와 다른 견해를 가지고 있다는 것입니다. F1에서 팀이 다른 팀 드라이버에 대한 무혐의 판정에 항소하는 것은 흔한 일이 아닙니다.</p>
+            <p>절차상 '항소 의사 통보(intention to appeal)'는 곧바로 항소가 아니라 검토 시간을 확보하는 단계입니다. 아우디는 96시간 안에 실제로 항소를 제기할지 결정하게 됩니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/audi-appeals-fia-stewards-decision-yuki-tsunoda-aborted-start-monza/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F08%2F22073653%2Ffernando-alonso-looking-down-hand-on-head-interview-1.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>알론소·로슨 나란히 피트레인 스타트 — 혼다 파워유닛의 이상 신호</h3>
+        <p class="orig">Fernando Alonso's Italian GP start gets even worse as Liam Lawson joins him</p>
+        <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.09.06</span></div>
+        <p class="sum">페르난도 알론소(Fernando Alonso)의 차에서 예선 Q1 도중 혼다(Honda) 파워유닛의 비정상 신호가 잡혀 MGU-K·배터리·제어 전자장치를 통째로 교체했고, 그 결과 피트레인 스타트(그리드가 아닌 피트에서 출발) 처분을 받았습니다. 이미 엔진 페널티로 최후미 출발이 정해져 있던 리암 로슨(Liam Lawson)도 같은 처분을 받았습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>혼다는 성명에서 "예선 Q1에서 페르난도 차량의 일부 파워유닛 부품에서 비정상적인 신호가 감지됐다"고 밝혔습니다. 문제가 커지기 전에 부품을 바꾸는 예방적 조치였지만, 규정상 대가는 그리드 페널티입니다.</p>
+            <p>피트레인 스타트가 되는 이유는 파크 페르메(parc fermé) 규정 때문입니다. 예선이 시작되는 순간부터 차는 사실상 봉인 상태가 되어 정해진 범위 밖의 변경이 금지되는데, 이를 어기고 손을 대면 그리드가 아니라 피트에서 출발해야 합니다.</p>
+            <p>로슨의 경우는 조금 다릅니다. 그는 이미 엔진 부품 교체로 최후미 출발이 확정돼 있었는데, 여기에 더해 파크 페르메 상태에서 리어윙과 서스펜션까지 손대면서 피트레인 스타트로 처분이 바뀌었습니다. 어차피 뒤에서 출발할 바에는 결승용 세팅을 자유롭게 가져가겠다는 판단이 깔린 선택입니다.</p>
+            <p>참고로 이 주말 예선 결과는 가슬리(Alpine)가 폴, 그 뒤로 러셀(Mercedes)·르클레르(Ferrari)·해밀턴(Ferrari)·페르스타펜(Red Bull) 순이었습니다. 여기까지가 그리드 이야기이고, 결승 내용은 이 브리핑에서 다루지 않습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.planetf1.com/news/fernando-alonso-italian-gp-pit-lane-start-liam-lawson-penalty" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F08%2F26125142%2Fliam-lawson-red-bull-media-pen-zandvoort-planetf1.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>로슨의 35그리드 페널티는 사고가 아니라 계획된 수순</h3>
+        <p class="orig">Liam Lawson sets record straight over team radio message amid 35-place penalty</p>
+        <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.09.05</span></div>
+        <p class="sum">리암 로슨(Liam Lawson)이 몬차에서 받은 35그리드 페널티는 레드불(Red Bull)이 의도적으로 엔진 부품을 한꺼번에 교체한 결과였습니다. 15그리드를 넘는 페널티는 규정상 최후미 출발로 처리됩니다. 로슨은 금요일부터 예선이 아니라 결승 페이스에 초점을 맞췄다고 밝혔습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>F1은 시즌당 파워유닛 부품 사용 개수를 제한하고, 한도를 넘으면 부품별로 그리드 페널티를 매깁니다. 여러 부품을 한 번에 바꾸면 페널티가 누적돼 30~40그리드 같은 숫자가 나오지만, 그리드가 22대뿐이므로 15그리드를 초과한 시점부터는 어차피 맨 뒤 출발입니다. 그래서 팀들은 어차피 페널티를 받을 주말이라면 한꺼번에 몰아서 받는 쪽을 택합니다.</p>
+            <p>로슨은 그래서 주말 운영 방식 자체를 바꿨습니다. 금요일부터 예선용 한 바퀴가 아니라 결승용 롱런(연속 주행)에 시간을 썼고, 예선에 대해서는 "내가 무엇을 하고 있는지 정말 몰랐다"고 솔직히 인정했습니다.</p>
+            <p>화제가 된 팀 라디오 발언에 대해서도 해명했습니다. Q2에서 오스카 피아스트리(Oscar Piastri)에게 진로를 방해받아 탈락한 직후 나온 말이었고, 팀 운영을 겨냥한 비난으로 읽힌 부분을 바로잡고 싶어 했습니다.</p>
+            <p>이 방해 건은 별도로 처리돼 피아스트리에게 3그리드 페널티가 부과됐습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.planetf1.com/news/liam-lawson-fia-italian-grand-prix-2026-penalty" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============================ 🔄 이적 / 계약 ============================ -->
+  <section id="transfer" data-cat="transfer">
+    <div class="sec-head"><h2>🔄 이적 / 계약</h2><span class="count">2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/races/pdut26/fri/has/00-master/ocon5.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>하스의 2027년 한 자리를 놓고 다섯 명 — 고마츠 대표가 오콘의 이름까지 공식 언급</h3>
+        <p class="orig">Komatsu confirms five-driver fight for Ocon's Haas seat</p>
+        <div class="meta"><span class="src">Grandprix.com</span><span>·</span><span>2026.09.04</span></div>
+        <p class="sum">아야오 고마츠(Ayao Komatsu) 하스(Haas) 팀 대표가 2027년 한 자리를 놓고 다섯 명이 경쟁 중이라고 밝히면서, 현역인 에스테반 오콘(Esteban Ocon)의 이름을 그 명단에 직접 포함시켰습니다. 나머지는 히라카와 료(Ryo Hirakawa), 잭 두한(Jack Doohan), 레오나르도 포르나롤리(Leonardo Fornaroli), 하파엘 카마라(Rafael Camara)입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>하스의 2027년 두 자리 중 하나는 이미 올리버 베어먼(Oliver Bearman)의 몫으로 확정돼 있습니다. 경쟁의 대상은 나머지 한 자리입니다.</p>
+            <p>달라진 것은 표현 방식입니다. 하스는 그동안 여러 후보를 비공개 테스트로 비교하면서도 오콘의 자리가 비었다고 말한 적은 없었습니다. 고마츠가 일본 매체 as-web.jp에 "리저브 드라이버를 포함해 다섯 명이 2027년 한 자리를 놓고 경쟁하고 있다"고 쓰면서, 사실상 현역의 자리가 심사 대상임을 공식화했습니다.</p>
+            <p>후보들의 배경은 제각각입니다. 히라카와는 토요타의 지원을 받고 있고, 카마라는 페라리 드라이버 아카데미 소속이며, 두한은 이미 하스의 리저브 드라이버(대기 드라이버)입니다. 포르나롤리는 하위 카테고리 성적과 테스트 기록으로 이름을 올렸습니다. 하스는 헤레스에서 히라카와·포르나롤리·베어먼을 비교했는데 셋의 기록이 0.1초 안에 들어와, 더 많은 비교 데이터를 얻기 위해 포르티망에서 추가 주행을 진행했습니다.</p>
+            <p>오콘이 가진 것은 젊은 후보들이 갖지 못한 두 가지, 그랑프리 우승 경험과 현재 팀에 대한 완전한 이해입니다. 반대로 그가 안고 있는 부담은 시즌 전체를 통해 평가받고 있다는 점입니다. 고마츠는 결정 시점을 못 박지 않았습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.grandprix.com/news/komatsu-confirms-five-driver-fight-for-ocons-haas-seat.html" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/races/pita25/sat/amr/00-master/alonso5.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>알론소, 애스턴 마틴 잔류 질문에 "아니오" — 결정은 가을로</h3>
+        <p class="orig">Alonso leaves Aston Martin future unresolved</p>
+        <div class="meta"><span class="src">Grandprix.com</span><span>·</span><span>2026.09.04</span></div>
+        <p class="sum">페르난도 알론소(Fernando Alonso)가 애스턴 마틴(Aston Martin)의 최근 개선만으로는 2027년에도 F1을 계속할 이유가 되지 않는다고 밝혔습니다. 팀은 잔류를 자신하지만, 45세의 그는 확답을 주지 않고 있습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>팀의 트랙사이드 총괄 마이크 크락(Mike Krack)은 몬차에서 "모두에게 좋은 해법을 찾을 것이라고 꽤 자신한다. 9월이든 10월이든 11월이든 큰 문제가 아니다"라며 시간을 두겠다는 태도를 보였습니다. 은퇴 가능성을 묻자 "그러지 않기를 바란다"고 답했습니다.</p>
+            <p>알론소의 답은 훨씬 짧고 분명했습니다. 최근의 개선이 계속할 동기가 되느냐는 질문에 "아니오", 팀의 기대치가 올라가야만 남겠느냐는 질문에는 "예"라고 했습니다.</p>
+            <p>다만 그는 이것이 단순히 빠른 차를 달라는 요구는 아니라고 선을 그었습니다. 15위를 다투든 포디움을 다투든 전력을 다하겠지만, 지금 규정이 만들어낸 레이싱의 성격 자체에 점점 답답함을 느낀다는 것입니다. 에너지 관리가 주행 방식을 바꿔버렸고, 그것이 드라이버에게도 관중에게도 흥미로운 F1은 아니라는 시각입니다.</p>
+            <p>남은 변수는 시간표입니다. 애스턴 마틴은 섀시에서 의미 있는 진전을 만들었지만, 알론소는 남은 작업이 5년이 아니라 2~3년 안에 끝나기를 원합니다. 혼다(Honda) 파워유닛에 대해서도 최신 사양이 잔드보르트에서 드라이버빌리티(다루기 쉬운 정도) 문제를 보였고 추가 출력을 체감하기 어려웠다고 지적하면서도, 사쿠라 연구소의 시설과 인력에 대한 신뢰는 그대로라고 밝혔습니다. 계약은 가을까지 기다릴 수 있지만, 그가 판단 근거로 삼을 성능 데이터는 그때까지 쌓여야 합니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.grandprix.com/news/alonso-leaves-aston-martin-future-unresolved.html" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============================ 👤 드라이버 / 팀 ============================ -->
+  <section id="people" data-cat="people">
+    <div class="sec-head"><h2>👤 드라이버 / 팀</h2><span class="count">3건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/09/saiz-helmt-madrid.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>사인츠, 고향에서 열리는 첫 F1 레이스에 데뷔 시절 헬멧을 쓴다</h3>
+        <p class="orig">Social Media: Sainz to use his original helmet design for first race in Madrid</p>
+        <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.09.07</span></div>
+        <p class="sum">카를로스 사인츠(Carlos Sainz)가 고향 마드리드에서 열리는 이번 주말 스페인 GP에 자신의 초창기 헬멧 디자인을 다시 꺼내 씁니다. 2005년 첫 카트 레이스에서 썼던, 아버지의 헬멧에서 영감을 받은 그 디자인입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>사인츠는 소셜미디어에 "2005년 첫 카트 레이스부터 마드리드에서의 첫 F1 레이스까지"라며 이번 헬멧을 공개했습니다. "이 헬멧으로 모든 것이 시작된 곳으로 돌아가고 싶었다. 아버지의 디자인에서 영감을 받은 첫 디자인을 되살리고, 거기에 지금의 내 색을 입혔다. 집에서 이걸 쓰고 달리는 게 정말 기대된다"는 것이 그의 설명입니다.</p>
+            <p>아버지 카를로스 사인츠 시니어(Carlos Sainz Sr.)는 세계 랠리 챔피언십(WRC) 챔피언 2회에 다카르 랠리 우승 경력을 가진 스페인 모터스포츠의 상징적인 인물입니다. 아들의 헬멧 디자인이 아버지 것에서 출발했다는 사실은 스페인 팬들에게 익숙한 이야기입니다.</p>
+            <p>마드리드는 사인츠가 태어나고 자란 도시입니다. F1이 이 도시에서 경기를 여는 것은 이번이 처음이고, 스페인에서 그가 홈 레이스를 치른 곳은 그동안 바르셀로나였습니다. 올해는 스페인에서 두 번의 그랑프리가 열려, 그에게는 사실상 두 번째 홈 레이스인 셈입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.racefans.net/2026/09/07/social-media-sainz-to-use-his-original-helmet-design-for-first-race-in-madrid/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F09%2F05144242%2Fralf-schumacher-monza-2026-planetf1.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>랄프 슈마허, 제트스키 사고로 어깨 탈구·골절 — 나사 세 개로 고정</h3>
+        <p class="orig">Ralf Schumacher issues injury update after jet-ski accident</p>
+        <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.09.06</span></div>
+        <p class="sum">전 F1 드라이버이자 현재 해설위원인 랄프 슈마허(Ralf Schumacher)가 촬영 이벤트 중 제트스키가 뒤집히며 어깨가 빠지고 작은 뼈가 부러졌습니다. 수술로 나사 세 개를 넣었고, 회복에 2~3개월을 예상합니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>사고는 저속으로 진행된 TV 촬영 도중 일어났습니다. 슈마허는 "제트스키를 원래 자세로 되돌리려다가, 말하자면 내 팔이 찢겨 나갔다"고 당시를 설명했습니다. 속도가 낮았는데도 무거운 장비를 억지로 들어 올리는 동작에서 어깨가 버티지 못한 경우입니다.</p>
+            <p>진단은 어깨 탈구와 작은 뼈의 골절이었고, 수술로 나사 세 개를 넣어 고정했습니다. 그는 "2개월, 3개월이면 괜찮아질 것 같다"고 회복 기간을 내다봤습니다.</p>
+            <p>현재 그는 오른팔에 깁스를 한 채 서킷에 나와 독일 스카이(Sky Germany) 해설을 이어가고 있습니다. 슈마허는 현역 시절 F1에서 180경기에 출전해 6승을 기록했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.planetf1.com/news/ralf-schumacher-injury-update-jet-ski-accident" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 레드불의 개발 방향에 대한 마르코 발언 (챔피언십 포인트 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="art-body">
+          <h3>"두 번 잘못된 방향으로 개발하면" — 마르코가 짚은 RB22의 문제</h3>
+          <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.09.06</span></div>
+          <p class="sum">헬무트 마르코(Helmut Marko)가 레드불(Red Bull)의 올해 개발 방향과 예산 상한(코스트 캡) 문제, 그리고 아드리안 뉴이(Adrian Newey)의 퇴사와의 관련성을 정리한 인터뷰입니다. 본문에 컨스트럭터 챔피언십 순위와 포인트 격차가 그대로 나와 가려두었습니다.</p>
+          <a class="go" href="https://www.planetf1.com/news/helmut-marko-blunt-adrian-newey-verdict-red-bull-wrong-direction" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ============================ 📰 기타 ============================ -->
+  <section id="etc" data-cat="etc">
+    <div class="sec-head"><h2>📰 기타</h2><span class="count">2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-6.motorsport.com/images/amp/YXypwbQ6/s6/bernie-ecclestone.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>에클레스톤, 리스본 공항에서 산탄총 소지로 입건</h3>
+        <p class="orig">Ex-F1 boss Bernie Ecclestone reportedly arrested for travelling with shotgun in Portugal</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.07</span></div>
+        <p class="sum">F1을 40년 가까이 이끌었던 버니 에클레스톤(Bernie Ecclestone, 95세)이 포르투갈 리스본 인근 티레스 공항에서 산탄총을 소지한 채 이동하다 보안 검사에서 적발돼 입건됐습니다. 본인은 클레이 사격용 총이었다고 설명했지만 필요한 서류를 갖추지 못한 상태였습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>에클레스톤은 데일리 메일 스포츠에 "클레이 사격을 하려고 스위스에서 포르투갈로 가져오던 총이었다"고 말했습니다. 그는 자신이 형식적으로 체포된 것은 아니라고 주장했고, 아내가 총기 관련 절차를 처리하기 위해 리스본으로 갔다고 덧붙였습니다.</p>
+            <p>총기 자체를 소지하는 것과, 국경을 넘어 운반하는 것은 절차가 다릅니다. 유럽 국가 간 스포츠용 총기 반입에도 사전 신고와 허가 서류가 필요한데 이 부분이 갖춰지지 않았다는 것이 문제의 핵심입니다.</p>
+            <p>비슷한 일이 4년 전에도 있었습니다. 2022년 브라질 상파울루 공항에서 그의 짐에서 총알이 들어 있지 않은 권총이 발견됐고, 당시에도 서류 미비가 쟁점이었습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/ex-f1-boss-bernie-ecclestone-reportedly-arrested-for-travelling-with-shotgun-in-portugal/10853499/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-5.motorsport.com/images/amp/0k7WEPA0/s6/f1-75-show.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>2027 시즌 개막 행사는 밀라노에서 사흘간 — 11개 팀 22명 전원 참석</h3>
+        <p class="orig">F1 announces plans for huge 2027 season launch in Milan</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.04</span></div>
+        <p class="sum">F1이 2027년 시즌 개막을 앞두고 <b>2월 18~20일 밀라노</b>에서 사흘짜리 행사를 엽니다. 2월 18일 밤에 열리는 'F1 The Show'에는 11개 팀의 드라이버 22명과 팀 대표들이 모두 참석하고, 나머지 이틀은 밀라노 팬 페스티벌로 채워집니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>모델이 된 것은 2025년 런던에서 열렸던 F1 75주년 행사입니다. 전 팀이 한자리에서 새 시즌 차량과 컬러를 공개한 이 행사는 생중계 시청자 750만 명을 모았고, F1은 그 성공을 근거로 이번에는 규모를 사흘로 키웠습니다.</p>
+            <p>장소로 밀라노를 고른 데는 상징성이 있습니다. 이탈리아 GP가 열리는 몬차에서 차로 멀지 않은 도시이고, 페라리를 비롯한 이탈리아 모터스포츠 문화의 중심이기도 합니다.</p>
+            <p>스테파노 도메니칼리(Stefano Domenicali) F1 CEO는 "팬을 중심에 두고 조합을 생각한다. 경험을 만들고 싶다"며 "런던의 성공을 바탕으로 밀라노는 잊을 수 없는 사흘이 될 것"이라고 말했습니다.</p>
+            <p>사흘 일정 중 첫날 밤 공연 외의 세부 구성은 아직 공개되지 않았습니다. 티켓은 올해 안에 판매를 시작할 예정입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/f1-announces-plans-for-huge-2027-season-launch-in-milan/10852204/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============================ 📖 용어 ============================ -->
+  <section id="glossary" data-cat="glossary">
+    <div class="sec-head"><h2>📖 오늘의 용어</h2><span class="count">9개</span></div>
+    <dl class="glossary">
+      <div class="term"><dt>뱅크 코너 <span>(Banked Corner)</span></dt><dd>노면이 안쪽으로 기울어져 있는 코너입니다. 기울기가 원심력의 일부를 받아주기 때문에 훨씬 빠른 속도로 돌 수 있지만, 대신 타이어와 서스펜션에 걸리는 하중이 크게 올라갑니다. 마드링의 '라 모뉴멘탈'은 550m 동안 최대 24% 경사가 이어집니다.</dd></div>
+      <div class="term"><dt>타이어 컴파운드 <span>(Tyre Compound, C1~C6)</span></dt><dd>피렐리가 만드는 타이어의 고무 배합 등급입니다. 숫자가 작을수록 단단해 오래 가고 느리며, 클수록 무르고 빠르지만 빨리 닳습니다. 한 주말에는 이 중 연속된 세 등급을 골라 하드·미디엄·소프트로 배정합니다.</dd></div>
+      <div class="term"><dt>폴 포지션 <span>(Pole Position)</span></dt><dd>예선에서 가장 빠른 기록을 낸 드라이버가 얻는 결승 그리드 맨 앞자리입니다. 예선은 결승과 별개의 세션이므로, 폴을 잡았다고 결승 결과가 정해지는 것은 아닙니다.</dd></div>
+      <div class="term"><dt>액티브 에어로 / 스트레이트 모드 <span>(Active Aerodynamics / Straight Mode)</span></dt><dd>2026년부터 도입된, 주행 중에 앞뒤 날개의 각도를 바꾸는 장치입니다. 직선에서는 날개를 눕혀 공기 저항을 줄이고(스트레이트 모드), 코너에서는 세워서 접지력을 얻습니다(코너 모드).</dd></div>
+      <div class="term"><dt>클리핑 <span>(Clipping)</span></dt><dd>긴 직선의 후반부에서 배터리가 비어 전기 출력이 끊기는 현상입니다. 2026년 머신은 출력의 절반 가까이를 전기에서 얻기 때문에, 클리핑이 시작되면 눈에 띄게 속도가 떨어집니다.</dd></div>
+      <div class="term"><dt>MGU-K <span>(Motor Generator Unit – Kinetic)</span></dt><dd>감속할 때 버려지는 운동 에너지를 전기로 회수하고, 가속할 때 그 전기로 바퀴를 밀어주는 전기모터입니다. 파워유닛 부품 중 하나로, 교체 개수가 규정으로 제한돼 있습니다.</dd></div>
+      <div class="term"><dt>파크 페르메 <span>(Parc Fermé)</span></dt><dd>예선이 시작되는 순간부터 결승까지 차를 사실상 봉인 상태로 두는 규정입니다. 정해진 범위 밖의 세팅 변경이 금지되며, 이를 어기면 그리드가 아니라 피트레인에서 출발해야 합니다.</dd></div>
+      <div class="term"><dt>그리드 페널티 <span>(Grid Penalty)</span></dt><dd>규정 위반이나 부품 한도 초과로 결승 출발 위치를 뒤로 미루는 처분입니다. 15자리를 넘는 페널티는 어차피 맨 뒤 출발이 되기 때문에, 팀들은 어차피 받을 페널티라면 한 주말에 몰아서 받는 쪽을 택합니다.</dd></div>
+      <div class="term"><dt>리저브 드라이버 <span>(Reserve Driver)</span></dt><dd>정식 출전 드라이버가 부상이나 다른 사정으로 뛸 수 없을 때 대신 나서는 대기 드라이버입니다. 평소에는 시뮬레이터 작업과 일부 자유주행 세션을 맡으며, 다음 시즌 시트를 노리는 후보인 경우가 많습니다.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span class="brand">Claude</span>가 번역·정리한 F1 뉴스 · 2026.09.08<br>
+    원문 저작권은 각 매체에 있으며, 핵심 요약만 제공합니다.
+  </footer>
+
+</div>
+<script>
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-cat]'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var cat = chip.dataset.cat;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      sections.forEach(function (s) { s.classList.toggle('hidden', cat !== 'all' && s.dataset.cat !== cat); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  var btn = document.getElementById('unlockAll');
+  var spoilers = Array.prototype.slice.call(document.querySelectorAll('details.spoiler'));
+  function render(open) { btn.setAttribute('aria-pressed', String(open)); btn.textContent = open ? '🔒 스포일러 모두 접기' : '🔓 스포일러 모두 펼치기'; }
+  btn.addEventListener('click', function () { var open = btn.getAttribute('aria-pressed') !== 'true'; spoilers.forEach(function (d) { d.open = open; }); render(open); });
+  spoilers.forEach(function (d) { d.addEventListener('toggle', function () { render(spoilers.every(function (x) { return x.open; })); }); });
+  render(false);
+})();
+</script>
+</body>
+</html>
