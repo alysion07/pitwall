@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-09-08",
+    updatedAt: "2026-09-09",
     season: 2026,
     standingsAsOf: { round: 13, name: "이탈리아 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-09-09", file: "briefings/f1-news-2026-09-09.html", count: 19, spoilers: 5,
+      headline: "윌리엄스, 1981년 FW07C 리버리로 마드링 출격 · 마드리드 주말 강수 확률 0%·낮 최고 30~32도 · FIA ADUO 측정에서 레드불 파워트레인 내연기관이 기준점" },
     { date: "2026-09-08", file: "briefings/f1-news-2026-09-08.html", count: 19, spoilers: 4,
       headline: "하자르 3연속 결장 — 마드리드에서도 로슨이 레드불·츠노다가 레이싱 불스 · 마드링 550m 뱅크 코너와 피렐리 C2·C3·C4 · 하스 2027 한 자리 놓고 다섯 명 경쟁" },
     { date: "2026-09-04", file: "briefings/f1-news-2026-09-04.html", count: 19, spoilers: 3,
