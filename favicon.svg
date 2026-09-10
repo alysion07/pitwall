@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="60 69 1136 1136">
+  <title>F1 Pitwall</title>
+  <defs>
+    <clipPath id="tile">
+      <rect x="60" y="69" width="1136" height="1136" rx="220"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <path fill="#0A0A0A" d="M60 69h1136v1136H60z"/>
+    <!-- All straight diagonal edges use dx/dy = -0.72. -->
+    <path fill="#FF1E19" d="M523 69h236L-58.92 1205h-236zM800 69h94L76.08 1205h-94z"/>
+    <!-- Uniform 15% enlargement preserves the original letter proportions and diagonal slope. -->
+    <g transform="translate(-194.7 -116.6) scale(1.15)">
+    <!-- Dark clearance keeps the overlapping stripe separate from the letter. -->
+    <path fill="#F5F5F5" stroke="#0A0A0A" stroke-width="52" stroke-linejoin="miter" paint-order="stroke fill"
+      d="M269 909 531.08 545Q575 484 640 484H981L896.04 602H668Q627 602 600.8 644L410 909Z"/>
+    <path fill="#F5F5F5"
+      d="M539 775 602.36 687Q630 648 670 648H880L797.92 762H610Q566 762 539 775Z"/>
+    <path fill="#FF1E19"
+      d="M1018 484h160L872 909H727.28L948.32 602H933.04Z"/>
+    </g>
+  </g>
+</svg>
