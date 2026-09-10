@@ -305,7 +305,13 @@
   }
   @media (max-width:860px) {
     .grid { grid-template-columns:1fr; }
-    .col3 { grid-column:auto; display:flex; }
+    /* col3가 다시 세로 플렉스로 돌아오므로, 1320px 구간의 grid용 정렬(align-items:start)을 되돌린다.
+       안 되돌리면 카드가 내용 너비만큼만 차지한다. */
+    .col3 { grid-column:auto; display:flex; align-items:stretch; }
+    /* 높이가 자동인 세로 플렉스에서는 나눠 줄 여유 높이가 없어 flex-basis:0이 카드를 0으로 접는다.
+       (.card의 overflow:hidden 때문에 내용이 통째로 잘려 순위표가 보이지 않았다) */
+    .col3 > .card.grow { flex:0 0 auto; }
+    .col-stand .stand-body { flex:0 0 auto; height:auto; max-height:60vh; }
     .card.grow .up li { flex:0 0 auto; }
     .cell { min-height:96px; }
   }
