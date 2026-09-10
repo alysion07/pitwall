@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 <title>PIT WALL — F1 2026</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="favicon-192.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
   :root {
@@ -259,10 +262,33 @@
   .arch-list li { display:flex; align-items:center; gap:18px; padding:16px 20px; border-bottom:1px solid var(--border-soft); transition:background .15s; }
   .arch-list li:hover { background:var(--bg-soft); }
   .arch-list li:last-child { border-bottom:none; }
+  .arch-main { display:flex; align-items:center; gap:18px; flex:1; min-width:0; text-decoration:none; color:inherit; }
   .arch-date { font-weight:800; font-variant-numeric:tabular-nums; min-width:118px; letter-spacing:-0.03em; font-size:16px; }
   .arch-date small { display:block; font-weight:500; font-size:11.5px; color:var(--text-dim); }
-  .arch-head { flex:1; min-width:0; color:var(--text-mid); font-size:13.5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .arch-head { flex:1; min-width:0; color:var(--text-mid); font-size:13.5px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.5; }
   .arch-meta { font-size:11.5px; color:var(--text-dim); white-space:nowrap; }
+  /* 아카이브 — 도구 모음 */
+  .arch-tools { display:flex; align-items:center; gap:10px 14px; flex-wrap:wrap; padding:14px 20px 10px; }
+  .arch-search { position:relative; flex:1 1 240px; min-width:170px; }
+  .arch-search input { width:100%; font:inherit; font-size:13px; color:var(--text); background:var(--chip-bg); border:1px solid var(--border); border-radius:999px; padding:8px 14px 8px 33px; outline:none; transition:.15s; -webkit-appearance:none; appearance:none; }
+  .arch-search input::placeholder { color:var(--text-dim); }
+  .arch-search input:focus { border-color:var(--text); background:var(--bg); }
+  .arch-search .si { position:absolute; left:13px; top:50%; transform:translateY(-50%); width:13px; height:13px; color:var(--text-dim); pointer-events:none; }
+  .arch-size { display:flex; align-items:center; gap:7px; font-size:12px; color:var(--text-dim); margin-left:auto; }
+  .arch-size select { font:inherit; font-size:12.5px; font-weight:600; color:var(--text-mid); background:var(--chip-bg); border:1px solid var(--border); border-radius:999px; padding:6px 11px; cursor:pointer; }
+  .arch-months { display:flex; gap:6px; flex-wrap:wrap; padding:0 20px 14px; border-bottom:1px solid var(--border-soft); }
+  .m-chip { border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:12.5px; font-weight:600; padding:5px 11px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:.15s; font-variant-numeric:tabular-nums; }
+  .m-chip:hover { color:var(--text); }
+  .m-chip[aria-pressed="true"] { background:var(--text); color:var(--bg); border-color:var(--text); }
+  /* 아카이브 — 월 구분선 */
+  .arch-list li.arch-mh { display:block; padding:11px 20px 9px; background:var(--bg-soft); font-size:11.5px; font-weight:800; letter-spacing:.06em; color:var(--text-dim); font-variant-numeric:tabular-nums; }
+  .arch-list li.arch-mh:hover { background:var(--bg-soft); }
+  /* 아카이브 — 페이지 이동 */
+  .arch-page { display:flex; align-items:center; gap:10px; padding:14px 20px; border-top:1px solid var(--border-soft); }
+  .arch-page .range { font-size:12px; color:var(--text-dim); font-variant-numeric:tabular-nums; }
+  .arch-page .pbtns { margin-left:auto; display:flex; gap:6px; }
+  .arch-page button[disabled] { opacity:.38; cursor:default; }
+  .arch-page button[disabled]:hover { color:var(--text-mid); border-color:var(--border); }
   .empty { padding:28px 18px; text-align:center; color:var(--text-dim); font-size:13.5px; }
 
   footer { margin-top:48px; padding:24px 0 48px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
@@ -294,7 +320,10 @@
     .cal-nav h2 { font-size:17px; min-width:110px; }
     .legend { display:none; }
     .arch-list li { flex-wrap:wrap; gap:6px 12px; }
-    .arch-head { white-space:normal; flex-basis:100%; }
+    .arch-main { flex-wrap:wrap; gap:6px 12px; flex-basis:100%; }
+    .arch-head { flex-basis:100%; -webkit-line-clamp:3; }
+    .arch-size { margin-left:0; }
+    .arch-months { gap:5px; }
   }
 </style>
 </head>
@@ -373,7 +402,30 @@
   <!-- 아카이브 -->
   <section class="card archive">
     <div class="card-h"><h2>브리핑 아카이브</h2><span class="sub" id="archSub"></span></div>
+    <div class="arch-tools">
+      <div class="arch-search">
+        <svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg>
+        <input id="archQ" type="search" autocomplete="off" placeholder="날짜 또는 키워드로 검색 — 예: 09-04, 마드링">
+      </div>
+      <div class="arch-size">
+        <label for="archSize">표시</label>
+        <select id="archSize">
+          <option value="10" selected>10개씩</option>
+          <option value="20">20개씩</option>
+          <option value="50">50개씩</option>
+          <option value="0">전체</option>
+        </select>
+      </div>
+    </div>
+    <div class="arch-months" id="archMonths"></div>
     <ul class="arch-list" id="archList"></ul>
+    <div class="arch-page" id="archPage" hidden>
+      <span class="range" id="archRange"></span>
+      <div class="pbtns">
+        <button class="btn" type="button" id="archPrev">← 이전</button>
+        <button class="btn" type="button" id="archNext">다음 →</button>
+      </div>
+    </div>
   </section>
 
   <footer><span class="brand-f">PIT WALL</span> · Claude가 매일 아침 갱신하는 F1 대시보드 · 순위표는 기본적으로 가려져 있습니다.<br><a class="sister" href="https://javasubin.github.io/red-devils-hub/" target="_blank" rel="noopener">자매 사이트 — RED DEVILS HUB · 맨체스터 유나이티드 대시보드 ↗</a></footer>
@@ -581,15 +633,102 @@
   });
 
   // ---------- 아카이브 ----------
-  var al = document.getElementById('archList'), ah = '';
-  var list = D.briefings.slice().sort(function(a,b){ return a.date<b.date?1:-1; });
-  document.getElementById('archSub').textContent = list.length + '건';
-  if (!list.length) ah = '<li class="empty">아직 브리핑이 없습니다.</li>';
-  list.forEach(function (b) {
-    var d = parse(b.date);
-    ah += '<li><div class="arch-date">'+b.date.replace(/-/g,'.')+'<small>'+DOW[d.getDay()]+'요일</small></div><div class="arch-head">'+(b.headline||'')+'</div><div class="arch-meta">'+(b.count||0)+'건'+(b.spoilers?' · 가림 '+b.spoilers:'')+'</div><a class="btn primary" href="'+b.file+'">열기</a></li>';
-  });
-  al.innerHTML = ah;
+  (function () {
+    var all      = D.briefings.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+    var listEl   = document.getElementById('archList');
+    var subEl    = document.getElementById('archSub');
+    var qEl      = document.getElementById('archQ');
+    var monthsEl = document.getElementById('archMonths');
+    var sizeEl   = document.getElementById('archSize');
+    var pageEl   = document.getElementById('archPage');
+    var rangeEl  = document.getElementById('archRange');
+    var prevEl   = document.getElementById('archPrev');
+    var nextEl   = document.getElementById('archNext');
+    var cardEl   = listEl.closest ? listEl.closest('.archive') : null;
+
+    // 데이터에 존재하는 달만 칩으로
+    var months = [];
+    all.forEach(function (b) { var m = b.date.slice(0, 7); if (months.indexOf(m) < 0) months.push(m); });
+    var mh = '<button class="m-chip" type="button" data-m="all" aria-pressed="true">전체</button>';
+    months.forEach(function (m) {
+      mh += '<button class="m-chip" type="button" data-m="' + m + '" aria-pressed="false">' + m.replace('-', '.') + '</button>';
+    });
+    monthsEl.innerHTML = mh;
+
+    var state = { q: '', month: 'all', size: 10, page: 1 };
+
+    function filtered() {
+      var q = state.q.trim().toLowerCase();
+      return all.filter(function (b) {
+        if (state.month !== 'all' && b.date.slice(0, 7) !== state.month) return false;
+        if (!q) return true;
+        return (b.date + ' ' + (b.headline || '')).toLowerCase().indexOf(q) >= 0;
+      });
+    }
+
+    function render() {
+      var rows  = filtered();
+      var per   = state.size === 0 ? Math.max(rows.length, 1) : state.size;
+      var pages = Math.max(1, Math.ceil(rows.length / per));
+      if (state.page > pages) state.page = pages;
+      var start = (state.page - 1) * per;
+      var shown = rows.slice(start, start + per);
+
+      subEl.textContent = rows.length === all.length
+        ? all.length + '건'
+        : rows.length + ' / ' + all.length + '건';
+
+      if (!shown.length) {
+        listEl.innerHTML = '<li class="empty">' + (all.length ? '조건에 맞는 브리핑이 없습니다.' : '아직 브리핑이 없습니다.') + '</li>';
+      } else {
+        var h = '', lastM = '';
+        shown.forEach(function (b) {
+          var m = b.date.slice(0, 7);
+          if (m !== lastM) {
+            h += '<li class="arch-mh">' + m.slice(0, 4) + '년 ' + Number(m.slice(5, 7)) + '월</li>';
+            lastM = m;
+          }
+          var d = parse(b.date);
+          h += '<li>'
+             +   '<a class="arch-main" href="' + b.file + '">'
+             +     '<div class="arch-date">' + b.date.replace(/-/g, '.') + '<small>' + DOW[d.getDay()] + '요일</small></div>'
+             +     '<div class="arch-head">' + (b.headline || '') + '</div>'
+             +   '</a>'
+             +   '<div class="arch-meta">' + (b.count || 0) + '건' + (b.spoilers ? ' · 가림 ' + b.spoilers : '') + '</div>'
+             +   '<a class="btn primary" href="' + b.file + '">열기</a>'
+             + '</li>';
+        });
+        listEl.innerHTML = h;
+      }
+
+      if (rows.length > per) {
+        pageEl.hidden = false;
+        rangeEl.textContent = (start + 1) + '–' + Math.min(start + per, rows.length) + ' / ' + rows.length + '건';
+        prevEl.disabled = state.page <= 1;
+        nextEl.disabled = state.page >= pages;
+      } else {
+        pageEl.hidden = true;
+        rangeEl.textContent = '';
+      }
+    }
+
+    function toTop() { if (cardEl) cardEl.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+
+    monthsEl.addEventListener('click', function (e) {
+      var b = e.target;
+      if (!b || b.className.indexOf('m-chip') < 0) return;
+      state.month = b.getAttribute('data-m');
+      state.page = 1;
+      Array.prototype.forEach.call(monthsEl.children, function (c) { c.setAttribute('aria-pressed', String(c === b)); });
+      render();
+    });
+    qEl.addEventListener('input', function () { state.q = qEl.value; state.page = 1; render(); });
+    sizeEl.addEventListener('change', function () { state.size = parseInt(sizeEl.value, 10) || 0; state.page = 1; render(); });
+    prevEl.addEventListener('click', function () { if (state.page > 1) { state.page--; render(); toTop(); } });
+    nextEl.addEventListener('click', function () { state.page++; render(); toTop(); });
+
+    render();
+  })();
 })();
 </script>
 </body>
