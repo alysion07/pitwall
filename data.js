@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-09-10",
+    updatedAt: "2026-09-11",
     season: 2026,
     standingsAsOf: { round: 13, name: "이탈리아 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-09-11", file: "briefings/f1-news-2026-09-11.html", count: 20, spoilers: 4,
+      headline: "러셀 “캘린더에서 가장 위험한 서킷” — 드라이버들의 마드링 첫 판정 · 맥라렌, 마드리드에선 H-윙 빼고 바쿠에서 복귀 · 알론소 “2027 소식은 금방 안 나온다”" },
     { date: "2026-09-10", file: "briefings/f1-news-2026-09-10.html", count: 20, spoilers: 4,
       headline: "마드링은 ‘차를 잡아먹는 트랙’ — F3 테스트에서 적기 19번·섀시 3대 파손 · FIA, 마드링 액티브 에어로 구역을 두 곳으로 제한 · 페르스타펜, 레드불 잔류 전 맥라렌·메르세데스와 ‘진지한 대화’ 첫 인정" },
     { date: "2026-09-09", file: "briefings/f1-news-2026-09-09.html", count: 19, spoilers: 5,
@@ -63,7 +65,7 @@ window.F1DATA = {
       times: { FP1:"2026-09-11T11:30:00Z", FP2:"2026-09-11T15:00:00Z", FP3:"2026-09-12T10:30:00Z", Q:"2026-09-12T14:00:00Z", R:"2026-09-13T13:00:00Z" } },
     { round: 15, key: "azerbaijan",  flag: "🇦🇿", name: "아제르바이잔", gp: "Azerbaijan GP",  circuit: "바쿠",                start: "2026-09-24", end: "2026-09-26",
       times: { FP1:"2026-09-24T08:30:00Z", FP2:"2026-09-24T12:00:00Z", FP3:"2026-09-25T08:30:00Z", Q:"2026-09-25T12:00:00Z", R:"2026-09-26T11:00:00Z" } },
-    { round: 16, key: "bahrain",     flag: "🇧🇭", name: "바레인",     gp: "Bahrain GP",       circuit: "사키르",              start: "2026-10-02", end: "2026-10-04",
+    { round: 16, key: "bahrain",     flag: "🇲🇾", name: "말레이시아", gp: "Bahrain GP in Malaysia", circuit: "세팡",         start: "2026-10-02", end: "2026-10-04",
       times: { FP1:"2026-10-02T04:30:00Z", FP2:"2026-10-02T08:00:00Z", FP3:"2026-10-03T04:30:00Z", Q:"2026-10-03T08:00:00Z", R:"2026-10-04T07:00:00Z" } },
     { round: 17, key: "singapore",   flag: "🇸🇬", name: "싱가포르",   gp: "Singapore GP",     circuit: "마리나 베이",         start: "2026-10-09", end: "2026-10-11",
       times: { FP1:"2026-10-09T08:30:00Z", SQ:"2026-10-09T12:30:00Z", S:"2026-10-10T09:00:00Z", Q:"2026-10-10T13:00:00Z", R:"2026-10-11T12:00:00Z" }, sprint: true },
