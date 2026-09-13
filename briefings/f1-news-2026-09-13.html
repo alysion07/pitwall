@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>F1 데일리 브리핑 — 2026.09.13</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../favicon-192.png">
+<style>
+  :root {
+    --bg:#ffffff; --bg-soft:#f7f7f9; --card:#ffffff; --card-hover:#fbfbfc;
+    --text:#14141a; --text-mid:#4a4a57; --text-dim:#86868f;
+    --border:#e6e6ec; --border-soft:#f0f0f4;
+    --accent:#E10600; --accent-soft:rgba(225,6,0,.08);
+    --spoiler-bg:#fbf7f7; --spoiler-border:#ecdcdc; --chip-bg:#f2f2f5;
+    --shadow:0 1px 2px rgba(20,20,26,.04),0 8px 24px -12px rgba(20,20,26,.10);
+    --bar-bg:rgba(255,255,255,.82);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0e0e11; --bg-soft:#141419; --card:#16161b; --card-hover:#1b1b21;
+      --text:#f0f0f3; --text-mid:#b6b6c0; --text-dim:#82828e;
+      --border:#26262e; --border-soft:#1e1e25;
+      --accent:#FF3B30; --accent-soft:rgba(255,59,48,.12);
+      --spoiler-bg:#1a1416; --spoiler-border:#3a2528; --chip-bg:#1e1e25;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+      --bar-bg:rgba(14,14,17,.82);
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;
+    font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0 24px; }
+  header { padding:72px 0 32px; }
+  .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+  .kicker .dot { width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  h1 { font-size:clamp(34px,7vw,46px); line-height:1.12; margin:0 0 20px; font-weight:800; letter-spacing:-0.035em; }
+  h1 .accent { color:var(--accent); }
+  .lede { font-size:15px; color:var(--text-mid); margin:0; padding-bottom:28px; border-bottom:1px solid var(--border); }
+  .lede b { color:var(--text); font-weight:600; }
+  .digest { margin:28px 0 0; padding:20px 22px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:14px; }
+  .digest h2 { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:0 0 12px; }
+  .digest ol { margin:0; padding-left:20px; }
+  .digest li { font-size:14.5px; color:var(--text-mid); margin-bottom:7px; }
+  .digest li:last-child { margin-bottom:0; }
+  .digest li b { color:var(--text); font-weight:600; }
+  .bar { position:sticky; top:0; z-index:20; margin:36px 0 8px; padding:12px 0; background:var(--bar-bg); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--border-soft); }
+  .bar-inner { display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap; }
+  .chips { display:flex; gap:7px; flex-wrap:wrap; flex:1 1 auto; scrollbar-width:none; -ms-overflow-style:none; padding:2px 0; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip { flex:0 0 auto; border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:500; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s,color .15s,border-color .15s; }
+  .chip:hover { color:var(--text); }
+  .chip[aria-pressed="true"] { background:var(--text); color:var(--bg); border-color:var(--text); }
+  .chip .n { opacity:.5; margin-left:4px; font-variant-numeric:tabular-nums; }
+  .unlock { flex:0 0 auto; border:1px solid var(--spoiler-border); background:var(--spoiler-bg); color:var(--accent); font:inherit; font-size:13px; font-weight:600; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s; }
+  .unlock:hover { background:var(--accent-soft); }
+  section { padding-top:44px; scroll-margin-top:70px; }
+  section.hidden { display:none; }
+  .sec-head { display:flex; align-items:baseline; gap:10px; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--text); }
+  .sec-head h2 { font-size:19px; font-weight:750; margin:0; letter-spacing:-0.02em; }
+  .sec-head .count { font-size:12px; color:var(--text-dim); font-variant-numeric:tabular-nums; margin-left:auto; font-weight:500; }
+  .art { display:flex; flex-direction:column; align-items:stretch; gap:16px; padding:26px 0; border-bottom:1px solid var(--border-soft); }
+  .art:last-child { border-bottom:none; }
+  .thumb { width:100%; height:340px; border-radius:14px; overflow:hidden; background:linear-gradient(135deg,var(--accent) 0%,#600 100%); border:1px solid var(--border-soft); }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .art-body { min-width:0; }
+  .art h3 { font-size:21px; font-weight:750; line-height:1.36; margin:0 0 6px; letter-spacing:-0.025em; }
+  .orig { font-size:13px; color:var(--text-dim); margin:0 0 11px; font-style:italic; line-height:1.45; }
+  .meta { display:flex; align-items:center; gap:7px; flex-wrap:wrap; font-size:12px; color:var(--text-dim); margin-bottom:12px; }
+  .src { font-weight:650; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:5px; font-size:11.5px; }
+  .sum { font-size:15px; color:var(--text-mid); margin:0 0 4px; line-height:1.75; }
+  details.more { margin:8px 0 14px; }
+  details.more > summary { list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:650; color:var(--accent); padding:7px 0; user-select:none; }
+  details.more > summary::-webkit-details-marker { display:none; }
+  details.more > summary .caret { transition:transform .18s; font-size:10px; }
+  details.more[open] > summary .caret { transform:rotate(90deg); }
+  .detail-body { margin-top:4px; padding:14px 16px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:12px; }
+  .detail-body p { margin:0 0 10px; font-size:14.5px; color:var(--text-mid); line-height:1.8; }
+  .detail-body p:last-child { margin-bottom:0; }
+  .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
+  .go:hover { border-color:var(--text); background:var(--bg-soft); }
+  .go svg { width:11px; height:11px; }
+  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
+  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler > summary::-webkit-details-marker { display:none; }
+  details.spoiler > summary:hover { background:var(--accent-soft); }
+  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
+  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
+  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
+  details.spoiler[open] > summary .hint::after { content:"접기"; }
+  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
+  details.spoiler .art { padding:18px; border-bottom:none; }
+  .glossary { margin-top:12px; }
+  .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
+  .term:last-child { border-bottom:none; }
+  .term dt { font-size:14.5px; font-weight:700; margin-bottom:3px; }
+  .term dt span { color:var(--text-dim); font-weight:500; font-size:13px; }
+  .term dd { margin:0; font-size:14px; color:var(--text-mid); line-height:1.65; }
+  footer { margin-top:64px; padding:28px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
+  footer .brand { color:var(--accent); font-weight:650; }
+  @media (max-width:560px) {
+    .wrap { padding:0 18px; }
+    header { padding:48px 0 24px; }
+    .thumb { height:210px; }
+    .art h3 { font-size:19px; }
+    .sec-head h2 { font-size:17px; }
+    .bar-inner { flex-wrap:nowrap; flex-direction:column; align-items:stretch; }
+    .chips { flex-wrap:nowrap; overflow-x:auto; width:100%; }
+    .unlock { width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+
+  <header>
+    <div class="kicker"><span class="dot"></span> 2026년 9월 13일 일요일 <a href="../index.html" style="margin-left:auto;color:var(--text-dim);text-decoration:none;font-weight:600;letter-spacing:0;text-transform:none">← PIT WALL</a></div>
+    <h1>F1 데일리 <span class="accent">브리핑</span></h1>
+    <p class="lede">해외 매체 <b>6곳</b>(Formula1.com · The Race · Motorsport.com · Crash.net · RaceFans · Grande Prêmio)에서 <b>기사 20건</b>을 모았습니다. 이 중 <b>4건</b>은 직전 라운드 결승 결과나 챔피언십 순위·포인트가 드러날 수 있어 가려두었습니다. 마드링(Madring)에서 FP3와 예선까지 끝났고, 오늘 밤 첫 스페인 GP 결승이 열립니다. 결승은 한국 시각 <b>9월 13일 일요일 밤 10시</b>, 57바퀴입니다.</p>
+    <div class="digest">
+      <h2>오늘의 요약</h2>
+      <ol>
+        <li>마드링 첫 예선의 폴 포지션(맨 앞 출발 자리)은 <b>랜도 노리스(Lando Norris)</b>가 가져갔습니다. 주말 내내 한 번도 기록표 맨 위에 없던 맥라렌(McLaren)이었고, 마지막 코너에서 0.3초를 잃고도 키미 안토넬리(Kimi Antonelli)를 <b>0.011초</b> 차로 제쳤습니다. 막스 페르스타펜(Max Verstappen)이 3위, 페라리(Ferrari) 두 대가 4·5위입니다.</li>
+        <li>FP3는 사고로 얼룩졌습니다. 루이스 해밀턴(Lewis Hamilton)은 벽에 부딪힌 뒤 <b>“멈추라”는 지시를 무시하고</b> 부서진 차로 달려 비판을 받았고, 올리 베어먼(Ollie Bearman)은 사고로 예선에 못 나갔습니다. 카를로스 사인츠(Carlos Sainz)는 방해 행위로 <b>3계단 강등</b>됐습니다. 결승은 피트 손실 <b>24초</b>와 높은 타이어 소모 사이에서 1스톱이냐 2스톱이냐의 싸움이 될 전망입니다.</li>
+        <li>🏁 이탈리아 GP·챔피언십 관련 소식 <b>4건</b> — 아래 스포일러 섹션을 열어 확인하세요.</li>
+      </ol>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="bar-inner">
+      <div class="chips" role="group" aria-label="카테고리 필터">
+        <button class="chip" data-cat="all" aria-pressed="true">전체<span class="n">20</span></button>
+        <button class="chip" data-cat="race" aria-pressed="false">🏁 레이스 위크<span class="n">9</span></button>
+        <button class="chip" data-cat="tech" aria-pressed="false">🔧 기술/규정<span class="n">2</span></button>
+        <button class="chip" data-cat="fia" aria-pressed="false">⚖️ FIA/거버넌스<span class="n">3</span></button>
+        <button class="chip" data-cat="transfer" aria-pressed="false">🔄 이적/계약<span class="n">2</span></button>
+        <button class="chip" data-cat="people" aria-pressed="false">👤 드라이버/팀<span class="n">2</span></button>
+        <button class="chip" data-cat="etc" aria-pressed="false">📰 기타<span class="n">2</span></button>
+        <button class="chip" data-cat="glossary" aria-pressed="false">📖 용어</button>
+      </div>
+      <button class="unlock" id="unlockAll" aria-pressed="false">🔓 스포일러 모두 펼치기</button>
+    </div>
+  </div>
+
+  <!-- ============================ 🏁 레이스 위크 ============================ -->
+  <section id="race" data-cat="race">
+    <div class="sec-head"><h2>🏁 레이스 위크</h2><span class="count">9건 · 스포일러 2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-5.motorsport.com/images/amp/6Alv57DY/s6/lando-norris-mclaren.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>노리스, 마지막 코너에서 0.3초를 흘리고도 마드링 첫 폴 — 안토넬리를 0.011초 차로</h3>
+        <p class="orig">How Lando Norris nearly lost his Madrid F1 pole</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">마드링(Madring) 첫 예선의 폴 포지션(맨 앞 출발 자리)은 맥라렌(McLaren)의 랜도 노리스(Lando Norris)가 가져갔습니다. 키미 안토넬리(Kimi Antonelli)를 <b>0.011초</b> 차로 제쳤고, 막스 페르스타펜(Max Verstappen)이 3위였습니다. 주말 내내 한 번도 기록표 맨 위에 오르지 못했던 맥라렌이라 더 놀라운 결과였고, 팀은 노리스가 마지막 코너에서만 <b>0.3초 넘게</b> 잃었다고 밝혔습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>맥라렌은 이번 주말 한 번도 폴 후보처럼 보이지 않았습니다. 자유주행 세 번 모두 메르세데스(Mercedes)가 1위, 페라리(Ferrari)가 그 뒤였고, Q1·Q2에서는 메르세데스와 레드불(Red Bull)이 선두를 다퉜습니다. 노리스는 Q3 첫 주행 뒤 6위였고, 당시 1위였던 루이스 해밀턴(Lewis Hamilton)보다 0.446초 느렸습니다. 그런데 두 번째 주행에서 기록을 <b>0.701초</b> 줄이며 단숨에 맨 위로 올라섰습니다. 최종 기록은 <b>1분31초824</b>입니다.</p>
+            <p>정작 노리스 본인은 폴을 예상하지 못했습니다. 마지막 코너에서 뒤가 살짝 미끄러지자 무전으로 "미안, 크게 망쳤어"라고 사과했고, 레이스 엔지니어 윌 조셉(Will Joseph)이 "다른 차들이 다 들어올 때까지 기다려 보라"고 하자 한동안 장난인 줄 알았다고 합니다. 노리스는 "마지막 코너에서 너무 흥분해서 진입을 과하게 밀어붙였다. 솔직히 벽에 박는 줄 알았다"며 "그 전까지는 탈출, 연석, 작은 디테일까지 전부 완벽했다"고 돌아봤습니다.</p>
+            <p>팀 대표 안드레아 스텔라(Andrea Stella)는 "그랑프리 450번 동안 텔레메트리(차량 주행 데이터)를 봐 온 사람으로서 가장 인상적인 랩 중 하나"라고 극찬했습니다. 스텔라는 "마지막 구간에서 0.35초를 잃고도 폴이라는 건, 그 실수만 없었으면 꽤 여유 있는 폴이었다는 뜻"이라고 했습니다. 실수의 원인은 타이어가 이미 지친 상태였는데 다른 코너와 같은 기세로 들어갔기 때문에 생긴 <b>진입 오버스티어(코너에 들어갈 때 차 뒤쪽이 밖으로 미끄러지는 현상)</b>라고 설명했습니다.</p>
+            <p>스텔라는 동시에 맥라렌의 약점도 인정했습니다. "주말 내내 가장 빠른 차라는 걸 보여준 적이 없다. 첫 섹터의 저속 코너와 연석 구간에서 꽤 부족했고, 드라이버가 한 바퀴를 제대로 맞추기 아주 어려운 차였다"는 것입니다. 팀 동료 오스카 피아스트리(Oscar Piastri)는 노리스보다 0.470초 느린 7위였습니다. 결승 그리드 앞쪽은 노리스·안토넬리·페르스타펜·해밀턴·샤를 르클레르(Charles Leclerc)·조지 러셀(George Russell)·피아스트리·리암 로슨(Liam Lawson)·프랑코 콜라핀토(Franco Colapinto)·아르비드 린드블라드(Arvid Lindblad) 순입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/lando-norris-lost-three-tenths-on-way-to-shock-madring-f1-pole/10855155/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Spain___Qualifying/2294850857.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>FP3 — 안토넬리 1분32초797로 최고 기록, 해밀턴·베어먼 크래시로 적기 두 번</h3>
+        <p class="orig">FP3: Antonelli fastest as Hamilton and Bearman crash during final practice at Madring</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">마지막 자유주행(FP3)에서 안토넬리가 <b>1분32초797</b>로 가장 빨랐고, 르클레르가 0.166초 뒤 2위였습니다. 해밀턴이 마지막 코너 벽에 정면으로 부딪히고, 세션 막판에는 올리 베어먼(Ollie Bearman)이 10번 코너에서 크게 사고를 내며 적기(세션을 멈추는 빨간 깃발)가 두 번 나왔습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>세션 시작 후 5분 동안 아무도 코스로 나가지 않았습니다. 새 서킷이라 데이터가 절실했지만, 노면에 고무가 조금이라도 더 얹힌 뒤에 달려야 쓸 만한 기록이 나오기 때문입니다. 금요일 FP2를 기어박스 고장으로 통째로 날린 노리스도 기다렸다가 나갔고, 첫 플라잉 랩(기록을 재는 전력 주행)은 5번 코너 시케인을 가로지르는 바람에 포기했습니다.</p>
+            <p>20분쯤 안토넬리가 1분33초664로 앞섰고, 곧 르클레르가 1분33초332로 넘어섰습니다. 해밀턴은 그보다 빠른 페이스로 달리다가 마지막 코너 방호벽에 정면으로 부딪혔습니다. 앞날개가 부서지고 오른쪽 앞 타이어가 터진 채 피트로 돌아가려 했지만, 팀이 여러 번 멈추라고 지시한 뒤에야 차를 세웠습니다. 방호벽 수리로 세션은 약 30분 멈췄습니다.</p>
+            <p>남은 15분 동안 모두가 한꺼번에 기록 경쟁에 나섰습니다. 금요일 사고 뒤 차를 새로 조립한 린드블라드도 이때 처음 나왔습니다. 르클레르가 처음으로 1분33초 벽을 깨며 1분32초963을 기록했고, 노리스는 이날 세 번째 플라잉 랩 만에 르클레르와 0.1초 차까지 따라붙었습니다. 종료 5분 전 안토넬리가 1분32초797로 맨 위에 올랐습니다.</p>
+            <p>종료 1분 전 베어먼이 고속 10번 코너에서 사고를 내 두 번째 적기가 나오면서 기록은 그대로 굳었습니다. 최종 순위는 안토넬리, 르클레르, 피아스트리, 노리스, 페르스타펜, 러셀, 로슨, 니코 휠켄베르크(Nico Hulkenberg), 해밀턴, 가브리엘 보르톨레토(Gabriel Bortoleto) 순이었습니다. 윌리엄스(Williams)의 알렉스 알본(Alex Albon)은 20번 코너 출구에서 벽을 스치며 뒤쪽 서스펜션 부품(트랙 로드)이 부러져 기록을 남기지 못했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/fp3-antonelli-fastest-as-hamilton-and-bearman-crash-during-final-practice-at-madring.3F8J82RxBaF6g6fbQQu5M" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-09/xpb_1435204_hires.jpg?width=1600&aspect_ratio=16:9" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>해밀턴 "타이어가 이상했다" — Q3 첫 주행 1위였지만 4번 그리드</h3>
+        <p class="orig">Lewis Hamilton blames Madrid F1 pole-miss on "dodgy tyres"</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">해밀턴은 Q3 첫 주행 뒤 임시 폴을 잡았지만 마지막 주행에서 기록을 거의 줄이지 못해 <b>4위</b>로 밀렸습니다. 해밀턴은 쿨다운 랩(기록 주행 뒤 속도를 늦춰 도는 바퀴)에서 "타이어 세트가 이상하다. 미안, 다 쏟아부었다"고 무전했습니다. 오전 FP3에서 벽에 부딪힌 것을 생각하면 나쁘지 않은 회복이었습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>해밀턴은 주말 내내 기록표 위쪽에 있었고, Q3 첫 주행에서는 가장 빨랐습니다. 하지만 마지막 주행에서는 주변 드라이버들처럼 기록을 확 줄이지 못했고, 노리스·안토넬리·페르스타펜에게 차례로 밀렸습니다.</p>
+            <p>해밀턴의 설명은 이렇습니다. "Q3 첫 주행 때 차 느낌은 정말 좋았다. 그런데 마지막 랩에서는 그립도 파워도 더 나오지 않았다. 두 번째 랩도 첫 번째와 거의 같은 기록이었고, 0.05초쯤 빨랐던 것 같다." 이어 "마지막 코너를 돌 때 언더스티어(차 앞쪽이 코너 바깥으로 밀리는 현상)가 나서 앞 타이어 온도가 제대로 안 올라왔나 싶었다. 알고 보니 랩 전체에서 뒤는 잘 붙고 앞이 밀렸다"고 덧붙였습니다.</p>
+            <p>팀 동료 르클레르는 해밀턴보다 한 칸 뒤인 5위입니다. 르클레르는 몬차(Monza) 사고의 여파로 이번 주말 구형 파워유닛(엔진과 전기 모터를 합친 동력장치)을 쓰고 있지만, 두 사람의 기록 차이는 주말 내내 거의 없었고 예선에서도 0.006초에 불과했습니다.</p>
+            <p>해밀턴은 결승 전망을 조심스럽게 내놨습니다. "폴과 0.15초 차밖에 안 난다. 여기서는 예선이 거의 전부일 가능성이 커서 내일 레이스는 좀 어려울 것 같다. 자유주행을 보면 타이어 데그라데이션(랩을 돌수록 타이어 성능이 떨어지는 정도)이 올 시즌 어느 레이스보다 중요할 것이다. 가진 걸 최대한 끌어내야 한다."</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1104519/1/lewis-hamilton-blames-madrid-f1-pole-miss-dodgy-tyres" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1436512_HiRes.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>르클레르 "다들 새 엔진 넣었는데 나만 그대로" — 구형 파워유닛이 발목</h3>
+        <p class="orig">Leclerc says old Ferrari engine cost him in Madrid qualifying</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">자유주행 내내 메르세데스의 가장 강력한 상대로 보였던 르클레르가 예선 <b>5위</b>에 그쳤습니다. 르클레르는 경쟁자들이 예선에 맞춰 새 엔진을 넣은 반면, 자신은 몬차 사고 여파로 페라리의 구형 <b>ADUO 1</b> 사양을 써서 한 걸음 앞으로 나가지 못했다고 봤습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>르클레르는 지난주 이탈리아 GP에서 크게 사고를 냈습니다. 페라리는 손상 여부를 충분히 점검하지 못한 상태에서 최신 ADUO 2 사양을 바로 쓰기가 부담스러워, 이번 주말에는 이전 사양으로 되돌렸습니다. ADUO 2는 터보를 개선해 출력을 끌어올린 버전으로 알려져 있습니다.</p>
+            <p>르클레르는 "대부분이 오늘을 위해 새 파워유닛이나 신형 사양을 넣었는데 나는 같은 사양이었다. 그건 지난주 내 탓"이라며 "다른 팀이 한 만큼 올라서지 못한 것 같다. 그래도 랩 자체는 꽤 깔끔했다"고 말했습니다. 폴과의 차이는 0.195초였습니다.</p>
+            <p>다만 문제가 엔진 출력만인지는 아직 확실하지 않습니다. 르클레르는 "첫 섹터에서 0.4초쯤 잃었다. 아웃랩(기록 주행 전에 타이어를 데우며 도는 바퀴)이 이상적이진 않았지만 0.4초는 크다. 이 구간에 직선이 많긴 해도 직선에서만 0.4초를 잃었을 것 같진 않다"며 데이터를 더 봐야 한다고 했습니다.</p>
+            <p>페라리는 몬차에서 부서진 엔진을 마라넬로(Maranello, 페라리 본사) 공장에서 정밀 점검하고 있습니다. 초기 진단은 긍정적이라는 이야기가 나오지만, 다시 써도 되는지 최종 판단은 다음 라운드 아제르바이잔 GP 전에 나옵니다. 르클레르는 "아직 모른다. 해야 할 점검이 남아 있다"며, 시즌 후반 새 파워유닛을 추가로 넣어 그리드 페널티를 받게 될지도 100% 확신할 수 없다고 했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/leclerc-says-old-ferrari-engine-cost-him-in-madrid-qualifying/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-5.motorsport.com/images/amp/0kZX5Ro6/s6/oscar-piastri-mclaren.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>피아스트리 "완전 엉망이었다" — 팀 동료가 폴을 잡은 날 7위</h3>
+        <p class="orig">“Pretty shocking”, “quite messy” – Oscar Piastri bewildered by poor Madring F1 qualifying</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">노리스가 폴을 잡은 같은 차로 피아스트리는 <b>7위</b>에 그쳤습니다. 피아스트리는 자신의 마지막 Q3 랩을 "꽤 충격적"이라고 표현했고, "리셋 버튼을 누르고 다시 하고 싶은 세션이었다"며 답답해했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>피아스트리는 마드링에서 주말 내내 속도를 찾지 못했습니다. FP3를 빼면 자유주행과 예선 어느 구간에서도 6위 안에 들지 못했습니다. Q1에서는 노리스보다 0.360초, Q2에서는 0.331초 느렸습니다.</p>
+            <p>Q3 첫 주행 뒤에는 노리스와 0.017초 차로 거의 붙어 있었습니다. 그런데 두 번째 주행에서 피아스트리는 0.248초만 줄인 반면, 노리스는 마지막 코너 실수에도 0.7초를 줄이며 폴로 올라섰습니다.</p>
+            <p>피아스트리는 "딱히 큰 문제로 고생한 게 아니라 그냥 엉망이었다. Q1 첫 랩을 포기해야 했고, 그러면 순서와 리듬이 꼬인다. 이런 트랙에서는 시간을 잃기가 정말 쉽다"고 설명했습니다. 마지막 랩에 대해서는 "그렇게 차이가 난 게 놀랍지 않다. 솔직히 형편없었다"고 했습니다. 그래도 "몬차 때처럼 적어도 차의 움직임은 더 마음에 든다"고 덧붙였습니다.</p>
+            <p>노리스의 랩을 보고 자신도 폴이 가능했다고 생각하느냐는 질문에는 "아마 아닐 것"이라고 답했습니다. "잘했으면 지금보다 위로 갈 수는 있었겠지만 폴은 분명 대단한 결과"라는 것입니다. 피아스트리는 4월 휴식기 이후 예선(스프린트 예선 포함)에서 노리스에게 2승 13패로 밀리고 있고, 평균 차이는 0.123초입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/pretty-shocking-quite-messy-oscar-piastri-bewildered-by-poor-madring-f1-qualifying/10855166/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1435697_HiRes.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>1스톱이냐 2스톱이냐 — 마드링 결승은 ‘덜 나쁜 전략’ 고르기</h3>
+        <p class="orig">F1 teams face big Madring strategy dilemma</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">마드링의 피트레인은 매우 길어서 한 번 들어갈 때마다 약 <b>24초</b>를 잃습니다. 그래서 1스톱이 논리적이지만, 타이어 열 데그라데이션과 앞 왼쪽 그레이닝이 심해 2스톱도 설득력이 있습니다. 피렐리(Pirelli)는 "최선의 전략이 아니라 가장 덜 나쁜 전략을 고르는 싸움"이 될 것이라고 봤습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>금요일 FP1 직후 러셀이 반농담으로 "6스톱이 가장 빠르겠다"고 할 만큼 타이어 소모가 극단적이었습니다. 피렐리에 따르면 마드링 노면은 올 시즌 가장 그립이 높고 매끄러운 데다 고속 코너가 많아, 차가 계속 미끄러지면서 타이어가 빠르게 망가집니다.</p>
+            <p>가장 골치 아픈 건 <b>앞 왼쪽 그레이닝(타이어 표면 고무가 뜯겨 알갱이처럼 일어나는 현상)</b>입니다. 매끄럽고 그립 높은 노면에서는 고무가 쉽게 한계 응력에 도달해 표면이 찢기고, 이는 코너 중간 언더스티어와 성능 저하로 이어집니다. 저속 서킷보다 마드링 같은 고속 코너 위주 트랙에서 관리하기가 훨씬 어렵습니다. 여기에 코너가 끊임없이 이어져 뒤 타이어도 과열됩니다. 피아스트리는 "그레이닝 때문에 타이어 관리가 악몽이었다"고 했습니다.</p>
+            <p>피렐리 수석 엔지니어 시모네 베라(Simone Berra)는 FP2 롱런 기준으로 성능 저하가 랩당 <b>0.2~0.3초</b>로 "매우 높다"며 "예상 범위를 벗어난 수치라 놀랐다"고 말했습니다. 이 때문에 아우디(Audi)를 뺀 모든 팀이 결승용으로 하드 타이어 두 세트를 남겨뒀습니다. 베라는 "데이터만 보면 2스톱이지만 피트 손실이 24초라 1스톱을 노리는 팀도 분명 있을 것"이라며 팀마다 전략이 갈릴 수 있다고 봤습니다.</p>
+            <p>추월이 어렵다는 점도 계산을 복잡하게 만듭니다. 베라는 "다른 차 뒤에 붙으면 성능을 많이 잃고, 다운포스가 줄어 미끄러지면서 타이어도 망가진다"고 했습니다. 피트스톱을 더 해서 새 타이어로 따라잡는 전략이 트래픽(앞차 무리)에 막히면 오히려 손해가 될 수 있다는 뜻입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/f1-teams-face-big-madring-strategy-dilemma/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-09/xpb_1436149_hires.jpg?width=1600&aspect_ratio=16:9" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>안토넬리 "초반엔 할머니처럼 운전해야 할 수도" — 결승 최대 변수는 타이어</h3>
+        <p class="orig">Madrid's biggest challenge could force F1 drivers into "grandmother driving"</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">예선 2위 안토넬리는 결승의 가장 큰 도전이 타이어 소모라고 봤습니다. "초반 몇 바퀴는 <b>할머니 운전</b>이 될 수도 있다"며, 롱런에서 너무 일찍 밀어붙이면 성능이 얼마나 가파르게 떨어지는지 확인했다고 말했습니다. 추월도 매우 어려울 것이라고 예상했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>안토넬리는 마드링을 "고속·저속 코너와 시케인이 다 섞여 있어 차를 적절한 작동 범위에 맞추기 어려운 트랙"이라고 표현했습니다. 타이어도 첫 섹터와 랩 후반부 사이에서 균형을 찾기가 쉽지 않았다고 합니다.</p>
+            <p>안토넬리는 "까다로운 트랙이지만 가장 큰 도전은 내일"이라며 "데그라데이션이 꽤 높아 보인다. 초반 몇 바퀴는 할머니 운전일 수도 있다. 롱런에서 너무 일찍 밀어붙이면 성능이 얼마나 급하게 떨어지는지 봤다"고 말했습니다. 동시에 "막상 결승에 가면 데그가 훨씬 낮을 수도 있으니 그때그때 판단하겠다"고 여지를 뒀습니다.</p>
+            <p>팀 동료 러셀도 비슷한 우려를 보였습니다. 러셀은 "타이어 데그라데이션에 큰 물음표가 있다. FP1 수준이면 6스톱이 제일 빠르다고 생각했을 정도"라며 "일요일에는 나아지겠지만 길게 이어지는 라 모누멘탈(La Monumental, 12번 뱅크 코너)이 타이어를 정말 괴롭힌다"고 했습니다.</p>
+            <p>추월 전망은 어둡습니다. 안토넬리는 "연습 때 윌리엄스 뒤에서 두 바퀴 동안 힘들게 추월하려 했는데 정말 어려웠다. 뒤에 붙으면 더 미끄러져서 상황이 더 나빠진다"며 "할 수 있는 건 앞차를 압박해 실수나 타이어 소모를 유도하고 전략으로 승부하는 것뿐이다. 페이스가 비슷하면 추월은 어렵다"고 말했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1104521/1/madrids-biggest-challenge-could-force-f1-drivers-grandmother-driving" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 챔피언십 판도와 시즌 포인트 흐름이 섞인 마드링 예선 승자·패자 분석 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/Spacesuit-AS-F1-SGP-10-09-26-358.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>마드링 예선 승자와 패자 — 노리스·페르스타펜 웃고, 러셀·피아스트리·가슬리 울고</h3>
+          <p class="orig">Winners and losers from Spanish GP F1 qualifying at the Madring</p>
+          <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.12</span></div>
+          <p class="sum">The Race 기자들이 마드링 첫 예선의 승자와 패자를 골랐습니다. 승자는 "거의 아무것도 없는 데서" 폴을 만든 노리스와 금요일 부진을 뒤집고 3위에 오른 페르스타펜입니다. 패자로는 팀 동료보다 네 계단 뒤진 러셀이 꼽혔는데, 기자는 러셀이 <b>"지금은 타이틀 희망을 붙잡기도 버거운"</b> 처지라고 평가했습니다. 피아스트리, 사고로 예선에 못 나간 베어먼, 원인 모를 부진에 빠진 피에르 가슬리(Pierre Gasly)도 패자 명단에 올랐습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+              <p><b>승자 — 노리스:</b> 초반 흐름은 메르세데스와 페라리의 싸움에 페르스타펜이 끼어드는 모양새였습니다. 노리스는 Q1 5위, Q2 7위였고, 안토넬리가 주말 첫 1분31초대 기록으로 임시 폴을 잡자 결과가 굳어지는 듯했습니다. 그때 노리스가 모든 걸 건 랩으로 0.01초 차 폴을 빼앗았습니다. 기자는 "현 월드 챔피언의 완벽하게 깔끔한 랩은 아니었지만 확실히 눈부셨다"고 평했습니다.</p>
+              <p><b>패자 — 러셀:</b> 러셀은 Q1에서 벽을 스치고도 그 세션 1위를 했지만, Q3에서는 안토넬리보다 0.314초 느린 6위였습니다. 러셀은 "마지막 랩 중간에 0.3초 앞서 있었는데 11번 코너에서 세게 밀어붙이자 타이어가 버티지 못했다"고 설명했습니다. 기자는 "유망한 출발 뒤 또다시 메르세데스 안에서 한 발 뒤처진 예선이었고, 지금은 타이틀 희망을 붙잡기도 버겁다"고 썼습니다. 피아스트리 역시 Q1 8위, Q2 9위, Q3 7위로 내내 페이스가 없었습니다.</p>
+              <p><b>승자 — 페르스타펜:</b> 금요일에는 레드불 기술 책임자 피에르 바셰(Pierre Waché)가 셋업, 기계적 그립, 승차감, 에너지 배분까지 손봐야 한다고 했을 만큼 상황이 나빴습니다. 하지만 페르스타펜은 Q2에서 전체 1위를 했고, Q3에서 1분32초 벽을 깬 세 명 중 한 명이 되며 3위에 올랐습니다. 페라리 두 대(해밀턴 4위·르클레르 5위, 차이 0.006초)는 몬차 첫 코너 충돌 이후 이번 결승 스타트에서 다시 주목받게 됐습니다.</p>
+              <p><b>패자 — 베어먼·가슬리:</b> 베어먼은 FP3 막판 10번 코너 사고로 예선에 나서지 못했습니다. 기자는 일요일이 베어먼에게 <b>9경기 연속 무득점</b>, 하스(Haas)에게는 8경기 연속 무득점이 될 수 있고, 컨스트럭터 챔피언십 7위 싸움에서 아우디가 하스와의 격차를 계속 줄이고 있다고 짚었습니다. 가슬리는 알핀(Alpine) 팀 동료 콜라핀토보다 Q2에서 0.7초나 느린 14위에 그쳤고, "뭔가 앞뒤가 안 맞는다. 코너마다 뒤가 헛돌고 고속 구간에서는 차가 옆으로 선다"며 당황해했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.the-race.com/formula-1/f1-2026-spanish-grand-prix-qualifying-winners-losers/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 챔피언십 포인트 격차가 언급된 러셀의 예선 해명 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-3.motorsport.com/images/amp/25dLKq90/s6/george-russell-mercedes.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>러셀 "11번 코너에서 타이어가 못 버텼다" — 6위에 그친 이유</h3>
+          <p class="orig">George Russell explains how he ended up a lowly sixth in Madring F1 qualifying</p>
+          <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.12</span></div>
+          <p class="sum">러셀은 Q1 1위로 출발했지만 Q2·Q3에서 팀 동료 안토넬리보다 약 0.3초씩 느린 <b>6위</b>로 예선을 마쳤습니다. 토토 볼프(Toto Wolff)는 뒤 차축 과열과 세션 중 셋업 변경을 원인으로 들었습니다. 기사는 러셀이 드라이버 챔피언십에서 이미 안토넬리에게 <b>66점</b> 뒤져 있어 결승에서 반드시 만회해야 한다고 짚었습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+              <p>러셀은 Q1에서 앞 왼쪽 타이어로 벽을 스쳤습니다. FP3에서 알본의 주행을 끝낸 사고와 비슷한 장면이었지만, 러셀은 "그 다음 랩이 더 빨랐으니 관련 없다"고 선을 그었습니다. "그 순간엔 걱정했지만 차는 멀쩡했다. 이후 세션 1위를 했고 경쟁권에 있다고 느꼈다"는 것입니다.</p>
+              <p>문제는 마지막 랩이었습니다. 러셀은 "0.3초쯤 앞서 있었는데 11번 코너에서 세게 밀어붙이자 타이어가 못 버텼고 그 뒤로 시간을 전부 잃었다. 좀 짜증난다"고 말했습니다. 또 "정말 어려운 서킷이다. 한계보다 살짝 아래로 달리다가 마지막 조금을 짜내야 하는데 오늘은 그게 대가를 치렀다"고 했습니다.</p>
+              <p>볼프는 오스트리아 방송 ORF에 "예선에서는 그전에 없던 뒤 차축 과열까지 생겼다"며 "러셀이 세션 전에 앞날개 각도를 줄였다가 세션 중에 다시 올렸다. 그러면 차가 어떻게 반응할지 알기 어렵다. 스트리트 서킷에서는 랩을 거듭하며 벽에 점점 붙어야 하는데, 셋업을 바꾸면 그게 안 된다"고 설명했습니다.</p>
+              <p>기사는 러셀이 드라이버 순위에서 안토넬리에게 이미 66점 뒤져 있어 결승에서 좋은 결과가 꼭 필요하다고 짚었습니다. 러셀은 "타이어 데그가 어떻게든 레이스를 결정할 것이다. 데그가 없으면 줄지어 달리는 행렬이 되고, 아주 높으면 꽤 혼란스러운 레이스가 될 것"이라고 전망했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.motorsport.com/f1/news/george-russell-explains-what-went-wrong-in-q3-at-madring/10855083/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+  </section>
+
+  <!-- ============================ 🔧 기술·규정 ============================ -->
+  <section id="tech" data-cat="tech">
+    <div class="sec-head"><h2>🔧 기술·규정</h2><span class="count">2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-1.motorsport.com/images/amp/Y9lNBNA2/s6/lewis-hamilton-ferrari-3.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>라 모누멘탈은 왜 결승의 열쇠인가 — 피렐리 “캘린더에서 타이어에 가장 가혹한 코너”</h3>
+        <p class="orig">Why Madring’s banked Turn 12 could be crucial in the F1 Spanish GP</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">마드링 12번 코너 라 모누멘탈(La Monumental)은 <b>13.5도</b>(경사도 약 24%) 뱅크 코너입니다. 경사 자체는 잔드보르트(Zandvoort) 마지막 코너보다 완만하지만, 하중을 받는 시간이 <b>5.5초</b>로 두 배 길어 피렐리는 타이어에 가장 가혹한 코너로 꼽았습니다. 풀스로틀로 갈 수 있을지를 두고 팀들의 시뮬레이션도 갈렸는데, 실제로는 초반에 가속 페달을 30~40% 떼야 했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>뱅크 코너(바깥쪽을 높게 기울여 만든 코너)는 차를 노면에 세게 누르기 때문에 타이어에 수직 하중이 크게 걸립니다. 잔드보르트 마지막 코너 아리 뤼엔데이크(Arie Luyendyk) 코너는 18도로 더 가파르지만, 피렐리 수석 엔지니어 시모네 베라는 "순간 최대 하중은 카타르나 잔드보르트와 비슷하다. 차이는 하중이 이어지는 시간이다. 2~3초가 아니라 5.5초 동안 걸리니 부담이 두 배"라고 설명했습니다.</p>
+            <p>베라는 금요일 밤까지 확인한 실제 데이터가 사전 시뮬레이션과 맞아떨어진다고 밝혔습니다. 과거 카타르에서처럼 안전 문제로 한 타이어의 최대 주행 거리를 제한하는 조치도 현재로선 검토하지 않습니다. 다만 FP2·FP3 타이어를 잘라 내부 구조를 점검하는 작업은 계속한다고 했습니다.</p>
+            <p>더 흥미로운 건 풀스로틀 여부입니다. 코너가 길고 높낮이 변화도 커서, 높은 곳에서 시작해 내려갔다가 출구로 다시 오르고 13번 코너를 향해 또 내려갑니다. 베라는 "그립이 모자라 가속 페달을 떼야 한다고 본 팀과 풀스로틀이 가능하다고 본 팀으로 시뮬레이션이 갈렸는데, 떼야 한다고 본 팀이 맞았다. 특히 코너 앞부분에서 30~40% 정도 떼고 2초 뒤 다시 밟았다"고 했습니다.</p>
+            <p>FP2 데이터를 보면 드라이버마다 방식도 달랐습니다. 페라리 두 대는 풀스로틀로 들어가다 크게 떼는 방식이었고, 안토넬리는 진입부터 조심스럽게 조절했습니다. 코너 후반부는 모두 풀스로틀이었습니다. 페르스타펜은 목요일부터 "쉽게 풀스로틀로 가긴 어려울 것이다. 기술이 필요하다는 점이 좋다"며 이 코너가 랩타임을 벌 수 있는 곳이 될 거라고 예상했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/why-madrings-banked-turn-12-could-be-crucial-in-the-spanish-gp/10854838/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-6.motorsport.com/images/amp/0kZX5D86/s6/max-verstappen-red-bull-racing.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>페르스타펜 "트랙 지도 주면 내가 고치겠다" — 마드링 브레이킹 존·피트레인 설계 비판</h3>
+        <p class="orig">Max Verstappen on how to fix new Madrid F1 circuit: "If they give me the track map…"</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">예선 3위 페르스타펜은 기자회견을 "아직 추월할 코너를 못 찾았다"는 말로 시작했습니다. 브레이킹 존(감속 구간)에서 제동과 조향을 동시에 해야 해서 차를 나란히 댈 수 없다는 것입니다. "거의 모든 브레이킹 존"을 바꿔야 한다며 "트랙 지도를 주면 내가 정리하겠다"고 웃었습니다. 전시장에 막혀 둘로 나뉜 긴 피트레인도 비판했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>페르스타펜은 "노면 포장은 잘했다. 새 트랙치고 일부 구간은 벌써 좀 울퉁불퉁하지만. 문제는 코너다. 추월이 안 된다"며 "브레이킹 존에서 조향과 제동을 동시에 해야 하는 설계는 절대 안 된다는 걸 배워야 한다. 그러면 추월이 전혀 불가능하다"고 말했습니다. 직선에서 제동하면 옆으로 차를 댈 수 있지만, 돌면서 제동하면 주행 라인이 하나뿐이라 방어가 너무 쉬워진다는 설명입니다.</p>
+            <p>네덜란드 기자들과 F3 스프린트 스타트를 함께 본 페르스타펜은 "이제 그만 봐도 된다. 다들 줄지어 따라가기만 한다"고 했습니다. 좋은 사례로는 미국 오스틴(Austin)을 들었습니다. "코너가 넓어서 일단 시도해 볼 수 있고, 바로 안 되더라도 코너 출구에서 계속 싸울 수 있다." 페르스타펜은 마드링 설계 전에 드라이버 의견을 묻지 않았다며, 사우디 제다(Jeddah)는 몇 군데를 바꿨지만 "그런 건 트랙을 짓기 전에 해야 한다"고 지적했습니다.</p>
+            <p>피트레인도 문제로 꼽혔습니다. IFEMA 전시장 건물이 가운데를 가로막아 피트 박스가 둘로 나뉘어 있고 길이도 매우 깁니다. 노리스가 먼저 비판했고 페르스타펜도 "FIA와 이미 이야기했고 그들도 이해했다. 논리적으로 생각한 설계가 아니다"라고 동의했습니다. 타이어 소모가 심해 원래라면 피트스톱이 늘어나야 하지만, 피트 손실이 커서 팀들은 오히려 스톱을 줄이려 할 가능성이 큽니다.</p>
+            <p>2026년 파워유닛의 한계도 다시 드러났다고 했습니다. 페르스타펜은 "뱅크 코너를 풀스로틀로 가고 싶지만, 그러면 다음 직선에서 더 많이 잃는다. 페달을 떼고 조금 기다리며 배터리를 충전해야 나중에 최고 속도가 나온다. 18·19번 코너도 마찬가지"라고 설명했습니다. 다만 "몇 군데만 바꾸면 앞으로 좋아질 수 있다. 스트리트 서킷을 좋아하진 않지만 캘린더에 이보다 나쁜 곳도 있다"고 여지를 남겼습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/f1-drivers-criticise-madrid-circuit-max-verstappen-laughs-if-they-give-me-the-track-map/10855142/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============================ ⚖️ FIA·거버넌스 ============================ -->
+  <section id="fia" data-cat="fia">
+    <div class="sec-head"><h2>⚖️ FIA·거버넌스</h2><span class="count">3건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/09/racefansdotnet-24-09-11-14-18-25-2-2294695559.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>사인츠 3계단 그리드 강등 — 안토넬리·러셀·보르톨레토는 경고, 페라리는 견책</h3>
+        <p class="orig">Sainz penalised, Antonelli, Russell, Leclerc and Bortoleto avoid grid drops for qualifying incidents</p>
+        <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">스튜어드(경기 심판단)가 예선 사건들을 정리했습니다. 홈 드라이버 카를로스 사인츠(Carlos Sainz)는 Q1에서 발테리 보타스(Valtteri Bottas)를 방해해 <b>3계단 그리드 강등</b>을 받아 20번 그리드로 밀렸습니다. 안토넬리와 보르톨레토, 러셀은 공식 경고로 끝났고, 르클레르에게 잘못된 델타 타임을 준 페라리는 팀 견책을 받았습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>사인츠 건에서 스튜어드는 "팀이 55번(사인츠)에게 플라잉 랩 중인 77번(보타스)이 다가온다는 사실을 알리지 않았고, 드라이버도 길을 비키지 않았다"며 불필요한 방해로 판단했습니다. 두 사람 모두 Q1에서 탈락했습니다. 여기에 애스턴 마틴(Aston Martin)의 랜스 스트롤(Lance Stroll)은 새 혼다(Honda) 파워유닛에서 냉각수 누수가 생겨 기록을 못 냈고, 파워유닛 교체로 40계단 페널티를 받아 맨 뒤(22번)에서 출발합니다.</p>
+            <p>안토넬리와 보르톨레토는 두 세이프티카 라인 사이를 정해진 최대 시간 안에 통과하지 못해 공식 경고를 받았습니다. 이는 기록 주행이 아닌 랩에서 너무 느리게 달려 다른 차를 위험하게 하지 않도록 정한 <b>델타 타임(구간별 최소 속도 기준)</b> 규정입니다. 스튜어드는 두 경우 모두 "에너지 관리 때문에 델타를 지키기 어려웠다"는 설명을 받아들였습니다.</p>
+            <p>르클레르도 같은 혐의로 불려갔지만 무혐의였습니다. 페라리가 계산 실수로 잘못된 델타 기준을 대시보드에 띄워줬고, 르클레르는 화면에 표시된 값은 지켰기 때문입니다. 스튜어드는 "전적으로 팀의 잘못이고 드라이버는 실수하지 않았다"며 팀에 견책을 내렸고, 이 오류가 어떤 차의 성능에도 영향을 주지 않았다고 덧붙였습니다.</p>
+            <p>러셀은 5번 코너에서 뒤차에 길을 내주려고 코스 밖으로 나갔다가, 탈출로의 볼라드(기둥) 오른쪽으로 돌아 들어와야 하는 규정을 지키지 않아 공식 경고를 받았습니다. 러셀은 뒤차를 막을까 봐 빨리 복귀하려 했다고 설명했고, 스튜어드는 선의였다는 점은 인정했지만 정해진 경로로 돌 수 있었다고 판단했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.racefans.net/2026/09/12/sainz-penalised-antonelli-russell-leclerc-and-bortoleto-avoid-grid-drops-for-qualifying-incidents/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-7.motorsport.com/images/amp/0Zq85G46/s6/lewis-hamilton-ferrari.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>“멈추라”는 무전 무시하고 부서진 차로 주행 — 해밀턴 FP3 장면에 비판 쏟아져</h3>
+        <p class="orig">Lewis Hamilton under fire after ignoring Ferrari calls to stop damaged car in Madrid FP3</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">해밀턴은 FP3에서 마지막 코너 벽에 부딪힌 뒤 앞날개가 부서지고 타이어가 터진 차로 피트까지 돌아가려 했습니다. 레이스 엔지니어가 안전한 곳에 세우라고 거듭 요청했지만 반 바퀴 넘게 달리며 파편을 흘렸고, 팬들의 비판이 쏟아졌습니다. PlanetF1에 따르면 엔지니어는 이를 레이스 디렉터 루이 마르케스(Rui Marques)의 “공식 요청”이라고 전달했고, 스튜어드는 예선 전까지 해밀턴에게 별도 조치를 하지 않았습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>해밀턴은 마드링 마지막 코너에서 벽에 부딪혀 오른쪽 앞 타이어가 터지고 앞날개가 부서졌습니다. 그대로 차를 세우는 대신 피트레인까지 끌고 가려 했고, 레이스 엔지니어 카를로 산티(Carlo Santi)는 안전한 곳에 차를 세우라고 여러 차례 요청했습니다. 해밀턴은 결국 14번 코너 출구에서 멈췄습니다.</p>
+            <p>레딧(Reddit) 팬들의 반응은 대체로 비판적이었습니다. "멈추라고 하면 그냥 멈춰라, 페널티 받기 딱 좋다", "결국 피트 앞에서 멈출 거면서 그러는 건 해밀턴답지 않다", "덕분에 코스 곳곳의 마셜들이 파편 치우기 연습을 하게 됐다" 같은 글이 이어졌습니다. 평소 해밀턴을 옹호한다는 한 팬도 "벽에 부딪힌 뒤 한 행동은 말이 안 됐다. 연습 시간을 날리기 싫었겠지만 상황 판단이 틀렸다"고 썼습니다.</p>
+            <p>반대로 너그러운 반응도 있었습니다. 무전 내용을 보면 "다들 최선을 하려 했다는 맥락이 이해된다"는 의견, "트랙에 고무를 더 떨어뜨려서 예선에 도움이 될 것"이라는 농담 섞인 옹호도 나왔습니다.</p>
+            <p>처벌 여부도 관심사였습니다. 2024년 세르히오 페레스(Sergio Perez)는 크게 부서진 차로 주행을 계속해 3계단 그리드 페널티를 받은 적이 있기 때문입니다. 하지만 PlanetF1에 따르면 스튜어드는 예선 전까지 해밀턴에게 아무 조치도 하지 않았습니다. 해밀턴은 오후 예선에서 4위에 올랐습니다. 전 F1 드라이버 앤서니 데이비드슨(Anthony Davidson)은 어린 드라이버들이 이 행동을 따라 해선 안 된다고 경고했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/lewis-hamilton-under-fire-after-ignoring-ferrari-calls-to-stop-damaged-car-in-madrid-fp3/10854917/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://grandepremio.com/wp-content/uploads/2026/09/Norris-Qualy-Madrid-ES-1200x630.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>노리스, 예선 중 피트레인 과속 — 맥라렌 벌금 900유로, 그리드는 그대로</h3>
+        <p class="orig">Norris caught at 88.5 km/h in Madring pit lane as McLaren receives €900 fine</p>
+        <div class="meta"><span class="src">Grande Prêmio</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">노리스가 예선 도중 마드링 피트레인에서 제한 속도 시속 80km를 <b>8.5km</b> 넘긴 시속 88.5km로 달린 것이 적발됐습니다. 스튜어드는 맥라렌에 <b>900유로</b> 벌금만 부과했고, 그리드 페널티 같은 경기상 불이익은 없어 노리스는 폴에서 그대로 출발합니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>FIA 스튜어드 결정문에 따르면 노리스는 현지 시각 16시 10분 피트레인에서 시속 88.5km로 측정됐습니다. 이번 주말 마드링 피트레인 제한 속도는 시속 80km라 8.5km를 초과한 것이고, F1 규정 B1.6.3a 조항 위반으로 판단됐습니다.</p>
+            <p>피트레인 과속은 보통 초과한 속도에 비례해 팀 벌금으로 처리됩니다. 이번에도 처벌은 노리스의 예선 기록이 아니라 맥라렌에 부과됐고, 벌금 900유로 외에 그리드 강등이나 다른 경기상 제재는 붙지 않았습니다. 맥라렌이 이의를 제기하지 않으면 사안은 이것으로 끝납니다.</p>
+            <p>노리스의 주말은 순탄치 않았습니다. 금요일 FP2에서는 기어박스 문제로 두 바퀴만 돌고 사실상 세션 전체를 개러지에서 보냈습니다. 맥라렌의 퍼포먼스 기술 책임자 마크 템플(Mark Temple)은 완전히 새로운 서킷이라 금요일이 실제 데이터를 모을 첫 기회였다는 점에서 "큰 타격"이라고 표현했습니다.</p>
+            <p>노리스는 FP1 6위였지만 FP2에서 기록을 남기지 못해, 토요일을 앞두고 경쟁자들보다 트랙 경험이 훨씬 적었습니다. 그런데도 FP3에서 짧은 주행으로 4위에 오른 뒤 예선에서 폴을 가져갔습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://grandepremio.com/en/f1/mclaren-fined-after-norris-caught-speeding-in-madring-pit-lane/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============================ 🔄 이적·계약 ============================ -->
+  <section id="transfer" data-cat="transfer">
+    <div class="sec-head"><h2>🔄 이적·계약</h2><span class="count">2건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-09/xpb_1435125_hires.jpg?width=1600&aspect_ratio=16:9" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>알론소 "F1이 이대로 갈 수는 없다" — 벤 술라예임 “알론소를 이렇게 떠나보낼 수 없다”</h3>
+        <p class="orig">"It cannot continue this way" - Fernando Alonso slams current F1 era after FIA boss plea</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">내년 거취를 아직 정하지 않은 페르난도 알론소(Fernando Alonso)가 안방 스페인 GP 예선에서 Q1 탈락한 뒤 현재 F1을 강하게 비판했습니다. 전날 FIA 회장 모하메드 벤 술라예임(Mohammed Ben Sulayem)은 "위대한 챔피언을 성적 때문에 떠나게 둘 수 없다"며 알론소에게 잔류 조건을 물었다고 밝혔습니다. 알론소는 "2031년까지 제대로 된 스포츠를 기다릴 수는 없다"고 말했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>두 차례 월드 챔피언인 알론소는 애스턴 마틴과 F1에서의 내년 이후 거취를 아직 확정하지 않았습니다. 원래 여름 휴식기쯤 결정하겠다고 했지만, 지금은 서두르지 않겠다는 입장입니다. 그러던 중 벤 술라예임 FIA 회장이 금요일 뉴 이코노미 포럼(New Economy Forum)에서 "알론소 같은 위대한 챔피언이 상황 때문에 떠나게 둘 수는 없다. 성공한 뒤 원할 때 떠나야지, 성적에 떠밀려 떠나선 안 된다"고 발언해 화제가 됐습니다.</p>
+            <p>애스턴 마틴은 최근 큰 공기역학 업그레이드를, 혼다는 개선된 파워유닛을 들여왔지만 결과는 여전히 기대에 한참 못 미칩니다. 이번 예선에서도 알론소와 스트롤 모두 Q1에서 탈락했고, 스트롤에게는 개인 통산 <b>101번째</b> Q1 탈락이었습니다.</p>
+            <p>알론소는 차세대 머신의 한계를 짚었습니다. "라 모누멘탈이 있는 10~12번 코너처럼 도전적인 구간이 있는 멋진 서킷에 와도 드라이버가 할 수 있는 게 없다. 우리 홍보 담당자 마이클도 거기를 달릴 수 있다. MGU-K(제동 에너지를 전기로 바꾸고 다시 구동력으로 쓰는 모터) 배분 없이 풀스로틀로 가다가 어느 순간 전기 출력이 들어오면 출구에서 빨라지는 식"이라며, "원래는 더 용감하고 실력 있는 사람이 빨라야 한다. 지금은 배터리가 얼마나 남았느냐로 빠르고 느림이 갈린다"고 비판했습니다.</p>
+            <p>벤 술라예임과의 대화에 대해서는 "내년 결정을 위해 따져볼 게 이미 많다. 회장과도 이야기했지만, F1 CEO 스테파노 도메니칼리(Stefano Domenicali)와는 매주 통화한다. F1이 이런 식으로 계속될 수는 없기 때문"이라고 답했습니다. 알론소는 "제대로 된 스포츠를 2031년까지 기다릴 수는 없다. 내 경험으로 돕는 것도 내 책임"이라며 "배터리가 더 남았다고 마이클이 막스 페르스타펜보다 빠를 수는 없다. 그 코너에서는 페르스타펜 같은 드라이버가 차이를 만들어야 한다"고 강조했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1104525/1/it-cannot-continue-way-fernando-alonso-slams-current-f1-era-after-fia-boss-plea" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 시즌 포인트 기록과 최근 경기 득점 흐름이 담긴 오콘의 하스 거취 인터뷰 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-7.motorsport.com/images/amp/2jEAQnp0/s6/esteban-ocon-haas-f1-team.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>오콘 "하스의 문제는 드라이버가 아니다" — 대체 후보 테스트 속 2027 협상 중</h3>
+          <p class="orig">Esteban Ocon: ‘Haas may be testing new drivers, but drivers aren’t the problem’</p>
+          <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.11</span></div>
+          <p class="sum">자리가 위태롭다는 평가를 받는 에스테반 오콘(Esteban Ocon)이 "하스의 문제는 드라이버가 아니다"라고 선을 그었습니다. 하스는 2주 전 포르티망에서 대체 후보 세 명을 테스트했고, 오콘은 2027년을 두고 팀과 협상 중이라고 밝혔습니다. 오콘은 올 시즌 팀 동료 베어먼에게 예선 <b>6승 12패</b>, 포인트 <b>3점 대 18점</b>으로 밀려 있고, 하스는 <b>7경기 연속 무득점</b>입니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+              <p>하스의 VF-26은 부품 성능이 들쭉날쭉한 문제를 안고 있고, 몬차에서 들여온 공기역학 업그레이드로도 해결되지 않았습니다. 오콘은 이 문제가 13라운드 중 10번이나 자신을 괴롭혔다고 주장합니다. 기록상으로는 베어먼에게 예선 6승 12패, 포인트 3점 대 18점으로 뒤지지만, 포인트 차이는 대부분 베어먼이 시즌 첫 두 경기에서 낸 성적 때문입니다. 4월 휴식기 이후만 보면 오콘이 2점 대 1점으로 앞섰고, 전체 결승에서 베어먼이 오콘보다 앞선 건 헝가리 한 번뿐이었습니다.</p>
+              <p>오콘은 "나와 아야오 코마츠(Ayao Komatsu) 대표, 올리 모두 이 문제를 잘 안다. 차가 정상 상태면 우리 드라이버는 성적을 낸다"며 "지난주 올리의 차는 기대대로 작동했고 내 차는 아니었다. 부다페스트에선 반대였다"고 설명했습니다. "세 경기 연속 Q2에 올랐다. Q3는 아니지만 차에서 뽑을 수 있는 건 다 뽑았다. 포인트 싸움을 하려면 성능이 더 필요하다"고 덧붙였습니다.</p>
+              <p>하스는 2주 전 포르티망(Portimão)에서 구형 F1 차로 팀 리저브 료 히라카와(Ryo Hirakawa), 맥라렌 리저브이자 현 F2 챔피언 레오나르도 포르나롤리(Leonardo Fornaroli), 페라리 주니어 하파엘 카마라(Rafael Câmara)를 테스트했습니다. 오콘은 이 테스트의 의미를 낮추며 "팀은 원하면 어떤 드라이버든 테스트할 수 있다. TPC(구형 차 테스트) 프로그램은 팀의 수입원이기도 하다"고 말했습니다.</p>
+              <p>2027 협상에 대해 오콘은 "최근 몇 주 동안 미래에 대해 이야기하고 있다. 2025년부터 코마츠 대표를 믿고 이 프로젝트에 왔으니 첫 협상은 당연히 이 팀과 해야 하고, 지금 진행 중"이라고 밝혔습니다. 기사에 따르면 하스의 7경기 연속 무득점은 팀이 사실상 시즌을 버렸던 2021년 이후 가장 긴 기록과 같습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.motorsport.com/f1/news/esteban-ocon-haas-may-be-testing-new-drivers-but-drivers-arent-the-problem/10854208/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+  </section>
+
+  <!-- ============================ 👤 드라이버·팀 ============================ -->
+  <section id="people" data-cat="people">
+    <div class="sec-head"><h2>👤 드라이버·팀</h2><span class="count">2건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Spain%20(Madrid)/GettyImages-2294860261.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>베어먼 "정말 아프다, 하지 말았어야 할 실수" — FP3 사고로 예선 불참</h3>
+        <p class="orig">‘It hurts a lot’ – Bearman ‘shouldn’t have made that mistake’ as FP3 crash rules him out of Madrid Qualifying</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">베어먼은 FP3 종료 직전 10번 코너에서 차를 잃고 벽에 세게 부딪혔습니다. 몸은 다치지 않았지만, 예선까지 남은 두 시간 안에 하스가 차를 고치지 못해 예선에 나서지 못했습니다. 베어먼은 "차가 빨랐기에 더 아프다"며 결승 기회를 노리겠다고 했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>베어먼은 FP3 마지막 몇 초를 남기고 마드링의 길게 휘는 왼쪽 10번 코너에서 균형을 잃고 스핀하며 벽에 크게 부딪혔습니다. 해밀턴의 사고로 방호벽을 고치느라 세션이 이미 30분 늦어진 상황이어서, 예선 시작까지는 두 시간밖에 남지 않았습니다.</p>
+            <p>예선이 진행되는 동안 취재진 앞에 선 베어먼은 "여기 서 있는 게 아쉽다. 차가 빨랐다. 어제는 힘들었지만 밤사이 몇 가지를 바꿨고 FP3에서 느낌이 정말 좋았다"고 말했습니다. 사고 원인으로는 "타이어가 좀 오래됐고 바람도 불리하게 불었다"고 설명했습니다.</p>
+            <p>베어먼은 "그런 실수를 하지 말았어야 했다. 차가 강하니까 더 아프다. 그래도 내일 기회가 있을 거라고 확신한다"고 했습니다. 베어먼은 57바퀴 결승을 맨 뒤쪽에서 출발하는데, 폭은 좁고 속도는 빠른 서킷이라 추월이 어려울 것으로 보입니다.</p>
+            <p>그래도 희망은 있습니다. 지난주 몬차에서 들여온 업그레이드가 효과를 보이고 있고, 팀 동료 오콘이 스페인에서 13번 그리드를 받았기 때문입니다. 베어먼은 "털고 일어나 긍정적인 면을 봐야 한다. 긍정적인 건 차가 빨랐다는 점이다. 내일 할 수 있는 모든 걸 쏟아붓겠다"고 말했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/it-hurts-a-lot-bearman-shouldnt-have-made-that-mistake-as-fp3-crash-rules-him-out-of-madrid-qualifying.26zsvoIU6Y9V5oXdSceZuF" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 이탈리아 GP 결승 결과와 챔피언십 순위가 담긴 안토넬리 관련 발언 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-3.motorsport.com/images/amp/2y7Qldn6/s6/andrea-kimi-antonelli-mercedes.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>슈타이너 "안토넬리는 페라리에 있어야 한다" — 몬차 우승 뒤 이탈리아 팬심 논쟁</h3>
+          <p class="orig">Kimi Antonelli "should be in a Ferrari" after Monza win, says Guenther Steiner</p>
+          <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.12</span></div>
+          <p class="sum">전 하스 대표 귄터 슈타이너(Guenther Steiner)가 챔피언십 선두 안토넬리가 <b>이탈리아 GP 우승</b> 뒤 "페라리에 있어야 한다"고 말했습니다. 안토넬리는 몬차에서 <b>19번 그리드</b>에서 출발해 통산 7번째 우승을 거뒀고, 60년 만에 몬차에서 우승한 이탈리아인이 됐습니다. 이 승리로 러셀과의 격차는 <b>66점</b>으로 벌어졌습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+              <p>슈타이너는 팟캐스트 The Red Flags에 나와 "페라리는 이탈리아의 국가대표 팀이고 모두가 응원한다. 그런데 이탈리아 드라이버가 없던 차에 이 친구가 나타났다. 몬차에서 이탈리아인이 마지막으로 이긴 게 60년 전이다. 너무 오래돼서 이기는 법을 잊을 정도"라고 말했습니다.</p>
+              <p>슈타이너는 안토넬리가 메르세데스 소속이라 인기를 얻기 어렵다고 짚었습니다. "메르세데스는 페라리의 가장 큰 라이벌이다. 팬들은 여전히 자기 팀이 이기길 바라는데, 그 라이벌 팀에 이탈리아 청년이 있다. 다른 축구팀에서 뛰는데 꽤 잘하는 선수 같은 것"이라는 비유입니다. 그러면서 "그는 더 많은 팬을 얻을 자격이 있다. 하는 일이 비범하다. 페라리에 있어야 한다. 그게 이상적인 세계"라고 했습니다.</p>
+              <p>안토넬리는 몬차에서 19번 그리드부터 출발해 통산 7번째 그랑프리 우승을 거뒀고, 이 승리로 드라이버 챔피언십 선두를 더 굳혔습니다. 기사 기준으로 팀 동료이자 2위 러셀에게 66점 앞서 있고, 7회 챔피언 해밀턴은 러셀보다 10점 뒤진 3위입니다.</p>
+              <p>안토넬리는 마드링에서도 FP2와 FP3 모두 1위를 했고 FP1은 러셀에 이어 2위였습니다. 기사가 나간 뒤 열린 예선에서는 노리스에게 0.011초 차로 폴을 내주고 2번 그리드에서 결승을 시작합니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.motorsport.com/f1/news/kimi-antonelli-should-be-in-a-ferrari-after-monza-win-says-guenther-steiner/10854948/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+  </section>
+
+  <!-- ============================ 📰 기타 ============================ -->
+  <section id="etc" data-cat="etc">
+    <div class="sec-head"><h2>📰 기타</h2><span class="count">2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-8.motorsport.com/images/amp/YKEWApD0/s6/porsche-gt2-rs.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>“악수까지 했었다” — 레드불·포르쉐 F1 합작이 발표 직전 무산된 뒷이야기</h3>
+        <p class="orig">Insider reveals how Red Bull’s billion-dollar Porsche deal collapsed</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.11</span></div>
+        <p class="sum">2022년 여름 발표 직전에 무산된 레드불·포르쉐(Porsche) F1 합작의 뒷이야기가 나왔습니다. 당시 포르쉐 모터스포츠 수장 프리츠 엔징거(Fritz Enzinger)는 양측 최고 경영진이 <b>이미 악수를 했고</b>, 오스트리아 GP에서 공동 발표까지 계획했다고 밝혔습니다. 포르쉐는 레드불 F1 팀 지분 <b>50%</b> 인수까지 추진했지만, 레드불이 막판에 방향을 틀었습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>엔징거는 2026년 7월 29일 녹화된 Formel1.de 유튜브 채널 인터뷰에서 협상이 얼마나 진척됐는지 털어놨습니다. 폭스바겐(VW) CEO 올리버 블루메(Oliver Blume)와 레드불 공동 창업자 디트리히 마테시츠(Dietrich Mateschitz) 사이에 "이미 악수가 오갔다"는 것입니다. 공동 보도자료도 준비돼 있었고 "슈필베르크(Spielberg, 오스트리아 GP) 또는 그다음 레이스에서 발표할 계획이었다"고 확인했습니다.</p>
+            <p>발표가 미뤄진 이유는 규정이었습니다. 엔징거는 "규정에 아직 완전히 정리되지 않은 부분이 몇 개 있었다. F1에 들어간다고 먼저 확정해 버리면 포르쉐와 VW가 원하던 파워유닛 규정 변경을 밀어붙이기 어려워진다"며 "그래서 여유를 두고 다음 레이스까지 기다리자고 했다"고 설명했습니다. 하지만 결정적인 며칠 사이 레드불 쪽에 "방향 전환"이 생겼고, 발표는 결국 이뤄지지 않았습니다.</p>
+            <p>엔징거는 레드불이 마음을 바꾼 이유를 추측하지 않았습니다. 다만 당시 마테시츠의 건강이 매우 나빴고, 협상에는 레드불 지분 49%를 가진 오스트리아 측뿐 아니라 대주주인 태국 측도 참여해야 했다는 점은 분명하다고 했습니다. 포르쉐가 다른 팀과도 협상했다는 소문은 "사실이 아니다. 포르쉐는 오직 레드불과만 이야기했다"고 부인했습니다.</p>
+            <p>두 회사는 이미 의향서(LOI, 본계약 전 합의 방향을 적은 문서)에 서명한 상태였고, 단순한 엔진 공급을 넘어 포르쉐가 레드불 F1 조직의 절반을 사들이는 "대등한 파트너십"이었습니다. 결국 폭스바겐 그룹은 아우디 한 브랜드만 F1에 보냈고, 아우디는 자우버(Sauber)를 인수해 2026년부터 공식 팀으로 뛰고 있습니다. 엔징거는 "지금 자동차 산업이 얼마나 어려운지 보면, 무산된 게 긍정적인 면도 있다. 한 그룹에서 두 브랜드가 F1을 하는 건 상상하기 어렵다"고 돌아봤습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/insider-reveals-why-the-red-bulls-billion-dollar-porsche-deal-collapsed/10854467/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/IMG_9714--1--1.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>눈앞에서 F1 머신이 벽에 박힐 때 — 베어먼 사고를 코앞에서 본 기자의 기록</h3>
+        <p class="orig">What it's like watching an F1 crash unfolding in front of you</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.12</span></div>
+        <p class="sum">The Race의 존 노블(Jon Noble) 기자는 FP3 막판 베어먼이 10번 코너 방호벽에 부딪히는 장면을 불과 몇 센티미터 앞에서 봤습니다. 가장 오래 남는 건 카본파이버와 금속이 벽에 박히는 <b>“쿵” 소리</b>라고 합니다. 차에서 내린 베어먼이 부정·분노·체념을 거쳐 받아들이기까지의 모습도 가까이에서 전했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>노블 기자가 이런 장면을 코앞에서 본 건 두 번째입니다. 첫 번째는 2001년 모나코 수영장 구간에서 랄프 슈마허(Ralf Schumacher)가 첫 연습 주행 막판에 사고를 냈을 때였습니다. 기자는 차가 예상과 다르게 라인을 벗어나 엉뚱한 방향으로 미끄러질 때 뇌가 그 순간을 처리하는 방식이 묘하다고 표현했습니다.</p>
+            <p>"잘못될 게 보인다. 타이어 연기가 보인다. 충격에 대비한다. 그리고 부딪힌다. 몇 밀리초 뒤겠지만 영원처럼 느껴지는 순간, 빛을 따라잡은 소리가 쿵 하고 들린다. 그 소리가 큰 사고라는 걸 실감하게 한다." 이후 파편이 굴러가다 멈추고, 마셜이 움직이기 전까지 묘한 고요가 흐른다고 합니다.</p>
+            <p>기자는 차 안에서 마셜에게 괜찮다고 신호하는 베어먼의 머리와 손 동작에서, 마지막 연습 세션 끝에 차를 부쉈다는 사실에 대한 부정과 분노가 느껴졌다고 했습니다. 방호벽 틈으로 빠져나온 뒤에는 낙담과 수용이 이어졌고, 데리러 온 오토바이를 두고 뒤편 대형 화면의 리플레이를 보려고 한동안 서 있었다고 전했습니다. 이어 메디컬 카 뒷좌석에 탄 베어먼은 벽에 박힌 하스를 바라봤습니다.</p>
+            <p>베어먼은 주말 전 시뮬레이터에서 사고를 많이 내 봤으니 실제 트랙에서는 안 그러길 바란다며 "그렇게 한계가 정확히 어디인지 가장 효율적으로 배우는 것"이라고 말한 적이 있습니다. 기자는 "하지만 현실은 가끔 문다. 그리고 그 소리는 아주 시끄럽다"며 글을 맺었습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/what-it-is-like-watching-f1-crash-unfold-ollie-bearman-haas/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============================ 📖 용어 ============================ -->
+  <section id="glossary" data-cat="glossary">
+    <div class="sec-head"><h2>📖 오늘의 용어</h2><span class="count">11개</span></div>
+    <dl class="glossary">
+      <div class="term"><dt>폴 포지션 <span>(Pole position)</span></dt><dd>예선에서 가장 빠른 기록을 낸 드라이버가 받는 결승 맨 앞 출발 자리입니다. 추월이 어려운 서킷일수록 가치가 커집니다.</dd></div>
+      <div class="term"><dt>그리드 페널티 <span>(Grid penalty)</span></dt><dd>규정 위반이나 부품 교체 한도 초과 때문에 결승 출발 위치를 정해진 칸수만큼 뒤로 미루는 벌칙입니다.</dd></div>
+      <div class="term"><dt>방해 <span>(Impeding)</span></dt><dd>기록 주행 중인 다른 차의 길을 불필요하게 막는 행위입니다. 예선에서 적발되면 보통 그리드 강등을 받습니다.</dd></div>
+      <div class="term"><dt>델타 타임 <span>(Delta time)</span></dt><dd>기록 주행이 아닌 랩에서 너무 느리게 달리지 않도록 정한 구간별 최대 소요 시간 기준입니다. 느린 차와 빠른 차의 위험한 속도 차를 막기 위한 규정입니다.</dd></div>
+      <div class="term"><dt>그레이닝 <span>(Graining)</span></dt><dd>타이어 표면 고무가 미끄러지며 뜯겨 작은 알갱이처럼 일어나는 현상입니다. 그립이 떨어지고, 앞 타이어에 생기면 언더스티어가 심해집니다.</dd></div>
+      <div class="term"><dt>데그라데이션 <span>(Degradation)</span></dt><dd>랩을 거듭할수록 타이어 성능이 떨어지는 정도입니다. 흔히 "랩당 몇 초"로 표현하며, 클수록 피트스톱을 더 해야 유리해집니다.</dd></div>
+      <div class="term"><dt>피트 손실 시간 <span>(Pit loss)</span></dt><dd>피트레인에 들어가 타이어를 갈고 나오는 동안 코스를 계속 달렸을 때보다 잃는 시간입니다. 마드링은 피트레인이 길어 약 24초로 큽니다.</dd></div>
+      <div class="term"><dt>뱅크 코너 <span>(Banked corner)</span></dt><dd>바깥쪽을 높게 기울여 만든 코너입니다. 차를 노면에 눌러 더 빠르게 돌 수 있지만 타이어에 큰 수직 하중이 걸립니다.</dd></div>
+      <div class="term"><dt>오버스티어 / 언더스티어 <span>(Oversteer / Understeer)</span></dt><dd>오버스티어는 차 뒤쪽이 코너 바깥으로 미끄러지는 현상, 언더스티어는 앞쪽이 핸들을 꺾은 만큼 돌지 않고 바깥으로 밀리는 현상입니다.</dd></div>
+      <div class="term"><dt>MGU-K <span>(Motor Generator Unit – Kinetic)</span></dt><dd>감속할 때 운동 에너지를 전기로 바꿔 배터리에 저장하고, 가속할 때 다시 구동력으로 쓰는 모터입니다. 2026년 규정에서 비중이 크게 늘어 에너지 관리가 랩타임을 좌우합니다.</dd></div>
+      <div class="term"><dt>ADUO <span>(Additional Development and Upgrade Opportunities)</span></dt><dd>성능이 뒤처진 엔진 제조사에 추가 개발 기회를 허용하는 2026년 규정상의 구제 제도입니다. 페라리의 ADUO 1·ADUO 2는 이 제도로 만든 엔진 사양입니다.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span class="brand">Claude</span>가 번역·정리한 F1 뉴스 · 2026.09.13<br>
+    원문 저작권은 각 매체에 있으며, 핵심 요약만 제공합니다.
+  </footer>
+</div>
+<script>
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-cat]'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var cat = chip.dataset.cat;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      sections.forEach(function (s) { s.classList.toggle('hidden', cat !== 'all' && s.dataset.cat !== cat); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  var btn = document.getElementById('unlockAll');
+  var spoilers = Array.prototype.slice.call(document.querySelectorAll('details.spoiler'));
+  function render(open) { btn.setAttribute('aria-pressed', String(open)); btn.textContent = open ? '🔒 스포일러 모두 접기' : '🔓 스포일러 모두 펼치기'; }
+  btn.addEventListener('click', function () { var open = btn.getAttribute('aria-pressed') !== 'true'; spoilers.forEach(function (d) { d.open = open; }); render(open); });
+  spoilers.forEach(function (d) { d.addEventListener('toggle', function () { render(spoilers.every(function (x) { return x.open; })); }); });
+  render(false);
+})();
+</script>
+</body>
+</html>

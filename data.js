@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-09-12",
+    updatedAt: "2026-09-13",
     season: 2026,
     standingsAsOf: { round: 13, name: "이탈리아 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-09-13", file: "briefings/f1-news-2026-09-13.html", count: 20, spoilers: 4,
+      headline: "노리스, 마지막 코너 실수에도 마드링 첫 폴 — 안토넬리와 0.011초 차 · 해밀턴, FP3 크래시 뒤 “멈추라” 지시 무시하고 주행 · 피트 손실 24초 vs 높은 타이어 소모 — 1스톱이냐 2스톱이냐" },
     { date: "2026-09-12", file: "briefings/f1-news-2026-09-12.html", count: 20, spoilers: 3,
       headline: "마드링 첫날은 타이어 싸움 — FP1 그레이닝에 “6스톱” 소리까지 나왔다 · 노리스, 기어박스 고장으로 FP2 통째 결장 · 르클레르는 몬차 여파로 구형 엔진(ADUO1) 사용" },
     { date: "2026-09-11", file: "briefings/f1-news-2026-09-11.html", count: 20, spoilers: 4,
