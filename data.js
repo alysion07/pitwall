@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-09-13",
+    updatedAt: "2026-09-14",
     season: 2026,
-    standingsAsOf: { round: 13, name: "이탈리아 GP" }   // 순위표 기준 시점 (결과 노출 없음)
+    standingsAsOf: { round: 14, name: "스페인 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-09-14", file: "briefings/f1-news-2026-09-14.html", count: 20, spoilers: 7,
+      headline: "맥라렌, 램비아세 조기 영입 위해 패독 카페서 ‘보란 듯이’ 회동 · F1 2027 캘린더 이번 주 발표 — 3월 14일 바레인 개막 유력 · FIA 회장 “12번째 팀은 중국 제조사여야”" },
     { date: "2026-09-13", file: "briefings/f1-news-2026-09-13.html", count: 20, spoilers: 4,
       headline: "노리스, 마지막 코너 실수에도 마드링 첫 폴 — 안토넬리와 0.011초 차 · 해밀턴, FP3 크래시 뒤 “멈추라” 지시 무시하고 주행 · 피트 손실 24초 vs 높은 타이어 소모 — 1스톱이냐 2스톱이냐" },
     { date: "2026-09-12", file: "briefings/f1-news-2026-09-12.html", count: 20, spoilers: 3,
@@ -105,21 +107,21 @@ window.F1DATA = {
 
   // ⚠️ 스포일러 — 드라이버 순위 (standingsAsOf 기준)
   drivers: [
-    { pos: 1,  code: "ANT", name: "키미 안토넬리",     en: "Kimi Antonelli",    team: "Mercedes",     pts: 267 },
-    { pos: 2,  code: "RUS", name: "조지 러셀",         en: "George Russell",    team: "Mercedes",     pts: 201 },
+    { pos: 1,  code: "ANT", name: "키미 안토넬리",     en: "Kimi Antonelli",    team: "Mercedes",     pts: 292 },
+    { pos: 2,  code: "RUS", name: "조지 러셀",         en: "George Russell",    team: "Mercedes",     pts: 211 },
     { pos: 3,  code: "HAM", name: "루이스 해밀턴",     en: "Lewis Hamilton",    team: "Ferrari",      pts: 191 },
-    { pos: 4,  code: "NOR", name: "랜도 노리스",       en: "Lando Norris",      team: "McLaren",      pts: 171 },
-    { pos: 5,  code: "LEC", name: "샤를 르클레르",     en: "Charles Leclerc",   team: "Ferrari",      pts: 155 },
-    { pos: 6,  code: "VER", name: "막스 페르스타펜",   en: "Max Verstappen",    team: "Red Bull",     pts: 127 },
-    { pos: 7,  code: "PIA", name: "오스카 피아스트리", en: "Oscar Piastri",     team: "McLaren",      pts: 116 },
+    { pos: 4,  code: "NOR", name: "랜도 노리스",       en: "Lando Norris",      team: "McLaren",      pts: 186 },
+    { pos: 5,  code: "LEC", name: "샤를 르클레르",     en: "Charles Leclerc",   team: "Ferrari",      pts: 167 },
+    { pos: 6,  code: "VER", name: "막스 페르스타펜",   en: "Max Verstappen",    team: "Red Bull",     pts: 145 },
+    { pos: 7,  code: "PIA", name: "오스카 피아스트리", en: "Oscar Piastri",     team: "McLaren",      pts: 120 },
     { pos: 8,  code: "HAD", name: "이자크 하자르",     en: "Isack Hadjar",      team: "Red Bull",     pts: 71 },
-    { pos: 9,  code: "LAW", name: "리암 로슨",         en: "Liam Lawson",       team: "Racing Bulls", pts: 51 },
+    { pos: 9,  code: "LAW", name: "리암 로슨",         en: "Liam Lawson",       team: "Racing Bulls", pts: 59 },
     { pos: 10, code: "GAS", name: "피에르 가슬리",     en: "Pierre Gasly",      team: "Alpine",       pts: 41 },
-    { pos: 11, code: "LIN", name: "아르비드 린드블라드", en: "Arvid Lindblad",  team: "Racing Bulls", pts: 29 },
-    { pos: 12, code: "COL", name: "프랑코 콜라핀토",   en: "Franco Colapinto",  team: "Alpine",       pts: 21 },
+    { pos: 11, code: "LIN", name: "아르비드 린드블라드", en: "Arvid Lindblad",  team: "Racing Bulls", pts: 31 },
+    { pos: 12, code: "COL", name: "프랑코 콜라핀토",   en: "Franco Colapinto",  team: "Alpine",       pts: 27 },
     { pos: 13, code: "BEA", name: "올리버 베어먼",     en: "Oliver Bearman",    team: "Haas",         pts: 18 },
     { pos: 14, code: "BOR", name: "가브리엘 보르톨레토", en: "Gabriel Bortoleto", team: "Audi",       pts: 10 },
-    { pos: 15, code: "HUL", name: "니코 휠켄베르크",   en: "Nico Hulkenberg",   team: "Audi",         pts: 6 },
+    { pos: 15, code: "HUL", name: "니코 휠켄베르크",   en: "Nico Hulkenberg",   team: "Audi",         pts: 7 },
     { pos: 16, code: "SAI", name: "카를로스 사인츠",   en: "Carlos Sainz",      team: "Williams",     pts: 6 },
     { pos: 17, code: "ALB", name: "알렉산더 알본",     en: "Alexander Albon",   team: "Williams",     pts: 5 },
     { pos: 18, code: "OCO", name: "에스테반 오콘",     en: "Esteban Ocon",      team: "Haas",         pts: 3 },
@@ -132,14 +134,14 @@ window.F1DATA = {
 
   // ⚠️ 스포일러 — 컨스트럭터 순위
   constructors: [
-    { pos: 1,  team: "Mercedes",     pts: 468 },
-    { pos: 2,  team: "Ferrari",      pts: 346 },
-    { pos: 3,  team: "McLaren",      pts: 287 },
-    { pos: 4,  team: "Red Bull",     pts: 204 },
-    { pos: 5,  team: "Racing Bulls", pts: 75 },
-    { pos: 6,  team: "Alpine",       pts: 62 },
+    { pos: 1,  team: "Mercedes",     pts: 503 },
+    { pos: 2,  team: "Ferrari",      pts: 358 },
+    { pos: 3,  team: "McLaren",      pts: 306 },
+    { pos: 4,  team: "Red Bull",     pts: 230 },
+    { pos: 5,  team: "Racing Bulls", pts: 77 },
+    { pos: 6,  team: "Alpine",       pts: 68 },
     { pos: 7,  team: "Haas",         pts: 21 },
-    { pos: 8,  team: "Audi",         pts: 16 },
+    { pos: 8,  team: "Audi",         pts: 17 },
     { pos: 9,  team: "Williams",     pts: 11 },
     { pos: 10, team: "Aston Martin", pts: 3 },
     { pos: 11, team: "Cadillac",     pts: 0 }
