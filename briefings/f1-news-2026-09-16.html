@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>F1 데일리 브리핑 — 2026.09.16</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../favicon-192.png">
+<style>
+  :root {
+    --bg:#ffffff; --bg-soft:#f7f7f9; --card:#ffffff; --card-hover:#fbfbfc;
+    --text:#14141a; --text-mid:#4a4a57; --text-dim:#86868f;
+    --border:#e6e6ec; --border-soft:#f0f0f4;
+    --accent:#E10600; --accent-soft:rgba(225,6,0,.08);
+    --spoiler-bg:#fbf7f7; --spoiler-border:#ecdcdc; --chip-bg:#f2f2f5;
+    --shadow:0 1px 2px rgba(20,20,26,.04),0 8px 24px -12px rgba(20,20,26,.10);
+    --bar-bg:rgba(255,255,255,.82);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0e0e11; --bg-soft:#141419; --card:#16161b; --card-hover:#1b1b21;
+      --text:#f0f0f3; --text-mid:#b6b6c0; --text-dim:#82828e;
+      --border:#26262e; --border-soft:#1e1e25;
+      --accent:#FF3B30; --accent-soft:rgba(255,59,48,.12);
+      --spoiler-bg:#1a1416; --spoiler-border:#3a2528; --chip-bg:#1e1e25;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+      --bar-bg:rgba(14,14,17,.82);
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;
+    font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0 24px; }
+  header { padding:72px 0 32px; }
+  .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+  .kicker .dot { width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  h1 { font-size:clamp(34px,7vw,46px); line-height:1.12; margin:0 0 20px; font-weight:800; letter-spacing:-0.035em; }
+  h1 .accent { color:var(--accent); }
+  .lede { font-size:15px; color:var(--text-mid); margin:0; padding-bottom:28px; border-bottom:1px solid var(--border); }
+  .lede b { color:var(--text); font-weight:600; }
+  .digest { margin:28px 0 0; padding:20px 22px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:14px; }
+  .digest h2 { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:0 0 12px; }
+  .digest ol { margin:0; padding-left:20px; }
+  .digest li { font-size:14.5px; color:var(--text-mid); margin-bottom:7px; }
+  .digest li:last-child { margin-bottom:0; }
+  .digest li b { color:var(--text); font-weight:600; }
+  .bar { position:sticky; top:0; z-index:20; margin:36px 0 8px; padding:12px 0; background:var(--bar-bg); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--border-soft); }
+  .bar-inner { display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap; }
+  .chips { display:flex; gap:7px; flex-wrap:wrap; flex:1 1 auto; scrollbar-width:none; -ms-overflow-style:none; padding:2px 0; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip { flex:0 0 auto; border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:500; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s,color .15s,border-color .15s; }
+  .chip:hover { color:var(--text); }
+  .chip[aria-pressed="true"] { background:var(--text); color:var(--bg); border-color:var(--text); }
+  .chip .n { opacity:.5; margin-left:4px; font-variant-numeric:tabular-nums; }
+  .unlock { flex:0 0 auto; border:1px solid var(--spoiler-border); background:var(--spoiler-bg); color:var(--accent); font:inherit; font-size:13px; font-weight:600; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s; }
+  .unlock:hover { background:var(--accent-soft); }
+  section { padding-top:44px; scroll-margin-top:70px; }
+  section.hidden { display:none; }
+  .sec-head { display:flex; align-items:baseline; gap:10px; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--text); }
+  .sec-head h2 { font-size:19px; font-weight:750; margin:0; letter-spacing:-0.02em; }
+  .sec-head .count { font-size:12px; color:var(--text-dim); font-variant-numeric:tabular-nums; margin-left:auto; font-weight:500; }
+  .art { display:flex; flex-direction:column; align-items:stretch; gap:16px; padding:26px 0; border-bottom:1px solid var(--border-soft); }
+  .art:last-child { border-bottom:none; }
+  .thumb { width:100%; height:340px; border-radius:14px; overflow:hidden; background:linear-gradient(135deg,var(--accent) 0%,#600 100%); border:1px solid var(--border-soft); }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .art-body { min-width:0; }
+  .art h3 { font-size:21px; font-weight:750; line-height:1.36; margin:0 0 6px; letter-spacing:-0.025em; }
+  .orig { font-size:13px; color:var(--text-dim); margin:0 0 11px; font-style:italic; line-height:1.45; }
+  .meta { display:flex; align-items:center; gap:7px; flex-wrap:wrap; font-size:12px; color:var(--text-dim); margin-bottom:12px; }
+  .src { font-weight:650; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:5px; font-size:11.5px; }
+  .sum { font-size:15px; color:var(--text-mid); margin:0 0 4px; line-height:1.75; }
+  details.more { margin:8px 0 14px; }
+  details.more > summary { list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:650; color:var(--accent); padding:7px 0; user-select:none; }
+  details.more > summary::-webkit-details-marker { display:none; }
+  details.more > summary .caret { transition:transform .18s; font-size:10px; }
+  details.more[open] > summary .caret { transform:rotate(90deg); }
+  .detail-body { margin-top:4px; padding:14px 16px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:12px; }
+  .detail-body p { margin:0 0 10px; font-size:14.5px; color:var(--text-mid); line-height:1.8; }
+  .detail-body p:last-child { margin-bottom:0; }
+  .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
+  .go:hover { border-color:var(--text); background:var(--bg-soft); }
+  .go svg { width:11px; height:11px; }
+  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
+  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler > summary::-webkit-details-marker { display:none; }
+  details.spoiler > summary:hover { background:var(--accent-soft); }
+  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
+  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
+  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
+  details.spoiler[open] > summary .hint::after { content:"접기"; }
+  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
+  details.spoiler .art { padding:18px; border-bottom:none; }
+  .glossary { margin-top:12px; }
+  .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
+  .term:last-child { border-bottom:none; }
+  .term dt { font-size:14.5px; font-weight:700; margin-bottom:3px; }
+  .term dt span { color:var(--text-dim); font-weight:500; font-size:13px; }
+  .term dd { margin:0; font-size:14px; color:var(--text-mid); line-height:1.65; }
+  footer { margin-top:64px; padding:28px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
+  footer .brand { color:var(--accent); font-weight:650; }
+  @media (max-width:560px) {
+    .wrap { padding:0 18px; }
+    header { padding:48px 0 24px; }
+    .thumb { height:210px; }
+    .art h3 { font-size:19px; }
+    .sec-head h2 { font-size:17px; }
+    .bar-inner { flex-wrap:nowrap; flex-direction:column; align-items:stretch; }
+    .chips { flex-wrap:nowrap; overflow-x:auto; width:100%; }
+    .unlock { width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+
+  <header>
+    <div class="kicker"><span class="dot"></span> 2026년 9월 16일 수요일 <a href="../index.html" style="margin-left:auto;color:var(--text-dim);text-decoration:none;font-weight:600;letter-spacing:0;text-transform:none">← PIT WALL</a></div>
+    <h1>F1 데일리 <span class="accent">브리핑</span></h1>
+    <p class="lede">해외 매체 <b>8곳</b>(The Race · Grandprix.com · Motorsport.com · Formula1.com · PlanetF1 · GPFans · RaceFans · RacingNews365)에서 <b>기사 20건</b>을 모았습니다. 이 중 <b>4건</b>은 본문에 직전 라운드 결승 결과나 챔피언십 순위·포인트가 섞여 있어 가려두었습니다. 지금은 스페인 GP와 아제르바이잔 GP 사이 휴식 주간이라, 결승 뒤 분석 기사를 빼고 서킷 개편·주니어·이적·팀 소식 위주로 골랐습니다. 다음 라운드 아제르바이잔 GP는 <b>9월 24~26일</b>이고, 올해는 결승이 <b>토요일</b>(한국 시각 9월 26일 밤)에 열립니다. 이번 주 발표가 예상됐던 F1 2027 캘린더는 아직 공식 발표 전입니다.</p>
+    <div class="digest">
+      <h2>오늘의 요약</h2>
+      <ol>
+        <li>마드링(Madring)은 추월이 거의 없었다는 혹평을 받고 <b>2027년까지 코너 세 곳을 고치기로</b> 했습니다(5~6번 시케인, 13번, 20번 코너). F2는 바쿠에서 <b>한 주말에 레이스 세 번</b>을 여는 실험을 합니다. 페라리(Ferrari)는 이번 주 이몰라(Imola)에서 피렐리(Pirelli) 2027 타이어 테스트를 하는데, 이몰라는 시즌 최종전 후보지로도 거론됩니다.</li>
+        <li>사람 이야기도 많았습니다. 막스 페르스타펜(Max Verstappen)은 “팀을 옮기느니 <b>은퇴하는 쪽에 더 가까웠다</b>”고 털어놨습니다. 크리스천 호너(Christian Horner)는 알핀(Alpine) 지분 24%를 사들일 길이 열렸고, 아우디(Audi) 주니어 프레디 슬레이터(Freddie Slater)는 2027년 F2 챔피언 팀 인빅타(Invicta)로 갑니다. 노리스(Lando Norris)는 맥라렌(McLaren) 하이퍼카를 처음 제대로 몰아봤습니다.</li>
+        <li>🏁 스페인 GP 관련 소식 <b>4건</b> — 아래 스포일러 섹션을 열어 확인하세요.</li>
+      </ol>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="bar-inner">
+      <div class="chips" role="group" aria-label="카테고리 필터">
+        <button class="chip" data-cat="all" aria-pressed="true">전체<span class="n">20</span></button>
+        <button class="chip" data-cat="race" aria-pressed="false">🏁 레이스 위크<span class="n">4</span></button>
+        <button class="chip" data-cat="tech" aria-pressed="false">🔧 기술/규정<span class="n">3</span></button>
+        <button class="chip" data-cat="fia" aria-pressed="false">⚖️ FIA/거버넌스<span class="n">1</span></button>
+        <button class="chip" data-cat="transfer" aria-pressed="false">🔄 이적/계약<span class="n">2</span></button>
+        <button class="chip" data-cat="people" aria-pressed="false">👤 드라이버/팀<span class="n">5</span></button>
+        <button class="chip" data-cat="etc" aria-pressed="false">📰 기타<span class="n">5</span></button>
+        <button class="chip" data-cat="glossary" aria-pressed="false">📖 용어</button>
+      </div>
+      <button class="unlock" id="unlockAll" aria-pressed="false">🔓 스포일러 모두 펼치기</button>
+    </div>
+  </div>
+
+  <!-- ============================ 🏁 레이스 위크 ============================ -->
+  <section id="race" data-cat="race">
+    <div class="sec-head"><h2>🏁 레이스 위크</h2><span class="count">4건 · 스포일러 2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/races/pspa26/sun/mcl/00-master/norris6.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>마드링, ‘추월 가뭄’ 혹평에 코너 세 곳 손본다 — 5~6번 시케인·13번·20번 코너</h3>
+        <p class="orig">Madring plans three changes after overtaking drought</p>
+        <div class="meta"><span class="src">Grandprix.com</span><span>·</span><span>2026.09.14</span></div>
+        <p class="sum">첫 F1 경기에서 추월이 거의 나오지 않았다는 비판을 받은 마드리드 마드링 서킷이 2027년 전에 레이아웃을 고치기로 했습니다. 대회 총괄 루이스 가르시아 아바드(Luis Garcia Abad)는 FIA가 이미 <b>구체적인 개선 방향</b>을 제시했다며, 5~6번 시케인, 13번 코너, 20번 코너 세 곳을 우선 손보겠다고 밝혔습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>마드링은 코너가 많고 개성 있는 서킷이지만, 정작 나란히 싸울 수 있는 구간이 부족하다는 사실이 첫 결승에서 드러났습니다. 가장 먼저 손볼 곳은 <b>5~6번 시케인</b>(좌우로 꺾이는 짧은 연속 코너)입니다. 지금은 브레이킹 구간 자체가 휘어 있어 앞차가 막기 쉽고, 두 대가 함께 들어갈 공간이 없습니다. 이 구간을 넓히고 진입 각도를 바꿀 계획입니다.</p>
+            <p>두 번째는 뱅크 코너 라 모누멘탈(La Monumental) 바로 뒤의 <b>13번 왼쪽 코너</b>입니다. 이 코너를 더 좁게 만들어 강한 브레이킹이 필요하게 하면, 뱅크 코너에서 슬립스트림(앞차 뒤에서 공기 저항을 덜 받는 효과)을 탄 차가 추월을 시도할 수 있습니다. 세 번째로 <b>20번 코너</b>는 진입부와 방호벽 배치를 넓히고 다시 다듬습니다.</p>
+            <p>아바드는 “FIA가 트랙 레이아웃을 어떻게 개선할지 분명히 정해 줬다”며 “어차피 내년에 트랙을 다시 설치해야 한다”고 말했습니다. 마드링은 일부 구간이 공공 도로라 매년 다시 까는 방식이기 때문에, 바꿀 기회가 있다는 뜻입니다. 드라이버 제안도 나왔습니다. 랜도 노리스는 18·19번 코너를 없애 직선을 늘리고 그 끝에 넓은 헤어핀(U자형 급커브)을 두자고 했고, 카를로스 사인츠(Carlos Sainz)는 바쿠나 마카오처럼 <b>확실한 추월 지점 한 곳</b>을 만들자고 했습니다.</p>
+            <p>서킷 측은 앞으로 몇 주 동안 FIA·팀·드라이버와 세부 안을 다듬은 뒤 호몰로게이션(FIA가 서킷을 공식 경기용으로 승인하는 절차)을 받을 예정입니다. 아바드는 “공간도, 시설도, 여력도 있다. 개선할 수 있다면 하겠다”고 했습니다. 2027년 도면이 나와야 마드링이 ‘예선만 재미있는 서킷’에서 벗어날 수 있을지 판단할 수 있을 것입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.grandprix.com/news/madring-plans-three-changes-after-overtaking-drought.html" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/library/2026/09/200393ad-8afd-43ff-9404-9d99b1f47f7d-dino-beganovic-baku-f2-2025.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>F2, 바쿠에서 한 주말 레이스 세 번 — 예선 두 번·피처 레이스 두 번 실험</h3>
+        <p class="orig">Formula 2 expands Baku weekend to three races</p>
+        <div class="meta"><span class="src">Grandprix.com</span><span>·</span><span>2026.09.15</span></div>
+        <p class="sum">F2가 아제르바이잔 GP 주말(9월 24~26일)에 <b>예선을 두 번</b>, <b>피처 레이스를 두 번</b> 치르는 확대 일정을 시험합니다. 이번 주말 F1 지원 레이스가 F2 하나뿐이라 시간이 남기 때문에 가능한 실험입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>F2는 보통 주말마다 연습 1번, 예선 1번, 스프린트 레이스(짧은 레이스) 1번, 피처 레이스(긴 본 레이스) 1번을 치릅니다. 바쿠에서는 여기에 예선과 피처 레이스를 하나씩 더합니다. 목요일에 45분 연습을 한 뒤 <b>20분짜리 예선을 연달아 두 번</b> 엽니다.</p>
+            <p>첫 번째 예선 결과는 금요일 스프린트 레이스의 리버스 그리드(상위권 순서를 뒤집어 출발시키는 방식)와 첫 번째 피처 레이스의 출발 순서를 정합니다. 토요일 아침에 열리는 두 번째 피처 레이스는 두 번째 예선 순서대로 출발합니다. 두 예선의 폴 포지션에는 각각 2점을 주고, 피처 레이스에는 평소처럼 점수와 조건부 최고 랩 보너스를 줍니다.</p>
+            <p>F2 최고경영자 브루노 미셸(Bruno Michel)은 “바쿠는 늘 사건이 많은 레이스를 만들어 왔기 때문에 이런 실험에 알맞은 곳”이라고 설명했습니다. 이번 주말에 다른 지원 카테고리가 없어서 일정에 여유가 생긴 것도 이유입니다.</p>
+            <p>기사는 이것이 시즌이 줄어들어서 경기 수를 채우려는 조치가 아니라 <b>한 주말만의 실험</b>이라고 강조합니다. 남은 카타르와 아부다비 라운드는 기존의 연습·예선·스프린트·피처 형식을 그대로 유지합니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.grandprix.com/news/formula-2-expands-baku-weekend-to-three-races.html" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 아제르바이잔 GP 토요일 개최 배경 (챔피언십 순위표 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-2.motorsport.com/images/amp/Yv87Xr70/s6/drivers-take-the-start-of-the-.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>아제르바이잔 GP는 왜 토요일에 열리나 — 9월 27일 ‘추모의 날’ 때문</h3>
+          <p class="orig">Why is the F1 Azerbaijan GP not on Sunday in 2026?</p>
+          <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.15</span></div>
+          <p class="sum">올해 아제르바이잔 GP 결승은 일요일인 9월 27일이 아니라 <b>토요일 9월 26일</b>에 열립니다. 9월 27일은 2020년 제2차 나고르노카라바흐 전쟁 희생자를 기리는 아제르바이잔의 국가 추모일이기 때문입니다. 기사 끝에는 스페인 GP 뒤 드라이버 순위가 붙어 있습니다. 안토넬리 292점, 러셀 211점, 해밀턴 191점, 노리스 186점, 르클레르 167점이고, 스페인 GP 우승자는 안토넬리입니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+              <p>아제르바이잔은 매년 9월 27일을 ‘추모의 날’로 지킵니다. 2020년 9월 27일 시작된 44일간의 제2차 나고르노카라바흐 전쟁(아제르바이잔에서는 ‘조국 전쟁’이라고 부름)에서 숨진 군인과 민간인을 기리는 날입니다. 아제르바이잔 정부는 이 전쟁에서 군인 2,783명이 숨졌다고 발표했습니다.</p>
+              <p>F1은 지난해 6월 “아제르바이잔 프로모터와 정부 관계자들의 요청에 따라” 일정을 하루 앞당긴다고 발표했습니다. 그래서 주말 전체가 하루씩 당겨집니다. 수요일에 미디어 데이, 목요일에 FP1·FP2, 금요일에 FP3와 예선, 토요일에 <b>51랩</b> 결승이 열립니다.</p>
+              <p>일요일이 아닌 날 열린 그랑프리가 처음은 아닙니다. 1950년 실버스톤의 영국 GP가 토요일에 열렸고, 영국 GP는 1975년까지 토요일 개최를 이어갔습니다. 1985년 남아공 GP 이후로는 한동안 없다가 2023년 라스베이거스 GP가 토요일 밤 경기로 돌아왔습니다. 2024년에는 라마단 때문에 바레인과 사우디아라비아도 토요일에 결승을 치렀습니다.</p>
+              <p>기사 말미에는 스페인 GP 이후 드라이버 챔피언십 상위 5명이 정리돼 있습니다. 1위 키미 안토넬리(Kimi Antonelli, 메르세데스) 292점, 2위 조지 러셀(George Russell, 메르세데스) 211점, 3위 루이스 해밀턴(Lewis Hamilton, 페라리) 191점, 4위 랜도 노리스(맥라렌) 186점, 5위 샤를 르클레르(Charles Leclerc, 페라리) 167점입니다. 직전 스페인 GP는 안토넬리가 우승했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.motorsport.com/f1/news/f1-azerbaijan-gp-is-on-a-saturday-in-2026-why/10855369/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 하자르 부상 복귀 전망 (드라이버 순위 언급 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-4.motorsport.com/images/amp/0arEqMy2/s6/isack-hadjar-red-bull-racing.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>레드불 “하자르 회복에 아무 문제 없다” — 바쿠 출전은 레이스 주 수·목요일에 결정</h3>
+          <p class="orig">Red Bull insists “there is nothing wrong” with Isack Hadjar's recovery</p>
+          <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.15</span></div>
+          <p class="sum">손목 부상으로 세 경기 연속 빠진 이자크 하자르(Isack Hadjar)에 대해 레드불(Red Bull) 대표 로랑 메키스(Laurent Mekies)가 “회복에 이상은 없다”고 밝혔습니다. 일주일 안에 몸 상태를 보고 시뮬레이터 테스트를 거쳐 바쿠 출전을 정합니다. 대신 뛴 리암 로슨(Liam Lawson)은 세 경기에서 14점을 따 드라이버 순위 9위이고, 하자르와는 12점 차입니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+              <p>하자르는 여름 훈련 중 손목을 다쳤고, 그동안 레드불에서는 로슨이, 레이싱 불스(Racing Bulls)에서는 리저브 드라이버 유키 츠노다(Yuki Tsunoda)가 자리를 메웠습니다. 결장이 길어지자 회복이 잘 안 되는 것 아니냐는 말이 나왔지만, 메키스는 “이런 부상에서는 평범한 회복 기간”이라며 서두르지 않겠다고 했습니다.</p>
+              <p>메키스는 “일주일 안에 상태를 확인하고, 실제 주행과 비슷한 조건을 주기 위해 시뮬레이터에 태워 볼 것”이라고 말했습니다. 이어 “본인이 100%에 가깝다고 느끼면 바로 간다. 회복이 덜 됐다고 느끼면 회복을 우선하는 원칙을 지킬 것”이라고 했습니다. 최종 결정은 바쿠 주간의 수요일이나 목요일쯤 내려질 전망입니다.</p>
+              <p>이런 신중한 태도에는 MotoGP 챔피언 마르크 마르케스(Marc Márquez)의 사례가 영향을 줬습니다. 마르케스는 2020년 위팔뼈가 부러진 뒤 너무 빨리 복귀했다가 결국 시즌 전체를 날렸습니다. 하자르도 마르케스와 이야기를 나눈 뒤 회복을 먼저 챙기기로 했다고 합니다.</p>
+              <p>난처한 쪽은 로슨입니다. 하자르의 복귀 여부에 따라 레드불 차를 탈 수도, 레이싱 불스 차로 돌아갈 수도 있어 두 차를 모두 준비해야 합니다. 로슨은 “이제 돌아가면 꽤 힘들 것 같다. 운전 느낌이 완전히 다르다”고 했습니다. 로슨은 레드불에서 세 경기 동안 14점을 모아 드라이버 순위 9위에 올랐고, 하자르와는 12점 차입니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.motorsport.com/f1/news/red-bull-on-hadjars-injury-there-is-nothing-wrong-with-isacks-recovery/10856017/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+  </section>
+
+  <!-- ============================ 🔧 기술/규정 ============================ -->
+  <section id="tech" data-cat="tech">
+    <div class="sec-head"><h2>🔧 기술/규정</h2><span class="count">3건 · 스포일러 2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F09%2F14114432%2Flewis-hamilton-charles-leclerc-ferrari-f1-2026-spanish-grand-prix.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>페라리, 이번 주 이몰라에서 피렐리 2027 타이어 테스트 — 최종전 후보지 점검도 겸해</h3>
+        <p class="orig">Bonus Ferrari running as Hamilton, Leclerc Imola test plan emerges</p>
+        <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.09.14</span></div>
+        <p class="sum">루이스 해밀턴과 샤를 르클레르가 <b>9월 15~16일</b> 이몰라에서 피렐리의 2027년 타이어 개발 테스트를 합니다. 페라리는 따로 주니어·리저브 드라이버들로 TPC 테스트도 진행합니다. 이몰라는 중동 라운드가 취소될 경우 시즌 최종전 대체 후보로 거론되는 곳이기도 합니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>피렐리는 매년 팀들의 도움을 받아 다음 시즌 타이어를 개발합니다. 이번에는 페라리 차례로, 해밀턴과 르클레르가 이몰라에서 이틀 동안 2027년용 시제품 타이어를 시험합니다.</p>
+            <p>페라리는 별도로 TPC(2년 이상 지난 구형 차로 하는 테스트)도 엽니다. 주니어 드라이버 디노 베가노비치(Dino Beganovic)와 하파엘 카마라(Rafael Camara), 리저브 안토니오 조비나치(Antonio Giovinazzi), 그리고 샤를의 동생 아르튀르 르클레르(Arthur Leclerc)가 번갈아 탑니다.</p>
+            <p>이몰라는 올해 시즌 마지막 레이스를 치를 후보지로도 이름이 오르내립니다. F1 회장 스테파노 도메니칼리(Stefano Domenicali)는 카타르와 아부다비 경기가 열리지 못하면 “시즌 마지막은 유럽에서 치를 것”이라며 “이몰라는 후보에 들어 있지만 확정은 아니다”라고 말한 바 있습니다. 결정은 9월 중순쯤 윤곽이 나올 것으로 예상됐습니다.</p>
+            <p>한편 2027년 잠정 캘린더도 이번 주 나올 것으로 보이며, 바레인·사우디아라비아·카타르·아부다비 중동 4개 라운드가 모두 포함될 전망입니다. 페라리로서는 이번 테스트로 의무 타이어 개발도 하고, 최종전 후보지의 상태도 미리 살펴보는 셈입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.planetf1.com/news/lewis-hamilton-charles-leclerc-ferrari-imola-2026-test" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 혼다 F1 엔진 책임자 교체 (스페인 GP 결과·컨스트럭터 순위 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1435911_HiRes.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>혼다, F1 엔진 개발 책임자 교체 — 10월 1일부터 후카오 요이치로 체제</h3>
+          <p class="orig">Honda replaces its F1 engine development chief</p>
+          <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.14</span></div>
+          <p class="sum">혼다(Honda)가 2026년 파워유닛 개발을 이끈 가쿠다 데쓰시(Tetsushi Kakuda)를 물러나게 하고 <b>10월 1일</b>부터 후카오 요이치로(Yoichiro Fukao)에게 맡깁니다. 혼다는 ‘계획된 세대교체’라고 설명했지만, 애스턴 마틴(Aston Martin)은 컨스트럭터 순위에서 캐딜락(Cadillac) 바로 위, 뒤에서 두 번째이고 <b>3점</b>에 그치고 있습니다. 스페인 GP에서는 스트롤이 초반 리타이어, 알론소가 두 바퀴 뒤진 17위였습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+              <p>혼다는 이번 교체를 “계획된 전환”이라고 밝혔습니다. “2026년 새 규정이 도입됐고 2027년부터 추가 규정 변경이 예상되는 만큼, 새 체제로 일찍 옮겨 튼튼한 개발 조직을 만들고 경쟁력 있는 파워유닛(PU, 엔진과 전기 모터·배터리를 합친 동력 장치)을 내놓겠다”는 설명입니다. 두 사람 모두 F1과 MotoGP에서 20년 넘게 일한 혼다 모터스포츠 베테랑입니다.</p>
+              <p>하지만 배경에는 애스턴 마틴과의 부진이 있습니다. 애스턴 마틴은 신생 팀 캐딜락만 앞선 컨스트럭터 순위 뒤에서 두 번째로, 3점밖에 따지 못했습니다. 여름 휴식기 뒤 섀시와 파워유닛 모두 큰 업그레이드를 넣었지만 효과는 크지 않았고, 드라이버빌리티(운전자가 원하는 대로 출력이 나오는 정도)가 여전히 큰 문제로 꼽힙니다.</p>
+              <p>스페인 GP에서도 고전은 이어졌습니다. 랜스 스트롤(Lance Stroll)은 일찍 리타이어했고, 페르난도 알론소(Fernando Alonso)는 두 바퀴 뒤진 17위로 들어왔습니다. 알론소는 “오늘 엔진이 정말 나빴다. 부스트 제어가 어려웠다”고 말했습니다. 다만 초반에 입은 차체 손상도 영향을 줬습니다.</p>
+              <p>FIA 회장 모하메드 벤 술라옘(Mohammed Ben Sulayem)은 애스턴 마틴 구단주 로런스 스트롤(Lawrence Stroll)을 만나 혼다를 돕는 개발 특례 등 대책을 논의했습니다. 애스턴 마틴의 트랙 총책임자 마이크 크랙(Mike Krack)은 “전부터 문제였던 몇 가지를 해결했고, 거기서부터 한 단계씩 나아갈 것”이라며 “섀시 쪽은 파워유닛보다 빨리 발전시킬 수 있다”고 현실적인 기대를 밝혔습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.the-race.com/formula-1/honda-makes-f1-project-leadership-change/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 윌리엄스 바쿠 대형 업그레이드 (스페인 GP 결과·컨스트럭터 순위 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/races/pspa26/sun/wil/00-master/albon12.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>윌리엄스, 바쿠에 사실상 ‘B-스펙’ 투입 — 새 섀시까지 바꾸는 시즌 최대 업그레이드</h3>
+          <p class="orig">Williams prepares B-spec car for Baku</p>
+          <div class="meta"><span class="src">Grandprix.com</span><span>·</span><span>2026.09.15</span></div>
+          <p class="sum">윌리엄스(Williams)가 아제르바이잔 GP에 새 섀시를 포함한 시즌 최대 업그레이드를 가져갑니다. 제임스 보울스(James Vowles) 대표는 이를 사실상 <b>B-스펙</b> 차라고 불렀습니다. 스페인 GP 뒤 윌리엄스는 <b>11점, 컨스트럭터 9위</b>로 애스턴 마틴과 캐딜락만 앞서 있고, 그 경기에서 사인츠는 리타이어, 알본은 15위였습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+              <p>보울스는 이번 패키지를 “사실상 B-스펙”이라고 설명한 바 있습니다. B-스펙은 시즌 중에 차의 뼈대부터 크게 바꾼 개량형을 뜻합니다. 윌리엄스는 새 섀시와 그에 맞춰 필요한 모든 부품을 함께 바꿉니다.</p>
+              <p>시점이 급한 이유는 성적입니다. 스페인 GP에서 카를로스 사인츠는 리타이어했고 알렉스 알본(Alex Albon)은 15위였습니다. 그 결과 윌리엄스는 11점으로 컨스트럭터 9위에 머물러, 애스턴 마틴과 캐딜락만 앞서고 있습니다. 기사는 “11점과 9위는 윌리엄스가 바쿠로 가져가려던 숫자가 아니다”라고 적었습니다.</p>
+              <p>후안 파블로 몬토야(Juan Pablo Montoya)는 바쿠 패키지가 “엄청난 도약”을 가져올 거라고 기대했지만, 기사는 낙관보다 실제 랩타임이 더 많은 걸 말해 줄 거라고 짚었습니다.</p>
+              <p>보울스에게 이번 업그레이드는 조직 시험대이기도 합니다. 시즌 도중에 큰 패키지를 설계·제작·투입하면서 품질까지 지킬 수 있는지 확인하려는 것입니다. 기사는 “빠른 새 차면 좋겠지만, 제대로 조립돼 제때 도착하기만 해도 보울스가 물려받은 조직에 비하면 발전”이라고 평가했습니다. 첫 판단은 바쿠 연습 주행에서 나옵니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.grandprix.com/news/williams-prepares-b-spec-car-for-baku.html" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+  </section>
+
+  <!-- ============================ ⚖️ FIA/거버넌스 ============================ -->
+  <section id="fia" data-cat="fia">
+    <div class="sec-head"><h2>⚖️ FIA/거버넌스</h2><span class="count">1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F09%2F13104831%2Ffernando-alonso-sunglasses-madring-aston-martin-cap-1.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>알론소, FIA 회장에 “2031년까지 못 기다린다” — 지금 규정부터 고쳐야</h3>
+        <p class="orig">Fernando Alonso responds to FIA president with blunt F1 warning</p>
+        <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.09.15</span></div>
+        <p class="sum">벤 술라옘 FIA 회장이 “알론소를 떠나보낼 수 없다”며 대화를 원한다고 하자, 페르난도 알론소는 F1이 제대로 된 스포츠가 되려면 <b>2031년이 아니라 지금</b> 규정을 고쳐야 한다고 답했습니다. 알론소는 2026년 이후 거취를 아직 정하지 않았습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>알론소는 올해 도입된 엔진 규정에 계속 불만을 드러내 왔습니다. 2026년 파워유닛은 내연기관과 전기 에너지 비중이 대략 반반입니다. 알론소는 영국 GP 스프린트 뒤부터 “지금의 에너지 관리 시스템 때문에 추월에서 드라이버 실력이 사라졌다”고 비판했습니다.</p>
+            <p>핵심은 드라이버의 역할입니다. 알론소는 지금 규정이 드라이버 재능보다 배터리 충전 상태(SOC)를 더 중요하게 만든다고 봅니다. 그는 마드링 12번 코너를 예로 들며, 강하게 브레이크를 밟고 정확하게 돌아야 하는 코너에서는 전기 배분 전략이 아니라 기술이 차이를 만들어야 한다고 말했습니다.</p>
+            <p>벤 술라옘은 앞서 “알론소가 떠나게 둘 수 없다”고 했고, 전기 비중을 크게 줄인 V8 엔진을 2030년이나 2031년에 다시 들여오겠다고 약속했습니다. 알론소는 그 시점이 너무 늦다는 입장입니다.</p>
+            <p>다만 알론소는 아직 벤 술라옘과 직접 이야기하지는 않았습니다. 대신 F1 CEO 스테파노 도메니칼리와는 자주 대화한다며, 규정 개선에 경험을 보탤 의향이 있다고 했습니다. 그는 드라이버의 용기와 능력이 결과를 정해야 하는데 지금은 에너지 관리 수치가 그 자리를 차지했다고 말했습니다. 애스턴 마틴의 새 엔진 파트너 혼다가 기술 측정치에서 크게 뒤처진 점도 그의 고민을 키우고 있습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.planetf1.com/news/fernando-alonso-fia-president-f1-2027" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============================ 🔄 이적/계약 ============================ -->
+  <section id="transfer" data-cat="transfer">
+    <div class="sec-head"><h2>🔄 이적/계약</h2><span class="count">2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/A2617903_large-1.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>아우디 1호 주니어 슬레이터, 2027년 F2 챔피언 팀 인빅타로</h3>
+        <p class="orig">Audi's shrewd choice of F2 team for its first F1 junior</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.15</span></div>
+        <p class="sum">아우디 F1 드라이버 육성 프로그램의 첫 주니어인 프레디 슬레이터가 2027년 F2에서 <b>인빅타 레이싱(Invicta Racing)</b>과 함께합니다. 인빅타는 최근 2년 연속 드라이버·팀 타이틀을 모두 가져간 팀이라, 아우디가 영리한 선택을 했다는 평가입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>슬레이터는 올해 F3 데뷔 시즌을 챔피언 우고 우고추쿠(Ugo Ugochukwu)에게 14점 뒤진 2위로 마쳤습니다. 몬차에서 기계 고장을 겪었고 마드리드 최종전도 순탄치 않았습니다. 그래도 앞서 이탈리아 F4와 포뮬러 리저널 유럽 챔피언십을 연달아 제패하는 등 잠재력은 충분히 보여줬습니다.</p>
+            <p>여러 F1 팀이 일찍부터 주니어 계약을 제안했지만, 슬레이터 측은 막스 페르스타펜이나 랜도 노리스처럼 서두르지 않았습니다. 그러다 2026년 초 아우디의 제안을 받아들여 이 제조사 F1 육성 프로그램의 첫 드라이버가 됐습니다.</p>
+            <p>인빅타는 가브리엘 보르톨레토(Gabriel Bortoleto)와 레오나르도 포르나롤리(Leonardo Fornaroli)로 2년 연속 드라이버 챔피언을 배출했습니다. 두 사람 모두 트라이던트(Trident)의 F3 팀에서 인빅타 F2로 올라왔는데, 슬레이터도 같은 길을 밟습니다. 인빅타는 올해도 페라리 주니어 하파엘 카마라로 3연패에 도전 중이며, 카마라는 선두 니콜라 촐로프(Nikola Tsolov)에게 7점 뒤져 있습니다.</p>
+            <p>아우디 드라이버 육성 책임자 앨런 맥니시(Allan McNish)는 “인빅타는 최근 몇 년 훌륭한 성적을 냈고, 프레디에게 이상적인 환경”이라고 했습니다. 슬레이터는 크게 바뀌는 2027년형 F2 차로 데뷔하게 되며, 몬차 공개 행사에서 “정말 멋지다. 빨리 타 보고 싶다”고 말했습니다. 시즌 뒤 아부다비 테스트에서 처음 탈 예정이지만, F1 최종전 장소 결정에 따라 일정이 바뀔 수 있습니다. 그는 이미 슈퍼라이선스(F1 출전 자격증) 포인트도 충분히 모았습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/audi-f1-junior-freddie-slater-joins-f2-champion-team-2027/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/cbb4281ee0cc7fa98f404f56f97d28a33e2ba30c.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>호너의 F1 복귀 길 열리나 — 르노의 알핀 지분 매각 거부권 3년 만료</h3>
+        <p class="orig">Christian Horner F1 return latest as crucial deadline triggers major opportunity</p>
+        <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.09.15</span></div>
+        <p class="sum">투자사 오트로(Otro)가 가진 알핀 지분 24%에 대해 르노(Renault)가 갖고 있던 <b>3년간의 매수자 거부권</b>이 9월 7일 끝났습니다. 팀 지분을 원하는 크리스천 호너 전 레드불 대표에게 기회가 생긴 셈이지만, 약 7억 2천만 달러로 알려진 호가가 걸림돌입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>호너는 2025년 7월 레드불 팀 대표에서 물러났습니다. 레드불에서 드라이버 타이틀 8번, 컨스트럭터 타이틀 6번을 이끈 인물입니다. 그는 F1에 돌아온다면 단순한 팀 대표가 아니라 <b>의미 있는 지분</b>을 함께 갖고 싶다고 여러 번 말해 왔습니다. 메르세데스에서 지분을 보유한 토토 볼프(Toto Wolff)와 비슷한 구조입니다.</p>
+            <p>영국 기업등기소(Companies House)에 제출된 알핀 정관에 따르면, 르노는 오트로 지분을 누구에게 팔지에 대해 3년 동안 거부권을 가졌습니다. 이 기간이 9월 7일 끝나면서 호너가 지분 인수에 나설 수 있는 길이 열렸습니다.</p>
+            <p>문제는 돈입니다. 오트로는 2023년 2억 달러에 지분을 샀고, 당시 팀 가치는 9억 달러였습니다. 이후 F1 인기가 커지면서 오트로는 약 <b>7억 2천만 달러</b>를 원하는 것으로 알려졌습니다. 투자금의 3.6배이고, 알핀 가치를 약 30억 달러로 본 셈입니다. 메르세데스와 볼프도 올해 초 이 가격 때문에 협상에서 물러났습니다.</p>
+            <p>호너는 현재 런던 사모펀드 오클리 캐피털(Oakley Capital)에서 스포츠 투자 자문을 하고 있고, 10월 22일 자서전 『Drive』 출간과 함께 10월 18일부터 영국 5개 도시 강연 투어에 나섭니다. 프레드 바쇠르(Fred Vasseur)의 거취가 흔들리는 페라리와도 이름이 엮였지만, 통제권과 지분을 원하는 호너의 성향상 가능성은 낮다는 분석입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.gpfans.com/en/f1-news/1090291/christian-horner-f1-return-major-opportunity-triggered-alpine-deadline-otro-stake/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============================ 👤 드라이버/팀 ============================ -->
+  <section id="people" data-cat="people">
+    <div class="sec-head"><h2>👤 드라이버/팀</h2><span class="count">5건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/races/pspa26/sun/red/00-master/verstappen34.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>페르스타펜 “팀을 옮기느니 은퇴하는 쪽에 더 가까웠다”</h3>
+        <p class="orig">Verstappen says he seriously considered quitting F1</p>
+        <div class="meta"><span class="src">Grandprix.com</span><span>·</span><span>2026.09.14</span></div>
+        <p class="sum">레드불과 2030년까지 계약을 연장한 막스 페르스타펜이 독일 빌트 암 존탁(Bild am Sonntag) 인터뷰에서 “진지하게 그만둘 생각을 했다”고 털어놨습니다. 다른 팀으로 옮기는 것보다 <b>F1을 떠나는 쪽에 더 가까웠다</b>는 것입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>페르스타펜의 레드불 계약은 원래 2028년까지였는데 최근 2030년까지로 늘어났습니다. 협상 과정에서 다른 팀의 제안도 들었지만, 그는 팀을 옮기는 것보다 아예 레이싱을 떠나는 쪽에 더 끌렸다고 합니다. “진지하게 그만둘 생각을 했다. 이적보다 은퇴에 더 가까웠다.”</p>
+            <p>레드불의 올해 차 RB22가 새 규정에서 고전하는 가운데 나온 말입니다. 페르스타펜은 레드불 차에 갑자기 자신감이 생겨서 남은 게 아니라고 분명히 했습니다. 계속 이기면 당연히 더 즐겁겠지만, 팀이 좋은 방향으로 나아가고 있다고 봤다는 설명입니다. 그리고 “결국 나는 레이싱을 사랑한다”고 했습니다.</p>
+            <p>이미 월드 챔피언을 네 번 차지한 그는 더 증명할 것도, 쫓을 기록도 없다고 말합니다. 앞으로 F1에 남을지는 오직 즐거움이 있느냐에 달렸고, 40대 중반까지 달리는 페르난도 알론소의 길을 따를 생각은 없다고 했습니다.</p>
+            <p>2030년 계약이 곧 은퇴 시점이라는 뜻도 아닙니다. 기사는 결국 공이 레드불에 넘어갔다고 봅니다. 페르스타펜이 ‘떠나는 것보다 남는 게 낫다’고 느낀 조건, 즉 일하는 즐거움을 팀이 계속 지켜줘야 한다는 것입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.grandprix.com/news/verstappen-says-he-seriously-considered-quitting-f1.html" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/09/racefansdotnet-21-09-14-16-02-55-1.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>노리스, 맥라렌 WEC 하이퍼카 MCL-HY 첫 본격 테스트 — 포르티망에서</h3>
+        <p class="orig">Pictures: Norris tests McLaren's MCL-HY WEC hypercar at Algarve</p>
+        <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.09.14</span></div>
+        <p class="sum">현 F1 챔피언 랜도 노리스가 포르투갈 알가르브 서킷(포르티망)에서 맥라렌의 새 WEC 하이퍼카 <b>MCL-HY</b>를 처음 제대로 시험 주행했습니다. 맥라렌은 2027년 세계 내구 선수권(WEC) 최상위 클래스에 나갑니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>MCL-HY는 맥라렌이 WEC(24시간 르망 등 장거리 경주 시리즈) 최상위 클래스인 하이퍼카 부문에 내보낼 새 차입니다. 노리스는 앞서 7월 굿우드 페스티벌 오브 스피드에서 짧게 시범 주행을 했고, 이번에 처음으로 본격적인 테스트에 참여했습니다.</p>
+            <p>노리스는 “팀이 내년 준비로 바쁜 와중에 새로운 걸 즐겁게 시도할 기회를 줘서 좋았다”며 “몇 년 동안 F1 차 말고는 제대로 테스트해 본 적이 없다. 그것도 맥라렌 가족 안에서 다른 차를 몰아볼 수 있어서 정말 특별했다”고 말했습니다.</p>
+            <p>맥라렌 하이퍼카 팀 대표 제임스 바클레이(James Barclay)는 “노리스가 매우 빨리 적응했고, 팀에 자연스럽게 녹아들었으며, 차 개발에 도움이 되는 값진 피드백을 줬다”고 평가했습니다. 노리스는 그동안 맥라렌이 르망에 나가니 “언젠가 나가 보고 싶다”고 여러 번 말해 왔고, 이번 테스트로 르망 데뷔 가능성에 대한 관심도 커지고 있습니다.</p>
+            <p>테스트 장소인 알가르브 서킷은 2021년 이후 처음으로 내년 F1 캘린더에 돌아올 예정이라 더 눈길을 끌었습니다. 테스트는 비공개로 진행됐습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.racefans.net/2026/09/14/pictures-norris-tests-mclarens-mcl-hy-wec-hypercar-at-algarve/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/races/pita26/sun/mer/00-master/vesti1.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>메르세데스 리저브 베스티 “이 자리는 정말, 정말, 정말 잔인하다”</h3>
+        <p class="orig">Vesti calls Mercedes reserve life 'mega brutal'</p>
+        <div class="meta"><span class="src">Grandprix.com</span><span>·</span><span>2026.09.15</span></div>
+        <p class="sum">메르세데스 리저브 드라이버 프레데릭 베스티(Frederik Vesti)가 덴마크 매체 엑스트라 블라데트(Ekstra Bladet) 인터뷰에서 리저브 생활의 괴로움을 털어놨습니다. 시뮬레이터·테스트·현장 업무로 팀에 기여하지만, 정작 자신은 달리지 못한 채 동료들을 돕는 역할이라는 것입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>24세 덴마크 드라이버 베스티는 시뮬레이터 작업, 테스트, 서킷 현장 지원까지 메르세데스 안에서 꽤 많은 일을 맡고 있습니다. 하지만 조지 러셀과 키미 안토넬리가 레이스하는 모습을 옆에서 지켜보기만 하는 건 힘들다고 합니다. 그는 “그냥 정말, 정말, 정말 잔인하다(mega, mega, mega brutal)”고 표현했습니다.</p>
+            <p>그의 일은 러셀과 안토넬리가 월드 챔피언을 노릴 수 있게 돕는 것입니다. 그런데 자신도 같은 목표를 갖고 있다는 점이 모순입니다. 베스티는 웃으며 “원칙적으로는 F1 현장에 있는 게 싫다”고 했습니다. 22대의 레이스카 옆에 서 있으면서 정작 달릴 수 없는 상황이 정신적으로 부담이 된다는 뜻입니다.</p>
+            <p>그는 앞으로 기회에 대해 메르세데스 트랙 엔지니어링 디렉터 앤드루 쇼블린(Andrew Shovlin)과 자주 이야기한다고 밝혔습니다. 베스티는 2027년까지 리저브 역할을 이어가고, 2028년쯤 레이스 시트가 열리기를 바라고 있습니다.</p>
+            <p>기사는 그의 처지를 이렇게 정리합니다. “꿈은 F1이다. 어려운 점은, 리저브 드라이버의 일이 다른 두 사람을 먼저 그곳에 도착하게 돕는 것이라는 점이다.”</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.grandprix.com/news/vesti-calls-mercedes-reserve-life-mega-brutal.html" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Andrea-Manni-cousin-to-Charles-Leclerc.png?v=1789480953&width=1200&height=630&quality=75&crop=1194%2C627%2C0%2C108" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>르클레르의 13세 사촌 안드레아 마니, 가슬리·하자르 소속사와 계약</h3>
+        <p class="orig">Charles Leclerc cousin takes major step en route to F1</p>
+        <div class="meta"><span class="src">RacingNews365</span><span>·</span><span>2026.09.15</span></div>
+        <p class="sum">샤를 르클레르의 13세 사촌 안드레아 마니(Andrea Manni)가 피에르 가슬리(Pierre Gasly)와 이자크 하자르가 소속된 매니지먼트사 <b>더 그리드 에이전시(The Grid Agency)</b>와 계약했습니다. 카트에서 뛰어난 성적을 낸 그는 이제 싱글시터(바퀴가 드러난 1인승 경주차)로 올라갑니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>마니는 2020년부터 카트를 탔고, OKJ와 OK 클래스(국제 카트 대회의 주니어·시니어 등급)에서 경쟁하며 WSK 슈퍼 마스터 시리즈에서 톱10에 들기도 했습니다.</p>
+            <p>지금까지 79번 레이스에 나가 트로피 18개, 포디움 15번, 폴 포지션 8번, 우승 8번을 기록했습니다.</p>
+            <p>더 그리드 에이전시의 제레미 사티(Jérémy Satis)는 “안드레아는 시즌마다 자기 세대 최고의 드라이버들과 대등하게 싸울 수 있다는 걸 보여줬다”며, 꾸준함과 차근차근 성장하는 태도를 높이 샀습니다. 소속사는 싱글시터 전환을 신중하게 준비하겠다고 했고, 2027년 계획은 몇 주 안에 발표할 예정입니다.</p>
+            <p>마니는 “아직 배울 게 많다. 하지만 내가 무엇을 향해 가는지는 정확히 안다”고 말했습니다. 사촌 형이 걸어간 F1의 길을 따라가겠다는 첫걸음을 공식적으로 내디딘 셈입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://racingnews365.com/charles-leclerc-cousin-takes-major-step-en-route-to-f1" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/94da216bd9a67c4353dd7af888846d61a728f745.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>전 자우버 주니어 크리스천 호, 레이싱 멈추고 싱가포르 군 복무로</h3>
+        <p class="orig">Former Sauber star stops racing to join the army</p>
+        <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.09.14</span></div>
+        <p class="sum">올해 로딘 모터스포트(Rodin Motorsport)에서 F3를 뛴 19세 싱가포르 드라이버 크리스천 호(Christian Ho)가 마드리드 최종전에 나가지 않고 <b>2년간의 의무 군 복무</b>에 들어갑니다. 레이싱 복귀는 불투명합니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>호는 F3 마드리드 최종전을 건너뛰었고, 그 자리는 이탈리아의 니콜로 마카냐니(Niccolò Maccagnani)가 채웠습니다. 올 시즌 그의 유일한 득점은 헝가리 피처 레이스 9위였습니다. 5~6월 A레벨 시험(영국식 대학 입학 시험)과 겹친 데다, 곧 입대해야 한다는 사실도 시즌에 영향을 줬습니다.</p>
+            <p>그는 인스타그램에 “원하던 발표는 아니지만, 싱가포르 의무 복무 입대를 준비하기 위해 마드리드 마지막 라운드에 나가지 않기로 했다”고 썼습니다. 올해 시즌이 “A레벨 시험과 겹친 탓도 있어 아쉬웠다”고도 했습니다.</p>
+            <p>앞으로에 대해서는 “복무 중에는 아마 레이싱을 못 할 것”이라며 “복무를 마치면 대학에 갈 것 같다”고 밝혔습니다. 다만 다른 형태로 모터스포츠와 인연을 이어가고 싶다고 했습니다. 그는 “이 여정에 함께한 모두에게 감사하다. 많은 인생 교훈을 얻었고 정말 즐거웠다”고 인사했습니다.</p>
+            <p>호는 2019년 자우버 카팅(Sauber Karting)에 들어가 아우디 F1 프로그램으로 이어지는 육성 경로에 있었지만 2021년에 떠났습니다. 이후 2023년 스페인 F4 준우승, 2024년 유로컵-3 우승을 거뒀습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.gpfans.com/en/f1-news/1090266/christian-ho-sauber-f3-madrid-national-service-singapore/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============================ 📰 기타 ============================ -->
+  <section id="etc" data-cat="etc">
+    <div class="sec-head"><h2>📰 기타</h2><span class="count">5건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-9.motorsport.com/images/amp/2dEoVNDY/s6/max-verstappen-red-bull-racing.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>페르스타펜 대 100명 — ‘Max vs 100’ 카트 챌린지 참가자 명단 공개</h3>
+        <p class="orig">Who is racing Max Verstappen in "Max vs 100"? Entry list revealed</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.14</span></div>
+        <p class="sum">막스 페르스타펜이 <b>9월 16일</b>(현지 시각) 실버스톤의 특설 카트 코스에서 100명과 30랩 레이스를 벌입니다. 맨 뒤에서 출발해 모두를 추월하는 게 목표이고, 참가자들은 힘을 합쳐 그를 막아야 합니다. 디즈니+로 생중계됩니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>공개된 명단에는 확정 참가자 84명이 올랐습니다. 프로 스포츠 선수, 콘텐츠 크리에이터, 스트리머, 유튜버, 모터스포츠 인사 등 배경이 다양합니다.</p>
+            <p>눈에 띄는 이름으로는 프로 스케이트보더 레티시아 부포니(Leticia Bufoni), 10종 경기 세계 챔피언 레오 노이게바우어(Leo Neugebauer), 클리프 다이빙 선수 몰리 칼슨(Molly Carlson), 모터사이클 레이서 빌리 볼트(Billy Bolt)가 있습니다. 자동차 미디어 CEO ‘슈퍼카 블론디(Supercar Blondie)’, F1 기자 네이트 손더스(Nate Saunders)도 나섭니다.</p>
+            <p>e스포츠 선수 iiTzTimmy와 조나탄 아마랄(Jonathan Amaral), 울트라 마라토너 아르다 사아트치(Arda Saatçi), 파쿠르 선수 샤를 푸자드(Charles Poujade), 인기 스트리머 TheGrefg·ExtraEmily·TechnoGamerz 등도 포함됐습니다.</p>
+            <p>페르스타펜은 “그냥 가서 즐기려고 한다. 어떻게 될지 보자. 사람이 정말 많다. 맨 뒤에서 출발하니 쉽지 않겠지만 다 따라잡았으면 좋겠다”고 말했습니다. 100명이 전략적으로 협력해 30바퀴 동안 한 사람을 막아내는, 레이싱과 인터넷 문화를 섞은 이벤트입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/who-is-racing-max-verstappen-in-max-vs-100-entry-list-revealed/10855944/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-9.motorsport.com/images/amp/0JBaqdQ0/s6/sebastian-vettel-2.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>레이스 오브 챔피언스, 첫 뉴질랜드 대회에 페텔·보타스 출전</h3>
+        <p class="orig">F1 world champion among drivers for Race Of Champions’ first New Zealand event</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.15</span></div>
+        <p class="sum">여러 종목 스타 드라이버들이 같은 차로 겨루는 이벤트 <b>레이스 오브 챔피언스(ROC)</b>가 2027년 1월 9~10일 뉴질랜드 웰링턴에서 처음 열립니다. 네 번의 F1 챔피언 세바스찬 페텔(Sebastian Vettel)과 캐딜락의 발테리 보타스(Valtteri Bottas) 등 4명이 먼저 확정됐습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>대회 장소는 웰링턴의 Hnry 스타디움입니다. 경기장 안에 코스를 만들고, 드라이버들이 같은 조건의 차로 1대1 대결을 펼치는 방식입니다.</p>
+            <p>페텔은 2007년부터 거의 모든 ROC에 나왔습니다. 미하엘 슈마허(Michael Schumacher)와 함께 2007~2012년 네이션스컵(국가 대항전)을 6년 연속 우승했고, 2017년에는 파스칼 베어라인(Pascal Wehrlein)과 다시 우승했습니다. 2015년 런던 대회에서는 개인전 우승도 했습니다. 그는 “예전에 뉴질랜드를 방문했을 때 아름다움에 반했다”며, 농담 삼아 ROC를 뉴질랜드로 가져와 달라고 했었다고 밝혔습니다.</p>
+            <p>그랑프리 10승의 보타스는 세 번째 ROC 출전입니다. 여기에 2025년 호주 대회로 ROC에 데뷔한 2025 수퍼카(Supercars, 호주 투어링카 시리즈) 챔피언 채즈 모스터트(Chaz Mostert), WRC(세계 랠리 선수권) 우승 경험이 있는 뉴질랜드 출신 헤이든 패던(Hayden Paddon)이 이름을 올렸습니다.</p>
+            <p>패던은 “뉴질랜드 모터스포츠 팬들이 F1, WRC, 서킷 레이싱 등 여러 종목 드라이버들이 같은 차로 싸우는 모습을 가까이서 볼 수 있는 일생에 한 번뿐인 기회”라고 말했습니다. 출전자는 앞으로 더 발표될 예정입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/f1-world-champion-among-drivers-for-race-of-champions-first-new-zealand-event/10856057/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/F1%20Academy/IMG_7811_TsF3xRwP.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>F1 아카데미 루키 테스트 — 15세 브라질 드라이버 빅토리아 파르푸스가 최고 기록</h3>
+        <p class="orig">Victoria Farfus sets the pace in F1 ACADEMY Rookie Test</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.09.15</span></div>
+        <p class="sum">여성 드라이버 육성 시리즈 F1 아카데미가 스페인 나바라 서킷에서 두 번째 루키 테스트를 열었습니다. 14개국 18명이 같은 조건의 차로 달렸고, 15세 브라질 드라이버 빅토리아 파르푸스(Victoria Farfus)가 <b>1분 46초 988</b>로 가장 빨랐습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>올해 루키 테스트는 규모가 커졌습니다. 참가자들은 먼저 영국 러프버러 대학교(Loughborough University)의 루키 트레이닝 캠프에서 체력·인지 능력 평가와 교육을 받았습니다. 이어 F1 아카데미 6개 팀의 시즌 중 테스트를 참관한 뒤 트랙 주행에 나섰습니다. 풀타임 시트나 와일드카드(특별 초청 출전) 기회를 얻기 위한 무대입니다.</p>
+            <p>맥라렌 OXAGON 리버리(차체 도색) 차를 탄 파르푸스는 오전 세션에서 1분 46초 988을 기록해 소피아 잔파리(Sofia Zanfari)와 로잔 덴 드레이버(Rosanne Den Drijver)를 0.3초 앞섰습니다. 오후에는 알렉시아 다니엘손(Alexia Danielsson)이 1분 47초 259로 엘라 라흐데마(Ella Lähdemaa)와 파르푸스를 0.2초 차로 제쳤습니다. 18명이 모두 1,447랩을 달렸습니다.</p>
+            <p>참가자 중에는 올해 와일드카드로 뛰었던 오텀 피셔(Autumn Fisher)와 조이 플로레스쿠(Zoe Florescu), 메르세데스 주니어 루나 플룩사 크로스(Luna Fluxa Cross)도 있었습니다.</p>
+            <p>첫 루키 테스트에서는 7명이 풀타임 시트를 얻었습니다. F1 아카데미 성과·인재 개발 매니저 케이티 덴버(Katie Denver)는 “루키들이 잠재력을 보여주고 다른 유망주들과 자신을 비교해 볼 수 있는 훌륭한 기회였다”고 평가했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/victoria-farfus-sets-the-pace-in-2026-f1-academy-rookie-test.6sNjU097nnpCHhFWTl9Lcu" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Norris/XPB_1436800_HiRes.jpg?v=1789307899&width=1800&height=945&quality=75&crop=5185%2C2723%2C0%2C369" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>맥라렌, 샤크닌자와 다년 파트너십 — F1·인디카·WEC·F1 아카데미 전부</h3>
+        <p class="orig">McLaren announce new 'high performance' multi-year partnership</p>
+        <div class="meta"><span class="src">RacingNews365</span><span>·</span><span>2026.09.15</span></div>
+        <p class="sum">맥라렌 레이싱이 가전 기업 <b>샤크닌자(SharkNinja)</b>와 다년 파트너십을 맺었습니다. F1, 애로우 맥라렌 인디카, 맥라렌 하이퍼카(WEC), 맥라렌 F1 아카데미까지 맥라렌의 네 레이싱 부문 전체에 걸친 계약입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>샤크닌자는 콘텐츠 제작, 팬 이벤트, 현장 홍보 등 여러 분야에서 맥라렌과 협업합니다. 일부 F1 레이스 주말에 직접 참여하고, 맥라렌 드라이버·홍보대사·팀원들과 함께 일할 기회도 얻습니다.</p>
+            <p>샤크닌자는 <b>맥라렌 레이싱 액셀러레이터 프로그램</b>에도 참여합니다. 맥라렌의 엔지니어링 역량과 혁신 방식을 활용해 앞으로 나올 소비자 제품 개발에 도움을 받는 프로그램입니다.</p>
+            <p>맥라렌 CEO 잭 브라운(Zak Brown)은 “혁신과 높은 성능은 우리가 하는 모든 일의 중심이고, 샤크닌자도 기술로 한계를 넓히려는 뜻을 함께한다”며 “여러 레이싱 시리즈에서 함께하며 전 세계 팬들에게 이 파트너십을 보여주고 싶다”고 말했습니다.</p>
+            <p>기사는 이번 계약이 맥라렌의 성능 중심 문화와 맞는 대형 파트너를 끌어들이는 전략의 연장선이라고 봤습니다. 빠른 경주차를 만드는 일과 수많은 사람이 쓰는 제품을 설계하는 일 모두 속도·정밀함·최적화가 핵심이라는 점을 내세웠습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://racingnews365.com/mclaren-announce-new-high-performance-multi-year-partnership" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn.racingnews365.com/Senna-Lotus-97T.jpg?v=1789458788&width=1800&height=945&quality=75&crop=3543%2C1861%2C0%2C250" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>세나의 로터스 97T, 단 10대 실물 크기 복제차로 부활</h3>
+        <p class="orig">Legendary Ayrton Senna F1 car set for 'extra mile' revival</p>
+        <div class="meta"><span class="src">RacingNews365</span><span>·</span><span>2026.09.15</span></div>
+        <p class="sum">아일톤 세나(Ayrton Senna)와 엘리오 데 안젤리스(Elio De Angelis)가 1985년에 몬 <b>로터스 97T</b>가 딱 10대의 실물 크기 복제차로 다시 만들어집니다. 메멘토 익스클루시브(Memento Exclusives)가 클래식 팀 로터스(Classic Team Lotus)와 함께 진행합니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>로터스 97T는 창업자 콜린 채프먼(Colin Chapman)이 세상을 떠난 뒤 팀 로터스가 다시 경쟁력을 찾은 차입니다. 기술 이사 제라르 뒤카루주(Gérard Ducarouge)가 설계했고, 검정·금색의 존 플레이어(John Player) 리버리로 유명합니다. 16경기 시즌에서 3승과 폴 포지션 7번을 거뒀습니다.</p>
+            <p>세나는 폭우 속 포르투갈 GP에서 1분 넘는 차이로 첫 우승을 거뒀고, 벨기에에서도 이겼습니다. 데 안젤리스는 이몰라에서 우승했습니다.</p>
+            <p>복제차는 1985년 원본과 같은 재료와 방식으로 만듭니다. 클래식 팀 로터스는 그동안 공개한 적 없는 손그림 설계도, 원래 제작 문서, 참고 자료를 제공했고, 원본 제작에 참여했던 사람들의 조언도 받습니다. 10대에는 각각 고유 섀시 번호판이 붙어 팀 로터스 기록에 정식 등록됩니다.</p>
+            <p>클래식 팀 로터스 대표 클라이브 채프먼(Clive Chapman)은 “97T가 불러일으키는 관심과 감정은 대단하다”며, 메멘토가 “한 걸음 더(extra mile) 나아갔다”고 칭찬했습니다. 메멘토는 2019년부터 F1 오센틱스(F1 Authentics)를 통해 현역 F1 팀의 전시용 차를 만들어 왔고, 역사적인 차 복제는 이번이 처음입니다. 클래식 팀 로터스는 노퍽 헤델(Hethel)의 옛 팀 공장에서 운영됩니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://racingnews365.com/legendary-ayrton-senna-f1-car-set-for-extra-mile-revival" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============================ 📖 용어 ============================ -->
+  <section id="glossary" data-cat="glossary">
+    <div class="sec-head"><h2>📖 오늘의 용어</h2><span class="count">13개</span></div>
+    <dl class="glossary">
+      <div class="term"><dt>호몰로게이션 <span>(Homologation)</span></dt><dd>FIA가 서킷이나 부품을 공식 경기에 써도 된다고 승인하는 절차입니다. 서킷 레이아웃을 바꾸면 다시 승인을 받아야 합니다.</dd></div>
+      <div class="term"><dt>시케인 <span>(Chicane)</span></dt><dd>직선 중간에 좌우로 짧게 꺾이게 만든 연속 코너입니다. 속도를 줄이게 하거나 추월 지점을 만들 때 씁니다.</dd></div>
+      <div class="term"><dt>슬립스트림 <span>(Slipstream)</span></dt><dd>앞차 바로 뒤에서 달리면 공기 저항이 줄어 속도가 더 나는 현상입니다. 긴 직선이나 뱅크 코너 뒤에서 추월에 쓰입니다.</dd></div>
+      <div class="term"><dt>피처 레이스 / 스프린트 레이스 <span>(Feature race / Sprint race)</span></dt><dd>F2·F3 주말의 긴 본 레이스와 짧은 레이스입니다. 스프린트는 보통 상위권 순서를 뒤집은 리버스 그리드로 출발합니다.</dd></div>
+      <div class="term"><dt>리버스 그리드 <span>(Reverse grid)</span></dt><dd>예선 상위권 순서를 거꾸로 세워 출발시키는 방식입니다. 빠른 차가 뒤에서 출발해 추월이 많이 나오게 합니다.</dd></div>
+      <div class="term"><dt>TPC <span>(Testing of Previous Cars)</span></dt><dd>2년 이상 지난 구형 F1 차로 하는 테스트입니다. 신차 테스트 제한을 받지 않아 주니어·리저브 드라이버 훈련에 자주 씁니다.</dd></div>
+      <div class="term"><dt>파워유닛 <span>(Power unit, PU)</span></dt><dd>내연기관, 터보, 전기 모터, 배터리를 합친 F1의 동력 장치입니다. 2026년 규정에서는 전기 비중이 크게 늘었습니다.</dd></div>
+      <div class="term"><dt>B-스펙 <span>(B-spec)</span></dt><dd>시즌 도중 차의 뼈대부터 크게 바꾼 개량형 차를 부르는 말입니다. 부품 몇 개를 바꾸는 일반 업그레이드보다 범위가 훨씬 넓습니다.</dd></div>
+      <div class="term"><dt>배터리 충전 상태 <span>(State of charge, SOC)</span></dt><dd>배터리에 전기 에너지가 얼마나 남았는지를 나타내는 값입니다. 2026년 차는 이 값을 어떻게 관리하느냐에 따라 순간 속도 차가 크게 납니다.</dd></div>
+      <div class="term"><dt>리저브 드라이버 <span>(Reserve driver)</span></dt><dd>정규 드라이버가 다치거나 못 나올 때 대신 뛰는 후보 드라이버입니다. 평소에는 시뮬레이터 작업과 테스트를 맡습니다.</dd></div>
+      <div class="term"><dt>슈퍼라이선스 <span>(Super Licence)</span></dt><dd>F1에 출전하려면 필요한 FIA 자격증입니다. 하위 카테고리 성적으로 포인트를 모아야 받을 수 있습니다.</dd></div>
+      <div class="term"><dt>WEC / 하이퍼카 <span>(World Endurance Championship / Hypercar)</span></dt><dd>르망 24시를 포함한 세계 내구 선수권과 그 최상위 차 등급입니다. 여러 드라이버가 번갈아 몰며 긴 시간을 달립니다.</dd></div>
+      <div class="term"><dt>리버리 <span>(Livery)</span></dt><dd>경주차 차체에 칠한 색과 무늬, 스폰서 로고 디자인입니다. 팀이나 후원사의 얼굴 역할을 합니다.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span class="brand">Claude</span>가 번역·정리한 F1 뉴스 · 2026.09.16<br>
+    원문 저작권은 각 매체에 있으며, 핵심 요약만 제공합니다.
+  </footer>
+</div>
+<script>
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-cat]'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var cat = chip.dataset.cat;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      sections.forEach(function (s) { s.classList.toggle('hidden', cat !== 'all' && s.dataset.cat !== cat); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  var btn = document.getElementById('unlockAll');
+  var spoilers = Array.prototype.slice.call(document.querySelectorAll('details.spoiler'));
+  function render(open) { btn.setAttribute('aria-pressed', String(open)); btn.textContent = open ? '🔒 스포일러 모두 접기' : '🔓 스포일러 모두 펼치기'; }
+  btn.addEventListener('click', function () { var open = btn.getAttribute('aria-pressed') !== 'true'; spoilers.forEach(function (d) { d.open = open; }); render(open); });
+  spoilers.forEach(function (d) { d.addEventListener('toggle', function () { render(spoilers.every(function (x) { return x.open; })); }); });
+  render(false);
+})();
+</script>
+</body>
+</html>
