@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>F1 데일리 브리핑 — 2026.09.17</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../favicon-192.png">
+<style>
+  :root {
+    --bg:#ffffff; --bg-soft:#f7f7f9; --card:#ffffff; --card-hover:#fbfbfc;
+    --text:#14141a; --text-mid:#4a4a57; --text-dim:#86868f;
+    --border:#e6e6ec; --border-soft:#f0f0f4;
+    --accent:#E10600; --accent-soft:rgba(225,6,0,.08);
+    --spoiler-bg:#fbf7f7; --spoiler-border:#ecdcdc; --chip-bg:#f2f2f5;
+    --shadow:0 1px 2px rgba(20,20,26,.04),0 8px 24px -12px rgba(20,20,26,.10);
+    --bar-bg:rgba(255,255,255,.82);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0e0e11; --bg-soft:#141419; --card:#16161b; --card-hover:#1b1b21;
+      --text:#f0f0f3; --text-mid:#b6b6c0; --text-dim:#82828e;
+      --border:#26262e; --border-soft:#1e1e25;
+      --accent:#FF3B30; --accent-soft:rgba(255,59,48,.12);
+      --spoiler-bg:#1a1416; --spoiler-border:#3a2528; --chip-bg:#1e1e25;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+      --bar-bg:rgba(14,14,17,.82);
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;
+    font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0 24px; }
+  header { padding:72px 0 32px; }
+  .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+  .kicker .dot { width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  h1 { font-size:clamp(34px,7vw,46px); line-height:1.12; margin:0 0 20px; font-weight:800; letter-spacing:-0.035em; }
+  h1 .accent { color:var(--accent); }
+  .lede { font-size:15px; color:var(--text-mid); margin:0; padding-bottom:28px; border-bottom:1px solid var(--border); }
+  .lede b { color:var(--text); font-weight:600; }
+  .digest { margin:28px 0 0; padding:20px 22px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:14px; }
+  .digest h2 { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:0 0 12px; }
+  .digest ol { margin:0; padding-left:20px; }
+  .digest li { font-size:14.5px; color:var(--text-mid); margin-bottom:7px; }
+  .digest li:last-child { margin-bottom:0; }
+  .digest li b { color:var(--text); font-weight:600; }
+  .bar { position:sticky; top:0; z-index:20; margin:36px 0 8px; padding:12px 0; background:var(--bar-bg); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--border-soft); }
+  .bar-inner { display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap; }
+  .chips { display:flex; gap:7px; flex-wrap:wrap; flex:1 1 auto; scrollbar-width:none; -ms-overflow-style:none; padding:2px 0; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip { flex:0 0 auto; border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:500; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s,color .15s,border-color .15s; }
+  .chip:hover { color:var(--text); }
+  .chip[aria-pressed="true"] { background:var(--text); color:var(--bg); border-color:var(--text); }
+  .chip .n { opacity:.5; margin-left:4px; font-variant-numeric:tabular-nums; }
+  .unlock { flex:0 0 auto; border:1px solid var(--spoiler-border); background:var(--spoiler-bg); color:var(--accent); font:inherit; font-size:13px; font-weight:600; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s; }
+  .unlock:hover { background:var(--accent-soft); }
+  section { padding-top:44px; scroll-margin-top:70px; }
+  section.hidden { display:none; }
+  .sec-head { display:flex; align-items:baseline; gap:10px; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--text); }
+  .sec-head h2 { font-size:19px; font-weight:750; margin:0; letter-spacing:-0.02em; }
+  .sec-head .count { font-size:12px; color:var(--text-dim); font-variant-numeric:tabular-nums; margin-left:auto; font-weight:500; }
+  .art { display:flex; flex-direction:column; align-items:stretch; gap:16px; padding:26px 0; border-bottom:1px solid var(--border-soft); }
+  .art:last-child { border-bottom:none; }
+  .thumb { width:100%; height:340px; border-radius:14px; overflow:hidden; background:linear-gradient(135deg,var(--accent) 0%,#600 100%); border:1px solid var(--border-soft); }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .art-body { min-width:0; }
+  .art h3 { font-size:21px; font-weight:750; line-height:1.36; margin:0 0 6px; letter-spacing:-0.025em; }
+  .orig { font-size:13px; color:var(--text-dim); margin:0 0 11px; font-style:italic; line-height:1.45; }
+  .meta { display:flex; align-items:center; gap:7px; flex-wrap:wrap; font-size:12px; color:var(--text-dim); margin-bottom:12px; }
+  .src { font-weight:650; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:5px; font-size:11.5px; }
+  .sum { font-size:15px; color:var(--text-mid); margin:0 0 4px; line-height:1.75; }
+  details.more { margin:8px 0 14px; }
+  details.more > summary { list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:650; color:var(--accent); padding:7px 0; user-select:none; }
+  details.more > summary::-webkit-details-marker { display:none; }
+  details.more > summary .caret { transition:transform .18s; font-size:10px; }
+  details.more[open] > summary .caret { transform:rotate(90deg); }
+  .detail-body { margin-top:4px; padding:14px 16px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:12px; }
+  .detail-body p { margin:0 0 10px; font-size:14.5px; color:var(--text-mid); line-height:1.8; }
+  .detail-body p:last-child { margin-bottom:0; }
+  .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
+  .go:hover { border-color:var(--text); background:var(--bg-soft); }
+  .go svg { width:11px; height:11px; }
+  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
+  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler > summary::-webkit-details-marker { display:none; }
+  details.spoiler > summary:hover { background:var(--accent-soft); }
+  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
+  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
+  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
+  details.spoiler[open] > summary .hint::after { content:"접기"; }
+  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
+  details.spoiler .art { padding:18px; border-bottom:none; }
+  .glossary { margin-top:12px; }
+  .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
+  .term:last-child { border-bottom:none; }
+  .term dt { font-size:14.5px; font-weight:700; margin-bottom:3px; }
+  .term dt span { color:var(--text-dim); font-weight:500; font-size:13px; }
+  .term dd { margin:0; font-size:14px; color:var(--text-mid); line-height:1.65; }
+  footer { margin-top:64px; padding:28px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
+  footer .brand { color:var(--accent); font-weight:650; }
+  @media (max-width:560px) {
+    .wrap { padding:0 18px; }
+    header { padding:48px 0 24px; }
+    .thumb { height:210px; }
+    .art h3 { font-size:19px; }
+    .sec-head h2 { font-size:17px; }
+    .bar-inner { flex-wrap:nowrap; flex-direction:column; align-items:stretch; }
+    .chips { flex-wrap:nowrap; overflow-x:auto; width:100%; }
+    .unlock { width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+
+  <header>
+    <div class="kicker"><span class="dot"></span> 2026년 9월 17일 목요일 <a href="../index.html" style="margin-left:auto;color:var(--text-dim);text-decoration:none;font-weight:600;letter-spacing:0;text-transform:none">← PIT WALL</a></div>
+    <h1>F1 데일리 <span class="accent">브리핑</span></h1>
+    <p class="lede">해외 매체 <b>7곳</b>(Motorsport.com · The Race · Grandprix.com · RacingNews365 · GPFans · PlanetF1 · Crash.net)에서 <b>기사 20건</b>을 모았습니다. 이 중 <b>5건</b>은 본문에 직전 라운드 결승 결과나 포인트·시즌 성적이 섞여 있어 가려두었습니다. 오늘의 가장 큰 소식은 <b>F1 2027 캘린더 공식 발표</b>입니다. 스페인 GP와 아제르바이잔 GP 사이 휴식 주간이라, 결승 뒤 분석 기사는 빼고 캘린더·엔진 규정·이적·팀 운영 소식 위주로 골랐습니다. 다음 라운드 아제르바이잔 GP는 <b>9월 24~26일</b>이고, 결승은 <b>토요일</b>(한국 시각 9월 26일 밤)에 열립니다.</p>
+    <div class="digest">
+      <h2>오늘의 요약</h2>
+      <ol>
+        <li>F1이 <b>2027년 24라운드 캘린더</b>를 발표했습니다. 스프린트(토요일에 따로 여는 짧은 레이스)가 6번에서 <b>10번</b>으로 늘고, <b>모나코에서 처음으로 스프린트</b>가 열립니다. 3월 14일 바레인 개막전도 스프린트이고, 포르투갈·터키가 돌아오는 대신 네덜란드와 바르셀로나가 빠집니다. 개막전은 중동 정세 때문에 호주·일본·중국으로 바뀔 수 있다는 ‘플랜 B’도 있습니다.</li>
+        <li>혼다(Honda) 엔진을 돕는 규정 완화 논의에 메르세데스(Mercedes)·레드불(Red Bull)이 열린 태도를 보였습니다. 하스(Haas)는 2027년 두 번째 시트를 이번 주 헤레스(Jerez) 테스트 뒤 정합니다. 레드불은 페르스타펜(Max Verstappen)의 새 레이스 엔지니어로 톰 하트(Tom Hart)를 확정했고, 2027 르망 24시는 F1 일정과 겹치지 않게 됐습니다.</li>
+        <li>🏁 스페인 GP·시즌 성적 관련 소식 <b>5건</b> — 아래 스포일러 섹션을 열어 확인하세요.</li>
+      </ol>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="bar-inner">
+      <div class="chips" role="group" aria-label="카테고리 필터">
+        <button class="chip" data-cat="all" aria-pressed="true">전체<span class="n">20</span></button>
+        <button class="chip" data-cat="race" aria-pressed="false">🏁 레이스 위크<span class="n">4</span></button>
+        <button class="chip" data-cat="tech" aria-pressed="false">🔧 기술/규정<span class="n">3</span></button>
+        <button class="chip" data-cat="fia" aria-pressed="false">⚖️ FIA/거버넌스<span class="n">4</span></button>
+        <button class="chip" data-cat="transfer" aria-pressed="false">🔄 이적/계약<span class="n">3</span></button>
+        <button class="chip" data-cat="people" aria-pressed="false">👤 드라이버/팀<span class="n">2</span></button>
+        <button class="chip" data-cat="etc" aria-pressed="false">📰 기타<span class="n">4</span></button>
+        <button class="chip" data-cat="glossary" aria-pressed="false">📖 용어</button>
+      </div>
+      <button class="unlock" id="unlockAll" aria-pressed="false">🔓 스포일러 모두 펼치기</button>
+    </div>
+  </div>
+
+  <!-- ============================ 🏁 레이스 위크 ============================ -->
+  <section id="race" data-cat="race">
+    <div class="sec-head"><h2>🏁 레이스 위크</h2><span class="count">4건 · 스포일러 3건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-2.motorsport.com/images/scl/rx27Gm2E/s1/arvid-lindblad-racing-bulls.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>마드링을 살릴 다섯 가지 방법 — 5번 코너부터 팬 경험까지</h3>
+        <p class="orig">Five ways F1 can fix the Madring for next year's Spanish GP</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.15</span></div>
+        <p class="sum">첫 대회는 행사로서는 무난했지만 추월이 거의 없어 비판받은 마드리드 마드링(Madring) 서킷. Motorsport.com의 필립 클리런(Filip Cleeren) 기자가 <b>2027년 전에 고쳐야 할 다섯 가지</b>를 정리했습니다. 5번 코너 수정, 후반부 재설계, 트랙 압축, 관중 시야, 팬 경험 강화입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p><b>① 5번 코너.</b> 가장 큰 문제로 꼽힙니다. 이곳은 사실상 유일한 추월 후보 지점이었지만, 폭이 좁고 연석(코너 안쪽의 턱)이 높고 벽이 가까워서 실제로 차를 나란히 넣기가 거의 불가능했습니다. 진입 설계부터 바꿔야 한다는 지적입니다.</p>
+            <p><b>② 후반부 재설계.</b> 뱅크 코너 라 모누멘탈(La Monumental)을 지난 뒤의 구간이 단조롭다는 평가입니다. 랜도 노리스(Lando Norris)는 18·19번 코너를 건너뛰고 20번에 헤어핀(U자형 급커브)을 두자고 제안했습니다. <b>③ 트랙 압축.</b> 피트레인이 540m로 매우 길어 피트 스톱 손실 시간이 커지고, 그 탓에 전략이 한쪽으로 몰렸습니다. 시설 사이 이동 거리가 긴 것도 팀들의 불만이었습니다.</p>
+            <p><b>④ 관중 시야.</b> 전 F1 드라이버이자 해설가 알렉스 부르츠(Alex Wurz)는 “콘크리트 수로 같은 구간만 보면 여기가 어느 서킷인지 알 수 없다”며, 마드리드라는 도시의 개성이 화면에 더 드러나야 한다고 했습니다.</p>
+            <p><b>⑤ 팬 경험.</b> 첫해는 안전에 집중했지만, 앞으로는 팬 존을 늘리고 시상대 주변 접근성도 높여야 한다는 의견입니다. 대회 총괄 루이스 가르시아 아바드(Luis Garcia Abad)는 “앞으로 몇 년 동안 개선할 아이디어가 많다”고 밝혔습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/five-ways-f1-can-fix-the-madring-for-next-years-spanish-gp/10856102/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 스페인 GP 결승 VSC 타이밍 논란 (결승 결과 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1435498_HiRes-1.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>‘VSC 복권’ 규정, 고칠 방법이 없다? — 노리스가 우승을 놓친 뒤 F1의 고민</h3>
+          <p class="orig">F1's huge dilemma over VSC lottery rule</p>
+          <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.16</span></div>
+          <p class="sum">스페인 GP에서 선두권을 달리던 랜도 노리스는 피트 입구를 지난 지 5초 만에 VSC(가상 안전차)가 선언되는 바람에 싼 피트 스톱 기회를 놓쳤고, 결국 <b>3위</b>로 들어왔습니다. The Race는 이런 ‘복권 같은’ 상황을 막을 대안을 네 가지 따져 보고 <b>완벽한 해법은 없다</b>고 결론 내렸습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+              <p>VSC(Virtual Safety Car)는 트랙에 사고 차량이 있을 때 모든 차가 정해진 느린 속도로 달리게 하는 제도입니다. 이 시간에 피트에 들어가면 잃는 시간이 크게 줄어듭니다. 스페인 GP에서 노리스는 피트 입구를 막 지나친 직후 VSC가 나와 그 혜택을 받지 못했고, 다시 피트 입구에 왔을 때는 VSC가 몇 초 전에 끝나 있었습니다. 결국 약 25초짜리 피트 손실을 그대로 떠안고 3위로 밀렸습니다.</p>
+              <p>노리스는 “믿을 수 없을 만큼 운이 없었다”며 “레이스는 가장 좋은 경기를 한 사람이 이겨야 한다”고 말했습니다. 맥라렌(McLaren) 대표 안드레아 스텔라(Andrea Stella)도 이번 일이 규정의 공정성을 다시 따져 보는 계기가 될 수 있다고 했습니다.</p>
+              <p>기사가 검토한 대안은 네 가지입니다. ① VSC를 충분히 길게 유지해 모든 차가 피트에 들어갈 기회를 주기, ② VSC 동안 피트 레인을 닫기, ③ F2처럼 VSC 중 피트 스톱은 의무 타이어 교체로 인정하지 않기, ④ 피트 입구를 막기입니다.</p>
+              <p>하지만 각각 부작용이 있습니다. VSC를 늘리면 레이스가 불필요하게 멈추고, 피트를 닫으면 타이어가 망가진 차가 위험해지며, F2 방식은 전략 선택을 좁힙니다. The Race는 운의 요소를 완전히 없애기는 어렵고, 규정을 바꾸더라도 또 다른 ‘운 나쁜 사람’이 생길 수 있다고 정리했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.the-race.com/formula-1/f1-virtual-safety-car-rule-lando-norris-no-easy-fix/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 스페인 GP 결승 전략 분석 (결승 결과 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-4.motorsport.com/images/amp/YK15r3r0/s6/andrea-kimi-antonelli-mercedes.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>안토넬리와 메르세데스는 마드리드에서 ‘운을 스스로 만들었다’</h3>
+          <p class="orig">How Kimi Antonelli and Mercedes made their own luck in Madrid</p>
+          <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.16</span></div>
+          <p class="sum">스페인 GP 우승자 키미 안토넬리(Kimi Antonelli)의 승리가 단순한 행운이 아니었다는 분석입니다. 레이스 엔지니어가 VSC 가능성을 미리 알려주자 안토넬리는 <b>일부러 속도를 늦춰</b> 피트 입구 도착을 미뤘고, 덕분에 VSC 아래에서 싸게 피트 스톱을 할 수 있었습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+              <p>경기의 흐름을 바꾼 것은 랜스 스트롤(Lance Stroll)의 리타이어였습니다. 멈춘 차를 치우려고 VSC가 선언됐는데, 그 순간 랜도 노리스는 이미 피트 입구를 지나친 뒤였고 안토넬리는 마지막 순간에 피트로 들어갈 수 있었습니다.</p>
+              <p>하지만 기사는 이 차이가 우연만은 아니라고 봅니다. 안토넬리는 “보노(Bono, 레이스 엔지니어 피터 보닝턴)가 VSC가 나올 수 있다고 경고해서 일부러 속도를 낮췄다”고 설명했습니다.</p>
+              <p>데이터도 이를 보여줍니다. 안토넬리는 14랩째에 19번 코너를 13랩보다 <b>시속 29km 느리게</b> 지났고, 20번 코너 브레이킹 지점에도 <b>시속 24km 느리게</b> 들어갔습니다. 메르세데스 전략팀이 정보를 전달하고 실제로 피트에 들어가기까지 걸린 시간은 약 3초였습니다.</p>
+              <p>메르세데스 대표 토토 볼프(Toto Wolff)는 “전략팀에서 보노로, 보노에서 키미로 이어지는 전달이 완벽했다”고 평가했습니다. 결국 안토넬리는 이 판단으로 선두를 잡고 스페인 GP에서 우승했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.motorsport.com/f1/news/how-kimi-antonelli-and-mercedes-made-their-own-luck-in-madrid/10856347/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 로슨의 바쿠 출전 팀 결정 (최근 레이스 결과·포인트 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F09%2F15144932%2Fliam-lawson-red-bull-madrid-2026-planetf1-1.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>로슨 “바쿠에서 어느 차를 탈지 수요일이나 목요일에야 안다”</h3>
+          <p class="orig">Liam Lawson admits Red Bull future is still up in the air for Baku</p>
+          <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.09.15</span></div>
+          <p class="sum">이자크 하자르(Isack Hadjar)의 손목 부상으로 레드불에서 세 경기를 뛴 리암 로슨(Liam Lawson)이 아제르바이잔 GP에서 레드불과 레이싱 불스(Racing Bulls) 중 어느 차를 탈지 아직 모른다고 밝혔습니다. 로슨은 대타로 나선 세 경기 중 두 경기에서 점수를 따, 7위로 6점을 얻는 등 모두 <b>14점</b>을 모았습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+              <p>하자르는 훈련 중 손목을 다쳐 네덜란드·이탈리아·스페인 GP 세 경기를 빠졌습니다. 그동안 로슨이 레드불의 RB22를 몰았고, 레이싱 불스 자리는 다른 드라이버가 메웠습니다.</p>
+              <p>로슨은 이 세 경기 중 두 번 점수권에 들었습니다. 한 번은 7위로 6점, 다른 한 번은 8점을 보태 모두 14점을 얻었습니다. 레드불 차에 적응해 가던 시점이라 로슨으로서는 자리를 지키고 싶은 마음이 클 수밖에 없습니다.</p>
+              <p>로슨은 “아마 바쿠에 가서 수요일이나 목요일은 돼야 결정될 것”이라며 “전혀 다른 두 차를 동시에 준비하는 건 정신적으로 꽤 힘들다”고 털어놨습니다. 두 차는 운전 느낌이 크게 달라, 시뮬레이터 작업도 둘 다 해야 하는 상황입니다.</p>
+              <p>레드불 대표 로랑 메키스(Laurent Mekies)는 하자르의 복귀를 서두르지 않겠다는 입장을 이미 밝혔습니다. 하자르가 스스로 100%에 가깝다고 느낄 때만 복귀시키겠다는 것이어서, 로슨의 거취는 레이스 주간 막판까지 미정으로 남을 가능성이 큽니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.planetf1.com/news/liam-lawson-late-red-bull-racing-decision-baku" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+  </section>
+
+  <!-- ============================ 🔧 기술/규정 ============================ -->
+  <section id="tech" data-cat="tech">
+    <div class="sec-head"><h2>🔧 기술/규정</h2><span class="count">3건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/races/pspa26/sun/amr/00-master/alonso1.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>혼다 추가 지원 논의에 볼프·메키스 “열려 있다” — 혼다는 “마법 같은 해법은 없다”</h3>
+        <p class="orig">Wolff and Mekies back talks over further Honda help</p>
+        <div class="meta"><span class="src">Grandprix.com</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">FIA 회장 모하메드 벤 술라옘(Mohammed Ben Sulayem)이 알론소를 붙잡기 위해 혼다의 엔진 개발 규정을 풀어줄 수 있다고 시사하자, 메르세데스의 토토 볼프와 레드불의 로랑 메키스가 <b>논의에 열린 입장</b>을 밝혔습니다. 현재의 ADUO 제도를 넓히는 방안이 거론됩니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>2026년 새 엔진 규정에서 혼다는 경쟁사보다 크게 뒤처져 있습니다. 혼다 엔진을 쓰는 애스턴 마틴(Aston Martin)의 페르난도 알론소(Fernando Alonso)가 거취를 고민하는 가운데, 벤 술라옘은 혼다를 도울 규정 조정 가능성을 꺼냈습니다.</p>
+            <p>볼프는 “규정은 스포츠를 위해 있는 것이고, 때로는 조정이 필요하다”며 검토에 반대하지 않았습니다. 메키스도 “하나의 스포츠로서 규정에 꽤 열린 태도를 유지하려 한다”며 대화 가능성을 열어뒀습니다. 경쟁 팀들이 먼저 반대하지 않았다는 점이 눈에 띕니다.</p>
+            <p>논의의 중심은 <b>ADUO</b>(Additional Development and Upgrade Opportunities, 뒤처진 엔진 제조사에 추가 개발 기회를 주는 제도)입니다. 지금은 내연기관 성능을 기준으로 평가하는데, 이 평가 범위를 넓혀 혼다가 더 많은 개발 여지를 얻게 하는 방안이 검토되고 있습니다.</p>
+            <p>다만 혼다의 트랙 엔지니어 오리하라 신타로(Shintaro Orihara)는 “마법 같은 해결책은 없다”며 결국 기술 개발로 성능을 끌어올려야 한다고 강조했습니다. 규정을 바꾸려면 정식 절차를 거쳐야 해, 실제 변화까지는 시간이 걸릴 전망입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.grandprix.com/news/wolff-and-mekies-back-talks-over-further-honda-help.html" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/5b2d8180fea649b3cccc75d83827123dd09c02cf.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>혼다 “데이터에서 좋은 신호” — 스펙2 엔진의 드라이버빌리티 개선, 바쿠엔 뉴이의 경량화 섀시</h3>
+        <p class="orig">Honda achieve major F1 goal as new data gives hope for Newey and Aston Martin</p>
+        <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">혼다의 오리하라 신타로가 네덜란드 GP에서 들여온 <b>스펙2 파워유닛</b>의 드라이버빌리티(운전자가 원하는 만큼 출력이 나오는 정도)가 최근 세 경기 동안 나아졌다고 밝혔습니다. 애스턴 마틴은 아제르바이잔 GP에 무게를 줄이는 데 초점을 맞춘 새 섀시 업그레이드를 준비 중입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>애스턴 마틴과 혼다의 2026 시즌은 어렵게 시작했습니다. 시즌 초에는 엔진 진동이 너무 심해, 기술 책임자 에이드리언 뉴이(Adrian Newey)가 호주 개막전 전에 “드라이버가 신경 손상을 입을 수 있는 수준”이라고 말했을 정도였습니다.</p>
+            <p>혼다는 네덜란드 GP에서 개량형인 스펙2 파워유닛을 넣었습니다. 처음에는 출력 전달이 매끄럽지 않은 드라이버빌리티 문제가 컸지만, 이후 세 경기에서 캘리브레이션(엔진 제어 설정값을 세밀하게 맞추는 작업)을 조정하며 조금씩 나아졌습니다.</p>
+            <p>오리하라는 “세션을 거듭할수록 데이터에서 좋은 신호가 보였다”고 말했습니다. 큰 도약은 아니지만, 방향이 맞다는 확인을 얻었다는 뜻입니다.</p>
+            <p>뉴이 팀은 9월 26일 결승이 열리는 아제르바이잔 GP에 새 섀시 업그레이드를 가져갑니다. 이번 업그레이드는 무게를 줄이고 패키지 전체를 최적화하는 데 초점을 맞췄습니다. 엔진과 섀시가 함께 좋아진다면, 알론소의 거취 결정에도 영향을 줄 수 있습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.gpfans.com/en/f1-news/1090337/honda-aston-martin-f1-shinto-orihara-power-unit-driveability-performance/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 레드불 차량 성능 저하 문제 (스페인 GP 결과 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/races/pspa26/sun/red/00-master/verstappen1.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>레드불의 ‘주행 중 성능 저하’ 문제, 2027년까지 갈 수도</h3>
+          <p class="orig">Red Bull's car degradation may continue in 2027</p>
+          <div class="meta"><span class="src">Grandprix.com</span><span>·</span><span>2026.09.14</span></div>
+          <p class="sum">막스 페르스타펜이 지적해 온 RB22의 ‘성능 저하’ 현상에 대해 로랑 메키스 대표가 “복잡하고 오래된 문제”라며 <b>2027년 새 차 전에는 해결이 어려울 수 있다</b>고 인정했습니다. 마드리드에서는 일부 진전이 있었고, 페르스타펜은 스페인 GP를 <b>2위</b>로 마쳤습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+              <p>페르스타펜이 말하는 ‘성능 저하(car degradation)’는 타이어 마모와는 다른 문제입니다. 세션이나 레이스가 진행될수록 RB22의 움직임이 점점 나빠지고 예측하기 어려워지는 현상입니다. 초반에는 괜찮다가 뒤로 갈수록 차가 말을 듣지 않는 셈입니다.</p>
+              <p>메키스는 “여러 방법으로 이 문제에 접근해 봤다. 분명히 복잡한 문제”라고 말했습니다. 구체적인 원인은 밝히지 않았습니다.</p>
+              <p>스페인 GP에서는 어느 정도 나아진 모습이 보였고, 페르스타펜은 2위로 결승을 마쳤습니다. 하지만 근본 원인은 아직 없애지 못했다는 것이 팀의 판단입니다. 페르스타펜도 비슷한 문제에 대해 “확실히 예전 상태로 돌아갈 수는 없다”고 말했습니다.</p>
+              <p>레드불은 남은 2026 시즌을 치르면서 2027년 차 개발도 함께 해야 합니다. 개발 자원을 어떻게 나누느냐에 따라, 이 문제는 내년 차에서야 완전히 해결될 가능성이 큽니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.grandprix.com/news/red-bulls-car-degradation-may-reach-2027.html" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+  </section>
+
+  <!-- ============================ ⚖️ FIA/거버넌스 ============================ -->
+  <section id="fia" data-cat="fia">
+    <div class="sec-head"><h2>⚖️ FIA/거버넌스</h2><span class="count">4건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-6.motorsport.com/images/amp/0arKL8X2/s6/andrea-kimi-antonelli-mercedes.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>F1 2027 캘린더 발표 — 24라운드, 스프린트 10회, 모나코 첫 스프린트</h3>
+        <p class="orig">F1 announces 2027 calendar - with Monaco among 10 sprint races</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">F1이 2027년 24라운드 일정을 발표했습니다. 시즌은 <b>3월 14일 바레인</b>에서 시작해 <b>12월 12일 아부다비</b>에서 끝나고, 스프린트 주말이 6번에서 <b>10번</b>으로 늘어납니다. 모나코가 처음으로 스프린트를 열고, 포르투갈과 터키가 캘린더에 돌아옵니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>2027년 일정은 바레인(3/12~14) → 사우디아라비아(3/19~21) → 호주(4/2~4) → 일본(4/9~11) → 중국(4/16~18) → 마이애미(4/30~5/2) → 캐나다(5/21~23) → 모나코(6/4~6) → 포르투갈(6/18~20) → 영국(7/2~4) → 오스트리아(7/9~11) → 벨기에(7/23~25) → 헝가리(7/30~8/1) → 이탈리아(9/3~5) → 스페인(9/10~12) → 아제르바이잔(9/24~26) → 터키(10/1~3) → 싱가포르(10/8~10) → 미국(10/22~24) → 멕시코(10/29~31) → 브라질(11/5~7) → 라스베이거스(11/18~20) → 카타르(12/3~5) → 아부다비(12/10~12)입니다.</p>
+            <p>스프린트는 <b>바레인, 호주, 일본, 캐나다, 모나코, 영국, 이탈리아, 브라질, 카타르, 아부다비</b>의 10곳에서 열립니다. 바레인·호주·일본·모나코·아부다비는 처음 스프린트를 열고, 나머지는 다시 여는 곳입니다. 개막전과 최종전이 모두 스프린트 주말인 것은 이번이 처음입니다. 프리시즌 테스트는 2월 24~27일 바레인에서 나흘 한 번으로 돌아갑니다.</p>
+            <p>포르투갈은 2021년 이후 처음으로 알가르브 서킷(포르티마오)에서 6월에 열리고, 터키(이스탄불)는 아제르바이잔·싱가포르와 3주 연속 일정의 가운데에 들어갑니다. 터키는 FIA의 서킷 승인(호몰로게이션)을 받는 조건입니다. 반대로 네덜란드 잔드보르트와 스페인 바르셀로나(카탈루냐)는 빠집니다. 한편 Motorsport.com은 올해(2026) 카타르·아부다비가 열리지 못할 경우에 대비해 <b>이몰라가 아부다비 주말 최종전 개최를 준비 중</b>이라고 전했습니다.</p>
+            <p>F1은 성명에서 “스프린트 주말의 전체 시청률이 일반 주말보다 12% 높고, 스프린트 예선은 자유 연습보다 최대 3배 인기”라고 확대 이유를 밝혔습니다. 모나코는 금요일과 토요일에 각각 예선을 치러, 모나코의 가장 큰 볼거리인 예선을 두 번 보여주겠다는 구상입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/f1-announces-2027-calendar-with-monaco-among-10-sprint-races/10856260/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1414828_HiRes.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>2027 개막전에 ‘플랜 B’ — 중동이 안 되면 호주·일본·중국이 앞당겨진다</h3>
+        <p class="orig">Monaco sprint and season opener Plan B - F1's 2027 calendar</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">2027 시즌은 바레인·사우디아라비아 중동 연전으로 시작할 계획이지만, 미국과 이란의 갈등으로 두 경기를 열 수 없게 되면 <b>호주·중국·일본 경기를 앞당겨 개막전으로</b> 삼는 대안이 준비돼 있다고 The Race가 전했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>공식 일정상 2027년은 바레인(3월 14일)과 사우디아라비아(3월 21일)의 더블헤더(두 주 연속 경기)로 시작하고, 이어 호주(4월 4일), 일본(4월 11일), 중국(4월 18일)이 이어집니다.</p>
+            <p>하지만 중동 정세가 불안해 이 두 경기가 열리지 못할 가능성도 있습니다. The Race에 따르면 그럴 경우 F1은 호주·중국·일본 경기를 앞으로 당겨 시즌을 시작할 것으로 알려졌습니다.</p>
+            <p>변수는 호주 GP입니다. 멜버른 조직위가 새 피트와 패독(팀 차고·사무 공간이 모인 구역) 시설 공사를 언제 마치느냐에 따라 개막전을 앞당길 수 있는지가 정해집니다.</p>
+            <p>기사는 모나코 스프린트에 대해 “경기를 하나 더 얹기보다 주말 전체에 변수를 더하려는 것”이라고 설명했습니다. 금요일 연습 주행이 한 번뿐이라 팀들이 세팅을 빨리 끝내야 하고, 그만큼 그리드가 평소와 달라질 수 있습니다. 포르투갈은 포르티마오에서 단독 주말(6월 20일)로 열립니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/monaco-sprint-and-season-opener-plan-b-f1-2027-calendar-revealed/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1415370_HiRes-1.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>“신성모독” vs “모나코에 긴장감” — The Race 기자들의 2027 캘린더 평가</h3>
+        <p class="orig">Sacrilege? Our verdict on 2027 F1 calendar + sprint expansion</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">The Race 기자들이 스프린트 10회 확대와 <b>스프린트 개막전</b>을 두고 엇갈린 평가를 내놨습니다. 개막 그랑프리의 설렘을 스프린트로 소모한다는 비판이 컸고, 모나코 스프린트는 오히려 주말에 긴장감을 줄 수 있다는 의견도 나왔습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>스콧 미첼-말름(Scott Mitchell-Malm)은 개막전 스프린트를 “신성모독”이라고 불렀습니다. 시즌 첫 그랑프리의 기대감을 “본 경기를 얕게 흉내 낸 것”에 써 버린다며, 개막전만이 주는 고유한 즐거움이 사라진다고 비판했습니다.</p>
+            <p>글렌 프리먼(Glenn Freeman)은 처음에는 모나코 스프린트가 황당하다고 느꼈다고 했습니다. 그는 대안으로 스프린트 대신 <b>포인트가 걸린 세 번째 예선</b>을 열자고 제안했습니다. 모나코다운 볼거리는 예선이라는 판단입니다.</p>
+            <p>존 노블(Jon Noble)은 반대로 스프린트가 모나코 주말에 필요한 ‘위험 요소’를 더할 수 있다고 봤습니다. 스프린트 예선 전 금요일 연습이 한 번뿐이라 드라이버와 팀이 빠르게 적응해야 하기 때문입니다. 미첼-말름도 모나코 시가지에서 예선을 두 번 볼 수 있다는 점은 긍정적으로 평가했습니다.</p>
+            <p>에드 스트로(Edd Straw)는 더 근본적인 문제를 짚었습니다. 지금의 스프린트는 독자적인 성격 없이 본 경기의 ‘곁다리 프로그램’에 머문다며, 그랑프리를 줄여 놓은 형태를 넘어서는 포맷 혁신이 필요하다고 주장했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/sacrilege-our-verdict-on-2027-f1-calendar-sprint-expansion/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/races/pbel21/sat/alf/00-master/atmosphere2.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>전 F1 레이스 디렉터 마시, SRO 호주 스포츠 운영 총괄로</h3>
+        <p class="orig">Masi takes sporting role with SRO Australia</p>
+        <div class="meta"><span class="src">Grandprix.com</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">2019~2021년 F1 레이스 디렉터를 맡았던 마이클 마시(Michael Masi)가 <b>SRO 모터스포츠 호주</b>의 스포츠 운영을 총괄합니다. 이번 주말부터 인수인계를 시작하고, 2027년부터 정식으로 역할을 맡습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>SRO는 GT(양산 스포츠카 기반 경주차) 레이스를 주로 운영하는 모터스포츠 기획사입니다. 마시는 이 회사의 호주 법인에서 경기 규칙, 진행 절차, 심판진 조율을 맡아 국제 챔피언십 수준의 운영을 유지하는 역할을 합니다.</p>
+            <p>마시는 9월 18~20일 시드니 모터스포츠 파크 대회부터 합류합니다. 전임자 애비 헤이(Abi Hay)는 유럽으로 돌아가 SRO의 다른 업무에 집중하고, 마시는 올해 남은 두 번의 섀넌스 스피드시리즈(Shannons SpeedSeries) 대회에 함께하며 업무를 넘겨받습니다.</p>
+            <p>마시는 2019년부터 2021년까지 F1 레이스 디렉터(경기 진행과 안전 조치를 책임지는 최고 책임자)를 지냈습니다. 2021년 시즌 최종전의 세이프티카 운영을 둘러싼 논란 뒤 자리에서 물러났습니다.</p>
+            <p>이후 2022~2025년에는 호주 슈퍼카(Supercars) 위원회 위원장을 맡았습니다. 카팅 호주(Karting Australia)와 남호주 모터스포츠 위원회에서의 역할은 앞으로도 계속합니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.grandprix.com/news/masi-takes-sporting-role-with-sro-australia.html" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============================ 🔄 이적/계약 ============================ -->
+  <section id="transfer" data-cat="transfer">
+    <div class="sec-head"><h2>🔄 이적/계약</h2><span class="count">3건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Ocon/XPB_1435918_HiRes.jpg?v=1789154044&width=1800&height=945&quality=75&crop=5185%2C2723%2C0%2C369" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>하스 2027 두 번째 시트, 이번 주 헤레스 테스트 뒤 결정 — 카마라 유력, 두한도 시험대</h3>
+        <p class="orig">Haas facing final evaluation as 2027 line-up decision nears</p>
+        <div class="meta"><span class="src">RacingNews365</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">올리버 베어먼(Oliver Bearman)의 2027년 잔류가 사실상 확정된 가운데, 하스는 그의 팀 동료를 두고 마지막 평가에 들어갑니다. F2 우승 경쟁 중인 <b>하파엘 카마라(Rafael Camara)</b>가 가장 유력하고, 잭 두한(Jack Doohan)은 이번 주 목요일 헤레스에서 테스트를 받습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>베어먼은 2027년에도 하스에서 세 번째 시즌을 보낼 것으로 널리 예상됩니다. 관심은 두 번째 자리입니다. 지난해 알핀(Alpine)에서 옮겨온 에스테반 오콘(Esteban Ocon)도 후보이지만, 팀은 다른 선택지도 함께 따져보고 있습니다.</p>
+            <p>가장 앞서 있다는 평가를 받는 건 페라리 주니어 카마라입니다. 기사는 그가 “모든 후보 가운데 시트를 얻기에 가장 좋은 위치”라고 전했습니다. 다만 카마라를 올리면 하스는 페라리 주니어 두 명(베어먼 포함)을 동시에 쓰게 됩니다.</p>
+            <p>전 알핀 드라이버 두한은 이번 주 헤레스에서 TPC(2년 이상 지난 구형 차로 하는 테스트)에 나섭니다. 그는 그랑프리 7번 출전 뒤 2025년 프랑코 콜라핀토(Franco Colapinto)에게 자리를 내줬습니다. 하스의 개발 드라이버 히라카와 료(Ryo Hirakawa)도 후보로 거론되지만, 패독에서는 “가능성이 매우 낮다”는 말이 나옵니다.</p>
+            <p>하스는 헤레스 TPC 테스트가 끝나기 전까지는 최종 결정을 내리지 않을 방침입니다. 두한은 목요일에 차를 몹니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://racingnews365.com/haas-facing-final-evaluation-as-2027-line-up-decision-nears" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/313ce2de8f74d10d10b596ab853a150670dd677a.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>애스턴 마틴 “알론소가 떠나면 플랜 B는 있다” — 그래도 결정은 본인에게</h3>
+        <p class="orig">Aston Martin have a 'Plan B' as Fernando Alonso considers F1 retirement</p>
+        <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">45세의 두 차례 월드 챔피언 페르난도 알론소가 은퇴를 고민하는 가운데, 애스턴 마틴 앰배서더 페드로 데 라 로사(Pedro de la Rosa)가 “논리적으로 <b>플랜 B는 존재한다</b>”고 말했습니다. 다만 팀은 알론소가 남기를 바라며 결정을 재촉하지 않겠다는 입장입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>알론소는 아직 2027년에도 F1에서 뛸지 공식적으로 밝히지 않았습니다. 새 엔진 규정에 대한 불만, 혼다 파워유닛의 부진이 겹치면서 은퇴 가능성도 거론되고 있습니다.</p>
+            <p>데 라 로사는 “팀이라면 당연히 대비책이 있어야 한다”는 취지로 플랜 B의 존재를 인정했습니다. 그러면서도 “그에게 결정을 강요하고 싶지 않다. 필요한 시간을 모두 주겠다. 가장 중요한 건 그가 올바른 결정을 내리는 것”이라고 강조했습니다.</p>
+            <p>애스턴 마틴은 2026 시즌 초반 혼다 파워유닛 문제와 기대에 못 미친 섀시 때문에 크게 고전했습니다. 이후 헝가리 GP부터 에이드리언 뉴이가 설계한 업그레이드(부품 16개)를 들여와 조금씩 나아지고 있습니다.</p>
+            <p>기사는 팀이 대안을 공개적으로 언급한 것 자체가, 알론소의 결정이 길어질 수 있다는 현실을 반영한다고 해석했습니다. 대체 후보의 이름은 나오지 않았습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.gpfans.com/en/f1-news/1090341/aston-martin-plan-b-pedro-de-la-rosa-fernando-alonso-future/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/92f88f870802659974593886bf19e9c7175750ad.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>페르스타펜의 새 레이스 엔지니어는 톰 하트 — 람비아세 후임 확정</h3>
+        <p class="orig">Max Verstappen's 'GP' replacement confirmed as new race engineer to take over at Red Bull</p>
+        <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">레드불이 맥라렌으로 떠나는 잔피에로 람비아세(Gianpiero Lambiase, 별명 ‘GP’) 대신 <b>톰 하트(Tom Hart)</b>를 막스 페르스타펜의 새 레이스 엔지니어로 확정했습니다. 하트는 바쿠에서도 람비아세의 역할을 대신하고, 시즌 막판에 완전히 넘겨받습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>레이스 엔지니어는 경기 중 무전으로 드라이버와 소통하며 차 세팅과 전략을 조율하는 사람입니다. 페르스타펜과 람비아세는 오랫동안 호흡을 맞춰 온 짝이라, 후임 선정에 관심이 쏠렸습니다.</p>
+            <p>하트는 이탈리아 GP(몬차) 연습 주행에서 이미 람비아세 대신 무전을 맡았고, 아제르바이잔 GP에서도 같은 역할을 합니다. 기사에 따르면 시즌 마지막 몇 경기에서 완전한 인수인계가 이뤄질 예정입니다.</p>
+            <p>람비아세는 2028년 전에 맥라렌으로 옮깁니다. 그는 레이스 엔지니어 외에 <b>레이싱 총괄(Head of Racing)</b> 직도 맡고 있는데, 이 자리는 애스턴 마틴 출신 톰 매컬러(Tom McCullough)가 2027년부터 이어받습니다.</p>
+            <p>하트는 원래 윌리엄스(Williams)로 가서 알렉스 알본(Alex Albon)의 엔지니어가 될 예정이었지만, 레드불 대표 로랑 메키스가 직접 나서 레드불로 다시 데려왔습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.gpfans.com/en/f1-news/1090339/max-verstappen-red-bull-f1-race-engineer-tom-hart-debut-gianpiero-lambiase/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============================ 👤 드라이버/팀 ============================ -->
+  <section id="people" data-cat="people">
+    <div class="sec-head"><h2>👤 드라이버/팀</h2><span class="count">2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-2.motorsport.com/images/amp/0L1NQzN2/s6/yuki-tsunoda-red-bull-racing.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>츠노다 “레드불 시절, 어느 순간 삶을 즐기지 못하고 있었다”</h3>
+        <p class="orig">“I’m not enjoying life” – How Yuki Tsunoda’s Red Bull F1 stint “exhausted” him</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">유키 츠노다(Yuki Tsunoda)가 F1 팟캐스트 ‘Beyond The Grid’에서 2025년 레드불 레이싱에서 보낸 시즌이 <b>커리어에서 가장 힘든 시간</b>이었다고 털어놨습니다. 심리 상담과 트레이너의 도움을 받았고, 지금은 그 경험 덕분에 더 나은 드라이버가 됐다고 말했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>츠노다는 2025년 레드불 레이싱으로 승격해 막스 페르스타펜의 팀 동료가 됐지만, 그 시즌을 드라이버 순위 17위로 마쳤습니다. 레드불 두 번째 시트는 오랫동안 ‘가장 어려운 자리’로 불려 왔습니다.</p>
+            <p>그는 “어느 순간, 내가 내 삶을 즐기지 못하고 있다는 걸 깨달았다”고 말했습니다. 시즌 후반으로 갈수록 회복이 어려워졌고, 평소처럼 좋아하는 음식이나 취미로 에너지를 되찾는 방법도 통하지 않았다고 합니다.</p>
+            <p>일본 친구들과 멀어졌다는 것도 그때 느꼈습니다. 츠노다는 심리 상담을 받고 트레이너의 도움을 받으며 버텼다고 설명했습니다.</p>
+            <p>2026년 츠노다는 레이싱 불스로 돌아갔습니다. 그는 힘든 한 해를 거치며 더 나은 드라이버로 성장했다고 스스로 평가했고, “2025년만큼 어려운 도전은 다시 없을 것”이라고 자신했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/im-not-enjoying-life-how-yuki-tunodas-red-bull-f1-stint-exhausted-him/10856377/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-9.motorsport.com/images/amp/YWKwnvDY/s6/oliver-bearman-haas-f1-team.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>하스 “2027년 예산, 상한선에 더 가까워진다” — 새 스폰서 협상 순조</h3>
+        <p class="orig">Haas confident of getting 2027 F1 budget closer to cap with new partner talks</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">하스 대표 고마쓰 아야오(Ayao Komatsu)가 새 스폰서 협상 덕분에 2027년 예산을 F1 <b>예산 상한(2억 1,500만 달러)</b>에 더 가깝게 채울 수 있을 거라고 자신했습니다. 알핀의 타이틀 스폰서 BWT가 하스로 온다는 소문에는 “분홍색 차는 안 만든다”고 농담으로 받았습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>하스는 직원 약 400명 규모로, F1에서 가장 작은 팀 중 하나입니다. 예산 상한(팀이 1년에 쓸 수 있는 돈의 최대치)인 2억 1,500만 달러에 한참 못 미치는 돈으로 운영해 왔습니다.</p>
+            <p>올해는 토요타의 가주 레이싱(Toyota Gazoo Racing)이 머니그램(MoneyGram)을 대신해 타이틀 스폰서(팀 이름에 들어가는 주 후원사)가 됐습니다. 고마쓰는 “정말 많은 후보와 이야기하고 있고, 잘 진행되고 있다. 내년 예산은 매우 긍정적”이라고 말했습니다.</p>
+            <p>오스트리아 수처리 기업 BWT가 2027년 하스에 합류할 수 있다는 소문도 있습니다. BWT는 알핀 차의 분홍색 리버리로 유명한데, 고마쓰는 “그런 뜻이라면, 분홍색 차는 안 나온다!”라며 웃어넘겼습니다.</p>
+            <p>고마쓰는 2027년 드라이버 선택에서 돈보다 실력을 우선하겠다고 강조했습니다. 오콘, 히라카와 료, 레오나르도 포르나롤리(Leonardo Fornaroli), 하파엘 카마라 등 다섯 명이 후보이고, 상업적 요소는 두 드라이버의 속도가 “0.1초 안쪽”일 때만 고려한다고 했습니다. 그는 “팀을 키우는 가장 좋은 길은 빠른 드라이버 두 명”이라고 말했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/haas-confident-of-getting-2027-f1-budget-closer-to-cap-with-new-partner-talks/10856149/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============================ 📰 기타 ============================ -->
+  <section id="etc" data-cat="etc">
+    <div class="sec-head"><h2>📰 기타</h2><span class="count">4건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn.racingnews365.com/XPB_1252731_HiRes.jpg?v=1789548734&width=1800&height=945&quality=75&crop=5185%2C2723%2C0%2C369" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>2027 르망 24시, F1과 겹치지 않는다 — 페르스타펜·노리스·알론소 출전 길 열려</h3>
+        <p class="orig">Max Verstappen, Lando Norris, and Fernando Alonso clear crucial Le Mans F1 roadblock</p>
+        <div class="meta"><span class="src">RacingNews365</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">2027 르망 24시(6월 12~13일)가 모나코 GP(6월 6일)와 포르투갈 GP(6월 20일) 사이의 <b>빈 주말</b>에 열리게 됐습니다. 르망 출전에 관심을 보여 온 막스 페르스타펜, 랜도 노리스, 페르난도 알론소가 일정상 뛸 수 있게 된 셈입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>르망 24시는 프랑스에서 24시간 동안 쉬지 않고 달리는 세계적인 내구 레이스입니다. 2026년에는 2016년 이후 처음으로 F1 경기와 날짜가 겹쳤지만, 2027 캘린더에서는 이 충돌이 사라졌습니다.</p>
+            <p>세 사람 가운데 르망 경험이 있는 건 알론소뿐입니다. 그는 맥라렌 F1 소속이던 2018·2019년 토요타로 르망에서 두 번 우승했습니다. 노리스는 최근 포르티마오에서 맥라렌의 하이퍼카(르망 최상위 등급 차)를 시험했고, 맥라렌은 2027년 이 부문에 참가합니다. 페르스타펜도 르망에 나가고 싶다는 뜻을 여러 번 밝혀 왔습니다.</p>
+            <p>르망의 연습과 예선은 레이스 주간에 몰려 있어 F1 일정과 부딪히지 않습니다. 처음 출전하는 드라이버가 반드시 받아야 하는 루키 사전 테스트도 일정에 맞출 수 있습니다.</p>
+            <p>한편 ‘트리플 크라운’(모나코 GP·르망 24시·인디애나폴리스 500을 모두 우승하는 업적) 도전은 여전히 어렵습니다. 2027년 캐나다 GP(5월 23일)와 인디 500(5월 30일)의 결승 날짜는 겹치지 않지만, 인디 500 연습 일정이 캐나다 GP 주말과 부딪히기 때문입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://racingnews365.com/max-verstappen-lando-norris-and-fernando-alonso-clear-crucial-le-mans-f1-roadblock" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-5.motorsport.com/images/amp/0JXwLzoY/s6/lewis-hamilton-ferrari-2.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>모나코 스프린트, 좋은 생각일까 미친 짓일까 — Motorsport.com 기자 3인의 의견</h3>
+        <p class="orig">Is a Monaco F1 sprint a good idea or just mad? Our writers have their say</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">2027년 모나코 스프린트를 두고 Motorsport.com 기자들이 의견을 냈습니다. 주말의 ‘DNA’를 바꾼다는 반대, 역순 그리드 같은 <b>포맷 개혁이 먼저</b>라는 조건부 찬성, 원랩 예선 슛아웃이 낫다는 대안이 나왔습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>로날드 보르딩(Ronald Vording)은 반대했습니다. 그는 “모나코 주말은 절정을 향해 차근차근 쌓아 올라가는 것”이라며, 예선이 두 번 열리면 토요일 오후의 본 예선이 가진 무게가 약해진다고 우려했습니다.</p>
+            <p>올레그 카르포프(Oleg Karpov)는 조건부 찬성 쪽입니다. 다만 지금의 스프린트는 본 경기의 ‘미니 버전’에 불과하다며, 역순 그리드(상위권 순서를 뒤집어 출발시키는 방식)를 도입해 하위 팀에도 점수 기회를 주자고 제안했습니다.</p>
+            <p>세 번째 필자도 반대 입장이었습니다. 모나코 스프린트는 F1이 “일부 레이스를 미리 포기하는” 신호로 읽힌다며, 스프린트가 본 경기와 확실히 달라야 한다고 주장했습니다. 대안으로는 한 바퀴만 달려 순위를 정하는 원랩 예선 슛아웃을 꼽았습니다.</p>
+            <p>세 사람 모두 스프린트 10회 확대가 상업적으로는 이해되지만, 포맷 자체는 손봐야 한다는 데 뜻을 모았습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/is-a-monaco-f1-sprint-a-good-idea-or-just-mad-our-writers-have-their-say/10856324/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/library/editorial/2026/09/82d06b6625f731ae-fire-island-sea-breeze-concept.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>바쿠 앞바다 인공섬 ‘파이어 아일랜드’에 F1 서킷 계획</h3>
+        <p class="orig">Baku island project includes plan for F1 circuit</p>
+        <div class="meta"><span class="src">Grandprix.com</span><span>·</span><span>2026.09.16</span></div>
+        <p class="sum">아제르바이잔 개발사 시 브리즈(Sea Breeze)가 중국 건설사 CSCEC와 함께 카스피해에 짓는 인공섬 <b>‘파이어 아일랜드(Fire Island)’</b>에 F1용 트랙을 넣겠다고 발표했습니다. 다만 완공 시점이나 F1 개최 계약은 아직 없습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+            <p>파이어 아일랜드는 약 662에이커(약 2.7㎢) 규모의 인공섬으로, 주거지와 리조트를 중심으로 개발됩니다. 시 브리즈는 중국건축공정총공사(CSCEC)와 손잡고 이 사업을 추진하고 있습니다.</p>
+            <p>개발사는 “파이어 아일랜드 프로젝트에 아제르바이잔 F1 그랑프리를 위한 트랙이 계획돼 있다”고 밝혔습니다.</p>
+            <p>하지만 기사는 발표에 서킷 완공 날짜도, F1 개최 계약도, 바쿠 도심에서 경기를 옮길 일정도 없다고 짚었습니다. 지금의 아제르바이잔 GP는 바쿠 구시가지를 도는 시가지 서킷에서 열립니다.</p>
+            <p>개발 마스터플랜에 서킷이 들어갔다고 해서 곧바로 F1 캘린더에 오르는 것은 아니라는 게 기사의 결론입니다. 실제 이전 여부는 F1과의 협상과 공사 진행에 달려 있습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.grandprix.com/news/baku-island-project-includes-plan-for-f1-circuit.html" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 페르스타펜 ‘Max vs 100’ 카트 이벤트 (올 시즌 성적 암시 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-09/hswuiirxuae4dfg.jpeg?width=1600&aspect_ratio=16:9" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>페르스타펜, 카트 100대를 14랩 만에 모두 추월 — “올해 첫 우승, 이게 최고의 우승”</h3>
+          <p class="orig">Max vs 100: F1 world champion Verstappen passes 100 go-karters in 14 laps for 'best win yet' at Silverstone</p>
+          <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.09.16</span></div>
+          <p class="sum">막스 페르스타펜이 실버스톤에서 열린 이벤트 ‘Max vs 100’에서 맨 뒤 101번째로 출발해 <b>14랩, 약 35분 만에</b> 카트 100대를 모두 제치고 우승했습니다. 그는 “올해 내 첫 우승이니 이걸로 하겠다”고 농담했는데, 올 시즌 F1에서 아직 우승이 없다는 뜻이기도 합니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+              <p>‘Max vs 100’은 페르스타펜 혼자 100명의 카트 드라이버와 한 레이스에서 겨루는 이벤트입니다. 페르스타펜은 가장 뒤인 101번째 자리에서 출발했습니다.</p>
+              <p>첫 바퀴에서만 64명을 제쳤습니다. 혼란스러운 첫 랩에서는 잔디 위로 돌아 나가며 틈을 만들었고, 레이스 중간에는 카트 부품 일부가 떨어져 나가는 일도 있었습니다. 그래도 랩당 3초 이상 빠른 속도로 달려 6랩 만에 상위 10위 안에 들었습니다.</p>
+              <p>결국 14랩 만에 선두에 올라 우승했습니다. 2위는 F1 기자 재키 마튼스(Jacky Martens), 3위는 레드불 파워트레인 기술자 루이스 오슬러(Lewis Osler)였습니다.</p>
+              <p>페르스타펜은 무전으로 “지금까지 중 최고의 우승 같다!”고 외쳤고, 경기 뒤에는 “올해 내 첫 우승이니까 이걸로 하겠다”고 웃었습니다. 2026 시즌 F1에서 아직 우승하지 못했다는 사실을 스스로 농담 삼아 꺼낸 셈입니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.crash.net/f1/news/1104741/1/max-verstappen-passes-100-go-karters-14-laps-best-win-yet-silverstone" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+  </section>
+
+  <!-- ============================ 📖 용어 ============================ -->
+  <section id="glossary" data-cat="glossary">
+    <div class="sec-head"><h2>📖 오늘의 용어</h2><span class="count">12개</span></div>
+    <dl class="glossary">
+      <div class="term"><dt>스프린트 <span>(Sprint)</span></dt><dd>그랑프리 주말 토요일에 따로 여는 약 100km 짧은 레이스입니다. 상위권에 적은 포인트를 주며, 2027년에는 10번 열립니다.</dd></div>
+      <div class="term"><dt>스프린트 예선 <span>(Sprint Qualifying)</span></dt><dd>스프린트 레이스의 출발 순서를 정하는 짧은 예선입니다. 스프린트 주말에는 연습 주행이 한 번뿐이라 팀들이 세팅을 서둘러야 합니다.</dd></div>
+      <div class="term"><dt>가상 안전차 <span>(Virtual Safety Car, VSC)</span></dt><dd>실제 안전차를 내보내지 않고 모든 차가 정해진 느린 속도로 달리게 하는 제도입니다. 이때 피트에 들어가면 잃는 시간이 크게 줄어듭니다.</dd></div>
+      <div class="term"><dt>피트 손실 시간 <span>(Pit loss)</span></dt><dd>피트에 들어가 타이어를 바꾸고 나오느라 트랙에서 잃는 총시간입니다. 피트레인이 길수록 커집니다.</dd></div>
+      <div class="term"><dt>ADUO <span>(Additional Development and Upgrade Opportunities)</span></dt><dd>성능이 뒤처진 엔진 제조사에 추가 개발 기회를 주는 2026년 규정상의 제도입니다. 혼다 지원 방안으로 범위 확대가 논의됩니다.</dd></div>
+      <div class="term"><dt>드라이버빌리티 <span>(Driveability)</span></dt><dd>드라이버가 페달을 밟은 만큼 출력이 매끄럽고 예측 가능하게 나오는 정도입니다. 나쁘면 코너 탈출에서 차가 불안해집니다.</dd></div>
+      <div class="term"><dt>캘리브레이션 <span>(Calibration)</span></dt><dd>엔진·전기 시스템의 제어 설정값을 세밀하게 맞추는 작업입니다. 부품을 바꾸지 않고도 드라이버빌리티를 개선할 수 있습니다.</dd></div>
+      <div class="term"><dt>예산 상한 <span>(Budget cap)</span></dt><dd>F1 팀이 1년에 쓸 수 있는 돈의 최대치입니다. 부자 팀과 작은 팀의 격차를 줄이려고 도입됐습니다.</dd></div>
+      <div class="term"><dt>타이틀 스폰서 <span>(Title sponsor)</span></dt><dd>팀의 공식 이름에 회사명이 들어가는 가장 큰 후원사입니다. 하스는 올해 토요타 가주 레이싱이 이 자리를 맡았습니다.</dd></div>
+      <div class="term"><dt>TPC <span>(Testing of Previous Cars)</span></dt><dd>2년 이상 지난 구형 F1 차로 하는 테스트입니다. 신차 테스트 제한을 받지 않아 드라이버 평가에 자주 씁니다.</dd></div>
+      <div class="term"><dt>레이스 엔지니어 <span>(Race engineer)</span></dt><dd>경기 중 무전으로 드라이버와 대화하며 세팅·전략·정보를 전달하는 담당 엔지니어입니다. 드라이버와의 호흡이 매우 중요합니다.</dd></div>
+      <div class="term"><dt>트리플 크라운 <span>(Triple Crown)</span></dt><dd>모나코 GP, 르망 24시, 인디애나폴리스 500을 모두 우승하는 업적입니다. 지금까지 그레이엄 힐(Graham Hill) 한 명만 이뤘습니다.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span class="brand">Claude</span>가 번역·정리한 F1 뉴스 · 2026.09.17<br>
+    원문 저작권은 각 매체에 있으며, 핵심 요약만 제공합니다.
+  </footer>
+</div>
+<script>
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-cat]'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var cat = chip.dataset.cat;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      sections.forEach(function (s) { s.classList.toggle('hidden', cat !== 'all' && s.dataset.cat !== cat); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  var btn = document.getElementById('unlockAll');
+  var spoilers = Array.prototype.slice.call(document.querySelectorAll('details.spoiler'));
+  function render(open) { btn.setAttribute('aria-pressed', String(open)); btn.textContent = open ? '🔒 스포일러 모두 접기' : '🔓 스포일러 모두 펼치기'; }
+  btn.addEventListener('click', function () { var open = btn.getAttribute('aria-pressed') !== 'true'; spoilers.forEach(function (d) { d.open = open; }); render(open); });
+  spoilers.forEach(function (d) { d.addEventListener('toggle', function () { render(spoilers.every(function (x) { return x.open; })); }); });
+  render(false);
+})();
+</script>
+</body>
+</html>

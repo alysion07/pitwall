@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-09-16",
+    updatedAt: "2026-09-17",
     season: 2026,
     standingsAsOf: { round: 14, name: "스페인 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-09-17", file: "briefings/f1-news-2026-09-17.html", count: 20, spoilers: 5,
+      headline: "F1 2027 캘린더 발표 — 스프린트 10회, 모나코 첫 스프린트 · 하스 2027 두 번째 시트, 헤레스 테스트 뒤 결정 · 2027 르망, F1과 안 겹친다 — 페르스타펜·노리스·알론소 출전 길 열려" },
     { date: "2026-09-16", file: "briefings/f1-news-2026-09-16.html", count: 20, spoilers: 4,
       headline: "마드링, ‘추월 가뭄’ 혹평에 코너 세 곳 손본다 · 페르스타펜 “팀 옮기느니 은퇴에 더 가까웠다” · 호너의 F1 복귀 길 열리나 — 알핀 지분 거부권 만료" },
     { date: "2026-09-14", file: "briefings/f1-news-2026-09-14.html", count: 20, spoilers: 7,
