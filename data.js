@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-09-18",
+    updatedAt: "2026-09-19",
     season: 2026,
     standingsAsOf: { round: 14, name: "스페인 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-09-19", file: "briefings/f1-news-2026-09-19.html", count: 20, spoilers: 6,
+      headline: "르클레르, 바쿠에서 새 엔진(ADUO2) 달고 그리드 페널티 받을 듯 · 2027 프리시즌 테스트 확정 — 2월 24~27일 사히르 단 한 번 · 바쿠 앞바다 인공섬 개발 계획에 F1 서킷 포함" },
     { date: "2026-09-18", file: "briefings/f1-news-2026-09-18.html", count: 20, spoilers: 7,
       headline: "카타르·아부다비 개최 여전히 불투명 — FIA, 이몰라 대체 검토 · 알핀, 전 메르세데스 기술 수장 마이크 엘리엇 CTO 영입 · 호주 GP “2027 개막전 대타는 불가”" },
     { date: "2026-09-17", file: "briefings/f1-news-2026-09-17.html", count: 20, spoilers: 5,
