@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-09-19",
+    updatedAt: "2026-09-20",
     season: 2026,
     standingsAsOf: { round: 14, name: "스페인 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-09-20", file: "briefings/f1-news-2026-09-20.html", count: 20, spoilers: 6,
+      headline: "바쿠 결승은 9월 26일 토요일 — 추모의 날과 겹쳐 주말 일정이 하루씩 당겨졌다 · 호너의 알핀 지분 인수 무산, ‘F1과 무관한 미국인’이 대신 들어올 전망 · 두한, 헤레스 TPC 테스트로 F1 복귀 — 하스 2027 시트 경쟁 재합류" },
     { date: "2026-09-19", file: "briefings/f1-news-2026-09-19.html", count: 20, spoilers: 6,
       headline: "르클레르, 바쿠에서 새 엔진(ADUO2) 달고 그리드 페널티 받을 듯 · 2027 프리시즌 테스트 확정 — 2월 24~27일 사히르 단 한 번 · 바쿠 앞바다 인공섬 개발 계획에 F1 서킷 포함" },
     { date: "2026-09-18", file: "briefings/f1-news-2026-09-18.html", count: 20, spoilers: 7,
