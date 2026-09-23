@@ -1,6 +1,6 @@
 # PIT WALL 데일리 루틴 — F1 브리핑 생성 + 허브 갱신 + 커밋
 
-매일 아침(KST 09:00) 실행. 저장소 루트에서 작업한다. 이 문서만 보고 처음부터 끝까지 수행한다.
+매일 아침(KST 07:00) 실행. 저장소 루트에서 작업한다. 이 문서만 보고 처음부터 끝까지 수행한다.
 
 > **최우선 원칙: 스포일러 차단.**
 > 사용자는 레이스를 나중에 본다. 브리핑 본문·`data.js`·커밋 메시지·PR 본문 어디에서도 레이스 결과, 우승자, 포디움, 챔피언십 순위, 최근 승자를 암시하는 표현이 노출되면 안 된다. 애매하면 스포일러로 취급한다.
@@ -26,16 +26,19 @@ briefings/      ← 오늘 브리핑 추가
 
 ### 1-A. 검색 (WebSearch)
 고정 매체: Formula1.com, The Race, Autosport, Motorsport.com, RaceFans, PlanetF1, Crash.net, GPFans. 그 밖의 매체도 발견되면 출처 명시하고 수집.
+기술 심층 매체(2026-09-23 추가): **Motor Sport Magazine**(`motorsportmagazine.com/articles/category/single-seaters/f1/`, 마크 휴스 기술 분석) · **Racecar Engineering**(RSS `racecar-engineering.com/feed/`에서 `Formula 1`/`F1` 카테고리 글만, F1 기사는 월 몇 건 수준). 매일 목록을 확인하되 새 F1 기사가 없으면 넘어간다.
+- F1Technical.net은 Cloudflare 봇 검사로 curl·내장 브라우저 모두 차단되고 아카이브 사본은 열흘 넘게 늦다 → 수집 대상에서 제외(검사 우회 시도 금지).
 쿼리 예: `F1 Formula 1 latest news today`, `F1 transfer news`, `F1 technical regulations`, `{다음 GP명} preview`.
 
 ### 1-B. 기사 페이지 fetch — 생략 금지
 카드로 실을 기사는 각 페이지를 반드시 연다. 두 도구를 나눠 쓴다.
 - **메타 태그 → Bash `curl`** (WebFetch는 페이지를 마크다운으로 바꾸면서 `<meta>`를 버리므로 og:image를 못 준다 — 2026-09-03 검증). `og:image`(썸네일), `og:url`/canonical(정식 URL), `og:title`, `article:published_time`을 뽑는다:
   ```bash
-  curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/128 Safari/537.36" --max-time 25 "$URL" | grep -oiE '<meta[^>]+(og:image|og:url|og:title|article:published_time)[^>]*>|<link[^>]+canonical[^>]*>'
+  curl -sL --compressed -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8" -H "Accept-Language: en-GB,en;q=0.9" -H "Sec-Fetch-Mode: navigate" -H "Sec-Fetch-Site: none" -H "Sec-Fetch-Dest: document" -H "Upgrade-Insecure-Requests: 1" --max-time 25 "$URL" | grep -oiE '<meta[^>]+(og:image|og:url|og:title|article:published_time)[^>]*>|<link[^>]+canonical[^>]*>'
   ```
-  여러 URL은 for 루프로 한 번에 돌린다.
+  여러 URL은 for 루프로 한 번에 돌린다. 브라우저 헤더(`-H` 줄들)는 빼지 않는다 — User-Agent만 보내면 Racecar Engineering 등이 403을 준다(2026-09-23 검증, 이 명령으로 고정 8곳 + Grandprix.com·RacingNews365·Motor Sport Magazine·Racecar Engineering 12곳 모두 og:image 확인).
 - **본문 → WebFetch** (prompt에 "본문을 요약하고, 순위·최근 레이스 결과 언급이 있으면 그대로 인용"을 넣는다). 본문은 스포일러 판별 근거이자 상세 번역 재료다.
+  - 예외: **Racecar Engineering은 WebFetch가 막힌다**("unable to fetch", 2026-09-23 검증). 위 curl 명령으로 HTML을 받아 `<p>` 문단 텍스트만 뽑아 읽는다(유료 벽 없이 전문이 들어 있음을 확인).
 - fetch는 3~4개씩 병렬. 큰 사이트 한 곳을 열면 "Latest/Related" 목록에서 실제 기사 URL을 대량 확보할 수 있다.
 - PlanetF1 `-496x280.jpg` 썸네일은 저해상도 → 접미사 제거 또는 `-1320x742.jpg`. Formula1.com Cloudinary는 `w_352`→`w_960` 가능.
 - **og:image를 못 얻은 기사는 싣지 않는다.** 플레이스홀더로 채우고 둘러대지 않는다.
