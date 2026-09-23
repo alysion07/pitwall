@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-09-22",
+    updatedAt: "2026-09-23",
     season: 2026,
     standingsAsOf: { round: 14, name: "스페인 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-09-23", file: "briefings/f1-news-2026-09-23.html", count: 20, spoilers: 8,
+      headline: "하자르, 손목 부상 털고 바쿠에서 레드불 복귀 · FIA, 바쿠에 첫 ‘스트레이트 모드’ 구간 2곳 지정 · 2027 복귀 앞둔 터키 GP, 이스탄불 파크 대대적 개보수" },
     { date: "2026-09-22", file: "briefings/f1-news-2026-09-22.html", count: 20, spoilers: 7,
       headline: "2027년 그랑프리 305km→290km로 단축 — F1 커미션 합의 · 맥라렌, 올해 개발 방향 가를 대형 업그레이드를 바쿠에 투입 · 바쇠르 “페라리의 진짜 카드는 2027년 새 엔진”" },
     { date: "2026-09-21", file: "briefings/f1-news-2026-09-21.html", count: 20, spoilers: 5,
