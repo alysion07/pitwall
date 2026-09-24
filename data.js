@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-09-24",
+    updatedAt: "2026-09-25",
     season: 2026,
     standingsAsOf: { round: 14, name: "스페인 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-09-25", file: "briefings/f1-news-2026-09-25.html", count: 23, spoilers: 7,
+      headline: "바쿠 첫날 연습 주행, 러셀이 두 세션 모두 1위 — 맥라렌은 1.5초 열세 · 배터리 속도 차 50km/h, 해밀턴·로슨 아찔한 순간에 견책 · 카타르·아부다비 개최 여부 10월 중순까지 결정" },
     { date: "2026-09-24", file: "briefings/f1-news-2026-09-24.html", count: 21, spoilers: 9,
       headline: "2030년 F1 엔진 윤곽 공개 — 3.0리터 V8 터보에 100kW 전기 모터 · 드라이버들 “바쿠 2km 직선 에너지 운용, 아주 부자연스럽다” · 카타르·아부다비 취소 결정 지연, 걸림돌은 개최비 부담" },
     { date: "2026-09-23", file: "briefings/f1-news-2026-09-23.html", count: 21, spoilers: 9,
