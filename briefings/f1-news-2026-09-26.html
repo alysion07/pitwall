@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>F1 데일리 브리핑 — 2026.09.26</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../favicon-192.png">
+<style>
+  :root {
+    --bg:#ffffff; --bg-soft:#f7f7f9; --card:#ffffff; --card-hover:#fbfbfc;
+    --text:#14141a; --text-mid:#4a4a57; --text-dim:#86868f;
+    --border:#e6e6ec; --border-soft:#f0f0f4;
+    --accent:#E10600; --accent-soft:rgba(225,6,0,.08);
+    --spoiler-bg:#fbf7f7; --spoiler-border:#ecdcdc; --chip-bg:#f2f2f5;
+    --shadow:0 1px 2px rgba(20,20,26,.04),0 8px 24px -12px rgba(20,20,26,.10);
+    --bar-bg:rgba(255,255,255,.82);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0e0e11; --bg-soft:#141419; --card:#16161b; --card-hover:#1b1b21;
+      --text:#f0f0f3; --text-mid:#b6b6c0; --text-dim:#82828e;
+      --border:#26262e; --border-soft:#1e1e25;
+      --accent:#FF3B30; --accent-soft:rgba(255,59,48,.12);
+      --spoiler-bg:#1a1416; --spoiler-border:#3a2528; --chip-bg:#1e1e25;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+      --bar-bg:rgba(14,14,17,.82);
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;
+    font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0 24px; }
+  header { padding:72px 0 32px; }
+  .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+  .kicker .dot { width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  h1 { font-size:clamp(34px,7vw,46px); line-height:1.12; margin:0 0 20px; font-weight:800; letter-spacing:-0.035em; }
+  h1 .accent { color:var(--accent); }
+  .lede { font-size:15px; color:var(--text-mid); margin:0; padding-bottom:28px; border-bottom:1px solid var(--border); }
+  .lede b { color:var(--text); font-weight:600; }
+  .digest { margin:28px 0 0; padding:20px 22px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:14px; }
+  .digest h2 { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:0 0 12px; }
+  .digest ol { margin:0; padding-left:20px; }
+  .digest li { font-size:14.5px; color:var(--text-mid); margin-bottom:7px; }
+  .digest li:last-child { margin-bottom:0; }
+  .digest li b { color:var(--text); font-weight:600; }
+  .bar { position:sticky; top:0; z-index:20; margin:36px 0 8px; padding:12px 0; background:var(--bar-bg); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--border-soft); }
+  .bar-inner { display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap; }
+  .chips { display:flex; gap:7px; flex-wrap:wrap; flex:1 1 auto; scrollbar-width:none; -ms-overflow-style:none; padding:2px 0; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip { flex:0 0 auto; border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:500; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s,color .15s,border-color .15s; }
+  .chip:hover { color:var(--text); }
+  .chip[aria-pressed="true"] { background:var(--text); color:var(--bg); border-color:var(--text); }
+  .chip .n { opacity:.5; margin-left:4px; font-variant-numeric:tabular-nums; }
+  .unlock { flex:0 0 auto; border:1px solid var(--spoiler-border); background:var(--spoiler-bg); color:var(--accent); font:inherit; font-size:13px; font-weight:600; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s; }
+  .unlock:hover { background:var(--accent-soft); }
+  section { padding-top:44px; scroll-margin-top:70px; }
+  section.hidden { display:none; }
+  .sec-head { display:flex; align-items:baseline; gap:10px; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--text); }
+  .sec-head h2 { font-size:19px; font-weight:750; margin:0; letter-spacing:-0.02em; }
+  .sec-head .count { font-size:12px; color:var(--text-dim); font-variant-numeric:tabular-nums; margin-left:auto; font-weight:500; }
+  .art { display:flex; flex-direction:column; align-items:stretch; gap:16px; padding:26px 0; border-bottom:1px solid var(--border-soft); }
+  .art:last-child { border-bottom:none; }
+  .thumb { width:100%; height:340px; border-radius:14px; overflow:hidden; background:linear-gradient(135deg,var(--accent) 0%,#600 100%); border:1px solid var(--border-soft); }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .art-body { min-width:0; }
+  .art h3 { font-size:21px; font-weight:750; line-height:1.36; margin:0 0 6px; letter-spacing:-0.025em; }
+  .orig { font-size:13px; color:var(--text-dim); margin:0 0 11px; font-style:italic; line-height:1.45; }
+  .meta { display:flex; align-items:center; gap:7px; flex-wrap:wrap; font-size:12px; color:var(--text-dim); margin-bottom:12px; }
+  .src { font-weight:650; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:5px; font-size:11.5px; }
+  .sum { font-size:15px; color:var(--text-mid); margin:0 0 4px; line-height:1.75; }
+  details.more { margin:8px 0 14px; }
+  details.more > summary { list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:650; color:var(--accent); padding:7px 0; user-select:none; }
+  details.more > summary::-webkit-details-marker { display:none; }
+  details.more > summary .caret { transition:transform .18s; font-size:10px; }
+  details.more[open] > summary .caret { transform:rotate(90deg); }
+  .detail-body { margin-top:4px; padding:14px 16px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:12px; }
+  .detail-body p { margin:0 0 10px; font-size:14.5px; color:var(--text-mid); line-height:1.8; }
+  .detail-body p:last-child { margin-bottom:0; }
+  .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
+  .go:hover { border-color:var(--text); background:var(--bg-soft); }
+  .go svg { width:11px; height:11px; }
+  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
+  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler > summary::-webkit-details-marker { display:none; }
+  details.spoiler > summary:hover { background:var(--accent-soft); }
+  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
+  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
+  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
+  details.spoiler[open] > summary .hint::after { content:"접기"; }
+  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
+  details.spoiler .art { padding:18px; border-bottom:none; }
+  .glossary { margin-top:12px; }
+  .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
+  .term:last-child { border-bottom:none; }
+  .term dt { font-size:14.5px; font-weight:700; margin-bottom:3px; }
+  .term dt span { color:var(--text-dim); font-weight:500; font-size:13px; }
+  .term dd { margin:0; font-size:14px; color:var(--text-mid); line-height:1.65; }
+  footer { margin-top:64px; padding:28px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
+  footer .brand { color:var(--accent); font-weight:650; }
+  @media (max-width:560px) {
+    .wrap { padding:0 18px; }
+    header { padding:48px 0 24px; }
+    .thumb { height:210px; }
+    .art h3 { font-size:19px; }
+    .sec-head h2 { font-size:17px; }
+    .bar-inner { flex-wrap:nowrap; flex-direction:column; align-items:stretch; }
+    .chips { flex-wrap:nowrap; overflow-x:auto; width:100%; }
+    .unlock { width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+
+  <header>
+    <div class="kicker"><span class="dot"></span> 2026년 9월 26일 토요일 <a href="../index.html" style="margin-left:auto;color:var(--text-dim);text-decoration:none;font-weight:600;letter-spacing:0;text-transform:none">← PIT WALL</a></div>
+    <h1>F1 데일리 <span class="accent">브리핑</span></h1>
+    <p class="lede">해외 매체 <b>6곳</b>(Formula1.com · The Race · Motorsport.com · RaceFans · Crash.net · PlanetF1)의 기사 <b>24건</b>을 정리했습니다. 이 중 <b>8건</b>은 본문에 챔피언십 순위·포인트나 이번 시즌 레이스 성적이 섞여 있어 가려두었습니다. 어제(9월 25일 금요일) 열린 <b>아제르바이잔 GP 3차 연습과 예선</b> 소식이 중심입니다. 예선 결과와 그리드 페널티는 스포일러가 아니라서 그대로 실었습니다. 결승은 오늘(26일 토요일) 밤 한국시간 20시에 시작합니다. 결승 다음 날인 내일 브리핑은 스포일러 카드가 많아질 수 있습니다.</p>
+    <div class="digest">
+      <h2>오늘의 요약</h2>
+      <ol>
+        <li><b>러셀이 0.837초 차로 폴 포지션을 잡았습니다.</b> 올해 예선에서 나온 가장 큰 격차입니다. 팀 동료 안토넬리는 Q1에서 벽에 부딪혀 16번째 출발, 페르스타펜은 원인 모를 출력 저하로 8위에 그쳤고 복귀전을 치른 하자르가 4위에 올랐습니다.</li>
+        <li><b>그리드 순서가 예선과 달라졌습니다.</b> 사인츠는 황색기 무시로 5계단, 페레스는 방해 운전으로 3계단 밀립니다. 해밀턴이 낸 ‘속도 차 줄이기’ 제안은 팀들 반대로 무산됐고, 맥라렌 잭 브라운은 “페르스타펜에게 문은 활짝 열려 있다”고 했습니다.</li>
+        <li>🏁 시즌 순위·성적 관련 소식 <b>8건</b> — 아래 스포일러 섹션을 열어 확인하세요.</li>
+      </ol>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="bar-inner">
+      <div class="chips" role="group" aria-label="카테고리 필터">
+        <button class="chip" data-cat="all" aria-pressed="true">전체<span class="n">24</span></button>
+        <button class="chip" data-cat="race" aria-pressed="false">🏁 레이스 위크<span class="n">13</span></button>
+        <button class="chip" data-cat="transfer" aria-pressed="false">🔄 이적/계약<span class="n">2</span></button>
+        <button class="chip" data-cat="tech" aria-pressed="false">🔧 기술/규정<span class="n">2</span></button>
+        <button class="chip" data-cat="fia" aria-pressed="false">⚖️ FIA/거버넌스<span class="n">3</span></button>
+        <button class="chip" data-cat="people" aria-pressed="false">👤 드라이버/팀<span class="n">2</span></button>
+        <button class="chip" data-cat="etc" aria-pressed="false">📰 기타<span class="n">2</span></button>
+        <button class="chip" data-cat="glossary" aria-pressed="false">📖 용어</button>
+      </div>
+      <button class="unlock" id="unlockAll" aria-pressed="false">🔓 스포일러 모두 펼치기</button>
+    </div>
+  </div>
+
+  <!-- ============================ 🏁 레이스 위크 ============================ -->
+  <section id="race" data-cat="race">
+    <div class="sec-head"><h2>🏁 레이스 위크</h2><span class="count">13건 · 스포일러 5건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/09/racefansdotnet-24-09-24-17-08-23-8-SI202609240314.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>FP3 — 페르스타펜이 러셀·해밀턴 앞서 1위, 세 팀이 0.1초 안에</h3>
+        <p class="orig">Verstappen leads close final practice session in Baku ahead of Russell and Hamilton</p>
+        <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">마지막 3차 연습 주행(FP3)에서 막스 페르스타펜(Max Verstappen)이 가장 빨랐습니다. 목요일 두 세션을 모두 1위로 마친 조지 러셀(George Russell)의 연습 주행 ‘전 세션 1위’를 막았고, 레드불·메르세데스·루이스 해밀턴(Lewis Hamilton)의 페라리가 0.1초 남짓 안에 모였습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>드라이버들은 소프트 타이어가 여러 랩 연속으로 빠른 기록을 낼 수 있다는 걸 확인했습니다. 페르스타펜은 세션 끝 무렵 소프트로 12랩을 달리며 기록을 계속 줄였고, 마지막 시도에서 15번 코너 탈출로(Run-off, 코너 밖 비상 공간)로 미끄러지기도 했습니다.</p>
+          <p>러셀과 키미 안토넬리(Kimi Antonelli, 4위)는 세션이 끝나기 전 피트로 들어가 미디엄 타이어로 바꿨고, 그 사이 다른 팀들은 기록을 더 줄였습니다. 샤를 르클레르(Charles Leclerc)는 7번 코너에서 코스를 벗어나 해밀턴보다 0.5초 느렸습니다.</p>
+          <p>알핀(Alpine)의 피에르 가슬리(Pierre Gasly)가 6위로 두 맥라렌을 앞섰습니다. 레드불의 두 드라이버는 1.2초 차이였는데, 9위 이삭 하자르(Isack Hadjar)는 계속 다른 차에 막혔다고 불평했고 엔지니어는 “다른 차들까지 내가 조종할 수는 없잖아”라고 답했습니다.</p>
+          <p>애스턴마틴(Aston Martin)의 랜스 스트롤(Lance Stroll)은 1번 코너 안쪽 벽을 스친 뒤 8랩 만에 차를 세웠습니다. 쓰러진 나뭇가지를 치우려고 버추얼 세이프티카(VSC, 모든 차가 정해진 속도로 줄여 달리는 가상 안전 구간)가 잠깐 발령된 것 말고는 세션이 끊기지 않았습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.racefans.net/2026/09/25/verstappen-leads-close-final-practice-session-in-baku-ahead-of-russell-and-hamilton/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Miscellaneous/GettyImages-2297078654.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>2위 르클레르 “생각보다 격차가 너무 크다” · 6위 해밀턴 “토우 없이 홀로 남겨졌다”</h3>
+        <p class="orig">Leclerc torn over P2 as Hamilton a 'sitting duck' in Baku</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">르클레르는 1분 43초 363으로 오스카 피아스트리(Oscar Piastri)를 0.001초 차로 제치고 앞줄 2번 자리를 잡았지만, 폴 포지션과는 0.837초나 벌어졌습니다. 6위 해밀턴은 팀이 Q3에서 작전을 바꾸는 바람에 앞차 뒤를 따라가는 이득을 전혀 못 봤다고 아쉬워했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>르클레르는 해밀턴이 3~4초 앞에서 달려 준 덕을 봤다며 “꽤 좋은 랩이었는데 조지와의 격차를 보면 충분하지 않았던 것 같다”고 웃었습니다. 그는 “주말 내내 밀렸다. 자리로는 예상대로지만 시간 차이는 예상보다 훨씬 크다”고 했습니다.</p>
+          <p>결승 전망에 대해서는 “직선 속도는 우리 강점이 아니지만 FP1에서 연료를 많이 실은 상태의 속도는 꽤 좋았다. 내일도 그러길 바란다”고 말했습니다.</p>
+          <p>해밀턴은 “원래 리듬대로라면 나도 샤를처럼 다른 차 뒤에서 토우(Tow, 앞차 뒤 공기 저항이 줄어드는 효과)를 받을 수 있었다. 그런데 Q3에 들어가며 팀이 계획을 바꿨고, 나는 25초 뒤에 홀로 남았다. 그냥 앉아서 당하는 오리 신세였다”고 털어놨습니다.</p>
+          <p>그는 “이 서킷은 내 강한 곳이 아니고 우리는 직선에서 느리다. 앞의 차들이 모두 빠르고, 샤를을 빼면 메르세데스 엔진을 단 차들이 전부 내 앞이라 추월이 쉽지 않을 것”이라며 결승에 큰 기대를 걸지 않았습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/leclerc-left-with-mixed-feelings-after-earning-p2-in-baku-qualifying-as-hamilton-describes-sitting-duck-moment.5cvKhkopV3XNbN14sMY0e9" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Azerbaijan___Qualifying/2297084028.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>연습 땐 1.5초 느렸던 맥라렌, 예선에선 피아스트리 3위 “우리도 놀랐다”</h3>
+        <p class="orig">Piastri assesses 'surprise' Qualifying result in Baku</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">연습 주행에서 6위가 최고였던 맥라렌이 예선에서 살아났습니다. 피아스트리는 르클레르에 0.001초 뒤진 3위, 랜도 노리스(Lando Norris)는 마지막 랩에서 브레이크가 잠기며(락업) 5위에 그쳤습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>Q3 첫 번째 시도에서 피아스트리와 노리스가 잠시 1·2위를 차지하기도 했습니다. 피아스트리는 “올해 이런 일이 처음은 아니다. 연습 때는 밀리다가 예선에 나오면 조금 더 찾아낸다”며 “첫 랩 뒤 우리가 1·2위인 걸 보고 꽤 놀랐지만 조지를 상대로는 가망이 없었다”고 했습니다.</p>
+          <p>그는 “목요일 결승용 기록이 오히려 한 랩 기록보다 좋아 보였다. 여기는 늘 혼돈이 있는 곳이니 지켜보자”며 조심스러운 기대를 나타냈습니다. 피아스트리는 2024년 바쿠에서 르클레르를 30랩 넘게 막아 낸 적이 있지만, 2025년에는 예선과 결승에서 모두 벽에 부딪혔습니다.</p>
+          <p>노리스는 마지막 랩 3번 코너에서 락업(Lock-up, 브레이크를 너무 세게 밟아 바퀴가 멈추는 현상)으로 코스를 벗어났습니다. 그는 “P1은 어려웠겠지만, 실수하더라도 P1·P2를 노리는 게 P5·P4에 만족하는 것보다 낫다”고 했습니다(PlanetF1 보도로는 “폴 아니면 죽기 살기로”라는 표현까지 썼습니다).</p>
+          <p>노리스는 “이번 주말 운전은 아주 잘하고 있는데, 차 문제 때문에 랩타임이 막힌다. 지금은 팀 동료 차보다 불리하다”며 특히 직선 속도가 메르세데스에 한참 뒤진다고 했습니다. 내일까지 고치기는 어려워 힘든 결승이 될 것이라고 내다봤습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/p3-in-azerbaijan-qualifying-a-surprise-for-piastri-and-mclaren.61iOcF2G1BbzyccImZVnFF" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Azerbaijan___Qualifying/2297078879.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>FP3 1위 페르스타펜, 예선은 8위 “이건 충분하지 않다” — 복귀한 하자르는 4위</h3>
+        <p class="orig">Red Bull's Qualifying issues 'not good enough' – Verstappen</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">FP3에서 가장 빨랐던 페르스타펜이 예선에서 폴과 1.5초 차 8위로 밀렸습니다. Q1부터 팀 동료보다 직선에서 0.5초 느렸고, Q3에서는 배터리가 100%까지 충전되지 않아 랩을 포기해야 했습니다. 손목 부상에서 돌아온 하자르는 4위에 올랐습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>페르스타펜은 “Q1부터 내 엔진이 직선에서 팀 동료보다 0.5초 느렸고 팀도 이유를 모른다”며 “Q3 중간 랩에서 마지막 코너를 빠져나올 때 배터리가 100%가 되지 않아 랩을 접었다. 그러면 타이어 온도가 떨어지는데 이곳에선 치명적”이라고 설명했습니다.</p>
+          <p>마지막 랩에서는 노리스가 코스를 벗어나며 나온 황색기(Yellow flag, 위험 구간이니 속도를 줄이라는 신호)까지 만났습니다. 그는 “주말 내내 차 느낌이 좋았는데 예선에서 문제가 이렇게 많으면 거기 있을 자격도 없다. 더 튼튼해져야 한다”고 했습니다. 레드불 팀 대표 로랑 메키스(Laurent Mekies)는 “세션이 갈수록 문제가 심해졌다”며 밤사이 결함 부품을 바꾸겠다고 밝혔습니다(The Race 보도).</p>
+          <p>The Race 집계로 페르스타펜의 스피드 트랩(Speed trap, 특정 지점의 최고 속도 측정) 기록은 22명 중 20번째(306.3km/h)로, 하자르보다 11km/h 느렸습니다. 새 파워유닛(엔진과 전기 장치를 묶은 동력 장치)으로 바꾸고 뒤에서 출발할지에 대해서는 “먼저 원인부터 찾아야 한다”고 했습니다.</p>
+          <p>하자르는 세 대회를 쉬고 돌아와 올 시즌 네 번째로 페르스타펜을 예선에서 앞섰습니다. 그는 “2위와 이렇게 가까운 게 오히려 놀랍다. 복귀전이라 벽에 닿지 않는 게 먼저라 연습 땐 한계 아래로 달렸다”며, Motorsport.com에는 “지난 세 경기를 뛰었다면 분명 2번 그리드였을 것”이라고 자신감을 보였습니다. 4위는 개막전 호주 예선 3위 이후 그의 최고 예선 기록입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/not-good-enough-verstappen-critical-of-red-bull-performance-after-so-much-trouble-in-azerbaijan-gp-qualifying.6I21lU5y6LOBMJHYLQ4iji" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Azerbaijan___Qualifying/2297085779.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>윌리엄스 올해 첫 Q3였는데… 사인츠, 황색기 무시로 5계단 그리드 강등</h3>
+        <p class="orig">Sainz hit with five-place grid penalty for Azerbaijan GP</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">대형 업그레이드를 단 윌리엄스로 올해 처음 Q3에 올라 9위를 차지한 카를로스 사인츠(Carlos Sainz)가 황색기 구간에서 속도를 줄이지 않아 5계단 강등을 받았습니다. 14번 그리드에서 출발하고, 페널티 포인트 2점도 받았습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>Q3에서 노리스가 3번 코너에서 코스를 벗어나자 4·5구역에 황색기가 나왔습니다. 사인츠는 팀 무전으로 “앞에 황색기, 발 떼”라는 경고까지 받았고, 청문에서 황색기를 알고 있었다고 인정했습니다.</p>
+          <p>사인츠는 두 구역에 걸친 황색기이니 3번 코너 진입·탈출에서 한꺼번에 속도를 줄여 보여 주려 했고, 원인이 된 차가 이미 빠져 황색기가 곧 걷힐 거라 생각했다고 설명했습니다. 이른바 ‘전체 구간 감속’ 논리입니다.</p>
+          <p>스튜어드(Steward, 경기 심판단)는 받아들이지 않았습니다. 연속된 구역에 황색기가 나오면 각 구역마다 뚜렷이 속도를 줄여야 하고, 뒤 구역에서 줄인 것으로 앞 구역을 대신할 수 없다는 판단입니다. 실제로 사인츠는 4구역에서 이 세션 최고 구간 기록을 냈습니다.</p>
+          <p>이로써 프랑코 콜라핀토(Franco Colapinto), 올리 베어먼(Ollie Bearman), 리암 로슨(Liam Lawson), 알렉스 알본(Alex Albon), 에스테반 오콘(Esteban Ocon)이 한 계단씩 올라갑니다. 사인츠의 페널티 포인트(Penalty points, 12개월간 12점이 쌓이면 한 경기 출전 정지)는 4점이 됐습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/sainz-hit-with-five-place-grid-penalty-for-azerbaijan-gp-after-yellow-flag-breach-in-qualifying.1gS7cC7mRmvBvIrJGRH6Bb" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Azerbaijan___Qualifying/2297073698.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>페레스도 3계단 강등 — 준비 랩에서 피아스트리 진로 방해</h3>
+        <p class="orig">Perez given penalty after Azerbaijan Qualifying infringement</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">캐딜락(Cadillac)의 세르히오 페레스(Sergio Pérez)가 예선에서 빠른 랩을 달리던 피아스트리를 막았다는 판정으로 3계단 그리드 페널티를 받았습니다. 다만 애스턴마틴 두 대가 엔진 교체로 더 큰 페널티를 받아 실제 출발 순서는 20번째 그대로입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>바쿠에서 두 번 우승한 적이 있는 페레스는 연습 주행 기록이 좋아 캐딜락 올해 최고 예선 성적을 노렸지만 Q2 진출에 실패해 20위에 그쳤습니다.</p>
+          <p>문제의 장면은 18~20번 코너에서 나왔습니다. 페레스는 타이어를 데우려고 좌우로 흔들며 준비 랩(Preparation lap)을 달리던 중이었고, 피아스트리가 다가온다는 경고를 두 번 받고도 레이스 디렉터가 정한 교통 정리 지침을 따르지 않았습니다.</p>
+          <p>피아스트리는 페레스 때문에 가속 페달에서 발을 떼야 했지만 기록 손실은 크지 않았다고 진술했습니다. 스튜어드는 위험한 상황은 아니었다고 봤지만, 발을 떼게 만든 것 자체가 ‘불필요한 방해(Impeding)’에 해당한다고 판단했습니다.</p>
+          <p>이번 주말 바쿠에서는 목요일 해밀턴-로슨 사건 이후 느린 차와 빠른 차의 속도 차가 계속 문제가 되고 있습니다. 결승은 51랩으로 치러집니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/perez-handed-penalty-for-azerbaijan-grand-prix-after-qualifying-infringement.zuQBKGcAcuTO1vc7esCSP" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-09/xpb_1437294_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>오콘, Q2 탈락 뒤 거친 분노 “내가 이런 일을 당할 이유가 없다”</h3>
+        <p class="orig">Esteban Ocon launches sweary Azerbaijan GP qualifying outburst: 'I don't deserve this'</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">연습 주행 내내 좋은 흐름이던 하스(Haas)의 에스테반 오콘이 예선 Q2에서 14위로 탈락했습니다. 마지막 랩이 “엄청난 랩이 될 뻔”했는데 황색기에 걸렸다며 욕설 섞인 불만을 쏟아냈습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>오콘은 “마지막에 Q3에 갈 랩이었다. 그런데 황색기가 나왔다. 올 시즌 내 이야기다. 경기만 다르고 이야기는 같다”고 말했습니다.</p>
+          <p>그는 “차에 문제가 있거나, 차가 잘 달리면 뭔가가 내 등 뒤로 떨어진다”며 “이런 일을 당할 이유가 없다. 오늘은 Q3에 있어야 했는데 보여 주지 못해 너무 화가 난다”고 했습니다. The Race는 마지막 랩이 2번 코너 이탈로 트랙 리밋(Track limits, 코스 경계선을 넘으면 기록 삭제) 위반이 돼 삭제됐다고 전했습니다.</p>
+          <p>오콘은 2027년 하스 시트를 잃을 가능성이 높다는 관측이 많습니다. 캐딜락행도 현재로선 어려워 보여 F1 커리어가 끝날 수 있다는 전망도 나옵니다.</p>
+          <p>그는 수요일 “2027년에는 자유 계약 신분”이라며 “내가 통제할 수 없는 논의들이 있다. 연말까지 최선을 다할 뿐”이라고 했습니다. 하스 대표 고마쓰 아야오(Ayao Komatsu)는 오콘이 여전히 선택지 중 하나라고 밝혔습니다. RaceFans에는 “오콘 대신 페라리 주니어 하파엘 카마라(Rafael Câmara)를 쓰는 게 하스에 합리적”이라는 독자 의견이 소개되기도 했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1105499/1/esteban-ocon-launches-sweary-azerbaijan-gp-qualifying-outburst-i-dont-deserve" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1439274_HiRes.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>0.837초, 올해 가장 큰 폴 격차 — 메르세데스가 강했고 경쟁자들은 스스로 무너졌다</h3>
+        <p class="orig">What explains Mercedes' most dominant performance of 2026</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">러셀의 폴 격차 0.837초는 올해 예선에서 메르세데스의 경쟁자들이 당한 가장 큰 패배입니다. 개막전 호주의 0.785초 기록을 차 한 대만으로 넘어섰습니다. The Race는 메르세데스의 차와 엔진이 가장 좋은 건 분명하지만, 경쟁 팀들의 자멸이 격차를 더 키웠다고 분석합니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>가장 큰 변수는 레드불이었습니다. FP3 1위로 가장 강한 도전자로 보였던 페르스타펜은 출력 저하·배터리 충전 문제·황색기가 겹쳐 폴과 1.5초 차 8위에 그쳤습니다. 가장 좋은 세 구간 기록만 합쳐도 1.014초 차였고, 깨끗한 마지막 랩이었다면 더 줄었을 것이라는 분석입니다. 해밀턴은 이번 주말 두 번째로 빠른 차가 레드불이라고 봤습니다.</p>
+          <p>페르스타펜은 “주말 내내 잘하다가 예선에서 내가 어쩔 수 없는 문제로 다 무너졌다. 올해 차가 가끔 너무 연약하다”고 했습니다. 시즌 내내 괴롭혔던 공기역학 성능 저하 문제는 이번에는 없었다고 합니다.</p>
+          <p>맥라렌은 전반적인 공기역학 효율이 부족한 데다 노리스 차만 직선에서 특히 느리다는 문제가 있었습니다. 노리스는 “팀은 다 정상이라는데 폴과 0.8초 차를 보면 아프다. 우리 손해는 직선에서 난다”고 했고, 팀 대표 안드레아 스텔라(Andrea Stella)는 연료 분사와 관련된 파워유닛 문제일 수 있다며 조사 중이라고 밝혔습니다.</p>
+          <p>해밀턴은 페라리가 Q3 작전을 바꾸면서 토우 없이 달려 약 0.6초를 잃었다고 봤습니다. 러셀은 “모든 게 완벽하게 맞아떨어졌다”며, 여름 휴식기 이후 자신의 경기력이 실제로 한 단계 올라왔다고 말했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/everything-behind-mercedes-f1-2026-rivals-most-crushing-defeat/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 아제르바이잔 GP 예선 리포트 (시즌 순위 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1439149_HiRes.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>예선 리포트 — 챔피언십 선두 안토넬리 Q1 충돌로 16위, 러셀은 0.8초 차 압도적 폴</h3>
+          <p class="orig">Antonelli crashes in Baku qualifying as Russell takes crushing pole</p>
+          <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.25</span></div>
+          <p class="sum">러셀이 0.837초 차로 폴을 잡았습니다. 메르세데스 팀 동료이자 <b>챔피언십 선두</b> 안토넬리는 Q1 남은 7분에 1번 코너 안쪽 벽을 쳐 왼쪽 앞바퀴가 틀어지고 타이어가 터져 16번째로 출발합니다. 러셀에게는 큰 기회입니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>안토넬리는 차를 몰고 차고로 돌아가려 했지만, 엔지니어 피터 보닝턴(Peter Bonnington)이 돌아와도 고칠 시간이 없다며 차를 세우라고 지시했습니다. 사고 당시 6위였던 그는 다른 차들이 기록을 줄이면서 15위까지 밀렸지만 Q2 진출은 지켰고, Q2를 뛰지 못해 16번째 출발이 됐습니다.</p>
+            <p>Q3에서 러셀은 두 번째 시도에서 르클레르보다 0.435초 앞섰고, 마지막 시도에서 격차를 0.946초까지 벌렸다가 르클레르가 0.837초로 좁혔습니다. 러셀과 1초 안에 든 차는 세 대뿐이었습니다. 순위는 러셀-르클레르-피아스트리-하자르-노리스-해밀턴-가슬리-페르스타펜-사인츠-콜라핀토 순입니다.</p>
+            <p>하스와 레이싱 불스(Racing Bulls)는 두 대 모두 Q2에서 탈락했고, 베어먼은 콜라핀토에게 마지막 순간 밀려 11위였습니다. 대형 업그레이드를 가져온 아우디(Audi)는 올해 처음으로 두 대가 Q1에서 탈락했습니다.</p>
+            <p>Q1에서는 알론소의 이탈로 나온 황색기가 휠켄베르크(Nico Hülkenberg)와 페레스의 마지막 랩을 망쳤고, 캐딜락의 발테리 보타스(Valtteri Bottas)는 이중 황색기 속에서 낸 기록이 삭제돼 22위였습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.the-race.com/formula-1/f1-azerbaijan-gp-qualifying-antonelli-crash-russell-crushing-pole/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 바쿠 예선의 승자와 패자 (시즌 포인트 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1439190_HiRes.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>바쿠 예선의 승자와 패자 — 러셀·피아스트리·하자르·알핀은 웃고, 안토넬리·페르스타펜·아우디는 울었다</h3>
+          <p class="orig">Winners and losers from F1 Azerbaijan GP qualifying</p>
+          <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.25</span></div>
+          <p class="sum">The Race가 예선의 승자와 패자를 골랐습니다. 0.837초 폴의 러셀, 노리스를 앞선 피아스트리, 복귀전 4위 하자르, 두 대 모두 Q3에 오른 알핀이 승자였고, 벽을 친 안토넬리, 출력 문제의 페르스타펜, 대형 업그레이드에도 Q1 탈락한 아우디가 패자로 꼽혔습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>러셀은 예선 시작부터 차가 완벽하게 맞아떨어졌습니다. The Race는 “한 번의 폴, 아니 토요일 우승 한 번으로도 희미해진 그의 타이틀 가능성을 되살리기엔 부족하지만, 러셀이 말하는 ‘상승 사이클’의 중요한 한 걸음”이라고 평했습니다.</p>
+            <p>안토넬리에 대해서는 “이번 주말 메르세데스의 기세라면 쉽게 챙길 수 있는 18점이 기다리고 있었다”며 “<b>81점</b>의 여유가 있으니 감당할 수는 있지만 굳이 이번 주말에 그 여유를 쓸 필요는 없었다”고 지적했습니다. 16번째 출발로 추월 부담이 커졌습니다.</p>
+            <p>피아스트리는 르클레르에 0.001초 뒤진 3위였고, 하자르는 “꾸준했다면 분명 앞줄이었다”고 했습니다. 알핀은 상위 팀들이 여덟 자리를 차지하는 가운데 두 대 모두 Q3에 오르며 중위권 선두다운 모습을 보였습니다.</p>
+            <p>페르스타펜은 출력 저하로 0.581초를 잃었고, 아우디는 17·18위에 그쳐 가브리에우 보르툴레투(Gabriel Bortoleto)가 “주말 내내 그립이 없었다”고 했습니다. 윌리엄스 첫 Q3를 이끈 사인츠는 페널티로 기쁨이 반감됐고, 오콘은 하자르의 락업 여파로 0.3~0.4초를 잃었다고 했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.the-race.com/formula-1/f1-2026-azerbaijan-gp-qualifying-winners-losers/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 안토넬리의 예선 실수 반응 (시즌 순위·최근 결과 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Azerbaijan___Qualifying/2297078655.webp" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>안토넬리 “아주 어리석은 실수, 정신 차리라는 신호” — 러셀과 81점 차, 몬차처럼 역주행 노린다</h3>
+          <p class="orig">Antonelli rues 'very stupid' mistake during Baku Qualifying</p>
+          <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.09.25</span></div>
+          <p class="sum">Q1 1번 코너에서 벽을 친 안토넬리가 “전혀 필요 없는, 아주 어리석은 실수”였다고 자책했습니다. 그는 러셀에게 <b>81점 앞선 챔피언십 선두</b>로 51랩 결승에 나서며, 몇 라운드 전 홈 몬차에서 19위 출발로 우승한 것처럼 순위를 끌어올리겠다고 했습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>안토넬리는 Q1 초반 기록으로 Q2 진출은 확정됐지만, 사고 뒤 보닝턴의 지시로 차를 세우고 나머지 예선을 지켜봐야 했습니다. 최종 16위입니다.</p>
+            <p>그는 “첫 랩과 그립이 너무 달랐는데 그걸 잘못 판단했다. 이렇게 이른 시점에 너무 불필요한 실수”라며 “다시 땅으로 내려오게 해 주는 좋은 계기다. 매번 집중하지 않으면 이런, 아주 어리석은 실수를 한다”고 말했습니다.</p>
+            <p>기사는 안토넬리가 팀 동료 러셀에게 81점 앞서 있지만, 폴을 잡은 러셀이 점수를 좁힐 절호의 기회를 얻었다고 짚었습니다.</p>
+            <p>안토넬리는 “몬차에서 19위에서 1위까지 올라간 것처럼” 역주행이 가능하냐는 질문에 “내일이 기대된다. 많은 자리를 되찾길 바란다. 차가 빠르니 최선을 다할 준비가 돼 있다”고 답했습니다. Motorsport.com에는 최근 윌리엄스 F1 테스트를 치른 제이미 채드윅(Jamie Chadwick)이 “예전 안토넬리의 습관이 나왔다”고 평한 기사도 실렸습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.formula1.com/en/latest/article/a-good-way-to-come-back-to-earth-antonelli-rues-very-stupid-mistake-during-azerbaijan-grand-prix-qualifying.2XUXR2KRfYXq5W76q4ibkd" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 린드블라드의 자기 비판 (팀 순위 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1439098_HiRes.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>린드블라드 “너무 특별해지려다 스스로 망쳤다” — 신인의 가장 힘든 주말</h3>
+          <p class="orig">Why an F1 2026 standout regrets 'trying to be too special'</p>
+          <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.25</span></div>
+          <p class="sum">레이싱 불스의 신인 아르비드 린드블라드(Arvid Lindblad)가 FP2 사고와 예선 실수 끝에 Q2 최하위(15위)에 그친 뒤 “자신감이 없다”며 스스로를 혹독하게 비판했습니다. 팀은 <b>컨스트럭터 챔피언십 5위</b> 팀답지 않은 주말을 보내고 있습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>린드블라드는 FP2에서 좁은 성벽 구간에 너무 빠르게 들어가 벽을 세게 쳤습니다. 지난 마드리드에 이어 두 번째 시가지 서킷 FP2 사고입니다. 이 때문에 새 프런트 윙을 단 로슨과 달리 한 단계 이전 사양 부품으로 달리고 있습니다.</p>
+            <p>그는 “차가 브레이크에서 나쁘고 운전이 재미없었다”면서도 “연습에서 얼마나 공격적으로 갈지 잘못 판단해 내 자신감을 스스로 깨뜨렸다. 너무 특별해지려다 정작 중요한 순간에 결과를 못 냈다”고 인정했습니다.</p>
+            <p>그는 이번 시즌 14번의 그랑프리 중 9번을 10위 안에서 출발했고, 최근 일곱 경기는 연속으로 톱10 출발이었습니다. 이번 15위는 올해 두 번째로 나쁜 예선 결과입니다.</p>
+            <p>12위 로슨은 중위권 다른 팀보다 엔진 성능이 부족하다며 “없는 시간을 만들어 내려다 브레이크에서 아슬아슬해진다. 몬차처럼 긴 직선이 많은 곳에서 예전보다 더 고전한다”고 설명했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.the-race.com/formula-1/scathing-lindblad-self-criticism-for-trying-to-be-too-special/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 가슬리·알핀의 예선 반응 (팀 순위 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://media.formula1.com/image/upload/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Azerbaijan___Qualifying/2297029181.webp" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>알핀 두 대 모두 Q3 — 가슬리 “황색기만 아니었으면 더 갔다”, 레이싱 불스와 9점 차 좁힐 기회</h3>
+          <p class="orig">Gasly buoyed by Alpine gains after Baku double Q3 appearance</p>
+          <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.09.25</span></div>
+          <p class="sum">가슬리가 한때 6위까지 올랐다가 7위, 콜라핀토가 10위로 알핀은 올해 세 번째로 두 대 모두 Q3에 올랐습니다. <b>중위권 1위 다툼에서 레이싱 불스에 9점 뒤진</b> 알핀에게, 레이싱 불스 두 대가 모두 10위 밖에서 출발하는 이번 결승은 큰 기회입니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>가슬리는 몇 주 전 이탈리아에서 생애 첫 폴 포지션을 잡은 바 있습니다. 그는 “이번 주말 세팅 작업이 아주 좋았고 모든 코너에서 자신 있게 밀어붙일 수 있었다”고 말했습니다.</p>
+            <p>그는 “마지막 두 번의 시도 모두 누군가 코스를 벗어나서 방해를 받았다. 더 나올 게 있었고 해밀턴을 앞서는 것도 가능했다”며 “운이 없었을 뿐, 큰 그림에서는 차에 만족한다. 바쿠에서 이렇게 밸런스가 좋았던 적은 처음”이라고 했습니다.</p>
+            <p>콜라핀토는 Q3에서 15번 코너 락업으로 제대로 된 기록을 내지 못했습니다. 그는 “아직 개선할 게 많다. 속도가 조금 부족했고 Q3 운영도 좋지 않았다. 큰 락업 뒤 마지막 랩에는 진동이 심했다”고 했습니다.</p>
+            <p>그는 “강하게 제동하는 구간이 편하지 않은데 여기는 그런 곳투성이”라면서도 “두 대가 Q3에 오른 건 좋은 일이다. 내일 앞으로 나아가겠다”고 말했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.formula1.com/en/latest/article/there-was-even-more-in-it-gasly-buoyed-by-alpine-gains-after-double-q3-appearance-in-baku.5IOcdTAyFuaje0xXt6U3QV" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ============================ 🔄 이적/계약 ============================ -->
+  <section id="transfer" data-cat="transfer">
+    <div class="sec-head"><h2>🔄 이적/계약</h2><span class="count">2건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-09/xpb_1438696_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>잭 브라운 “페르스타펜에게 맥라렌의 문은 활짝 열려 있다 — 2028이든 2029든”</h3>
+        <p class="orig">McLaren leaves door "wide open" for Max Verstappen despite Red Bull deal</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">맥라렌 CEO 잭 브라운(Zak Brown)이 레드불과 2030년까지 새 계약을 맺은 페르스타펜에게 “언젠가 꼭 함께 일하고 싶다, 문은 활짝 열려 있다”고 말했습니다. 브라운은 지난여름 페르스타펜과 두어 번 만나 대화했다고 밝혔습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>브라운은 네덜란드 일간지 데 텔레흐라프(De Telegraaf) 인터뷰에서 “그를 더 알고 싶어서 지난여름 몇 번 이야기를 나눴다. 지금 그를 한 단어로 표현하면 예전엔 떠올리지 못했을 말, ‘매력적’이다”라고 했습니다.</p>
+          <p>그는 “드라이버의 시선으로 모터스포츠를 보는 집중력이 인상적이었다. GT3 프로그램에 얼마나 깊이 관여하는지, 기술적으로 얼마나 밝은지 보면 안다. 페르난도(알론소)도 그랬다”며 “그와 레이스를 함께 할 수 있겠다고 느꼈다. 그를 상대로 싸우는 건 정말 싫다”고 웃었습니다.</p>
+          <p>페르스타펜의 레드불 계약은 서류상 2030년 말까지지만, 내년에도 레드불이 경쟁력을 찾지 못하면 일찍 떠날 수 있는 성적 조항(Performance clause, 팀 성적이 기준에 못 미치면 계약을 풀 수 있는 조건)이 있는 것으로 알려져 있습니다.</p>
+          <p>다만 맥라렌으로 옮기려면 한 자리가 비어야 합니다. 노리스는 2030년 말, 피아스트리는 2028년 말까지 계약돼 있습니다. 브라운은 “대화는 탐색 차원이었다. 미래는 모르는 일”이라며 “2028년이든 2029년이든 문은 열려 있다”고 했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1105345/1/mclaren-leaves-door-wide-open-max-verstappen-despite-red-bull-deal" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 호너의 페라리 발언 (시즌 타이틀 전망 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-09/xpb_1358207_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>호너 “페라리는 꿈의 팀 — 지분 없이도 갈 유일한 곳”</h3>
+          <p class="orig">Christian Horner open to shock F1 return with Ferrari: "It's the dream"</p>
+          <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.09.25</span></div>
+          <p class="sum">지난해 레드불에서 경질된 크리스천 호너(Christian Horner)가 “지분 없이도 받아들일 팀은 딱 하나”라며 페라리를 “꿈”이라고 불렀습니다. 이탈리아 언론이 <b>올해 타이틀 가능성이 사실상 사라진</b> 페라리의 프레드 바쇠르(Fred Vasseur) 대표 입지를 흔드는 가운데 나온 발언입니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>호너는 지난해 영국 GP 직후 레드불 팀 대표 겸 CEO에서 물러나며 20년 체제를 마감했습니다. 이후 알핀, 애스턴마틴, 페라리, 심지어 중국 BYD의 12번째 팀까지 온갖 복귀설이 따라다녔습니다.</p>
+            <p>그는 그동안 팀 지분을 가질 수 있을 때만 돌아오겠다고 해 왔지만, 더 타임스(The Times) 인터뷰에서 예외를 뒀습니다. “21년을 피트월에 앉은 월급쟁이였다. 다시 그럴 필요는 없다. 다만 지분 없이도 받아들일 팀은 딱 하나다. 페라리는 F1 최대 브랜드이고, 꿈이며, 잠자는 거인”이라고 말했습니다.</p>
+            <p>호너의 이름이 다시 페라리와 엮인 건 이탈리아 언론이 2026년 타이틀 희망이 사실상 사라졌다며 바쇠르의 자리를 문제 삼으면서입니다. 호너는 “14개월이나 떠나 있었는데 여전히 내 얘기를 한다는 건 수요가 있다는 뜻”이라고 했습니다.</p>
+            <p>내년에 그리드로 돌아올 수 있느냐는 질문에는 “모르겠다. 나는 치료제이자 문제”라고 답했습니다. 그는 “한 번 더 춤출 무대가 있다고 느낀다”며 메르세데스 대표 토토 볼프(Toto Wolff)를 향해 “내가 없으니 편하게 지내고 있다. 내가 돌아가면 누구보다 괴롭힐 것”이라고 도발했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.crash.net/f1/news/1105301/1/christian-horner-open-shock-f1-return-ferrari-its-dream" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ============================ 🔧 기술/규정 ============================ -->
+  <section id="tech" data-cat="tech">
+    <div class="sec-head"><h2>🔧 기술/규정</h2><span class="count">2건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/comparison-front-floor--sidepod-audi-2026.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>게리 앤더슨 분석 — 올해 가장 포괄적인 업그레이드, 아우디가 바쿠에 가져온 것</h3>
+        <p class="orig">Gary Anderson: Breaking down Audi's colossal F1 upgrade</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">전 F1 기술 책임자 게리 앤더슨(Gary Anderson)이 아우디가 바쿠에 투입한 대형 업그레이드를 뜯어봤습니다. 프런트 윙부터 사이드포드, 바닥, 냉각 출구, 리어 윙까지 거의 모든 부위가 바뀌었고, 공통된 목표는 앞바퀴 주변 공기 흐름을 다스리는 것이라고 봤습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>프런트 윙은 사실상 새 패키지입니다. 메인 판이 바깥쪽으로 갈수록 더 뚜렷하게 휘어 오르고, 플랩은 안쪽에 더 많은 하중을 싣도록 바뀌었습니다. 핸들을 꺾을 때도 앞바퀴 안쪽으로 흐르는 공기를 일정하게 유지하려는 변화입니다. 엔드플레이트의 작은 날개들도 아웃워시(Outwash, 공기를 바퀴 바깥쪽으로 밀어내는 흐름)를 키우도록 다듬어졌습니다.</p>
+          <p>사이드포드(Sidepod, 운전석 옆 냉각 장치 덮개)는 윗면이 공기를 더 아래로 떨어뜨리도록 바뀌었고, 촘촘한 루버(Louvre, 열 배출용 틈)들 대신 일반적인 큰 냉각 출구 네 개로 바뀌었습니다. 냉각은 라디에이터 앞뒤의 압력 차로 이뤄지는데, 출구를 키우면 뒤쪽 음압을 쉽게 늘릴 수 있다는 설명입니다.</p>
+          <p>바닥 가장자리에는 칼날처럼 위로 꺾인 부분이 생겨 소용돌이를 만들어 바닥 밑을 막아 주고, 뒷바퀴 앞의 작은 날개들도 손봤습니다. 뒷바퀴 앞에서 바깥으로 흘려보내는 공기가 많을수록 디퓨저(Diffuser, 차 뒤 바닥에서 공기를 빼내 차를 눌러 주는 부분)로 들어가는 흐름이 덜 흐트러집니다. 헤일로와 헤드레스트 사이에는 드라이버 머리 주변 난류를 줄이는 작은 날개도 달렸습니다.</p>
+          <p>앤더슨은 “결국 부품 더미가 아니라 얼마나 함께 잘 작동하느냐가 관건”이라고 했습니다. 다만 예선에서는 아우디 두 대가 올해 처음으로 모두 Q1에서 탈락해, 효과가 곧바로 드러나지는 않았습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/gary-anderson-audi-baku-f1-upgrade/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 레드불의 고질적 차량 문제 추적 (시즌 판세 언급 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-6.motorsport.com/images/amp/0LdemNP0/s6/max-verstappen-red-bull-racing.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>레드불, 페르스타펜이 몇 년째 호소한 ‘차량 열화’ 원인 “드디어 짚어 가는 중”</h3>
+          <p class="orig">Red Bull "finally pinpointing" mysterious car issue highlighted by Max Verstappen for years</p>
+          <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.25</span></div>
+          <p class="sum">페르스타펜이 수년째 호소해 온 ‘차량 열화(Car degradation, 세션·경기 중 차 뒤쪽 부품 성능이 점점 떨어지는 현상)’의 원인을 레드불이 드디어 찾아가고 있습니다. 다만 기사는 레드불이 <b>이번 시즌엔 우승 한 번 말고는 더 싸울 게 많지 않다</b>며 이미 2027년 차에 집중하고 있다고 전했습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>레드불은 바쿠에 새 바닥과 사이드포드를 포함한 RB22의 올해 마지막 대형 업그레이드를 투입했습니다. 기술 책임자 피에르 바셰(Pierre Waché)는 연습 주행 뒤 “상관관계(Correlation, 풍동·시뮬레이션 예측과 실제 트랙 결과가 맞는 정도)가 좋다, 기대대로 작동한다”고 평가했습니다.</p>
+            <p>가장 눈에 띄는 건 페르스타펜이 이 문제를 “몇 년째” 말해 왔다는 점입니다. 2026년에 규정이 전면 바뀌어 차가 완전히 새것인데도 비슷한 현상이 이어진 셈입니다. 팀 대표 메키스는 올해 차로는 완전히 해결할 수 없지만 몬차에서 들은 페르스타펜의 피드백을 바탕으로 내년에 쓸 교훈을 얻었다고 했습니다.</p>
+            <p>페르스타펜은 “아직 진행 중이다. 올해 바꿀 수 없는 것도 있겠지만 내년을 위한 좋은 교훈이 있다. 우리가 나아질 수 있는 부분을 드디어 짚어 내고 있다”고 말했습니다.</p>
+            <p>바셰는 내년에 완전히 해결될 거라 자신하느냐는 질문에 웃으며 “자신 있으면 일을 그만두겠다”고 답했습니다. 그는 “차 무게와 공기역학 성능을 극한까지 짜내다 보면 늘 타협이 생긴다. 아주 큰 문제라 고치려 하고 있지만 완전히 고쳐질 거라 장담하진 못한다”고 했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.motorsport.com/f1/news/red-bull-finally-pinpointing-mysterious-car-issue-highlighted-by-max-verstappen-for-years/10858772/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ============================ ⚖️ FIA/거버넌스 ============================ -->
+  <section id="fia" data-cat="fia">
+    <div class="sec-head"><h2>⚖️ FIA/거버넌스</h2><span class="count">3건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1438646_HiRes.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>후속: 해밀턴의 ‘마지막 구간 전력 사용’ 제안, 팀들 반대로 무산</h3>
+        <p class="orig">F1 teams reject Hamilton idea to manage dangerous Baku closing speeds</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">FP2에서 로슨과 시속 50km 속도 차로 아찔한 순간을 겪은 해밀턴이, 빠른 랩을 달릴 때 18~19번 코너 구간에서는 누구도 느리게 달리지 않도록 에너지 규칙을 바꾸자고 제안했습니다. 하지만 팀들이 “주말 도중에 바꾸기엔 너무 늦다”며 반대해 채택되지 않았습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>지난 보도 이후 달라진 점: 25일에는 해밀턴이 견책을 받고 “규정 탓”이라며 개선을 요청하겠다고 한 단계였다면, 이번에는 그 제안이 목요일 밤 드라이버 브리핑에서 실제로 논의됐고 거부됐다는 결과가 나왔습니다.</p>
+          <p>문제는 16번 코너부터 결승선까지의 긴 전속력 구간입니다. 빠른 랩을 준비하는 차는 배터리를 결승선 직전까지 아끼려고 18~19번 고속 코너를 전기 출력 없이 지나가고, 그 뒤로 배터리를 쏟는 차가 시속 50km 더 빠르게 다가옵니다.</p>
+          <p>해밀턴은 스튜어드 청문에서 “빠른 랩에서는 마지막 코너부터 최대 출력을 쓰게 하고, 19번 코너를 지나면 리셋되게 하자. 18~19번에서 느리게 달리는 차가 아예 없어야 한다”고 말했습니다. 하지만 팀들은 예선까지 연습 1시간밖에 남지 않은 상황에서 배터리 운용을 처음부터 다시 짜야 한다며 반대했습니다.</p>
+          <p>대신 레이스 디렉터 루이 마르케스(Rui Marques)는 아웃랩(Out lap, 기록 랩을 준비하며 달리는 랩) 중인 차는 16~18번 코너에서 레이싱 라인을 멀리 비켜 달리라고 요청했습니다. PlanetF1에 따르면 로슨은 “회의에서 많이 이야기했고, 예선에선 모두 간격 규칙을 잘 지켰다”고 전했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/f1-rejects-hamiltons-idea-for-managing-dangerous-baku-closing-speeds/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1391919_HiRes.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>후속: 이몰라, 대체 최종전 대비해 관중석 설치 시작 — 안 써도 비용은 F1 부담</h3>
+        <p class="orig">F1's latest plan for where to end its 2026 season</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.24</span></div>
+        <p class="sum">F1은 카타르·아부다비 경기를 예정대로 치르려 하지만, 취소에 대비한 플랜 B로 이탈리아 이몰라(Imola)에서 관중석 설치 등 준비 작업을 시작했습니다. 이몰라로 옮기지 않더라도 이 비용은 F1이 대기로 했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>지난 보도 이후 달라진 점: 25일까지는 “10월 중순 결정, 이몰라가 예비 개최지” 수준이었다면, 이번에는 이몰라 현장에서 실제 공사가 시작됐고 그 비용을 F1이 부담한다는 사실, 팀 대표들의 구체적인 우려가 새로 나왔습니다.</p>
+          <p>중동 분쟁으로 올해 바레인·사우디아라비아 GP가 이미 취소됐습니다. 스테파노 도메니칼리(Stefano Domenicali) CEO는 7월 말 “9월 중순까지 상황이 정리되지 않으면 결정하겠다”고 했지만, 월요일 F1 커미션 논의 뒤 팀들은 10월 중순 답을 기대하고 있습니다. 11월 말 카타르 경기를 위해 배로 짐을 보내려면 그때가 한계입니다.</p>
+          <p>하스 대표 고마쓰는 “이몰라가 준비 중인 걸로 안다”며 “예를 들어 유럽 경기용 모터홈(팀 이동식 건물)을 관리하는 사람들은 겨울엔 다른 일을 하고 있어 대체 인력을 구해야 하는 게 과제”라고 말했습니다.</p>
+          <p>12월 이탈리아 날씨 걱정에 대해 아우디 대표 마티아 비노토(Mattia Binotto)는 “스노 타이어 얘기가 나오지만, 사실 그 무렵 이몰라 평균 기온은 F1이 달리는 라스베이거스보다 높다. 진짜 문제는 조직과 물류”라고 했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/whats-going-on-with-f1s-uncertain-final-2026-races/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-6.motorsport.com/images/amp/YE9EQnLY/s6/start-action.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>스프린트 10번으로 늘어나는 2027년 — 버크스턴 “스프린트 점수 체계 다시 짜야”</h3>
+        <p class="orig">F1 urged to rethink sprint points system as calendar expands in 2027</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">2027년 스프린트 주말이 10번으로 늘어나는 만큼 스프린트에 점수를 더 많이, 더 아래 순위까지 줘야 한다고 F1 방송인 윌 버크스턴(Will Buxton)이 주장했습니다. 경기 수가 늘면 예산 상한 안에서 개발 방식도 손봐야 한다고 봤습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>2027년 캘린더에는 바레인, 호주, 일본, 캐나다, 모나코, 영국, 이탈리아, 브라질, 카타르, 아부다비 등 10곳의 스프린트(Sprint, 토요일에 따로 치르는 100km 짧은 레이스) 주말이 들어 있습니다. 지금은 스프린트 1위 8점부터 8위 1점까지 여덟 명에게만 점수를 줍니다.</p>
+          <p>버크스턴은 팟캐스트 ‘업 투 스피드(Up To Speed)’에서 “점수를 더 줘야 하고 더 아래 순위까지 내려가야 한다. 스프린트와 본 레이스 사이의 점수 배분을 다시 나눠야 한다”고 말했습니다. 그는 “페르난도를 빼면 모든 드라이버가 한 주말 두 레이스를 치르는 F2를 거쳐 왔으니 익숙하다”고 덧붙였습니다.</p>
+          <p>그는 경기가 늘면 예산 상한(Cost cap, 팀이 한 해 쓸 수 있는 돈의 한도) 아래에서 팀들이 지출 배분을 다시 생각해야 하고, 개발이 CFD(컴퓨터 공기 흐름 시뮬레이션)와 풍동으로 더 쏠릴 것이라며 그 사용 제한도 조정이 필요할 수 있다고 했습니다.</p>
+          <p>공동 진행자 나오미 시프(Naomi Schiff)는 “팀마다 신인에게 여섯 번의 연습 세션을 내줘야 한다는 것도 잊지 말자”며 연습 시간이 더 빠듯해진다고 짚었습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/f1-urged-to-rethink-sprint-points-system-as-calendar-expands-in-2027/10858799/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============================ 👤 드라이버/팀 ============================ -->
+  <section id="people" data-cat="people">
+    <div class="sec-head"><h2>👤 드라이버/팀</h2><span class="count">2건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/ALP05799.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>알핀 부활 뒤의 숨은 조력자 — 전 레드불 드라이버 다닐 크비야트</h3>
+        <p class="orig">The surprise ex-F1 driver aiding Alpine's revival</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">2014~2020년 그랑프리 110번에 출전한 다닐 크비야트(Daniil Kvyat)가 올해 조용히 알핀에 시뮬레이터 드라이버로 합류해 팀의 반등을 돕고 있는 것으로 드러났습니다. 일본·캐나다 주말 도중 알핀이 흐름을 뒤집은 데 큰 역할을 했다고 합니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>크비야트는 2021년 알핀의 리저브 드라이버였고, 그 전엔 레드불 계열 팀에서 뛰었습니다. 2018년 한 해는 페라리 시뮬레이터 드라이버로 지내기도 했습니다. 그의 역할은 지금까지 공개되지 않았습니다.</p>
+          <p>그는 리저브 드라이버 폴 아론(Paul Aron), 쿠시 마이니(Kush Maini)와 시뮬레이터(Simulator, 실제 차 데이터를 넣은 가상 주행 장치) 업무를 나눠 맡습니다. 개발 작업뿐 아니라, 아론이 해외 경기 현장에 가야 할 때는 레이스 주말 지원도 맡습니다.</p>
+          <p>주말 동안에는 레드불 주니어 팀 시절 팀 동료였던 가슬리와 직접 연락하며 피드백을 주고받습니다. 두 사람은 사이가 좋다고 합니다.</p>
+          <p>알핀은 새 규정과 메르세데스 엔진으로의 교체 덕분에 중위권 앞쪽으로 올라섰습니다. 크비야트는 F1을 떠난 뒤 나스카·스포츠카·포뮬러 E를 경험했고, 올해는 일본 슈퍼 GT의 GT300 클래스에서 베테랑 고구레 다카시(Takashi Kogure)와 함께 달리고 있습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/alpine-surprise-ex-f1-driver-role-daniil-kvyat/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 슈타이너의 윌리엄스 비판 (팀 순위 포함) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-3.motorsport.com/images/amp/2GdKO7EY/s6/guenther-steiner.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>귄터 슈타이너 “윌리엄스의 설비 탓은 악어의 눈물”</h3>
+          <p class="orig">Guenther Steiner calls out Williams over F1 infrastructure complaints: "Crocodile tears"</p>
+          <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.25</span></div>
+          <p class="sum">전 하스 대표 귄터 슈타이너(Guenther Steiner)가 낡은 설비 때문에 성적이 안 난다는 윌리엄스 대표 제임스 볼스(James Vowles)의 주장을 “악어의 눈물(겉으로만 슬퍼하는 척)”이라고 비판했습니다. 윌리엄스는 현재 <b>컨스트럭터 챔피언십 9위(11점)</b>입니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>볼스는 2023년 부임 이후 낡은 설비를 가장 큰 걸림돌로 꼽으며, 예산 상한 밖에서 설비를 현대화할 수 있게 해 달라고 싸워 왔습니다.</p>
+            <p>슈타이너는 팟캐스트 ‘레드 플래그스(The Red Flags Podcast)’에서 “과거 소유주가 투자하지 않은 걸 지금 규정 탓으로 돌릴 수 없다. 5년 동안 예산 상한을 다 쓰지 않았다면 누구를 탓하겠나. 자기 자신”이라고 말했습니다.</p>
+            <p>그는 애스턴마틴을 예로 들었습니다. 로런스 스트롤(Lawrence Stroll)이 낡은 공장을 새로 짓겠다고 하자 “예산 상한 밖에서 풍동을 지어도 되지만 F1 최고 풍동보다 좋아선 안 된다”는 조건으로 허락받았다는 것입니다. “다른 팀과 FIA에 가서 협상하면 예외를 받을 수 있다. 안 된다고 멈추면 안 된다”는 주장입니다.</p>
+            <p>슈타이너는 “작년엔 ‘2026년에 집중하면 좋아질 것’이라더니, 설비가 안 된다는 걸 1년 뒤에야 알았다는 거냐”며 볼스가 회복 시점을 계속 미룬다고 꼬집었습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.motorsport.com/f1/news/guenther-steiner-calls-out-williams-over-f1-infrastructure-complaints-crocodile-tears/10859062/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ============================ 📰 기타 ============================ -->
+  <section id="etc" data-cat="etc">
+    <div class="sec-head"><h2>📰 기타</h2><span class="count">2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-8.motorsport.com/images/amp/YWKwnQOY/s6/stefano-domenicali-ceo-of-the-.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>도메니칼리 “F1 팬 10억 명 눈앞, 새 팬의 40%는 여성”</h3>
+        <p class="orig">F1 closing in on 1 billion fans as Stefano Domenicali hails female audience growth</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">F1 CEO 스테파노 도메니칼리가 미국 토크쇼 ‘투나잇 쇼(The Tonight Show Starring Jimmy Fallon)’에 나와 F1 팬이 곧 10억 명에 이른다고 말했습니다. 젊은 층과 여성 팬이 늘어난 덕분이며, 새로 유입된 팬의 40%가 여성이라고 했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>도메니칼리는 “거의 10억 명이다. 그 숫자를 축하하러 여기 다시 오고 싶다”며 “F1은 세계 24곳을 도는 진짜 세계 스포츠다. 오늘 방송 뒤 바쿠로, 그다음 말레이시아와 싱가포르로 간다”고 말했습니다.</p>
+          <p>그는 팬 증가의 이유로 넷플릭스 ‘본능의 질주(Drive to Survive)’와 드라이버들의 SNS를 꼽았습니다. “헬멧과 장갑, 경주복을 입으면 누군지 알아보기 어렵다. 이제는 드라이버들을 알릴 수 있게 문을 열었다. 그들도 더 큰 생태계의 일부라는 걸 안다”고 했습니다.</p>
+          <p>미국 세 경기(마이애미, 오스틴, 라스베이거스)의 성공도 강조했습니다. 특히 라스베이거스는 도심 도로 서킷이라 준비가 어려웠지만 매진 관중으로 보답받았다고 했습니다.</p>
+          <p>브래드 피트(Brad Pitt)와 댐슨 이드리스(Damson Idris)가 출연하고 실제 F1 주말에 촬영한 영화 ‘F1’이 전 세계에서 6억 3,400만 달러 넘게 벌어들인 것도 성과로 꼽았습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/f1-closing-in-on-1-billion-fans-as-stefano-domenicali-hails-female-audience-growth/10859054/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2019/09/racefansdotnet-20190906-133034-25.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>1979년 챔피언 조디 셰크터, 150만 파운드 세금 판결에 항소 예고</h3>
+        <p class="orig">Spotlight: Scheckter plans appeal over court's demand he pay £1.5m tax bill</p>
+        <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.09.25</span></div>
+        <p class="sum">1979년 페라리로 F1 챔피언에 오른 조디 셰크터(Jody Scheckter)가 150만 파운드(약 28억 원) 세금을 내라는 법원 판결에 불복해 항소하겠다고 밝혔습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>법원은 지난주 셰크터에게 세금을 내라고 명령했습니다. 셰크터는 영국 일간지 텔레그래프(The Telegraph) 인터뷰에서 자신은 법을 어기지 않았다고 믿는다며 항소하겠다고 했습니다.</p>
+          <p>76세인 그는 병 때문에 2주간 열린 심판(Tribunal, 세금 분쟁을 다루는 특별 법정) 대부분에 참석하지 못했고, 일부 질문은 잘 들리지 않아 어려움을 겪었다고 설명했습니다.</p>
+          <p>그는 “아내가 ‘진작 냈어야 했다’고 한다. 아내 말이 맞다. 그런데 어머니 탓이다. 옳은 걸 위해 싸워야 한다고 늘 가르치셨고, 나는 옳은 일을 한다고 굳게 믿었다”며 특유의 농담을 섞었습니다.</p>
+          <p>RaceFans의 짧은 스포트라이트 기사로, 판결의 구체적 쟁점은 원문에 자세히 나오지 않습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.racefans.net/2026/09/25/spotlight-scheckter-plans-appeal-over-courts-demand-he-pay-1-5m-tax-bill/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============================ 📖 용어 ============================ -->
+  <section id="glossary" data-cat="glossary">
+    <div class="sec-head"><h2>📖 오늘의 용어</h2><span class="count">17개</span></div>
+    <dl class="glossary">
+      <div class="term"><dt>폴 포지션 <span>(Pole position)</span></dt><dd>예선 1위로 결승 맨 앞자리에서 출발하는 것입니다.</dd></div>
+      <div class="term"><dt>예선 Q1·Q2·Q3 <span>(Qualifying)</span></dt><dd>예선은 세 단계로 나뉩니다. Q1·Q2에서 느린 차들이 차례로 떨어지고, 남은 10대가 Q3에서 폴을 다툽니다.</dd></div>
+      <div class="term"><dt>황색기 <span>(Yellow flag)</span></dt><dd>앞에 위험이 있으니 속도를 줄이고 추월하지 말라는 신호입니다. 예선에서 무시하면 보통 5계단 그리드 강등을 받습니다.</dd></div>
+      <div class="term"><dt>그리드 페널티 <span>(Grid penalty)</span></dt><dd>규정 위반으로 출발 순서가 뒤로 밀리는 벌칙입니다.</dd></div>
+      <div class="term"><dt>페널티 포인트 <span>(Penalty points)</span></dt><dd>드라이버 면허에 쌓이는 벌점입니다. 12개월 안에 12점이 쌓이면 한 경기 출전이 정지됩니다.</dd></div>
+      <div class="term"><dt>방해 운전 <span>(Impeding)</span></dt><dd>빠른 랩을 달리는 차의 길을 막는 행위입니다.</dd></div>
+      <div class="term"><dt>토우 <span>(Tow)</span></dt><dd>앞차 바로 뒤를 따라가 공기 저항을 덜 받는 효과입니다. 예선에서 팀 동료끼리 서로 끌어 주기도 합니다.</dd></div>
+      <div class="term"><dt>스피드 트랩 <span>(Speed trap)</span></dt><dd>서킷 특정 지점에서 차의 최고 속도를 재는 측정 구간입니다.</dd></div>
+      <div class="term"><dt>락업 <span>(Lock-up)</span></dt><dd>브레이크를 너무 세게 밟아 바퀴가 굴러가지 않고 미끄러지는 현상입니다.</dd></div>
+      <div class="term"><dt>트랙 리밋 <span>(Track limits)</span></dt><dd>코스 경계선을 네 바퀴 모두 넘어가면 그 랩 기록이 삭제되는 규칙입니다.</dd></div>
+      <div class="term"><dt>아웃랩 <span>(Out lap)</span></dt><dd>피트에서 나와 기록 랩을 준비하며 천천히 달리는 랩입니다.</dd></div>
+      <div class="term"><dt>버추얼 세이프티카 <span>(Virtual Safety Car, VSC)</span></dt><dd>실제 안전 차량 없이 모든 차가 정해진 속도로 줄여 달리게 하는 조치입니다.</dd></div>
+      <div class="term"><dt>스프린트 <span>(Sprint)</span></dt><dd>그랑프리 주말 토요일에 따로 치르는 약 100km 짧은 레이스입니다. 상위 8명에게 점수를 줍니다.</dd></div>
+      <div class="term"><dt>예산 상한 <span>(Cost cap)</span></dt><dd>팀이 한 해 차 개발·운영에 쓸 수 있는 돈의 한도입니다.</dd></div>
+      <div class="term"><dt>성적 조항 <span>(Performance clause)</span></dt><dd>팀 성적이 정해진 기준에 못 미치면 드라이버가 계약을 풀고 떠날 수 있게 한 계약 조건입니다.</dd></div>
+      <div class="term"><dt>아웃워시 <span>(Outwash)</span></dt><dd>앞바퀴가 만드는 흐트러진 공기를 차 바깥쪽으로 밀어내는 공기 흐름입니다.</dd></div>
+      <div class="term"><dt>시뮬레이터 드라이버 <span>(Simulator driver)</span></dt><dd>공장의 가상 주행 장치에서 차 세팅과 개발을 시험하는 드라이버입니다.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span class="brand">Claude</span>가 번역·정리한 F1 뉴스 · 2026.09.26<br>
+    원문 저작권은 각 매체에 있으며, 핵심 요약만 제공합니다.
+  </footer>
+</div>
+
+<script>
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-cat]'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var cat = chip.dataset.cat;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      sections.forEach(function (s) { s.classList.toggle('hidden', cat !== 'all' && s.dataset.cat !== cat); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  var btn = document.getElementById('unlockAll');
+  var spoilers = Array.prototype.slice.call(document.querySelectorAll('details.spoiler'));
+  function render(open) { btn.setAttribute('aria-pressed', String(open)); btn.textContent = open ? '🔒 스포일러 모두 접기' : '🔓 스포일러 모두 펼치기'; }
+  btn.addEventListener('click', function () { var open = btn.getAttribute('aria-pressed') !== 'true'; spoilers.forEach(function (d) { d.open = open; }); render(open); });
+  spoilers.forEach(function (d) { d.addEventListener('toggle', function () { render(spoilers.every(function (x) { return x.open; })); }); });
+  render(false);
+})();
+</script>
+</body>
+</html>

@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-09-25",
+    updatedAt: "2026-09-26",
     season: 2026,
     standingsAsOf: { round: 14, name: "스페인 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-09-26", file: "briefings/f1-news-2026-09-26.html", count: 24, spoilers: 8,
+      headline: "러셀, 바쿠 예선에서 0.837초 차 폴 — 올해 최대 격차, 페르스타펜은 출력 저하로 8위 · 사인츠 황색기·페레스 방해 운전으로 그리드 강등 · 잭 브라운 “페르스타펜에게 맥라렌의 문은 활짝 열려 있다”" },
     { date: "2026-09-25", file: "briefings/f1-news-2026-09-25.html", count: 23, spoilers: 7,
       headline: "바쿠 첫날 연습 주행, 러셀이 두 세션 모두 1위 — 맥라렌은 1.5초 열세 · 배터리 속도 차 50km/h, 해밀턴·로슨 아찔한 순간에 견책 · 카타르·아부다비 개최 여부 10월 중순까지 결정" },
     { date: "2026-09-24", file: "briefings/f1-news-2026-09-24.html", count: 21, spoilers: 9,
