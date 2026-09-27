@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-09-27",
+    updatedAt: "2026-09-28",
     season: 2026,
     standingsAsOf: { round: 15, name: "아제르바이잔 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-09-28", file: "briefings/f1-news-2026-09-28.html", count: 21, spoilers: 13,
+      headline: "9년 만의 세팡 복귀 — 운전석 50℃·산불 연무, 타이어는 C2~C4 · 호너 회고록 “마르코, 페르스타펜 영입 반대했다” · 2027년 파워유닛, 엔진 58%·전기 42%로 조정" },
     { date: "2026-09-27", file: "briefings/f1-news-2026-09-27.html", count: 23, spoilers: 13,
       headline: "호너, 회고록에서 뉴이 저격 “더는 그를 믿을 수 없었다” · 맥라렌 “바쿠 업그레이드 잘 작동” — 아우디는 “효과는 3~4경기 뒤” · 1980년 비밀 풍동 시험, F1이 처음 만난 포포이싱" },
     { date: "2026-09-26", file: "briefings/f1-news-2026-09-26.html", count: 24, spoilers: 8,
