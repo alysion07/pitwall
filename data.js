@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-09-29",
+    updatedAt: "2026-09-30",
     season: 2026,
     standingsAsOf: { round: 15, name: "아제르바이잔 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-09-30", file: "briefings/f1-news-2026-09-30.html", count: 26, spoilers: 10,
+      headline: "알론소, 2027년에도 아스턴마틴 잔류 — “바르셀로나 팬들이 전환점” · 피렐리, 세팡 노면 측정 없이 2017년 자료로 타이어 선택 · 페라리, 이례적 기자 통화로 “바쇠르 전적 신뢰”" },
     { date: "2026-09-29", file: "briefings/f1-news-2026-09-29.html", count: 18, spoilers: 8,
       headline: "세팡 주말 한국시간 일정·뇌우 예보 — 드라이버 12명은 첫 세팡 · 피렐리, 2027년엔 ‘더 빨리 닳는 타이어’로 원스톱 탈피 · 호너의 페라리행 루머, 걸림돌은 ‘전권 요구’" },
     { date: "2026-09-28", file: "briefings/f1-news-2026-09-28.html", count: 21, spoilers: 13,
