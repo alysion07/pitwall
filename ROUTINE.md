@@ -86,7 +86,7 @@ briefings/      ← 오늘 브리핑 추가
 1. `meta.updatedAt` ← 오늘
 2. `briefings` 배열 **맨 앞**에 `{ date, file: "briefings/f1-news-YYYY-MM-DD.html", count, spoilers, headline }` 추가. `headline`은 비스포일러 헤드라인 2~3개를 ` · `로 연결. 결과·순위·우승자 금지.
 3. **결승이 끝난 뒤 첫 실행**(캘린더에서 `end` < 오늘인 최신 라운드가 `meta.standingsAsOf.round`보다 클 때): `https://www.formula1.com/en/results/2026/drivers`와 `/team`을 fetch해 `drivers`·`constructors` 전체를 새 값으로 교체하고 `meta.standingsAsOf`를 그 라운드로. 순위는 data.js에만 쓴다.
-4. 캘린더 변경(취소·일정 변경·스프린트 변경)이 확인되면 `calendar` 수정.
+4. 캘린더 변경(취소·일정 변경·스프린트 변경)이 확인되면 `calendar` 수정. **개최지가 바뀐 라운드**(예: 2026 R16 바레인 GP → 세팡)는 `circuits.js`·`corners.js`의 그 라운드 항목도 새 서킷으로 통째로 교체한다(수치는 `formula1.com/en/racing/YYYY/{key}` 기준, 트랙맵은 그 페이지의 `...trackXXXdetailed.webp`). 2026-09-30에 R16이 사키르 자료로 남아 있던 것을 사용자가 발견해 교체함.
 5. 서킷 랩 레코드가 갱신됐다는 확실한 보도가 있으면 `circuits.js`의 해당 `record`만 수정(선택).
 
 ## 7. 커밋·푸시
