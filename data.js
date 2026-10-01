@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-01",
+    updatedAt: "2026-10-02",
     season: 2026,
     standingsAsOf: { round: 15, name: "아제르바이잔 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-02", file: "briefings/f1-news-2026-10-02.html", count: 22, spoilers: 8,
+      headline: "메르세데스 업그레이드의 실체 — 사이드포드·플로어 대수술로 다운포스 약 4% 증가 노려 · 혼다, 마드리드부터 개선 터보 몰래 투입 — 두 번째 ADUO 업그레이드 · 12월 이몰라 최종전 검토에 드라이버들 “스노체인 챙겨야”" },
     { date: "2026-10-01", file: "briefings/f1-news-2026-10-01.html", count: 24, spoilers: 8,
       headline: "오콘, 올 시즌 끝으로 하스와 결별 — “F1 커리어의 끝은 아니다” · FIA, 세팡에 ‘히트 해저드’ 선언 — 냉각 장치 의무화 · 메르세데스, 페트로나스 특별 리버리와 시즌 두 번째 대형 업그레이드" },
     { date: "2026-09-30", file: "briefings/f1-news-2026-09-30.html", count: 26, spoilers: 10,
