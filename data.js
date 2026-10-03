@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-03",
+    updatedAt: "2026-10-04",
     season: 2026,
     standingsAsOf: { round: 15, name: "아제르바이잔 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-04", file: "briefings/f1-news-2026-10-04.html", count: 25, spoilers: 5,
+      headline: "세팡 예선 — 페르스타펜 시즌 첫 폴, 해밀턴과 2021년 아부다비 이후 첫 나란히 첫 줄 · 볼프 “0.3초 빨라질 업그레이드였는데 0.5초 잃었다” · 결승 출발 무렵 비 확률 50%, 3스톱까지 거론" },
     { date: "2026-10-03", file: "briefings/f1-news-2026-10-03.html", count: 24, spoilers: 6,
       headline: "세팡 금요일 — FP1 페르스타펜·FP2 르클레르 1위, 메르세데스는 “시즌 가장 힘든 금요일” · 시뮬레이션보다 4.5초 느린 ‘사포 노면’, 2~3스톱 유력 · 보울스 “예산 상한이 F1을 두 계급으로 나눴다”" },
     { date: "2026-10-02", file: "briefings/f1-news-2026-10-02.html", count: 22, spoilers: 8,
