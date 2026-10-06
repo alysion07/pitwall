@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-06",
+    updatedAt: "2026-10-07",
     season: 2026,
     standingsAsOf: { round: 16, name: "말레이시아 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-07", file: "briefings/f1-news-2026-10-07.html", count: 22, spoilers: 8,
+      headline: "F1, 33년 만에 아프리카로 — 르완다 GP 2030년 합의 보도 · 싱가포르 GP 앞두고 연무 비상, 전역 대기질 ‘나쁨’ · 2030년 V8 복귀, 비노토 “V8과 2030년 말고는 아직 정해진 게 없다”" },
     { date: "2026-10-06", file: "briefings/f1-news-2026-10-06.html", count: 26, spoilers: 14,
       headline: "세팡 포메이션 랩 대혼란의 원인 — 빗길 출력 제한과 비상 잠금이 엉킨 소프트웨어 버그 · 혼다 F1 복귀 이끈 와타나베 HRC 사장 연말 은퇴 · 말레이시아 총리 “F1 복귀 논의” — 세팡 관중 26만 1천 명 신기록" },
     { date: "2026-10-04", file: "briefings/f1-news-2026-10-04.html", count: 25, spoilers: 5,
