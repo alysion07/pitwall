@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-07",
+    updatedAt: "2026-10-08",
     season: 2026,
     standingsAsOf: { round: 16, name: "말레이시아 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-08", file: "briefings/f1-news-2026-10-08.html", count: 28, spoilers: 10,
+      headline: "싱가포르 주말 날씨 — 사흘 내내 33℃·체감 38℃, 오후 소나기 확률 30~40% · 비용 상한 ‘따라잡기’ 개선안 11월 F1 위원회로 — 2027년 시행엔 한 표 부족 · 호너의 퇴직 보상, 회계 공시로 확인 — 1억 48만 파운드" },
     { date: "2026-10-07", file: "briefings/f1-news-2026-10-07.html", count: 22, spoilers: 8,
       headline: "F1, 33년 만에 아프리카로 — 르완다 GP 2030년 합의 보도 · 싱가포르 GP 앞두고 연무 비상, 전역 대기질 ‘나쁨’ · 2030년 V8 복귀, 비노토 “V8과 2030년 말고는 아직 정해진 게 없다”" },
     { date: "2026-10-06", file: "briefings/f1-news-2026-10-06.html", count: 26, spoilers: 14,
