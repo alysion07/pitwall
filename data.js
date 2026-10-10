@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-10",
+    updatedAt: "2026-10-11",
     season: 2026,
     standingsAsOf: { round: 16, name: "말레이시아 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-11", file: "briefings/f1-news-2026-10-11.html", count: 23, spoilers: 16,
+      headline: "싱가포르 예선 — 페르스타펜 통산 50번째 폴, 르클레르 0.054초 차 · 휠켄베르크, 진로 방해 인정되고도 무벌칙 — 타이밍 데이터 불일치 참작 · 하스 2027 시트, 카마라 대 두언 2파전으로" },
     { date: "2026-10-10", file: "briefings/f1-news-2026-10-10.html", count: 25, spoilers: 7,
       headline: "싱가포르 스프린트 예선 — 페르스타펜 마지막 한 랩으로 폴, 옐로 플래그 추월은 벌칙 없음 · FIA ‘인적 오류’로 오버테이크 모드 먹통 — 두 주말 연속 운영 실수 · 2027년 ‘마카레나 윙’ 단속, 날개 전환 400ms→300ms" },
     { date: "2026-10-09", file: "briefings/f1-news-2026-10-09.html", count: 25, spoilers: 12,

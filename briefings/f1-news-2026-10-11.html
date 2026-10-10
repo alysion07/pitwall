@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>F1 데일리 브리핑 — 2026.10.11</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../favicon-192.png">
+<style>
+  :root {
+    --bg:#ffffff; --bg-soft:#f7f7f9; --card:#ffffff; --card-hover:#fbfbfc;
+    --text:#14141a; --text-mid:#4a4a57; --text-dim:#86868f;
+    --border:#e6e6ec; --border-soft:#f0f0f4;
+    --accent:#E10600; --accent-soft:rgba(225,6,0,.08);
+    --spoiler-bg:#fbf7f7; --spoiler-border:#ecdcdc; --chip-bg:#f2f2f5;
+    --shadow:0 1px 2px rgba(20,20,26,.04),0 8px 24px -12px rgba(20,20,26,.10);
+    --bar-bg:rgba(255,255,255,.82);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0e0e11; --bg-soft:#141419; --card:#16161b; --card-hover:#1b1b21;
+      --text:#f0f0f3; --text-mid:#b6b6c0; --text-dim:#82828e;
+      --border:#26262e; --border-soft:#1e1e25;
+      --accent:#FF3B30; --accent-soft:rgba(255,59,48,.12);
+      --spoiler-bg:#1a1416; --spoiler-border:#3a2528; --chip-bg:#1e1e25;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+      --bar-bg:rgba(14,14,17,.82);
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;
+    font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0 24px; }
+  header { padding:72px 0 32px; }
+  .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+  .kicker .dot { width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  h1 { font-size:clamp(34px,7vw,46px); line-height:1.12; margin:0 0 20px; font-weight:800; letter-spacing:-0.035em; }
+  h1 .accent { color:var(--accent); }
+  .lede { font-size:15px; color:var(--text-mid); margin:0; padding-bottom:28px; border-bottom:1px solid var(--border); }
+  .lede b { color:var(--text); font-weight:600; }
+  .digest { margin:28px 0 0; padding:20px 22px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:14px; }
+  .digest h2 { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:0 0 12px; }
+  .digest ol { margin:0; padding-left:20px; }
+  .digest li { font-size:14.5px; color:var(--text-mid); margin-bottom:7px; }
+  .digest li:last-child { margin-bottom:0; }
+  .digest li b { color:var(--text); font-weight:600; }
+  .bar { position:sticky; top:0; z-index:20; margin:36px 0 8px; padding:12px 0; background:var(--bar-bg); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--border-soft); }
+  .bar-inner { display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap; }
+  .chips { display:flex; gap:7px; flex-wrap:wrap; flex:1 1 auto; scrollbar-width:none; -ms-overflow-style:none; padding:2px 0; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip { flex:0 0 auto; border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:500; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s,color .15s,border-color .15s; }
+  .chip:hover { color:var(--text); }
+  .chip[aria-pressed="true"] { background:var(--text); color:var(--bg); border-color:var(--text); }
+  .chip .n { opacity:.5; margin-left:4px; font-variant-numeric:tabular-nums; }
+  .unlock { flex:0 0 auto; border:1px solid var(--spoiler-border); background:var(--spoiler-bg); color:var(--accent); font:inherit; font-size:13px; font-weight:600; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s; }
+  .unlock:hover { background:var(--accent-soft); }
+  section { padding-top:44px; scroll-margin-top:70px; }
+  section.hidden { display:none; }
+  .sec-head { display:flex; align-items:baseline; gap:10px; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--text); }
+  .sec-head h2 { font-size:19px; font-weight:750; margin:0; letter-spacing:-0.02em; }
+  .sec-head .count { font-size:12px; color:var(--text-dim); font-variant-numeric:tabular-nums; margin-left:auto; font-weight:500; }
+  .art { display:flex; flex-direction:column; align-items:stretch; gap:16px; padding:26px 0; border-bottom:1px solid var(--border-soft); }
+  .art:last-child { border-bottom:none; }
+  .thumb { width:100%; height:340px; border-radius:14px; overflow:hidden; background:linear-gradient(135deg,var(--accent) 0%,#600 100%); border:1px solid var(--border-soft); }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .art-body { min-width:0; }
+  .art h3 { font-size:21px; font-weight:750; line-height:1.36; margin:0 0 6px; letter-spacing:-0.025em; }
+  .orig { font-size:13px; color:var(--text-dim); margin:0 0 11px; font-style:italic; line-height:1.45; }
+  .meta { display:flex; align-items:center; gap:7px; flex-wrap:wrap; font-size:12px; color:var(--text-dim); margin-bottom:12px; }
+  .src { font-weight:650; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:5px; font-size:11.5px; }
+  .sum { font-size:15px; color:var(--text-mid); margin:0 0 4px; line-height:1.75; }
+  details.more { margin:8px 0 14px; }
+  details.more > summary { list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:650; color:var(--accent); padding:7px 0; user-select:none; }
+  details.more > summary::-webkit-details-marker { display:none; }
+  details.more > summary .caret { transition:transform .18s; font-size:10px; }
+  details.more[open] > summary .caret { transform:rotate(90deg); }
+  .detail-body { margin-top:4px; padding:14px 16px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:12px; }
+  .detail-body p { margin:0 0 10px; font-size:14.5px; color:var(--text-mid); line-height:1.8; }
+  .detail-body p:last-child { margin-bottom:0; }
+  .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
+  .go:hover { border-color:var(--text); background:var(--bg-soft); }
+  .go svg { width:11px; height:11px; }
+  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
+  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler > summary::-webkit-details-marker { display:none; }
+  details.spoiler > summary:hover { background:var(--accent-soft); }
+  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
+  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
+  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
+  details.spoiler[open] > summary .hint::after { content:"접기"; }
+  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
+  details.spoiler .art { padding:18px; border-bottom:none; }
+  .glossary { margin-top:12px; }
+  .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
+  .term:last-child { border-bottom:none; }
+  .term dt { font-size:14.5px; font-weight:700; margin-bottom:3px; }
+  .term dt span { color:var(--text-dim); font-weight:500; font-size:13px; }
+  .term dd { margin:0; font-size:14px; color:var(--text-mid); line-height:1.65; }
+  footer { margin-top:64px; padding:28px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
+  footer .brand { color:var(--accent); font-weight:650; }
+  @media (max-width:560px) {
+    .wrap { padding:0 18px; }
+    header { padding:48px 0 24px; }
+    .thumb { height:210px; }
+    .art h3 { font-size:19px; }
+    .sec-head h2 { font-size:17px; }
+    .bar-inner { flex-wrap:nowrap; flex-direction:column; align-items:stretch; }
+    .chips { flex-wrap:nowrap; overflow-x:auto; width:100%; }
+    .unlock { width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker"><span class="dot"></span> 2026년 10월 11일 일요일 <a href="../index.html" style="margin-left:auto;color:var(--text-dim);text-decoration:none;font-weight:600;letter-spacing:0;text-transform:none">← PIT WALL</a></div>
+    <h1>F1 데일리 <span class="accent">브리핑</span></h1>
+    <p class="lede">해외 매체 <b>7곳</b>(Formula1.com · The Race · RaceFans · Autosport · Motorsport.com · PlanetF1 · GPFans)의 기사 <b>23건</b>을 정리했습니다. 싱가포르 GP 토요일(스프린트 + 본 예선) 기사가 중심입니다. 예선 결과와 출발 순서는 스포일러가 아니므로 펼쳐 두었고, <b>스프린트 결과</b>나 이전 레이스 결과·챔피언십 순위가 본문에 섞인 기사 <b>16건</b>은 접어 두었습니다. 토요일 기사는 대부분 스프린트 내용을 함께 다뤄 접힌 카드가 많습니다. 결승은 한국 시각 오늘(일) 21:00입니다.</p>
+    <div class="digest">
+      <h2>오늘의 요약</h2>
+      <ol>
+        <li><b>싱가포르 예선:</b> 페르스타펜이 1분31초373으로 통산 50번째 폴을 잡았습니다. 르클레르가 0.054초, 해밀턴이 0.123초 차로 페라리 두 대가 바로 뒤에 섭니다. 러셀은 엔진 부품 교체 벌칙으로, 하자르는 변속기 고장으로 맨 뒷줄에서 출발합니다.</li>
+        <li><b>판정과 장외 소식:</b> 휠켄베르크는 사인츠를 방해한 것이 인정됐지만 공식 타이밍 데이터가 잠깐 어긋났던 점이 참작돼 벌칙을 피했습니다. 하스의 2027년 시트는 카마라와 두언의 2파전으로 좁혀졌고, 볼프는 윌리엄스의 비용 상한 개편안에 반대하면서 엔지니어 유출을 경고했습니다.</li>
+        <li>🏁 싱가포르 GP 스프린트·말레이시아 GP 관련 소식 <b>16건</b> — 아래 스포일러 섹션을 열어 확인하세요.</li>
+      </ol>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="bar-inner">
+      <div class="chips" role="group" aria-label="카테고리 필터">
+        <button class="chip" data-cat="all" aria-pressed="true">전체<span class="n">23</span></button>
+        <button class="chip" data-cat="race" aria-pressed="false">🏁 레이스 위크<span class="n">17</span></button>
+        <button class="chip" data-cat="transfer" aria-pressed="false">🔄 이적/계약<span class="n">1</span></button>
+        <button class="chip" data-cat="tech" aria-pressed="false">🔧 기술/규정<span class="n">1</span></button>
+        <button class="chip" data-cat="people" aria-pressed="false">👤 드라이버/팀<span class="n">2</span></button>
+        <button class="chip" data-cat="fia" aria-pressed="false">⚖️ FIA/거버넌스<span class="n">1</span></button>
+        <button class="chip" data-cat="etc" aria-pressed="false">📰 기타<span class="n">1</span></button>
+        <button class="chip" data-cat="glossary" aria-pressed="false">📖 용어</button>
+      </div>
+      <button class="unlock" id="unlockAll" aria-pressed="false">🔓 스포일러 모두 펼치기</button>
+    </div>
+  </div>
+
+  <!-- ============================ 🏁 레이스 위크 ============================ -->
+  <section id="race" data-cat="race">
+    <div class="sec-head"><h2>🏁 레이스 위크</h2><span class="count">17건 · 스포일러 13건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/SI202610100396.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>싱가포르 GP 예선 — 페르스타펜 폴, 르클레르 0.054초·해밀턴 0.123초 차 · 상위 4대가 0.2초 안</h3>
+        <p class="orig">F1 2026 Singapore Grand Prix qualifying results</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.10.10</span></div>
+        <p class="sum">막스 페르스타펜(Max Verstappen, 레드불)이 1분31초373으로 폴 포지션(결승 맨 앞자리)을 잡았습니다. 샤를 르클레르(Charles Leclerc)가 0.054초, 루이스 해밀턴(Lewis Hamilton)이 0.123초 차로 페라리 두 대가 바로 뒤에 섰고, 키미 안토넬리(Kimi Antonelli, 메르세데스)가 0.189초 차 4위였습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>페르스타펜은 지난주 세팡에 이어 두 대회 연속 그랑프리 폴입니다. 폴 기록은 Q3(예선 마지막 구간) 첫 번째 시도에서 나왔고, 마지막 시도에서는 기록을 줄이지 못했습니다. 예선은 앞선 일정이 비로 늦어지면서 30분 늦게 시작했습니다.</p>
+          <p>예선 순위는 페르스타펜, 르클레르, 해밀턴, 안토넬리, 랜도 노리스(Lando Norris, +0.339초), 조지 러셀(George Russell, +0.374초), 오스카 피아스트리(Oscar Piastri, +0.487초), 피에르 가슬리(Pierre Gasly, +0.852초), 리엄 로슨(Liam Lawson), 아르비드 린드블라드(Arvid Lindblad) 순입니다. Q2에서는 니코 휠켄베르크(Nico Hülkenberg, 아우디)가 0.182초 차로 탈락했고, Q1에서는 애스턴 마틴 두 대와 알렉스 알본(Alex Albon)이 떨어졌습니다.</p>
+          <p>결승 출발 순서(그리드)는 벌칙으로 달라집니다(The Race 그리드 기사). 러셀은 엔진 부품 교체로 40그리드 강등을 받아 21번째에서 출발하고, 변속기 고장으로 기록을 내지 못한 아이작 하자르(Isack Hadjar, 레드불)는 스튜어드(심판단) 허가를 받아 22번째에 섭니다. 그래서 노리스 5번, 피아스트리 6번, 가슬리 7번, 로슨 8번, 린드블라드 9번, 휠켄베르크 10번이 됩니다. 터보 이상을 호소한 페르난도 알론소(Fernando Alonso)도 애스턴 마틴이 파워 유닛(엔진과 전기 장치 묶음)을 바꾸기로 해 뒤로 밀릴 것으로 보이지만, 기사 작성 시점에 FIA 공식 확인은 없었습니다.</p>
+          <p>페라리 쪽 사정(RaceFans·Formula1.com 보도): Q1·Q2 1위였던 해밀턴은 Q3 직전 프런트 윙 각도를 한 칸 더 세웠다가 차가 예민해졌다고 했고, 르클레르는 Q1·Q2 내내 제동할 때 차가 한쪽으로 쏠리는 문제를 겪었다고 밝혔습니다. 결승은 한국 시각 오늘(일) 21:00입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/f1-2026-singapore-grand-prix-qualifying-results/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/Spacesuit-CE-F1-SGP-09-10-26-2236.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>휠켄베르크, 진로 방해 인정되고도 무벌칙 — 공식 타이밍 데이터가 잠깐 어긋난 탓</h3>
+        <p class="orig">The 'extraordinary mitigating circumstances' that spared a grid drop</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.10.10</span></div>
+        <p class="sum">스튜어드는 휠켄베르크가 Q2에서 카를로스 사인츠(Carlos Sainz)를 “불필요하게 방해했다”고 판단했지만 벌칙을 주지 않았습니다. 아우디가 공식 타이밍 업체의 데이터를 보고 사인츠가 이미 체커기(세션 종료 깃발)를 받았다고 믿었는데, 그 데이터가 잠시 어긋나 있었기 때문입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>상황은 5번 코너 진입에서 벌어졌습니다. 휠켄베르크는 쿨다운 랩(전력 주행 뒤 천천히 도는 랩) 중 레이싱 라인 위에 있었고, 사인츠는 Q2 마지막 기록 시도 중이었습니다. 사인츠는 랩을 포기했고 14위로 탈락했습니다. 휠켄베르크 본인도 “무전을 받지 못했다. 좋게 들리진 않는다”며 벌칙을 예상하는 듯했습니다.</p>
+          <p>스튜어드 결정문에 따르면 아우디는 구독 중인 공식 타이밍 업체 정보로 사인츠가 체커기를 받았다고 판단해 드라이버에게 그렇게 전했습니다. 사인츠의 무전을 보면 윌리엄스도 같은 데이터로 같은 판단을 하고 있었습니다.</p>
+          <p>원인은 팀에 처음 전달된 정보가 완전히 동기화되지 않았다가 잠시 뒤에야 바르게 표시된 데 있었습니다. 수정된 정보가 뜬 것은 사인츠가 이미 휠켄베르크 뒤에 붙은 뒤여서 팀이 바로잡을 시간이 없었습니다. 스튜어드는 이를 “이례적인 참작 사유”로 봤습니다. 팀에 이와 어긋나는 다른 공식 타이밍 데이터도 있었다는 점은 인정했습니다.</p>
+          <p>윌리엄스의 제임스 보울스(James Vowles) 대표는 판정 전에 “한 시스템은 그가 깃발 뒤에 선을 넘었다고 표시했지만 실제로는 아니었다. 확신이 설 때까지 계속 밀어붙이도록 절차를 조여야 한다”고 말했습니다. 휠켄베르크는 러셀의 강등 덕에 10번 그리드에서 출발합니다. 금요일 스프린트 예선의 타이밍 오류에 이어 이번 주말 두 번째 타이밍 관련 문제입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/f1-timing-error-saves-nico-hulkenberg-from-grid-drop/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Singapore/GettyImages-2299526510.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>페르스타펜 통산 50번째 폴 — 해밀턴·슈마허·세나·베텔에 이어 역대 다섯 번째</h3>
+        <p class="orig">The F1 drivers with 50 pole positions or more as Verstappen joins the club</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.10.10</span></div>
+        <p class="sum">싱가포르 예선 1위로 페르스타펜이 통산 폴 50회를 채웠습니다. F1 역사에서 이 기록에 닿은 드라이버는 그를 포함해 다섯 명뿐입니다. 이번 주말은 그의 250번째 그랑프리이기도 합니다(Autosport 보도).</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>직전에 50회를 채운 사람은 제바스티안 베텔(Sebastian Vettel)로, 2017년 멕시코시티 GP였습니다. 베텔은 2008년 이탈리아 GP에서 21세 2개월로 당시 최연소 폴 기록을 세웠는데, 이 기록은 올 시즌 키미 안토넬리가 깼습니다. 베텔의 통산 폴은 57회, 마지막은 2019년 일본 GP입니다.</p>
+          <p>아일톤 세나(Ayrton Senna)는 1990년 스페인 GP에서 50번째 폴을 잡았고, 맥라렌을 떠날 때 62회였습니다. 1994년 윌리엄스에서 세 번을 더했는데 마지막 폴은 그가 사고로 세상을 떠난 산마리노 GP 주말이었습니다.</p>
+          <p>한동안 깨지지 않을 것 같던 세나의 기록은 미하엘 슈마허(Michael Schumacher)가 넘어섰고, 현재 역대 최다 폴 기록은 루이스 해밀턴이 갖고 있습니다.</p>
+          <p>페르스타펜 본인은 숫자에 큰 뜻을 두지 않는다고 했습니다(Autosport 보도). “그것 때문에 이 일을 하는 게 아니다. 50이든 55든 45든 많을수록 좋지만 스스로 대견해할 일은 전혀 아니다.”</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/the-f1-drivers-with-50-pole-positions-or-more-as-verstappen-joins-the-club.7yYHrMHRlBIX609WQwlJ8g" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/03/SI202603050143.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>2026 예선 팀 동료 맞대결 중간 집계 — 르클레르 12:11 해밀턴, 안토넬리 12:10 러셀</h3>
+        <p class="orig">How F1 2026 team-mates are comparing in qualifying</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.10.10</span></div>
+        <p class="sum">The Race가 올 시즌 예선·스프린트 예선에서 팀 동료끼리 누가 더 빨랐는지 집계했습니다. 가장 팽팽한 곳은 페라리(평균 0.047초 차)와 맥라렌(0.053초 차), 가장 벌어진 곳은 애스턴 마틴(알론소 18:3)입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>올해는 그랑프리 예선 24번과 스프린트 예선 6번, 모두 30번까지 팀 동료와 한 랩 속도를 비교할 수 있습니다. The Race는 한쪽이 예선에 나서지 못한 경우만 뺀 원자료라고 밝혔습니다. 이 집계는 토요일 본 예선 전에 올라온 것입니다.</p>
+          <p>상위 팀: 맥라렌은 노리스 16:7 피아스트리(평균 0.053초 차), 메르세데스는 안토넬리 12:10 러셀(0.085초), 레드불은 페르스타펜 13:4 하자르(0.191초), 페라리는 르클레르 12:11 해밀턴(0.047초)입니다. 페르스타펜은 시즌 초 로슨과 함께한 세 번은 3:0이었습니다.</p>
+          <p>중위권: 윌리엄스 사인츠 15:5 알본(0.215초), 레이싱 불스 로슨 11:6 린드블라드(0.141초), 하스 베어먼 16:6 오콘(0.241초), 아우디 보르톨레투 12:11 휠켄베르크(0.083초), 알핀 가슬리 16:6 콜라핀토(0.305초)입니다.</p>
+          <p>그 밖에 애스턴 마틴은 알론소 18:3 스트롤(0.356초), 캐딜락은 페레스 13:9 보타스(0.243초)였습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/how-f1-2026-team-mates-are-comparing-in-qualifying/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 스프린트 결과 리포트 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/XPB_1443740_HiRes.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>비로 늦어진 싱가포르 스프린트 — 페르스타펜 우승, 선두 러셀은 첫 랩 끝에 벽으로 · 마지막 랩엔 맥라렌끼리 충돌</h3>
+          <p class="orig">Verstappen wins delayed Singapore sprint, Russell crashes from lead</p>
+          <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">폭우로 출발이 늦어진 스프린트에서 페르스타펜이 우승했습니다. 출발에서 선두를 뺏은 러셀은 한 랩도 못 가 마지막 코너에서 스핀해 피트월에 부딪혔고, 해밀턴이 2위, 르클레르가 3위였습니다. 마지막 랩에는 노리스가 팀 동료 피아스트리를 들이받았습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>러셀은 1번 코너에서 페르스타펜을 앞질렀지만 마지막 코너를 빠져나오다 스핀해 피트월에 부딪혔습니다. 세이프티카(사고 때 대열을 이끄는 차)가 나왔다 들어간 뒤 페르스타펜은 해밀턴과의 간격을 꾸준히 벌려 여유 있게 이겼습니다.</p>
+            <p>해밀턴은 6번 그리드에서 번개 같은 출발로 맥라렌 두 대와 르클레르를 한꺼번에 제쳐 2위를 지켰습니다. 르클레르는 후반 페이스가 크게 떨어져 피아스트리·노리스·안토넬리에게 쫓겼지만 3위를 지켰습니다.</p>
+            <p>마지막 랩 5번 코너에서 노리스가 안쪽으로 파고들다 연석을 타고 피아스트리와 부딪혀 두 차가 모두 돌았습니다. 피아스트리는 벽에 닿아 리타이어했고, 노리스는 다시 달려 8위로 1점을 얻었습니다. 덕분에 챔피언십 선두 안토넬리가 4위로 올라섰고, 로슨 5위, 올리 베어먼(Ollie Bearman, 하스) 6위, 휠켄베르크 7위였습니다.</p>
+            <p>22대 가운데 9대가 완주하지 못했습니다. 하자르와 프랑코 콜라핀토(Franco Colapinto)는 세이프티카 중 멈췄고, 랜스 스트롤(Lance Stroll)과 세르히오 페레스(Sergio Perez)는 첫 랩에 충돌했으며, 알본·가브리엘 보르톨레투(Gabriel Bortoleto)·발테리 보타스(Valtteri Bottas)는 재출발 직전 연쇄 추돌로 물러났습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.the-race.com/formula-1/verstappen-wins-delayed-singapore-sprint-russell-crashes-from-lead/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 스프린트 관련 스튜어드 판정 ①(스프린트 결과 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/XPB_1443812_HiRes.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>스튜어드 “노리스·피아스트리 둘 다 원인 제공” — 맥라렌 충돌에 벌칙 없음</h3>
+          <p class="orig">Stewards rule Piastri shares blame for Norris clash</p>
+          <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">스튜어드는 스프린트 마지막 랩 맥라렌 충돌에 대해 두 드라이버 모두 사고에 기여했고 어느 한쪽이 전적으로 또는 주로 잘못한 게 아니라며 추가 조치를 하지 않았습니다. 노리스는 8위와 1점을 지켰습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>결정문에 따르면 피아스트리는 노리스가 추월을 시도할 줄 몰랐지만 안쪽에 있는 것을 보고 공간을 남기려 했습니다. 노리스는 정점(코너 가장 안쪽 지점) 전에 자기 차 앞축이 피아스트리의 거울보다 앞에 있었으니 공간이 남을 줄 알았다고 진술했습니다. 정점에 가까워지자 공간이 예상보다 좁아 안쪽 연석을 밟고 제동했고, 충돌이 일어났습니다.</p>
+            <p>The Race는 노리스가 앞축 기준이라는 추월 규정 요건은 채웠다고 봤습니다. 다만 기습을 당한 피아스트리에게 공간을 더 줄 방법은 없어 보였고, 그가 방향을 튼 순간 충돌은 피할 수 없었다고 분석했습니다. “둘 다 기여했다”는 문구는 피아스트리가 추월을 예상하지 못한 점을 잘못으로 본 것이라고 풀이했습니다.</p>
+            <p>노리스는 방송사 Viaplay 인터뷰에서 “팀 동료 상대로 4·5위 다툼인데 불필요한 시도 아니었나”라는 질문에 “큰 틈이 있는데 추월하지 말라고? 이 경기 이름이 뭔가. 스프린트 다음 단어가 뭔가… 레이스다”라고 받아쳤습니다. “레이스 내내 막혀 있었고 마지막 랩 5번 코너에 큰 기회가 있어서 갔다”는 설명입니다.</p>
+            <p>피아스트리의 차는 예선 전에 수리됐고, 맥라렌은 변속기를 바꿔야 했습니다(Autosport 보도).</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.the-race.com/formula-1/stewards-rule-piastri-shares-blame-for-norris-clash/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 스텔라 맥라렌 대표의 스프린트 평가(스프린트 결과·컨스트럭터 순위 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-4.motorsport.com/images/amp/25dLLLQ0/s6/andrea-stella-mclaren-2.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>스텔라 “용납할 수 없다” — 1점짜리 4위 다툼이 맥라렌에 ‘심각한’ 이유</h3>
+          <p class="orig">Why McLaren considers Norris-Piastri Singapore clash so “serious”</p>
+          <div class="meta"><span class="src">Autosport</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">안드레아 스텔라(Andrea Stella) 맥라렌 대표는 스프린트 팀 내 충돌을 “절대 용납할 수 없는 상황”이라고 했습니다. 누가 앞서든 팀 점수는 같은 싸움이었는데 피할 수 있던 사고로 컨스트럭터 점수와 수리비, 정비 인력의 시간을 잃었기 때문입니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>Autosport는 이 사고가 2025년의 ‘파파야 룰’(맥라렌이 두 드라이버의 맞대결에 적용한 내부 원칙) 논란을 다시 불러냈다고 썼습니다. 꼭 1년 전 싱가포르 출발에서 노리스가 피아스트리를 밀어냈고, 그해 캐나다에서도 노리스가 피아스트리 뒤를 받았습니다.</p>
+            <p>이번에는 상황이 다릅니다. 맥라렌은 더는 최강 팀이 아니고, 두 사람이 다툰 것은 스프린트 4위, 1점 차이였습니다. 팀으로선 누가 앞서도 점수가 같았습니다. 그런데 사고로 레드불과 벌이는 컨스트럭터 3위 싸움의 점수를 잃었고, 스프린트 주말에 정비 부담이 늘었으며, 피아스트리 차 수리와 변속기 교체에 비용 상한(팀 연간 지출 한도) 예산이 들어갔습니다.</p>
+            <p>스텔라는 “팀이 입은 피해가 실질적이라 심각하다. 우리는 페라리에 도전하고 레드불 앞에서 끝내려는 목표가 있다”고 말했습니다. 또 “팀과 드라이버가 몇 시즌 동안 함께 레이스하는 방식을 돌아봐 왔기 때문에도 심각하다”고 덧붙였습니다.</p>
+            <p>놀랐느냐는 질문에는 “놀랐다기보다 실망했다. 팀의 이익이 개인의 이익보다 앞선다는 것은 모든 구성원이 안다”고 답했습니다. 노리스는 사과했고 팀에서 질책을 받았지만 시도 자체는 정당했다는 입장을 굽히지 않았습니다. The Race는 스텔라가 드라이버들의 사과에는 관심이 없다고 전했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.autosport.com/f1/news/whats-so-serious-for-mclaren-about-the-norris-piastri-singapore-collision/10864087/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 러셀의 스프린트 소감(스프린트 결과 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/10/racefansdotnet-24-10-10-14-39-58-3-M638174_F1_Grand_Prix_Of_Singapore_Sprint_Qualifying.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>러셀 “지나친 자신감이었다” — 선두에서 흰 선 밟고 벽으로, 올해 첫 사고</h3>
+          <p class="orig">Russell admits “overly confident” driving led to first-lap crash in sprint race</p>
+          <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">러셀은 스프린트 리타이어가 자기 잘못이라고 인정했습니다. 2번 그리드에서 출발해 곧바로 선두로 나섰지만 마지막 코너에서 배터리 출력이 예상보다 세게 나와 살짝 벗어났고, 젖은 흰 선을 밟아 벽에 부딪혔습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>러셀은 “그냥 잘못 판단했다. 코너를 돌아 가속 페달을 밟았는데 배터리에서 예상보다 큰 출력이 나왔다. 조금 벗어나 흰 선을 건드렸다. 빗길 제1원칙이 흰 선을 밟지 않는 건데 아주 어리석은 실수였다”고 말했습니다. 올해 첫 사고였고 “그 자리에서 일어나 더 짜증난다”고 했습니다.</p>
+            <p>바로 뒤에 있던 페르스타펜은 “첫 랩에 이미 몇 번 옆으로 미끄러졌다. 꽤 세게 밀어붙이는 것 같았다. 쉽게 할 수 있는 실수”라고 봤습니다. 뒤차들은 물보라 때문에 앞이 잘 안 보였는데 자신은 그나마 좋은 위치였다고 했습니다.</p>
+            <p>해밀턴도 같은 지점에서 차가 미끄러지는 것을 느꼈다고 했습니다. 인터미디어트(젖은 노면용 중간 타이어) 기준으로 접지력 자체는 높은 편이었지만 연석이나 흰 선을 밟으면 위험했다는 설명입니다. 러셀의 차는 레이싱 라인 가까이에 마주 오는 방향으로 멈춰 르클레르가 조심해 피해야 했습니다.</p>
+            <p>메르세데스는 예선 전까지 차를 고쳤습니다. 토토 볼프(Toto Wolff) 대표는 러셀을 감쌌습니다(Motorsport.com 보도). 러셀은 예선 성적과 관계없이 파워 유닛 교체 벌칙으로 맨 뒤쪽에서 출발합니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.racefans.net/2026/10/10/russell-admits-overly-confident-driving-led-to-first-lap-crash-in-sprint-race/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 스프린트 개최지 논쟁(스프린트 결과 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/10/racefansdotnet-24-10-10-12-12-37-2-SI202610100316.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>페르스타펜 “추월 못 하는 곳에서 스프린트를 열면 안 된다” · 해밀턴 “직선을 늘려야”</h3>
+          <p class="orig">Verstappen: F1 shouldn’t hold sprint races on tracks where you can’t pass</p>
+          <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">스프린트에서 우승한 페르스타펜이 싱가포르는 스프린트 개최지로 맞지 않는다고 비판했습니다. 2위 해밀턴도 “비가 아니었으면 가장 지루한 레이스였을 것”이라며 추월 지점을 만들 코스 변경을 요구했습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>페르스타펜은 “추월할 수 없는 곳에서 스프린트를 열면 안 된다. 레이스가 되는 트랙이 있는데, 내년엔 추월이 안 되는 곳에서도 스프린트를 한다”고 말했습니다. F1은 내년 스프린트를 6회에서 10회로 늘리고 모나코에서도 엽니다.</p>
+            <p>그는 2026년 규정도 문제로 꼽았습니다. “오버테이크 모드(추월용 추가 전기 출력)가 여기선 거의 효과가 없다. 직선에서 얻는 게 별로 없다. 우리의 사랑스러운 배터리로는 바짝 붙거나 큰 속도 차를 만들 수가 없다.” 코스에 대해서는 “트랙은 훌륭하지만 더 긴 직선이나 제대로 된 헤어핀이 필요하고, 그래도 직선 속도 차가 더 커야 한다”고 했습니다.</p>
+            <p>해밀턴은 “재미있었지만 마른 노면이었다면 타이어 관리만 하며 줄지어 달렸을 것”이라고 말했습니다. Motorsport.com에 따르면 그는 “페르스타펜에게도 말했는데, 긴 직선을 만들어야 진짜 좋은 레이싱 서킷이 된다. 한 랩을 달리기엔 훌륭하지만 추월하러 붙을 곳이 한 군데도 없다”고 했고, 16번 코너 한가운데의 둔덕도 손봐야 한다고 지적했습니다.</p>
+            <p>마리나 베이는 2013년 ‘싱가포르 슬링’ 시케인(좌우로 꺾이는 감속 구간)을 고쳤고 2023년에는 공사 때문에 옛 16~19번 코너를 없앴습니다. 르클레르도 이런 곳에서 스프린트를 여는 것이 맞는지 의문을 제기했습니다. 스프린트는 22대 중 13대만 완주했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.racefans.net/2026/10/10/verstappen-f1-shouldnt-hold-sprint-races-on-tracks-where-you-cant-pass/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 페르스타펜의 출발 문제 분석(스프린트·말레이시아 GP 결과 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-5.motorsport.com/images/amp/2dEoGn3Y/s6/max-verstappen-red-bull-racing.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>페르스타펜 “2단 출발은 지금 우리한테 맞지 않는다” — 빗길 출발 방식 바꾼다</h3>
+          <p class="orig">What Max Verstappen will change after Red Bull’s poor F1 starts in Malaysia and Singapore</p>
+          <div class="meta"><span class="src">Autosport</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">스프린트 예선·스프린트·예선을 모두 1위로 마친 페르스타펜이 그래도 만족하지 못한 이유는 출발입니다. 그는 스프린트 출발을 “끔찍했다”고 했고, 결승이 젖으면 2단이 아닌 다른 기어로 출발하겠다고 내비쳤습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>Autosport는 출발 문제를 둘로 나눴습니다. 하나는 올해 여러 번 반복된 들쭉날쭉한 출발이고, 다른 하나는 세팡과 싱가포르의 젖은 노면에서 팀이 권한 기어 선택입니다. 페르스타펜은 두 번 모두 2단으로 출발했는데(빗길에서는 흔한 선택), 러셀을 비롯한 여러 경쟁자는 1단을 골랐습니다. 2026년 파워 유닛에서는 1단이 터보 회전을 끌어올려 출발에 유리했습니다.</p>
+            <p>페르스타펜은 “말레이시아에선 다른 문제가 겹쳐 2단 출발이 제대로 안 됐다. 팀은 그 문제만 없으면 이번엔 괜찮을 거라고 봤는데 여전히 부족했다. 내 출발은 대부분보다는 괜찮았지만 조지와 루이스에 비하면 아니었다”고 설명했습니다.</p>
+            <p>결승에서는 올 시즌 평균 출발이 가장 좋은 페라리 두 대가 바로 뒤에 섭니다. 그는 “그들은 시즌 내내 출발이 좋았다. 싱가포르에선 늘 중요한 요소”라고 했고, 젖은 출발이라면 방식을 바꾸겠느냐는 질문에 “우선 마르길 바란다. 2단이 지금 우리에게 맞는 기어가 아닌 건 분명하다”며 웃었습니다.</p>
+            <p>그는 스프린트 직후 “이런 출발이면 일요일 레이스는 끝”이라고 팀에 경고했습니다(Motorsport.com 보도). The Race에 따르면 그는 같은 하드웨어와 소프트웨어를 쓰는 자매 팀 레이싱 불스의 출발이 좋다는 점을 들어 “변명의 여지가 없다”고 했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.autosport.com/f1/news/max-verstappen-hints-at-change-after-red-bulls-poor-f1-starts-in-malaysia-and-singapore/10864060/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 스프린트 관련 스튜어드 판정 ②와 드라이버 반응(스프린트 결과 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Singapore/GettyImages-2299492757.webp" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>페레스·스트롤 첫 랩 충돌로 동반 리타이어 — 벌칙 없음 · 알본·보타스는 ‘벌칙감’이지만 면제</h3>
+          <p class="orig">Perez and Stroll react to Singapore Sprint clash as outcome of stewards’ investigation announced</p>
+          <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">스프린트 첫 랩 16번 코너에서 페레스(캐딜락)와 스트롤(애스턴 마틴)이 부딪혀 둘 다 물러났습니다. 스튜어드는 스트롤이 합리적인 주행선을 탔다며 추가 조치를 하지 않았습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>사고는 선두 러셀이 벽에 부딪힌 것과 거의 같은 때 일어났습니다. 스트롤은 그 자리에서 멈췄고, 페레스는 피트까지 돌아왔지만 손상 때문에 리타이어했습니다.</p>
+            <p>페레스는 “16번 코너 안쪽에 있었는데 랜스가 문을 닫을 줄 몰랐다. 닫히는 걸 보고 제동했지만 늦었고 바퀴가 잠겼다. 할 수 있는 게 없었다”고 말했습니다. “짧은 레이스지만 이런 날씨는 기회였는데 아쉽다. 주말 뒤쪽에도 이런 조건이 오면 좋겠다”고도 했습니다.</p>
+            <p>스트롤은 “무슨 일인지 정확히 모르겠다. 받혔다”고만 했고, 주행이 어려웠느냐는 질문에도 “그렇게 어렵지 않았다. 그냥 받혔다”고 답했습니다.</p>
+            <p>세이프티카 뒤 재출발을 준비하다 벌어진 연쇄 추돌도 조사됐습니다(PlanetF1 보도). 알본이 보르톨레투 뒤를, 보타스가 알본 뒤를 받았습니다. 스튜어드는 앞차들의 속도가 들쭉날쭉해 대열이 아코디언처럼 접힌 결과로 보면서도 두 사람 모두 평소라면 5초 벌칙감이라고 판단했습니다. 다만 치르지 못한 5초 벌칙은 그리드 강등으로 바뀌지 않아 실제 제재는 없었습니다. 린드블라드도 별도 건으로 조사받았지만 조치는 없었습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.formula1.com/en/latest/article/perez-and-stroll-react-to-singapore-sprint-clash-as-outcome-of-stewards-investigation-announced.7ezizVQPLUUVJw3UX70ZK0" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 페라리가 폴을 놓친 과정 분석(이번 주말 스프린트 결과 암시) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/XPB_1444098_HiRes.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>페라리는 어떻게 폴을 페르스타펜에게 내줬나 — 르클레르는 제동, 해밀턴은 윙 조정</h3>
+          <p class="orig">How Ferrari handed Singapore pole to Verstappen</p>
+          <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">The Race는 예선에서 가장 빠른 차는 페라리였다고 봤습니다. 르클레르는 제동 불안으로 16번 코너에서 덜 공격했고, 해밀턴은 Q1·Q2 1위를 하고도 Q3에서 고작 0.033초를 줄이는 데 그쳤습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>세 사람의 차이는 0.1초 남짓이었고, 페르스타펜은 마지막 시도에서 기록을 줄이지 못해 문이 열려 있었습니다. 마리나 베이는 페르스타펜이 정기적으로 달린 서킷 중 이번 주말 전까지 폴도 우승도 없던 유일한 곳이었습니다. The Race는 그의 랩이 훌륭했지만 본인 말대로 “폴에 충분한” 정도였다고 평가했습니다.</p>
+            <p>르클레르는 “차에 폴을 딸 잠재력이 있었지만 세션이 매끄럽지 못했다. 막스가 더 잘했다”고 했습니다. 그는 Q1·Q2 내내 제동할 때 차가 쏠리는 문제로 자신감을 잃었습니다(Formula1.com 보도). 13번 헤어핀에서 해밀턴보다 0.1초 가까이 잃었고, 3구간에서 페르스타펜에게 뒤진 0.161초의 대부분은 16번 코너 제동을 덜 공격한 데서 나왔습니다. 8번·14번 코너를 해밀턴은 2단, 그는 3단으로 돈 것도 제동 불안의 흔적으로 봤습니다.</p>
+            <p>해밀턴은 코너 진입에서 훨씬 과감했고 Q1·Q2에서 압도적이었습니다. 하지만 “차에 더 남아 있다”는 느낌에 프런트 윙을 더 세운 것이 균형을 무너뜨렸습니다. 르클레르는 바람을 잘못 읽었다고도 했습니다.</p>
+            <p>르클레르는 “그리드의 모든 드라이버에게 물어보면 Q3 마지막 랩에서 뭔가 더 찾을 수 있었다고 할 것”이라고 덧붙였습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.the-race.com/formula-1/how-ferrari-handed-singapore-pole-to-verstappen/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 해밀턴 예선 소감(스프린트 결과 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/10/racefansdotnet-24-10-09-14-37-42-5-261009_R17_SINGAPORE_DP_VA1_4350.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>해밀턴 “윙 한 칸이 칼날 위에서 넘어가게 했다” — 결승은 르클레르와 협공 구상</h3>
+          <p class="orig">Hamilton admits set-up change spoiled car balance after missing out on pole position</p>
+          <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">해밀턴은 Q3 직전 프런트 윙을 한 칸 더 세운 것이 차의 균형을 무너뜨렸다고 밝혔습니다. 3번 그리드에서 출발하는 그는 2번 그리드 르클레르와 힘을 합쳐 페르스타펜을 압박할 기회를 보겠다고 했습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>해밀턴은 “균형 문제였다. Q1·Q2에서 차가 놀라울 만큼 좋았고, 랩을 마칠 때마다 더 남아 있다고 느꼈다. 그걸 끌어내는 유일한 방법이 윙을 더하는 것이었다”고 설명했습니다. “한 칸 정도였는데 칼날 위에 있던 차가 넘어가 버렸다. 그 뒤로 차가 예민해졌고 Q3 랩은 하나도 좋지 않았다. 솔직히 3위인 게 고맙다.”</p>
+            <p>그는 스프린트에서 6번 그리드 출발로 3위까지 뛰어오르는 좋은 출발을 했습니다. 결승에 대해서는 “오른쪽 줄이 조금 낫길 바란다. 내 출발은 젖은 노면이었고 마른 노면은 많이 다르다. 내일은 마를 것 같다”고 했습니다.</p>
+            <p>“내일 막스를 이기기는 아주 어렵겠지만 페라리가 두 대 있고, 함께 압박할 기회가 있을지 모른다. 그들은 아주 빠르지만 우리 차도 좋은 상태라 적어도 버틸 수 있기를 바란다.”</p>
+            <p>Formula1.com 인터뷰에서 그는 “우리 차는 한계를 넘는 것과 못 미치는 것 사이가 종이 한 장 차이고 그 지점을 찾기가 아주 어렵다. 돌이켜 보면 손대지 말았어야 했다”고 말했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.racefans.net/2026/10/10/hamilton-admits-set-up-change-spoiled-car-balance-after-missing-out-on-pole-position/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 하자르의 토요일(스프린트·말레이시아 GP 결과 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_Of_Singapore___Sprint__Qualifying/2299527894.webp" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>하자르 “FP1 빼고 모든 세션에서 고장” — 변속기 파손으로 예선 기록 없이 맨 뒤 출발</h3>
+          <p class="orig">Hadjar ‘really p****d’ to miss out on Singapore Qualifying as reliability woes continue</p>
+          <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">아이작 하자르는 예선 Q1에서 변속기가 부서져 기록을 남기지 못했고 결승을 맨 뒤에서 출발합니다. 그는 말레이시아에서 배터리 문제로 포디움 가능성을 잃었고 싱가포르 스프린트에서도 기계 고장으로 리타이어했습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>하자르는 “웃긴 건 1구간에서 느낌이 좋았다는 거다. 그러다 8번 코너에서 변속기가 부서졌다. 왜 계속 달렸는지도 모르겠다. 차는 완전히 망가져 있었고 끝이라는 걸 알았지만 코스에 세우고 싶지 않아 차고까지 끌고 왔다”고 말했습니다. The Race에 따르면 4단 기어가 부서졌습니다.</p>
+            <p>그는 “FP1을 빼고 모든 세션에서 문제가 있었다. 정말 정말 답답하다. 작년에 카를로스(사인츠)가 거의 맨 뒤에서 출발해 10위쯤 했던 걸로 안다. 점수를 가져오고 싶다. 하지만 예선의 아드레날린을 좋아하는데 그걸 못 느끼면 정말 화가 난다”고 했습니다. Motorsport.com·Crash.net은 그가 “모든 게 부서지고 있다”며 파워 유닛 쪽의 큰 변화를 요구했다고 전했습니다.</p>
+            <p>로랑 메키스(Laurent Mekies) 레드불 대표는 책임을 인정했습니다. “아이작에게 제대로 사과해야 한다. 이번 주말 그의 속도를 보여줄 기회를 전혀 주지 못했다. 오전 스프린트에선 파워 유닛, 오후 예선에선 변속기 문제였다.”</p>
+            <p>메키스는 “예선 순위가 특히 중요한 레이스라 더 답답하다. 내일 맨 뒤에서 함께 싸워 점수권으로 돌려놓겠다”고 했습니다. The Race에 따르면 하자르는 스프린트 형식과 내년 스프린트 확대에도 불만을 쏟아냈고 “파리에 있었어도 결과는 같았을 것”이라고 했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.formula1.com/en/latest/article/hadjar-really-p-d-to-miss-out-on-singapore-qualifying-as-reliability-woes-continue.4kqEILdQ3b5m391JE11XXy" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 러셀의 결승 목표(스프린트 결과·이전 레이스 결과 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/10/racefansdotnet-24-10-09-17-02-09-10-13-friday-singapore-2026.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>맨 뒤에서 출발하는 러셀 “6~7위가 목표” — “사고 뒤로 차 느낌이 달라졌다”</h3>
+          <p class="orig">Russell aiming for sixth from back of grid in Singapore</p>
+          <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">러셀은 결승에서 6~7위까지 올라가길 바란다고 했습니다. 스프린트 선두에서 사고를 낸 뒤 차 느낌이 전날과 달라졌고, 예선 내내 상위 5위 안에 한 번도 들지 못했다고 털어놨습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>러셀은 “분명 어려울 것”이라며 팀 동료의 사례를 들었습니다. “키미는 몬차에서 19번 그리드로 출발해 우승했고, 바쿠에선 16번에서 출발해 15랩쯤 남기고 10위까지 올라왔다. 같은 드라이버, 비슷한 성격의 트랙인데 상황은 아주 달랐다.”</p>
+            <p>그는 “점수권에 들고, 하자르가 벌칙을 받느냐에 따라 7위나 6위까지 가길 바란다”고 했습니다.</p>
+            <p>러셀은 이번 주말 메르세데스의 구형 공력 사양으로 달립니다. 팀은 일주일 전 들여와 엇갈린 결과를 낸 신형 부품과 차이를 비교하고 있습니다.</p>
+            <p>예선에서 여러 랩을 돈 것은 “오전 사고 뒤에도 차가 어제 같은지 확인하려는 것”이었는데 “솔직히 느낌이 같지 않았다”고 했습니다. “어제는 뛴 랩마다 거의 상위 3위 안이었는데 오늘은 세션 내내 5위 안에도 못 들었다. 이유를 알아내야 한다.” 그는 Formula1.com에도 같은 설명을 했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.racefans.net/2026/10/10/russell-aiming-for-sixth-from-back-of-grid-in-singapore/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 맥라렌의 예선 소감(스프린트 결과 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Singapore/GettyImages-2299498275.webp" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>노리스 “지금 순위가 우리 실력” — 맥라렌, 싱가포르에서 네 번째로 빠른 차</h3>
+          <p class="orig">'We are where we should be' – Norris and Piastri reflect on McLaren's Singapore GP Qualifying</p>
+          <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">노리스는 예선 5위를 두고 “있어야 할 자리에 있다”고 했습니다. 폴과는 0.3초 남짓 차이였지만 레드불, 페라리 두 대, 안토넬리에게 밀렸습니다. 피아스트리는 스프린트 충돌로 망가진 차를 고쳐 7위(그리드 6번)에 올랐습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>노리스는 “스프린트 이후 바꾼 게 없으니 갑자기 빨라질 이유가 없다. 1구간이나 2구간을 아주 잘 달릴 수는 있지만 차가 너무 까다롭다”고 말했습니다.</p>
+            <p>그는 “구간 최고 기록을 내려면 거의 사고 직전까지 가야 하는데 그러면 타이어가 버티지 못한다. 빠른 상태에서 완벽한 한계를 유지하기엔 차가 너무 어렵고, 그 한계로 한 랩을 다 엮는 건 사실상 불가능하다”고 했습니다. 노리스는 스프린트에서 5위로 달리다 팀 동료와 충돌했습니다.</p>
+            <p>피아스트리의 평가도 비슷했습니다. “솔직히 꽤 뚜렷하게 세 번째나 네 번째로 빠른 차였다. 막스가 우리보다 앞섰고 페라리도 그랬다.”</p>
+            <p>그는 “조금 더 있길 바랐는데 그게 거의 전부였다. 매끄러운 세션은 아니었고 여기저기 실수가 있었다. 내일 다시 해 보겠다”고 덧붙였습니다. 스텔라 대표는 금요일 스프린트 예선 뒤 세력 판도가 바쿠 이전으로 돌아왔다고 말한 바 있습니다(Motorsport.com 보도).</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.formula1.com/en/latest/article/we-are-where-we-should-be-norris-and-piastri-reflect-on-mclarens-singapore-gp-qualifying.4c0lo9EiE9BYYL5iqIHNim" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 폴 랩 데이터 분석(이전 레이스 결과 언급 가능) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-9.motorsport.com/images/amp/68VwagD2/s6/max-verstappen-red-bull-racing.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>“더 잘한 것”인가 엔진 출력인가 — 페르스타펜 폴 랩 뜯어보기 · 직선마다 레드불이 빨랐다</h3>
+          <p class="orig">A "better job" or more engine power? Verstappen's Singapore pole unpicked</p>
+          <div class="meta"><span class="src">Autosport</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">Autosport가 페르스타펜과 르클레르의 Q3 랩 데이터를 비교했습니다. 르클레르는 코너에서 훨씬 빨랐지만 레드불은 직선마다 최고 속도가 높았고, 3번에서 5번 코너로 가는 구간에서는 최대 18km/h 차이가 났습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>페르스타펜의 기록 향상은 Q1부터 Q3까지 고르게 이어졌습니다. 연습이 한 번뿐이었는데도 노면이 좋아지는 정도를 잘 읽었다는 뜻입니다. Q1에서는 한 번의 시도로 충분했습니다. 르클레르는 Q1에서만 페르스타펜보다 빨랐고 그것도 두 번째 시도였습니다. 해밀턴은 노면 변화를 앞질러 윙을 조정했다가 첫 코너들과 마지막 시케인에서 뒤가 미끄러지며 시간을 잃었습니다.</p>
+            <p>랩 초반 페르스타펜은 최고 속도에서 약 6km/h 앞섰지만 1번 코너에서 더 일찍 속도를 줄였습니다. 르클레르는 정점까지 속도를 더 실어 2번 코너까지 0.1초, 3번 코너 탈출까지 0.2초를 앞섰습니다. 그런데 가속 페달 기록이 비슷한데도 5번 코너까지 레드불이 최대 18km/h 빨랐습니다.</p>
+            <p>그다음 직선에서는 차이가 4km/h로 줄었습니다. 페르스타펜이 7번 코너 앞에서 훨씬 일찍 발을 뗀 것으로 보아, 전기 에너지를 랩 앞쪽에 먼저 쓰고 리프트 앤 코스트(가속 페달을 일찍 떼고 관성으로 가는 주행)를 더 한 것으로 풀이했습니다. 8·9·10번 코너에서는 르클레르가 코너에서 벌고 페르스타펜이 직선에서 되찾는 흐름이 반복됐습니다.</p>
+            <p>Autosport는 출력 차이인지 다운포스(차를 노면에 누르는 공기 힘)를 덜 실은 것인지는 단정하기 어렵다고 했습니다. 레드불·포드 엔진이 가장 강하다는 평가가 있지만, 페라리는 저속 코너에 강하고 작은 압축기를 쓴 터보 구성이라 코너 탈출 가속이 좋기 때문입니다. 페르스타펜은 코너 진입 속도를 조금 양보하고 차를 일찍 곧게 세워 가속을 빨리 시작하는 방식으로 달렸습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.autosport.com/f1/news/a-better-job-or-more-engine-power-verstappens-singapore-pole-unpicked/10864047/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+  </section>
+
+  <!-- ============================ 🔄 이적/계약 ============================ -->
+  <section id="transfer" data-cat="transfer">
+    <div class="sec-head"><h2>🔄 이적/계약</h2><span class="count">1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F04%2F02155015%2Fjack-doohan-haas-f1-2026-season.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>후속: 하스 2027 시트 — ‘카마라 확정적’에서 카마라 대 두언 2파전으로</h3>
+        <p class="orig">Jack Doohan's Haas F1 return hopes surge as Rafa Camara faces fresh competition</p>
+        <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.10.10</span></div>
+        <p class="sum">지난주까지는 하파 카마라(Rafa Camara)의 계약이 임박했다는 관측이었는데, 잭 두언(Jack Doohan)이 테스트로 다시 후보에 올라 2파전이 됐다고 PlanetF1이 전했습니다. 결정은 싱가포르 GP 뒤, 발표는 미국 GP 전이 될 수 있습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>지난 보도 이후 달라진 점: 에스테반 오콘(Esteban Ocon)의 이탈이 확정됐고, 바쿠 주말 전까지 “서명만 남았다”던 카마라 영입 기류가 누그러졌습니다. 하스는 오콘과의 결별을 알리면서 2027년 라인업은 아직 확정할 단계가 아니라고 따로 강조했습니다.</p>
+          <p>후보는 최근까지 다섯 명이었습니다. 맥라렌 리저브 레오나르도 포르나롤리(Leonardo Fornaroli), 토요타 가주 레이싱의 히라카와 료(Ryo Hirakawa), 페라리가 후원하는 F2 드라이버 카마라, 하스 리저브 두언, 그리고 오콘입니다. 하스는 2025년 차로 포르티망과 헤레스에서 TPC(구형 차 테스트)를 두 번 열어 후보들을 시험했습니다.</p>
+          <p>첫 테스트 뒤에는 히라카와와 카마라로 좁혀졌지만, 두언이 2025년 마이애미 GP 이후 처음 F1 차를 몰면서 가능성이 되살아났습니다. 포르나롤리 쪽은 2027년 세계 내구 선수권(WEC) 시트를 더 적극적으로 알아보는 것으로 전해졌습니다. 올리 베어먼은 공식 발표는 없지만 잔류가 유력합니다.</p>
+          <p>고마쓰 아야오(Ayao Komatsu) 대표는 성능만 보고 뽑겠다는 입장이며 후원이나 제조사 지원은 실력이 비슷할 때만 참고한다고 말해 왔습니다. 카마라는 브라질 트란스페트로 등 후원을 가져올 수 있고, 두언 쪽에도 후원자들의 관심이 붙고 있습니다. 고마쓰는 “발표할 때 발표한다. 지금은 모든 걸 열어 두고 있다. 재능 있는 드라이버가 한 자리에 이렇게 많이 관심을 보이는 건 팀으로서 운이 좋은 것”이라고 했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.planetf1.com/news/jack-doohan-rafa-camara-haas-2027-f1-driver-battle" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============================ 🔧 기술/규정 ============================ -->
+  <section id="tech" data-cat="tech">
+    <div class="sec-head"><h2>🔧 기술/규정</h2><span class="count">1건 · 스포일러 1건</span></div>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 메르세데스 신형 부품 평가(챔피언십 순위·스프린트 결과 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-4.motorsport.com/images/amp/0Zq8yKV6/s6/andrea-kimi-antonelli-mercedes.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>후속: 메르세데스 신형 사양, 세팅을 정반대로 뒤집자 살아났다 — 안토넬리 Q1 12위에서 4위로</h3>
+          <p class="orig">How Mercedes’ tricky F1 upgrade has been working at Singapore GP</p>
+          <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">어제까지는 신형 사양의 약점이 드러났다는 보도였는데, 토요일에는 세팅을 크게 바꾼 뒤 답이 보이기 시작했다는 평가가 나왔습니다. 챔피언십 선두 안토넬리는 Q1 12위에서 2초를 줄여 폴과 0.189초 차 4위까지 올라왔습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>지난 보도 이후 달라진 점: 금요일 스프린트 예선에서 안토넬리는 신형 차를 “아주 어렵고 예측할 수 없다”고 했고 구형을 탄 러셀이 평균 0.6초 빨랐습니다. 토요일에는 반대로 러셀이 스프린트 사고 뒤 차 느낌을 잃었고, 안토넬리는 예선에서 누구보다 많이 기록을 줄였습니다.</p>
+            <p>메르세데스는 상위 팀으로서는 드물게 두 차의 사양을 갈랐습니다. 안토넬리는 플로어(차 바닥)와 사이드포드(차 옆구리 덮개)를 고친 신형, 러셀은 구형입니다. 두 사람은 Q1에서 12·13위로 해밀턴에 1.2초 뒤졌습니다.</p>
+            <p>안토넬리는 “이 패키지가 무엇을 줄 수 있는지 보이기 시작했다. 다만 맞는 작동 범위를 찾기가 여전히 어렵다. 오늘 세팅을 크게 바꿨고, 성능을 조금 내주더라도 차가 더 나은 상태가 됐다”고 말했습니다. “솔직히 세팅을 정반대로 갔더니 차가 편해졌다. 어제는 사방에서 미끄러졌다.”</p>
+            <p>그는 “작동 범위가 아주 좁고 예민하다. 노면이 좋아져 더 밀어붙이거나 제동을 조금 늦추면 차 반응이 달라진다. 말레이시아에선 길을 잃었는데 지금은 머리가 좀 맑아졌다”고 했습니다. The Race에 따르면 바뀐 세팅은 과도한 오버스티어(뒤가 먼저 미끄러지는 현상)를 줄여 제동 자신감을 되찾는 방향이었고, 안토넬리가 스프린트 중 디퍼렌셜(좌우 바퀴 회전 차를 조절하는 장치) 설정을 바꿔 본 것이 실마리가 됐습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.motorsport.com/f1/news/how-mercedes-tricky-f1-upgrade-has-been-working-at-singapore-gp/10864023/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+  </section>
+
+  <!-- ============================ 👤 드라이버/팀 ============================ -->
+  <section id="people" data-cat="people">
+    <div class="sec-head"><h2>👤 드라이버/팀</h2><span class="count">2건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2024/03/racefansdotnet-24-03-14-18-01-34-11-XPB_857410_HiRes.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>볼프 “2016년 최종전은 내 잘못” — 해밀턴·로스베르크 타이틀 결정전 10년 만의 반성</h3>
+        <p class="orig">Wolff admits he mishandled 2016 title-decider between Hamilton and Rosberg</p>
+        <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.10.10</span></div>
+        <p class="sum">토토 볼프 메르세데스 대표가 2016년 해밀턴과 니코 로스베르크(Nico Rosberg)의 타이틀 결정전을 더 잘 다룰 수 있었다고 인정했습니다. “관리할 필요가 없는 상황을 세세하게 관리하려 했다. 내 잘못이었다.”</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>2016년 최종전에서 메르세데스는 선두 해밀턴에게 속도를 올리라고 거듭 지시했지만 통하지 않았습니다. 해밀턴이 그 레이스를 이겼고 2위 로스베르크가 챔피언이 됐습니다. 로스베르크는 그해 2년 재계약을 하고도 타이틀을 딴 뒤 F1에 돌아오지 않았습니다.</p>
+          <p>볼프는 “돌아보면 그때 지금의 10년 경험이 더 있었으면 한다. 몇 가지는 다르게 다뤄 논란을 피할 수 있었을 것”이라고 말했습니다. “5년 전 일 같은데 벌써 10년이다. 루이스와의 관계는 트랙 위 경쟁자인 지금도 더없이 탄탄하고 니코와도 마찬가지다.”</p>
+          <p>그는 드라이버 편애 의혹을 여러 차례 부인해 왔습니다. “윌리엄스 시절부터 드라이버들에게 가장 균형 잡히고 투명하려고 했다”는 것입니다.</p>
+          <p>계기는 신참 시절 알랭 프로스트(Alain Prost)에게 들은 말이었습니다. 세나와 왜 그렇게 틀어졌느냐고 묻자 프로스트는 “팀이 무슨 생각인지 알 수 없었다. 한때는 총애받는 것 같다가 두 달 뒤엔 정치가 나를 겨누는 것 같았다”고 답했다고 합니다. 볼프는 “그래서 늘 균형을 지키는 걸 과제로 삼았다. 루이스와 니코 때는 쉽지 않았다. 그 점의 진실성은 내게 중요하고 드라이버들도 안다”고 했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.racefans.net/2026/10/10/wolff-admits-he-mishandled-2016-title-decider-between-hamilton-and-rosberg/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 페르스타펜의 은퇴 고민 고백(말레이시아 GP 결과 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/57b60b1692c4c433a7f12c95765f3c14daed5287.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>페르스타펜 “시즌 초엔 정말 은퇴 직전이었다” — 이제 목표는 2030년까지</h3>
+          <p class="orig">Max Verstappen makes startling F1 retirement admission despite new Red Bull deal</p>
+          <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">페르스타펜이 네덜란드 일간지 더 텔레흐라프(De Telegraaf) 인터뷰에서 올 시즌 초 은퇴 직전까지 갔었다고 밝혔습니다. 지금은 규정이 바뀌고 있고 레드불에서 즐겁다며 2030년까지 뛰는 것이 목표라고 했습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>그는 “정말 벼랑 끝이었다. 특히 시즌 첫 몇 주말이 그랬다. 이런 기분은 처음이었다”고 말했습니다. 2026년 규정은 내연기관과 배터리 출력을 거의 반반으로 나눴고, 그는 이를 “스테로이드 맞은 포뮬러 E”, “마리오 카트”라고 불렀습니다.</p>
+            <p>마음이 바뀐 이유로는 규정 수정을 들었습니다. “F1이 조금은 귀를 기울였다. 앞으로 몇 년간 내연기관의 역할이 조금 더 커지는 변화가 온다.” F1은 올해 이미 손질을 했고 2027·2028년에도 추가 변경을 예고했습니다.</p>
+            <p>팀에 대해서는 “레드불에서 정말 즐겁다. 함께 일하는 사람들, 팀이 움직이는 방식이 좋다. 결과가 가장 중요하지만 맞는 곳에 있다고 느끼고 인정받는다고 느껴야 한다. 지금이 그렇다”고 했습니다. “2030년까지 뛴다고 장담할 수는 없지만 그게 목표다.” 그는 레드불과 2030년까지 계약을 연장했습니다.</p>
+            <p>GPFans는 최근 성적이 그 결정을 뒷받침한다고 썼습니다. 그는 9월 말 아제르바이잔 GP 2위에 이어 지난주 말레이시아에서 열린 바레인 GP에서 올해 첫 우승을 거뒀고, 싱가포르에서도 첫 우승의 유력 후보로 꼽힙니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.gpfans.com/en/f1-news/1091327/max-verstappen-red-bull-f1-retirement-admission/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+  </section>
+
+  <!-- ============================ ⚖️ FIA/거버넌스 ============================ -->
+  <section id="fia" data-cat="fia">
+    <div class="sec-head"><h2>⚖️ FIA/거버넌스</h2><span class="count">1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-2.motorsport.com/images/amp/6DGgNL4Y/s6/untitled-design-72-2.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>후속: 볼프도 윌리엄스 비용 상한안 반대 “BoP는 질색” — 대신 ‘인재 유출’을 경고</h3>
+        <p class="orig">Toto Wolff slams “red mist” F1 rule proposal but warns of massive talent crisis</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.10.10</span></div>
+        <p class="sum">어제는 하스·레이싱 불스의 반대가 전해졌는데, 금요일 FIA 기자회견에서 메르세데스의 볼프와 맥라렌도 윌리엄스의 순위 연동 지출 허용안에 반대했습니다. 볼프는 그 대신 비용 상한이 급여를 눌러 엔지니어들이 다른 업계로 빠져나가는 문제를 지적했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>지난 보도 이후 달라진 점: 반대 진영에 상위 팀 두 곳이 공개적으로 합류했고, 볼프가 비용 상한의 다른 부작용인 인력 문제를 새로 꺼냈습니다.</p>
+          <p>보울스 윌리엄스 대표의 안은 순위가 낮은 팀일수록 낡은 공장 설비를 고치는 데 돈을 더 쓸 수 있게 하는 차등 허용입니다. 그는 자본지출(설비 투자)과 운영비를 합친 2억 1500만 달러 상한이 “두 계급의 챔피언십”을 만들었다고 주장합니다.</p>
+          <p>볼프는 “순위에 따라 조정한다는 개념 자체가 싫다. BoP(차 성능을 인위로 맞추는 제도, 내구 레이스에서 쓰임)는 내겐 질색이다. 지금도 풍동 사용 시간에 작은 차등이 있지만 관객 눈엔 거의 안 보일 만큼 미미하다”고 말했습니다. “순위에 따라 지출을 더 허용하는 장치를 또 하나 원하는가? 잘 모르겠다.”</p>
+          <p>그러면서도 그는 비용 상한이 급여 총액을 눌러 F1이 뛰어난 엔지니어를 보수가 더 좋은 업계에 뺏기고 있다고 인정했습니다. 처음에는 열정으로 사람을 데려올 수 있지만 몇 해가 지나면 붙잡기 어렵다는 취지입니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/toto-wolff-slams-red-mist-f1-rule-proposal-but-warns-of-a-massive-talent-crisis/10863727/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============================ 📰 기타 ============================ -->
+  <section id="etc" data-cat="etc">
+    <div class="sec-head"><h2>📰 기타</h2><span class="count">1건 · 스포일러 1건</span></div>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 2026 스프린트 누적 성적 정리(스프린트 결과·챔피언십 포인트 언급) <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/2f37379fc9cc119d640a7ddbd3cc7e98f2f3a147.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>2026 ‘스프린트 왕’은 러셀 — 여섯 번 합계 34점, 르클레르와 동점이지만 우승 횟수로 앞서</h3>
+          <p class="orig">George Russell crowned 2026 F1 sprint champion as McLarens collide on final lap</p>
+          <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.10.10</span></div>
+          <p class="sum">싱가포르가 올해 마지막 스프린트였습니다. GPFans 집계로 여섯 번의 스프린트 합계 1위는 34점의 러셀입니다. 르클레르도 34점이지만 스프린트 우승이 없어 2위, 노리스가 33점으로 3위입니다. 공식 타이틀은 아닙니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>올해 스프린트는 중국, 마이애미, 캐나다, 영국, 네덜란드, 싱가포르에서 열렸습니다. 러셀은 상하이·몬트리올·잔드보르트에서 우승했고 마이애미와 실버스톤에서 4위를 했습니다. 싱가포르에서는 선두로 달리다 사고로 점수를 얻지 못했습니다.</p>
+            <p>노리스는 싱가포르에서 5위로 달리고 있어 그대로 끝났다면 합계 1위가 될 수 있었습니다. 하지만 마지막 랩에 팀 동료와 충돌해 8위, 1점에 그쳤습니다.</p>
+            <p>이번에 올해 첫 스프린트 우승을 한 페르스타펜은 합계 7위, 2위를 한 해밀턴은 합계 5위입니다. 팀 합계는 메르세데스가 65점으로 1위이고, 페라리가 마지막 스프린트에서 맥라렌을 넘어 61점으로 2위입니다.</p>
+            <p>실제 챔피언십에서는 러셀의 처지가 다릅니다. 기사에 따르면 그는 아제르바이잔 GP 우승 뒤 말레이시아에서 열린 바레인 GP에서 엔진 고장으로 무득점에 그쳤고, 싱가포르 스프린트에서 안토넬리가 5점을 더해 두 사람의 차이는 그랑프리 7개를 남기고 89점으로 벌어졌습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.gpfans.com/en/f1-news/1091347/f1-george-russell-sprint-champion-2026-singapore-mercedes/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+  </section>
+
+  <section id="glossary" data-cat="glossary">
+    <div class="sec-head"><h2>📖 오늘의 용어</h2><span class="count">18개</span></div>
+    <dl class="glossary">
+      <div class="term"><dt>폴 포지션 <span>(Pole position)</span></dt><dd>예선 1위에게 주어지는 결승 맨 앞 출발 자리입니다. 추월이 어려운 싱가포르에서는 특히 값집니다.</dd></div>
+      <div class="term"><dt>Q1·Q2·Q3 <span>(Qualifying segments)</span></dt><dd>예선의 세 구간입니다. Q1과 Q2에서 느린 차가 차례로 탈락하고, Q3에서 남은 10대가 폴을 다툽니다.</dd></div>
+      <div class="term"><dt>그리드 페널티 <span>(Grid penalty)</span></dt><dd>규정 위반이나 부품 한도 초과 때 결승 출발 순서를 뒤로 미루는 벌칙입니다.</dd></div>
+      <div class="term"><dt>파워 유닛 <span>(Power unit, PU)</span></dt><dd>엔진과 터보, 전기 모터, 배터리를 합친 동력 장치 묶음입니다. 시즌에 쓸 수 있는 부품 수가 정해져 있어 넘기면 그리드 페널티를 받습니다.</dd></div>
+      <div class="term"><dt>임피딩 <span>(Impeding)</span></dt><dd>기록을 내는 차의 진로를 느린 차가 막는 진로 방해입니다. 보통 그리드 강등 벌칙이 따릅니다.</dd></div>
+      <div class="term"><dt>쿨다운 랩 <span>(Cool-down lap)</span></dt><dd>전력 주행 사이에 천천히 돌며 타이어와 배터리 상태를 다시 맞추는 랩입니다.</dd></div>
+      <div class="term"><dt>스튜어드 <span>(Stewards)</span></dt><dd>경기 중 규정 위반을 조사하고 벌칙을 정하는 심판단입니다.</dd></div>
+      <div class="term"><dt>프런트 윙 각도 <span>(Front wing angle)</span></dt><dd>앞날개 플랩을 세우는 정도입니다. 세울수록 앞바퀴 접지력이 늘지만 지나치면 뒤가 불안해집니다. 해밀턴이 말한 “한 칸”은 조절 구멍 한 칸을 뜻합니다.</dd></div>
+      <div class="term"><dt>오버스티어 <span>(Oversteer)</span></dt><dd>코너에서 뒷바퀴가 먼저 미끄러져 차가 안쪽으로 과하게 도는 현상입니다.</dd></div>
+      <div class="term"><dt>리프트 앤 코스트 <span>(Lift and coast)</span></dt><dd>제동 지점 전에 가속 페달을 일찍 떼고 관성으로 가는 주행입니다. 전기 에너지나 연료를 아낄 때 씁니다.</dd></div>
+      <div class="term"><dt>오버테이크 모드 <span>(Overtake Mode)</span></dt><dd>2026년 DRS를 대신한 추월 보조 장치입니다. 조건이 맞으면 전기 모터 출력을 더 오래, 더 많이 쓸 수 있습니다.</dd></div>
+      <div class="term"><dt>스프린트 <span>(Sprint)</span></dt><dd>토요일에 열리는 약 100km짜리 짧은 레이스입니다. 상위 8명이 점수를 받습니다. 2026년에는 여섯 번 열렸습니다.</dd></div>
+      <div class="term"><dt>세이프티카 <span>(Safety car)</span></dt><dd>사고가 나면 코스에 들어와 대열을 천천히 이끄는 차입니다. 이 동안에는 추월이 금지됩니다.</dd></div>
+      <div class="term"><dt>인터미디어트 타이어 <span>(Intermediate tyre)</span></dt><dd>살짝 젖은 노면에서 쓰는 초록색 표시 타이어입니다. 마른 노면용과 폭우용 사이에 있습니다.</dd></div>
+      <div class="term"><dt>TPC <span>(Testing of Previous Cars)</span></dt><dd>2년 이상 지난 구형 차로 하는 테스트입니다. 신인이나 후보 드라이버를 평가할 때 자주 씁니다.</dd></div>
+      <div class="term"><dt>비용 상한 <span>(Cost cap)</span></dt><dd>팀이 한 해에 쓸 수 있는 돈의 한도입니다. 2026년에는 설비 투자(자본지출, CapEx)와 운영비를 합쳐 계산합니다.</dd></div>
+      <div class="term"><dt>BoP <span>(Balance of Performance)</span></dt><dd>약한 차에 혜택을, 강한 차에 제약을 줘 성능을 맞추는 제도입니다. 스포츠카 레이스에서 쓰이며 F1에는 없습니다.</dd></div>
+      <div class="term"><dt>파파야 룰 <span>(Papaya Rules)</span></dt><dd>맥라렌이 두 드라이버의 맞대결에 적용해 온 내부 원칙입니다. 서로 깨끗하게 싸우고 팀 이익을 먼저 둔다는 내용입니다.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span class="brand">Claude</span>가 번역·정리한 F1 뉴스 · 2026.10.11<br>
+    원문 저작권은 각 매체에 있으며, 핵심 요약만 제공합니다.
+  </footer>
+</div>
+<script>
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-cat]'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var cat = chip.dataset.cat;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      sections.forEach(function (s) { s.classList.toggle('hidden', cat !== 'all' && s.dataset.cat !== cat); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  var btn = document.getElementById('unlockAll');
+  var spoilers = Array.prototype.slice.call(document.querySelectorAll('details.spoiler'));
+  function render(open) { btn.setAttribute('aria-pressed', String(open)); btn.textContent = open ? '🔒 스포일러 모두 접기' : '🔓 스포일러 모두 펼치기'; }
+  btn.addEventListener('click', function () { var open = btn.getAttribute('aria-pressed') !== 'true'; spoilers.forEach(function (d) { d.open = open; }); render(open); });
+  spoilers.forEach(function (d) { d.addEventListener('toggle', function () { render(spoilers.every(function (x) { return x.open; })); }); });
+  render(false);
+})();
+</script>
+
+</body>
+</html>
