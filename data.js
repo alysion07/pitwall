@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-12",
+    updatedAt: "2026-10-13",
     season: 2026,
     standingsAsOf: { round: 17, name: "싱가포르 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-13", file: "briefings/f1-news-2026-10-13.html", count: 23, spoilers: 16,
+      headline: "중동 정세로 카타르·아부다비 개최 불투명 — 대안은 12월 6일 이몰라, 결정은 미국 GP 전 · 사인츠, FIA 사과 받고도 “점수권이 아니라 신경 안 쓴 것” · 19세 미국인 F3 챔피언 우고추쿠, 2027년 캐딜락 연습 주행 데뷔설" },
     { date: "2026-10-12", file: "briefings/f1-news-2026-10-12.html", count: 23, spoilers: 17,
       headline: "FIA “팝업 창을 제때 처리 못 했다” — 스프린트 예선 오류 경위 공개, 세 팀은 항의 포기 · 혼다 “2027년엔 선두에 가까워지고 정상 경쟁은 2027년 말~2028년” · 비용 상한 논쟁을 숫자로 — 상위 4팀 득점 비중 82.82%→83.56%" },
     { date: "2026-10-11", file: "briefings/f1-news-2026-10-11.html", count: 23, spoilers: 16,
