@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-13",
+    updatedAt: "2026-10-14",
     season: 2026,
     standingsAsOf: { round: 17, name: "싱가포르 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-14", file: "briefings/f1-news-2026-10-14.html", count: 26, spoilers: 11,
+      headline: "F1, 르완다와 10년 계약 공식 발표 — ‘아프리카 GP’ 2030년대 초 개최, 새 서킷은 6km·17코너 · FIA 회장 “V8은 2030년에 나온다” — 차 무게 약 80kg 감량 목표 · FIA, 레드불 사이드포드 ‘케이블 꼼수’ 2027년부터 금지 보도" },
     { date: "2026-10-13", file: "briefings/f1-news-2026-10-13.html", count: 23, spoilers: 16,
       headline: "중동 정세로 카타르·아부다비 개최 불투명 — 대안은 12월 6일 이몰라, 결정은 미국 GP 전 · 사인츠, FIA 사과 받고도 “점수권이 아니라 신경 안 쓴 것” · 19세 미국인 F3 챔피언 우고추쿠, 2027년 캐딜락 연습 주행 데뷔설" },
     { date: "2026-10-12", file: "briefings/f1-news-2026-10-12.html", count: 23, spoilers: 17,
