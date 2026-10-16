@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-16",
+    updatedAt: "2026-10-17",
     season: 2026,
     standingsAsOf: { round: 17, name: "싱가포르 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-17", file: "briefings/f1-news-2026-10-17.html", count: 27, spoilers: 9,
+      headline: "페라리, F2 드라이버 디노 베가노비치를 2027년 F1 리저브로 승격 · 코마츠 “‘페라리 B팀’은 말도 안 된다” — 베어먼 재계약은 “곧 확정” · BBC, 32년 지켜 온 F1 라디오 중계권 잃을 수도" },
     { date: "2026-10-16", file: "briefings/f1-news-2026-10-16.html", count: 26, spoilers: 10,
       headline: "하스, 페라리 육성 드라이버 라파엘 카마라와 2027년 계약 — 오콘의 자리를 잇는다 · ‘10월 중순’ 마감 지나도 F1은 카타르·아부다비 고수, 최종 판단은 11월 중순까지 늦출 수도 · 윌리엄스 2027년 차 이름은 ‘FW50’ — 창단 50주년" },
     { date: "2026-10-15", file: "briefings/f1-news-2026-10-15.html", count: 26, spoilers: 9,
