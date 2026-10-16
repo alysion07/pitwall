@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>F1 데일리 브리핑 — 2026.10.16</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../favicon-192.png">
+<style>
+  :root {
+    --bg:#ffffff; --bg-soft:#f7f7f9; --card:#ffffff; --card-hover:#fbfbfc;
+    --text:#14141a; --text-mid:#4a4a57; --text-dim:#86868f;
+    --border:#e6e6ec; --border-soft:#f0f0f4;
+    --accent:#E10600; --accent-soft:rgba(225,6,0,.08);
+    --spoiler-bg:#fbf7f7; --spoiler-border:#ecdcdc; --chip-bg:#f2f2f5;
+    --shadow:0 1px 2px rgba(20,20,26,.04),0 8px 24px -12px rgba(20,20,26,.10);
+    --bar-bg:rgba(255,255,255,.82);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0e0e11; --bg-soft:#141419; --card:#16161b; --card-hover:#1b1b21;
+      --text:#f0f0f3; --text-mid:#b6b6c0; --text-dim:#82828e;
+      --border:#26262e; --border-soft:#1e1e25;
+      --accent:#FF3B30; --accent-soft:rgba(255,59,48,.12);
+      --spoiler-bg:#1a1416; --spoiler-border:#3a2528; --chip-bg:#1e1e25;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+      --bar-bg:rgba(14,14,17,.82);
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;
+    font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0 24px; }
+  header { padding:72px 0 32px; }
+  .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+  .kicker .dot { width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  h1 { font-size:clamp(34px,7vw,46px); line-height:1.12; margin:0 0 20px; font-weight:800; letter-spacing:-0.035em; }
+  h1 .accent { color:var(--accent); }
+  .lede { font-size:15px; color:var(--text-mid); margin:0; padding-bottom:28px; border-bottom:1px solid var(--border); }
+  .lede b { color:var(--text); font-weight:600; }
+  .digest { margin:28px 0 0; padding:20px 22px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:14px; }
+  .digest h2 { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:0 0 12px; }
+  .digest ol { margin:0; padding-left:20px; }
+  .digest li { font-size:14.5px; color:var(--text-mid); margin-bottom:7px; }
+  .digest li:last-child { margin-bottom:0; }
+  .digest li b { color:var(--text); font-weight:600; }
+  .bar { position:sticky; top:0; z-index:20; margin:36px 0 8px; padding:12px 0; background:var(--bar-bg); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--border-soft); }
+  .bar-inner { display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap; }
+  .chips { display:flex; gap:7px; flex-wrap:wrap; flex:1 1 auto; scrollbar-width:none; -ms-overflow-style:none; padding:2px 0; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip { flex:0 0 auto; border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:500; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s,color .15s,border-color .15s; }
+  .chip:hover { color:var(--text); }
+  .chip[aria-pressed="true"] { background:var(--text); color:var(--bg); border-color:var(--text); }
+  .chip .n { opacity:.5; margin-left:4px; font-variant-numeric:tabular-nums; }
+  .unlock { flex:0 0 auto; border:1px solid var(--spoiler-border); background:var(--spoiler-bg); color:var(--accent); font:inherit; font-size:13px; font-weight:600; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s; }
+  .unlock:hover { background:var(--accent-soft); }
+  section { padding-top:44px; scroll-margin-top:70px; }
+  section.hidden { display:none; }
+  .sec-head { display:flex; align-items:baseline; gap:10px; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--text); }
+  .sec-head h2 { font-size:19px; font-weight:750; margin:0; letter-spacing:-0.02em; }
+  .sec-head .count { font-size:12px; color:var(--text-dim); font-variant-numeric:tabular-nums; margin-left:auto; font-weight:500; }
+  .art { display:flex; flex-direction:column; align-items:stretch; gap:16px; padding:26px 0; border-bottom:1px solid var(--border-soft); }
+  .art:last-child { border-bottom:none; }
+  .thumb { width:100%; height:340px; border-radius:14px; overflow:hidden; background:linear-gradient(135deg,var(--accent) 0%,#600 100%); border:1px solid var(--border-soft); }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .art-body { min-width:0; }
+  .art h3 { font-size:21px; font-weight:750; line-height:1.36; margin:0 0 6px; letter-spacing:-0.025em; }
+  .orig { font-size:13px; color:var(--text-dim); margin:0 0 11px; font-style:italic; line-height:1.45; }
+  .meta { display:flex; align-items:center; gap:7px; flex-wrap:wrap; font-size:12px; color:var(--text-dim); margin-bottom:12px; }
+  .src { font-weight:650; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:5px; font-size:11.5px; }
+  .sum { font-size:15px; color:var(--text-mid); margin:0 0 4px; line-height:1.75; }
+  details.more { margin:8px 0 14px; }
+  details.more > summary { list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:650; color:var(--accent); padding:7px 0; user-select:none; }
+  details.more > summary::-webkit-details-marker { display:none; }
+  details.more > summary .caret { transition:transform .18s; font-size:10px; }
+  details.more[open] > summary .caret { transform:rotate(90deg); }
+  .detail-body { margin-top:4px; padding:14px 16px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:12px; }
+  .detail-body p { margin:0 0 10px; font-size:14.5px; color:var(--text-mid); line-height:1.8; }
+  .detail-body p:last-child { margin-bottom:0; }
+  .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
+  .go:hover { border-color:var(--text); background:var(--bg-soft); }
+  .go svg { width:11px; height:11px; }
+  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
+  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler > summary::-webkit-details-marker { display:none; }
+  details.spoiler > summary:hover { background:var(--accent-soft); }
+  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
+  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
+  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
+  details.spoiler[open] > summary .hint::after { content:"접기"; }
+  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
+  details.spoiler .art { padding:18px; border-bottom:none; }
+  .glossary { margin-top:12px; }
+  .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
+  .term:last-child { border-bottom:none; }
+  .term dt { font-size:14.5px; font-weight:700; margin-bottom:3px; }
+  .term dt span { color:var(--text-dim); font-weight:500; font-size:13px; }
+  .term dd { margin:0; font-size:14px; color:var(--text-mid); line-height:1.65; }
+  footer { margin-top:64px; padding:28px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
+  footer .brand { color:var(--accent); font-weight:650; }
+  @media (max-width:560px) {
+    .wrap { padding:0 18px; }
+    header { padding:48px 0 24px; }
+    .thumb { height:210px; }
+    .art h3 { font-size:19px; }
+    .sec-head h2 { font-size:17px; }
+    .bar-inner { flex-wrap:nowrap; flex-direction:column; align-items:stretch; }
+    .chips { flex-wrap:nowrap; overflow-x:auto; width:100%; }
+    .unlock { width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker"><span class="dot"></span> 2026년 10월 16일 금요일 <a href="../index.html" style="margin-left:auto;color:var(--text-dim);text-decoration:none;font-weight:600;letter-spacing:0;text-transform:none">← PIT WALL</a></div>
+    <h1>F1 데일리 <span class="accent">브리핑</span></h1>
+    <p class="lede">해외 매체 <b>10곳</b>(Formula1.com · The Race · Motorsport.com · RaceFans · PlanetF1 · Crash.net · GPFans · RacingNews365 · Grandprix.com · Motor Sport Magazine)의 기사 <b>26건</b>을 정리했습니다. 싱가포르 GP 결승 닷새 뒤라 본문(또는 썸네일)에 결과나 순위가 섞인 <b>10건</b>은 접어 두었고, 결과와 무관한 <b>16건</b>은 펼쳐 두었습니다. 대회가 없는 주간이라 연습 주행·예선 소식은 없습니다. 다음 대회는 10월 23~25일 미국 GP(오스틴)입니다. 오늘의 가장 큰 소식은 하스(Haas)의 2027년 신인 드라이버 발표여서 이적/계약 섹션에 관련 기사가 몰려 있습니다. 같은 발표를 다룬 기사는 한 장으로 합쳤고, 서로 다른 인터뷰·분석만 따로 실었습니다. Autosport의 새 기사는 다른 카드와 같은 소식이라 싣지 않았고, Racecar Engineering에는 새 F1 기사가 없었습니다.</p>
+    <div class="digest">
+      <h2>오늘의 요약</h2>
+      <ol>
+        <li><b>하스, 2027년 신인 라파엘 카마라 발표:</b> 페라리 육성 드라이버이자 현재 F2 선두인 21세 브라질 선수 라파엘 카마라(Rafael Câmara)가 에스테반 오콘(Esteban Ocon)의 자리를 잇습니다. 팀 대표 코마츠는 “가장 빨랐다, 그게 전부”라고 했습니다.</li>
+        <li><b>시즌 막판 일정:</b> 팀들이 요구한 ‘10월 중순’ 마감이 발표 없이 지나갔습니다. F1은 여전히 카타르·아부다비 개최를 기본으로 두고 있고, 최종 판단은 11월 중순까지 미뤄질 수 있다는 보도가 나왔습니다. 윌리엄스는 창단 50주년을 맞는 2027년 차 이름을 ‘FW50’으로 정했습니다.</li>
+        <li>🏁 싱가포르 GP 관련 소식 <b>10건</b> — 아래 스포일러 섹션을 열어 확인하세요.</li>
+      </ol>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="bar-inner">
+      <div class="chips" role="group" aria-label="카테고리 필터">
+        <button class="chip" data-cat="all" aria-pressed="true">전체<span class="n">26</span></button>
+        <button class="chip" data-cat="race" aria-pressed="false">🏁 레이스 위크<span class="n">7</span></button>
+        <button class="chip" data-cat="transfer" aria-pressed="false">🔄 이적/계약<span class="n">6</span></button>
+        <button class="chip" data-cat="tech" aria-pressed="false">🔧 기술/규정<span class="n">3</span></button>
+        <button class="chip" data-cat="people" aria-pressed="false">👤 드라이버/팀<span class="n">6</span></button>
+        <button class="chip" data-cat="etc" aria-pressed="false">📰 기타<span class="n">4</span></button>
+        <button class="chip" data-cat="glossary" aria-pressed="false">📖 용어</button>
+      </div>
+      <button class="unlock" id="unlockAll" aria-pressed="false">🔓 스포일러 모두 펼치기</button>
+    </div>
+  </div>
+
+  <!-- ============================ 🏁 레이스 위크 ============================ -->
+  <section id="race" data-cat="race">
+    <div class="sec-head"><h2>🏁 레이스 위크</h2><span class="count">7건 · 스포일러 5건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-10/xpb_1389180_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>후속: ‘10월 중순’ 마감은 발표 없이 지나갔다 — F1은 카타르·아부다비 개최 고수, 최종 판단은 11월 중순까지 늦출 수도</h3>
+        <p class="orig">F1's deadline for Middle East races has passed - so what's happening with the calendar?</p>
+        <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">팀들이 요구한 결정 시한(10월 중순)이 지났지만 F1은 아무 발표도 하지 않았고, 계획이 바뀌지 않는 한 따로 발표할 생각도 없다고 Crash.net이 전했습니다. 시즌 마지막 두 대회는 여전히 카타르(11월 27~29일)와 아부다비(12월 4~6일)가 기본이고, 이몰라는 비상 대안입니다. 텔레그래프는 최종 판단이 11월 중순까지 미뤄질 수 있다고 보도했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p><b>지난 보도 이후 바뀐 것:</b> 10월 15일 브리핑에서는 “팀들이 10월 중순까지 알려 달라고 요구했다”까지 전했습니다. 그 시한이 실제로 발표 없이 지나갔다는 점, F1이 ‘바뀌는 게 없으면 발표하지 않는다’는 방침이라는 점, 결정이 11월 중순까지 늦춰질 수 있다는 텔레그래프 보도(RaceFans 인용), F2 대표의 “두 대회는 취소되지 않는다”는 발언(RacingNews365 보도)이 새로 나왔습니다.</p>
+          <p>아우디 팀 대표 마티아 비노토(Mattia Binotto)는 아제르바이잔 GP 때 “F1 커미션(팀·FIA·F1이 규정과 운영을 논의하는 회의)에서 말했듯 10월 중순이 이런 결정의 마지노선”이라고 했습니다. 하지만 Crash.net 취재원들에 따르면 F1은 계획대로 중동에서 시즌을 마치려 하고, 팀들도 FIA와 F1이 옳은 판단을 내릴 거라고 믿는 분위기입니다. 스테파노 도메니칼리(Stefano Domenicali) F1 CEO는 앞서 “캘린더는 확정됐다, 마지막 두 대회는 카타르와 아부다비”라고 말했습니다.</p>
+          <p>위험 요소도 정리돼 있습니다. 영국 정부의 여행 권고는 카타르·아랍에미리트(UAE) 방문을 막지는 않지만 “항공편 취소, 간헐적 영공 폐쇄” 가능성과 “추가 공격과 예기치 못한 확전 위험”을 경고합니다. 이웃 사우디아라비아에서는 예멘 후티 반군의 공격이 리야드 공항을 여러 차례 겨냥했고, 최근 한 공격으로 13명이 숨지고 300명이 다쳤습니다. 10월 13일에는 아람코 소유 건물에 미사일이 떨어졌습니다. 텔레그래프는 지난 2주 동안 말레이시아·싱가포르 패독에서 카타르·UAE·이란 사이에 안전을 보장하는 합의가 있다는 소문이 돌았다고 전했습니다.</p>
+          <p>F2 최고경영자 브루노 미셸(Bruno Michel)은 “우리는 카타르와 아부다비에서 챔피언십을 끝낸다”며 두 대회가 취소되지 않을 거라고 했습니다(RacingNews365 보도). Crash.net은 계획을 바꿀 만한 건 올해 초 바레인·사우디 대회를 취소시켰던 수준의 지역 전면 확전뿐이라고 봤고, F1보다 3주 앞선 11월 8일 모토GP 카타르 대회가 첫 신호가 될 수 있다고 덧붙였습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.crash.net/f1/news/1107580/1/f1s-deadline-middle-east-races-has-passed-so-whats-happening-calendar" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Verstappen/XPB_1444075_HiRes.jpg?v=1791790022&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=6000%2C3150%2C0%2C110" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>레드불, 미국 GP에서 ‘텍사스 카우보이’ 콘셉트 — 흰색 경주복 공개에 팬들은 “차도 하얗게”</h3>
+        <p class="orig">Max Verstappen and Isack Hadjar set for one-off United States GP look</p>
+        <div class="meta"><span class="src">RacingNews365</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">레드불이 오스틴 미국 GP를 앞두고 SNS에 카우보이·텍사스 이미지를 잇달아 올리며 한 번만 쓰는 특별 디자인을 예고했습니다. 막스 페르스타펜(Max Verstappen)과 이삭 하자르(Isack Hadjar)가 입을 흰색 경주복이 공개되자 팬들은 차 색깔도 맞춰 달라고 요구하고 있습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>레드불은 COTA(Circuit of the Americas, 오스틴 서킷)에서 열리는 미국 GP(10월 23~25일, 시즌 18라운드)를 앞두고 서부극 분위기의 홍보물을 내놓고 있습니다. 오스틴 전용 상품과 텍사스 현지 팬 행사도 함께 알렸습니다.</p>
+          <p>공개된 경주복은 온통 흰색 바탕에 굵은 파란 포인트가 들어가고, 후원사 배지를 옛날식으로 바느질해 붙인 듯한 디자인입니다(Motorsport.com 보도). 팬들은 “이제 화이트 불(White Bull)도 해 달라”, “올해 RB22는 아직 특별 리버리(차체 도색)가 한 번도 없었다, COTA에서 뭔가 준비 중인가?” 같은 반응을 보였습니다. 한 팬은 자매팀 레이싱 불스의 경주복도 흰색이라 “트랙에서 누가 누군지 어떻게 구분하냐”고 농담했습니다.</p>
+          <p>레드불은 RB22 차체에 특별 도색을 할지, 드라이버 경주복만 바꿀지는 밝히지 않았습니다.</p>
+          <p>레드불은 2018년 미국 GP에서도 가죽 카우보이 바지(챕스)와 벨트 버클 그림을 프린트한 서부풍 경주복을 입은 적이 있고, 자매팀 레이싱 불스도 최근 몇 시즌 비슷한 카우보이 디자인을 시도했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://racingnews365.com/max-verstappen-and-isack-hadjar-set-for-one-off-united-states-gp-look" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 결과가 담긴 러셀 차량 부품 보도 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-1.motorsport.com/images/amp/0R7BqAO2/s6/untitled-design-25-3.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>후속: 러셀, 스프린트 사고 뒤 ‘중고 부품’으로 결승을 달렸다 — 새 예비 부품이 바닥났다</h3>
+          <p class="orig">George Russell forced to race with used Mercedes parts after Singapore GP crash</p>
+          <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.10.15</span></div>
+          <p class="sum">독일 매체 아우토 모토 운트 슈포르트(AMuS)에 따르면, 조지 러셀(George Russell)은 싱가포르 토요일 스프린트 사고 뒤 메르세데스에 새 예비 부품이 남지 않아 이미 쓴 부품으로 차를 다시 조립해 결승에 나갔습니다. 같은 사양이지만 닳아서 성능이 떨어지는 부품이었습니다. 러셀은 19번 그리드에서 출발해 9위로 들어왔습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p><b>지난 보도 이후 바뀐 것:</b> 러셀의 엔진 페널티와 힘든 주말은 앞선 브리핑에서 다뤘습니다. 이번에는 차가 실제로 어떤 상태로 결승에 나섰는지에 대한 AMuS의 새 보도가 더해졌습니다.</p>
+            <p>러셀의 싱가포르 일요일은 원래부터 험난했습니다. 파워 유닛(엔진과 전기 장치를 합친 동력 장치) 부품 교체로 60계단 그리드 페널티를 받았고, 브레이크 페달이 물렁했으며, 음료 병이 터져 두 시간 내내 몸에 액체가 샜습니다.</p>
+            <p>AMuS 보도에 따르면 토요일 스프린트 사고로 프런트 윙, 플로어(차 바닥판), 앞 서스펜션, 뒷부분 전체를 갈아야 했는데, 메르세데스에는 새 예비 부품이 더 없었습니다. 그래서 공기역학 사양은 같지만 앞선 주말에 이미 써서 닳은 부품으로 차를 다시 만들었고, 새 부품보다 성능이 떨어졌습니다. 기사는 “메르세데스가 안토넬리를 밀어준다”는 일부 팬들의 음모론은 사양이 똑같았다는 점에서 근거가 없다고 정리했습니다.</p>
+            <p>토토 볼프(Toto Wolff) 대표는 결승 뒤 무전으로 러셀의 9위를 “성공적인 피해 최소화”라고 불렀습니다. 기사는 공기역학 성능이 깎인 차로 시가지 서킷에서 19번 그리드부터 점수권까지 올라온 것이어서 이 말이 새롭게 읽힌다고 평가했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.motorsport.com/f1/news/george-russells-singapore-sprint-crash-forced-mercedes-to-use-second-hand-parts/10865313/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 결과가 담긴 마크 휴스의 1번 코너 분석 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://motorsportmagazine.b-cdn.net/wp-content/uploads/2026/10/Max-Verstappen-alongside-Charles-Leclerc-at-the-start-of-the-2026-Singapore-GP-scaled.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>후속: 마크 휴스 “르클레르가 1번 코너에서 물러선 건 페라리의 사내 정치 때문” — 잃을 게 없는 페르스타펜과의 차이</h3>
+          <p class="orig">MPH: Did Ferrari politics get to Leclerc in F1 fight with carefree Verstappen?</p>
+          <div class="meta"><span class="src">Motor Sport Magazine</span><span>·</span><span>2026.10.14</span></div>
+          <p class="sum">기술 칼럼니스트 마크 휴스(Mark Hughes)는 싱가포르 출발 직후 1번 코너에서 샤를 르클레르(Charles Leclerc)가 안쪽·반 차 앞에 있었는데도 페르스타펜에게 자리를 내준 이유를 운전 기술보다 팀 상황에서 찾았습니다. 이 코너가 페르스타펜 우승의 토대였다는 분석입니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p><b>지난 보도 이후 바뀐 것:</b> 10월 13일 브리핑에서는 “르클레르가 놓친 기회는 1번 코너가 아니었다”는 배터리 사용 분석을 전했습니다. 휴스는 1번 코너 자체에 초점을 맞추고, 그 원인을 페라리 내부 정치라는 새 관점으로 풀었습니다.</p>
+            <p>휴스에 따르면 르클레르는 출발이 더 좋았고, 1번 코너 진입 때 안쪽에서 살짝 앞서 있었습니다. 보통이라면 르클레르의 코너였습니다. 그러나 페르스타펜이 바깥에서 그를 연석 쪽으로 밀어붙이자 르클레르는 앞쪽 빈 공간과 제동 표지판을 제대로 볼 수 없었고, 바깥 라인의 페르스타펜은 시야가 더 좋았습니다.</p>
+            <p>휴스는 이것이 단지 페르스타펜의 ‘거친 드라이버’ 평판 때문은 아니라고 봅니다. 르클레르는 2022년 실버스톤처럼 비슷한 싸움에서 페르스타펜을 이긴 적이 있습니다. 차이는 처지입니다. 페르스타펜은 레드불의 확고한 1번이고, 챔피언십 싸움에 얽매이지 않으며, 바쿠 이후 차가 강하고 새 계약도 맺었습니다. 부딪쳐도 팀이 그를 탓하지 않습니다.</p>
+            <p>반면 르클레르는 페라리의 미묘한 정치 속에 있습니다. 프레드 바쇠르(Fred Vasseur) 대표가 고위 경영진과 갈등 중이고 교체설이 돈다는 보도가 있으며, 루이스 해밀턴(Lewis Hamilton)과의 경쟁은 몬차에서 르클레르의 큰 사고에도 영향을 줬습니다. 두 차가 부딪쳤다면 해밀턴이 “손쉬운 우승”을 물려받았을 것이고, 르클레르는 카메라와 팀, 바쇠르 앞에 서야 했을 것입니다. 휴스는 그래서 르클레르가 물러섰다며 “트랙 밖의 일이 트랙 위 결과를 정하는 경우가 많다”고 정리했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.motorsportmagazine.com/articles/single-seaters/f1/mph-did-ferrari-politics-get-to-leclerc-in-f1-battle-with-carefree-verstappen/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 결과가 담긴 해밀턴 전략 논란 분석 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-10/xpb_1444153_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>후속: 전 전략가 버니 콜린스 “해밀턴과 페라리는 아주 어려운 대화를 해야 한다” — 팀 지시를 거부한 VSC 순간</h3>
+          <p class="orig">Ferrari role in Lewis Hamilton Singapore blunder questioned by former F1 strategist</p>
+          <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.10.15</span></div>
+          <p class="sum">애스턴마틴 수석 전략가 출신 해설가 버니 콜린스(Bernie Collins)는 해밀턴이 싱가포르에서 팀의 피트인 지시를 거부한 것은 신뢰 문제라며, 페라리가 드라이버와 규칙을 정해야 한다고 말했습니다. 해밀턴은 3위를 달리다 소프트 타이어로 44바퀴를 버티지 못하고 6위로 떨어졌습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p><b>지난 보도 이후 바뀐 것:</b> 10월 13일 브리핑에서는 “VSC 순간 무전이 왜 공개되지 않았나”를 다뤘습니다. 이번에는 전직 전략가가 본 신뢰 문제의 원인과 해법이 새로 나왔습니다.</p>
+            <p>페라리는 VSC(가상 세이프티카, 모든 차가 정해진 속도로 천천히 달리는 상태) 때 해밀턴과 르클레르를 모두 피트로 불렀지만 해밀턴은 트랙에 남았습니다. 그 결과 확실해 보이던 포디움을 잃고 6위로 레이스를 마쳤습니다. 콜린스는 스카이 스포츠에서 이것이 신뢰가 없다는 신호라고 봤습니다. 해밀턴이 팀의 판단을 의심하고 있는데, VSC 결정은 몇 초 안에 내려야 해서 토론할 시간이 없다는 것입니다.</p>
+            <p>그는 페라리 쪽 잘못도 짚었습니다. 그 뒤에 평범한 피트 스톱을 하지 않고 세이프티카가 또 나오기만 기다린 것은 실수였고, 그때 오스카 피아스트리(Oscar Piastri)는 여전히 이길 수 있는 상대였다는 지적입니다. 콜린스는 해밀턴이 엔지니어·전략팀·바쇠르와 직접 만나 신뢰를 쌓고, 이런 순간의 규칙을 미리 정해야 한다고 조언했습니다.</p>
+            <p>콜린스는 기본적으로 정보가 가장 많은 피트월(팀 지휘석)의 판단을 드라이버가 따라야 한다고 보지만, 드라이버가 “차에서 가장 비싼 센서”라는 반론도 인정했습니다. 그는 세바스티안 페텔(Sebastian Vettel)과 일할 때 피트 정보를 일찍 알려 그가 반응할 시간을 줬다며, 많은 팀이라면 “세이프티카가 나오면 두 대 연속 피트인” 같은 약속을 5바퀴 전에 미리 정해 뒀을 것이라고 했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.crash.net/f1/news/1107581/1/ferrari-role-lewis-hamilton-singapore-blunder-questioned-former-f1-strategist" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 결과가 담긴 레드불 무전 고장 분석 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-3.motorsport.com/images/amp/0R7BqRO2/s6/untitled-design-50.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>무전이 한쪽만 들렸다 — 콜린스 “말 못 하는 페르스타펜, ‘예/아니오’로만 묻는 람비아세, 둘 다 영리했다”</h3>
+          <p class="orig">Bernie Collins on what Max Verstappen's Singapore radio failure revealed about him</p>
+          <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.10.15</span></div>
+          <p class="sum">페르스타펜은 싱가포르 결승에서 엔지니어 말은 들리지만 자신은 대답할 수 없는 무전 고장을 겪고도 레이스를 지배하며 우승했습니다. 버니 콜린스는 엔지니어 잔피에로 람비아세(Gianpiero Lambiase)가 예/아니오로만 답할 질문을 던진 것, 페르스타펜이 전략을 혼자 판단한 것을 모두 높이 평가했습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>페르스타펜은 싱가포르에서 스프린트를 폴 포지션(맨 앞 출발)에서 이겼고, 그랑프리에서도 폴을 잡은 뒤 출발 때 르클레르의 공격을 막아 내고 우승했습니다. 그런데 결승 도중 무전이 한쪽으로만 통하는 고장이 났습니다. 람비아세의 말은 들렸지만 페르스타펜의 말은 피트에 전달되지 않았습니다.</p>
+            <p>람비아세는 페르스타펜이 무전 버튼을 누르거나 누르지 않는 것으로 답할 수 있도록 예/아니오 질문만 했습니다. 콜린스는 스카이 스포츠 F1 쇼에서 이것이 “레이스 엔지니어로서 GP(람비아세의 별명)의 지능을 보여 준다”고 말했습니다.</p>
+            <p>그는 페르스타펜도 칭찬했습니다. “다른 드라이버들이 받는 세세한 코칭을 받지 못했다. 다른 차들의 위치도, 레이스 전략도 물어볼 수 없었으니 스스로 알아내야 했다.”</p>
+            <p>콜린스는 언제 타이어를 아끼고 언제 밀어붙일지, 타이어 상태가 어떤지, 전략을 어떻게 가져갈지를 무전 없이 모두 판단한 것은 “페르스타펜의 강점을 정말 잘 보여 준다”고 정리했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.motorsport.com/f1/news/bernie-collins-on-what-max-verstappens-singapore-radio-failure-revealed-about-him/10865430/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 레이스 결과가 담긴 레드불 팀 대표 인터뷰 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F10%2F14162327%2Fmax-verstappen-george-russell-singapore-sprint-start-planetf1.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>후속: 메키스 “최근 세 대회는 이길 속도가 있었다” — 레드불은 올해 업그레이드를 끝내고 2027년 차로</h3>
+          <p class="orig">Red Bull reacts to 'team to beat' claim after George Russell comments</p>
+          <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.10.15</span></div>
+          <p class="sum">러셀이 레드불을 “이제 이겨야 할 팀”이라고 하자 레드불 대표 로랑 메키스(Laurent Mekies)는 “최근 세 대회는 이길 속도가 있었다”고 인정하면서도 순서는 금방 바뀔 수 있다고 경계했습니다. 레드불은 페르스타펜으로 두 대회 연속 우승했고, 올해 업그레이드는 모두 끝냈습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p><b>지난 보도 이후 바뀐 것:</b> 10월 14일 브리핑에서는 페라리 바쇠르의 “레드불이 지금 최강인지 잘 모르겠다”는 말을 전했습니다. 이번에는 레드불 대표 본인의 답과, 레드불이 2026년 업그레이드 계획을 마쳤다는 사실이 새로 나왔습니다.</p>
+            <p>러셀은 “레드불은 지난 3주 동안 성격이 아주 다른 세 서킷에서 인상적인 성능을 보였다”고 말했습니다. 팀 동료 키미 안토넬리(Kimi Antonelli)는 메르세데스가 최신 업그레이드를 아직 다 끌어내지 못했다며 동의하지 않았습니다. 레드불은 말레이시아와 싱가포르에서 페르스타펜으로 연속 우승했고, 싱가포르에서는 스프린트와 본 경기 모두 폴과 우승을 차지했습니다.</p>
+            <p>메키스는 부정하지 않았습니다. “최근 세 대회에서 우리는 이길 속도가 있었다.” 세 서킷이 서로 달라서 다른 곳에서도 경쟁력이 있을 거라는 신호이긴 하지만 “결코 당연한 건 아니다”라고 덧붙였습니다. 맥라렌이 연승 뒤 주춤했고 메르세데스도 강세와 부진을 오갔다는 점을 예로 들었습니다.</p>
+            <p>레드불은 2026년 업그레이드 계획을 모두 마쳤습니다. 메키스는 “경쟁팀 중 일부나 여럿이 업그레이드를 가져오면 순서가 아주 빨리 바뀔 수 있다”며 개발 초점은 이제 2027년이라고 했습니다. “2026년에서 배운 것 가운데 2027년에 쓸 수 있는 게 아직 엄청나게 많다.” 그는 피에르 와셰(Pierre Waché) 기술 이사의 팀과 레드불 파워트레인 기술 이사 벤 호지킨슨(Ben Hodgkinson)에게 공을 돌렸습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.planetf1.com/news/red-bull-f1-2026-benchmark-laurent-mekies-max-verstappen" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ============================ 🔄 이적/계약 ============================ -->
+  <section id="transfer" data-cat="transfer">
+    <div class="sec-head"><h2>🔄 이적/계약</h2><span class="count">6건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Haas/16x9%20single%20image%20-%202026-10-15T111557.007.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>후속: 하스, 페라리 육성 드라이버 라파엘 카마라와 공식 계약 — 2027년 F1 데뷔, 오콘의 자리를 잇는다</h3>
+        <p class="orig">Haas sign Ferrari junior Rafael Camara for 2027</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">하스가 21세 브라질 드라이버 라파엘 카마라(Rafael Câmara)와 여러 해 계약을 맺고 2027년 정규 드라이버로 기용한다고 발표했습니다. 카마라는 페라리 드라이버 아카데미(페라리의 유망주 육성 프로그램) 소속으로, 데뷔 시즌인 올해 F2(F1 바로 아래 단계 리그)에서 선두를 달리고 있습니다. 올해를 끝으로 팀을 떠나는 에스테반 오콘(Esteban Ocon)의 자리를 이어받습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p><b>지난 보도 이후 바뀐 것:</b> 앞선 브리핑에서는 하스 시트를 두고 카마라와 잭 두한(Jack Doohan) 등이 경쟁 중이라는 보도를 전했습니다. 이번에 하스가 카마라를 공식 발표했습니다.</p>
+          <p>카마라는 2022년 페라리 아카데미에 들어가 2024년 FRECA(유럽 지역 포뮬러 챔피언십, F3 아래 단계)를 제패했고, 2025년에는 첫 도전에 F3 챔피언에 올랐습니다. 올해 인빅타(Invicta) 팀에서 F2 신인으로 피처 레이스(주말의 본 경기) 3승을 거뒀고, 레드불 육성 드라이버 니콜라 촐로프(Nikola Tsolov)를 7점 차로 앞서 있습니다. 8월에는 포르티망에서 하스의 2025년 차로 TPC(예전 차로 하는 시험 주행)를 소화했습니다.</p>
+          <p>코마츠 아야오(Ayao Komatsu) 팀 대표는 “이렇게 젊고 놀라운 재능과 계약해 정말 기쁘다”며, 모나코·몬트리올 F2 예선처럼 까다로운 조건에서 보여 준 속도와 차를 익힐 시간이 많지 않았던 TPC에서의 적응력을 높이 샀습니다. 진 하스(Gene Haas) 구단주는 같은 페라리 아카데미 경로로 온 올리 베어먼(Ollie Bearman)과 비교했습니다. 하스는 아직 두 번째 시트를 공식 발표하지 않았지만 베어먼의 잔류가 유력해, 2027년에는 페라리 육성 출신 두 명이 함께 뛸 가능성이 큽니다.</p>
+          <p>카마라는 코마츠의 전화를 밀라노에서 받았고, 첫 반응은 “정말 확실하냐”고 되묻는 것이었다고 합니다. 마침 밀라노에 있던 부모에게 직접 소식을 전했고, 집안에 모터스포츠 배경이 없어 가족의 희생이 컸다고 강조했습니다. 1순위로 원한 5번은 아우디의 가브리엘 보르톨레토(Gabriel Bortoleto)가 쓰고 있어 50번을 달게 됩니다(PlanetF1 보도). 보르톨레토와 함께 F1 그리드에 브라질 드라이버가 둘이 되는 건 2016년 마사·나스르 이후 처음입니다(RacingNews365 보도).</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/ferrari-junior-rafael-camara-promoted-to-f1-with-haas-for-2027.1RSxvnFaLu8Hd3JD2ppFsz" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn-1.motorsport.com/images/amp/25dL7on0/s6/rafael-camara-and-ayao-komatsu.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>코마츠 “카마라가 가장 빨랐다, 그게 답의 전부” — 페라리 인맥이 아니라 속도로 뽑았다</h3>
+        <p class="orig">Ayao Komatsu: Rafael Camara chosen for F1 2027 seat on speed, not Ferrari links</p>
+        <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">코마츠 대표는 포르티망에서 네 명을 시험한 결과 카마라가 속도와 적응력에서 확실히 앞섰다며 페라리와의 관계 때문에 뽑은 게 아니라고 강조했습니다. 레이스 운영 능력은 아직 다듬어야 하지만 “감각은 가르칠 수 없다”고 했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>하스는 여름에 포르티망에서 2025년 차로 네 명을 시험했습니다. 카마라, 2025년 F2 챔피언이자 맥라렌 육성 드라이버 레오나르도 포르나롤리(Leonardo Fornaroli), 하스 리저브(예비) 드라이버인 히라카와 료(Ryo Hirakawa)와 잭 두한입니다. 코마츠는 “그가 가장 빨랐다. 아주 간단한 답”이라며 카마라가 “그야말로 뛰어났다”고 했습니다.</p>
+          <p>페라리의 영향에 대해서는 “늘 말했듯 우리는 성능으로 드라이버를 고른다. 페라리와 관계가 좋은 건 페라리 아카데미 드라이버를 시험해 볼 기회가 생긴다는 뜻일 뿐”이라고 선을 그었습니다. 베어먼도 2023년 멕시코 FP1(첫 연습 주행) 한 번, 이어 여섯 번의 FP1을 거쳐 2025년 시트를 얻었다는 예를 들었습니다.</p>
+          <p>포르티망 시험이 의미 있었던 이유도 설명했습니다. 노면 온도와 바람이 계속 바뀌고 타이어 진동 문제까지 있었는데, 카마라가 “아주 침착하게 아주 잘 판단했다”는 것입니다. 약점으로는 “레이스 운영(경합 중 판단)은 개선할 여지가 있다”고 했지만 “감각은 가르칠 수 없다”고 덧붙였습니다. 올해 안에 카마라가 FP1에 나설지는 아직 정해지지 않았습니다.</p>
+          <p>Motor Sport Magazine은 하스의 기술 파트너 토요타가 히라카와를 선호했고 진 하스가 카마라를 밀었다는 보도, 페라리 대표 바쇠르가 “우리는 라파엘을 강하게 지지한다”고 말했고 페라리가 재정 위험 일부를 떠안는다는 보도를 전했습니다. 다만 2027년 하스는 그리드에서 가장 경험이 적은 조합이 될 수 있고, 비용 상한(팀이 1년에 쓸 수 있는 돈의 한도) 아래서 신인의 실수는 작은 팀에 더 큰 부담이라는 위험도 함께 짚었습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.motorsport.com/f1/news/komatsu-camara-chosen-for-f1-2027-seat-on-speed-not-ferrari-links/10865447/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Haas/EXCLUSIVE_INTERVIEW_ADHOC%20FEATURE%20V4.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>카마라 단독 인터뷰 “정말 말도 안 되는 일” — 숨 막혔던 이틀간의 테스트, 안토넬리 질투설엔 “각자의 때가 있다”</h3>
+        <p class="orig">Camara on the 'crazy' achievement of joining Haas in 2027</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">발표 당일 런던에서 만난 카마라는 “이걸 이뤄 낸 게 정말 말도 안 된다”며 하스의 선발 테스트를 “강도 높은 이틀”이라고 돌아봤습니다. 카트 시절 라이벌 키미 안토넬리가 먼저 F1에서 성공한 데 대해서는 질투한 적이 없다고 말했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>F2 타이틀 경쟁에서 카마라는 한때 선두에 47점 뒤졌지만 침착함을 유지해 지금은 두 라운드를 남기고 7점 앞서 있습니다. 우승하면 보르톨레토, 피아스트리, 러셀, 르클레르처럼 F3와 F2를 연달아 제패하고 F1에 오르는 드라이버가 됩니다. 그는 2021년부터 페라리 프로그램에 있었고, 성과를 내면 페라리가 2027년 자리를 찾아 줄 거라 기대했다고 합니다. 5월에는 헝가로링에서 페라리 비공개 테스트도 했습니다.</p>
+          <p>하스 테스트는 이틀 동안 네 명을 평가하는 방식이었습니다. 카마라는 “긴장해서 몸이 굳을까 걱정했지만 곧 안정됐다”고 했고, 엔지니어들은 그가 빠르게 속도를 찾고 바뀌는 조건에 적응하면서도 실수가 적었다는 점에 놀랐다고 합니다. F3 데뷔전 멜버른에서 처음 달리는 트랙인데도 두 번째 공격 랩에 연습 최고 기록을 내고 폴을 잡은 일화도 소개됐습니다. 그는 “나는 늘 내 안의 최대치를 끌어낼 수 있었다”고 말했습니다.</p>
+          <p>페라리 아카데미에 들어간 뒤 영어를 새로 익혀야 했고, 소식을 들은 아버지는 눈시울을 붉혔다고 합니다. 그는 보르톨레토, 안토넬리, 하자르, 아르비드 린드블라드(Arvid Lindblad)와 카트를 함께 탔습니다. GPblog가 참석한 미디어 세션에서 안토넬리 질투설을 묻자 “누구에게나 자기 때가 있다. 그가 해낸 일이 정말 기쁘다”며 “나쁜 면은 전혀 보이지 않는다, F1에서 함께 싸우고 싶다”고 답했습니다.</p>
+          <p>남은 계획은 F2를 잘 마무리하고(“좋게 끝내는 게 목표”) 시즌 말 영 드라이버 테스트에 나서는 것입니다. “팀이 무엇을 하라고 할지 기다리고 있고, 준비는 돼 있다.”</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/exclusive-its-really-crazy-to-achieve-this-camara-on-joining-haas-in-2027-and-the-intense-shoot-out-test-he-faced.Sx8HzUOO7WsUm0afvDcP4" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/XPB_1439446_HiRes--1-.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>The Race 기자 4인의 평가 — “환상적인 와일드카드” “베어먼에겐 큰 시험대”</h3>
+        <p class="orig">Our verdict on Haas signing Camara for F1 2027</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">The Race 기자 네 명이 하스의 카마라 영입을 평가했습니다. 대체로 긍정적이지만, 다듬어지지 않은 레이스 운영과 팀 동료 베어먼에게 생길 압박을 함께 짚었습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p><b>스콧 미첼-말름(Scott Mitchell-Malm), “환상적인 와일드카드”:</b> 하부 리그를 연달아 제패하며 올라온 경력은 드물고, 하스는 포르티망 테스트에서 “완전히 설득당했다”고 합니다. 그날 기준 기록을 내려고 잠깐 달린 베어먼도 그만큼 빠르지 않았을 거라고 보는 하스 내부 사람들도 있다고 전했습니다. 위험은 F2에서의 잦은 실수로 드러난 레이스 운영과 판단력입니다.</p>
+          <p><b>벤 앤더슨(Ben Anderson), “베어먼에게 큰 시험대”:</b> 베어먼은 순수 속도에서 오콘을 여유 있게 앞섰지만, 카마라가 소문만큼 좋다면 “베어먼은 2027년에 한 단계 더 올라서야 한다”고 봤습니다. 오콘은 연봉에 걸맞은 속도와 꾸준함을 보여 주지 못했고 팀 안에서 태도도 날카로웠다고 평가했습니다.</p>
+          <p><b>맷 비어(Matt Beer), “이상적인 조합”:</b> 하스는 이제 꽤 자주 점수를 따는 팀입니다. 해밀턴의 나이를 생각하면 중기적으로 페라리 자리가 빌 가능성이 있어 두 드라이버 모두 동기 부여가 될 것이라고 봤습니다. 돈 때문에 드라이버를 고르던 믹 슈마허·니키타 마제핀 시절과 대비되고, 옛날식 ‘선발 테스트’ 방식도 반가워했습니다.</p>
+          <p><b>조시 서틸(Josh Suttill), “F1에서 가장 중요한 자질”:</b> 카마라는 F4와 FRECA에서 안토넬리의 그늘에 있었지만 FRECA 1년을 더 택해 압도했고 F3를 제패했습니다. F2에서는 르클레르 이후 가장 뛰어난 순수 속도를 보였다고 할 만하며, F2에서 F1으로 성공한 드라이버들의 공통점인 “순수한 속도”를 갖췄다고 평가했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/haas-f1-2027-rafael-camara-signing-our-verdict/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/08/XPB_1428932_HiRes.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>2027년 F1 그리드, 지금까지 확정된 자리는 — 남은 빈칸은 레이싱 불스 두 자리와 하스 한 자리</h3>
+        <p class="orig">The 2027 F1 grid: Every confirmed driver</p>
+        <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">카마라 발표를 반영해 The Race가 팀별 2027년 드라이버 현황을 정리했습니다. 대부분 팀이 기존 드라이버와 재계약한 가운데, 레이싱 불스 두 자리가 아직 미정이고 하스의 베어먼 자리는 옵션(연장 선택권)만 남았습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p><b>상위 팀:</b> 맥라렌은 랜도 노리스(Lando Norris)가 “최소 2030년까지”, 피아스트리가 2028년 말까지 계약돼 있습니다. 메르세데스는 러셀과 안토넬리가 공식적으로는 2026년까지만 발표됐지만, The Race는 둘 다 옵션이 붙은 여러 해 계약을 갖고 있어 변화가 없을 것으로 봅니다. 레드불은 페르스타펜이 네덜란드 GP 전에 2030년까지 연장했고, 하자르는 손목 부상에서 돌아온 바쿠 직전 새 계약이 발표됐습니다(기간 비공개). 페라리는 르클레르가 올해 초 장기 연장, 해밀턴은 세 번째 시즌에 남습니다.</p>
+          <p><b>중위권:</b> 윌리엄스는 카를로스 사인츠(Carlos Sainz)와 알렉스 알본(Alex Albon)이 네덜란드 GP 전날 2027년을 확정했습니다. 애스턴마틴은 랜스 스트롤(Lance Stroll), 그리고 2027년에도 달리기로 한 페르난도 알론소(Fernando Alonso)입니다. 아우디는 니코 휠켄베르크(Nico Hülkenberg)와 보르톨레토가 2027년까지 계약돼 있다고 비노토가 9월에 밝혔습니다. 알핀은 피에르 가슬리(Pierre Gasly)가 2028년 말까지, 프랑코 콜라핀토(Franco Colapinto)가 이탈리아 GP 전에 2027년 계약을 받았습니다.</p>
+          <p><b>미정:</b> 레이싱 불스는 두 자리 모두 정해지지 않았습니다. 리암 로슨(Liam Lawson)과 린드블라드 모두 잔류 여부를 모릅니다. 하스는 카마라가 오콘을 대신하고, 베어먼은 2027년 옵션이 있지만 아직 확정 발표는 없습니다.</p>
+          <p><b>캐딜락:</b> 세르히오 페레스(Sergio Pérez)와 발테리 보타스(Valtteri Bottas)가 “여러 해” 계약을 맺었다고 발표됐지만 2027년에 대한 구체적 조건은 공개되지 않았습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.the-race.com/formula-1/2027-f1-grid-every-confirmed-driver/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F10%2F14112117%2Fcolton-herta-cadillac-monza-2026-planetf1.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>콜튼 허타의 F1 꿈은 어디로 — F2로는 슈퍼 라이선스가 모자라, 남은 길은 인디카·슈퍼 포뮬러</h3>
+        <p class="orig">Colton Herta future uncertain as three Cadillac F1 options emerge</p>
+        <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">캐딜락의 테스트 드라이버 콜튼 허타(Colton Herta)는 슈퍼 라이선스(F1 출전에 필요한 FIA 자격증)를 따려고 올해 F2로 왔지만 아직 포디움이 없어 계획이 어긋났습니다. PlanetF1은 그의 남은 선택지와, 캐딜락 연습 주행 자리를 노리는 다른 젊은 미국인 드라이버들을 정리했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>허타는 히텍(Hitech) 팀에서 F2를 뛰며 캐딜락의 FP1 출전과 함께 슈퍼 라이선스 포인트를 쌓으려 했습니다. 하지만 2026년 F2에서 포디움이 없고, F2 두 번째 시즌에는 관심을 보이지 않고 있습니다. 캐딜락은 올해 FP1 네 번(한 번에 1점)을 계획했지만 그래도 라이선스 기준에 못 미칠 위험이 있습니다. 2027년 계획은 아직 밝히지 않았습니다.</p>
+          <p>남은 길은 두 가지입니다. 하나는 인디카 복귀입니다. 인디카의 슈퍼 라이선스 포인트 배점이 넉넉해져서, 시즌 3위 안에 들고 FP1을 더 소화하면 2028년 F1 후보가 될 수 있다는 보도입니다. 다른 하나는 리암 로슨과 피에르 가슬리를 배출한 일본 슈퍼 포뮬러로, 이 경우 시즌 2위 안에 들어야 합니다.</p>
+          <p>경쟁자도 있습니다. 뉴욕 출신 19세 우고 우고추쿠(Ugo Ugochukwu)는 올해 F3 챔피언에 올랐고, 몬차에서 알핀 차를 시험했으며, 레드불의 지원으로 F2에 오를 예정입니다. 2027년 캐딜락 FP1 후보로도 거론됩니다. 기사는 레드불 육성 체계에 촐로프·로슨·린드블라드에 F3의 에르네스토 리베라(Ernesto Rivera)·마티아 콜냐기(Mattia Colnaghi)까지 몰려 있어 캐딜락 FP1이 숨통을 틔워 줄 수 있다고 봤습니다.</p>
+          <p>고(故) 댄 웰던(Dan Wheldon)의 아들로 안드레티 육성 프로그램 소속인 17세 세바스천 웰던(Sebastian Wheldon)은 2027년 트라이던트(Trident) 팀에서 F3를 뜁니다. 기사는 캐딜락에 미국인 유망주가 “넘쳐 난다”고 정리했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.planetf1.com/features/cadillac-f1-colton-herta-future" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============================ 🔧 기술/규정 ============================ -->
+  <section id="tech" data-cat="tech">
+    <div class="sec-head"><h2>🔧 기술/규정</h2><span class="count">3건 · 스포일러 2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn.racingnews365.com/Williams-logo-2026.jpg?v=1792074208&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=6000%2C3150%2C0%2C425" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>윌리엄스 2027년 차 이름은 ‘FW50’ — 창단 50주년, 런던 철길 아치 아래에서 역대 명차 전시</h3>
+        <p class="orig">Williams make early announcement for special name of 2027 F1 car</p>
+        <div class="meta"><span class="src">RacingNews365</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">윌리엄스가 2027년 차를 FW49를 건너뛴 ‘FW50’으로 부르기로 했습니다. 2027년이면 페라리·맥라렌에 이어 F1 역사상 세 번째로 50년 연속 참가하는 팀이 됩니다. 2월 런던 전시회와 팬 투표 특별 리버리(차체 도색) 등 1년짜리 기념 행사도 발표했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>윌리엄스는 40주년 때도 FW38에서 FW40으로 번호를 건너뛰었습니다. 이번에도 올해 차 FW48 다음을 FW50으로 정했습니다. 신차는 2월에 공개할 예정이며 날짜는 아직 정하지 않았습니다(PlanetF1 보도).</p>
+          <p>중심 행사는 2월 11~28일 런던 워털루에서 열리는 유료 전시회 ‘W50 라이브’입니다. 장소는 프랭크 윌리엄스(Frank Williams)가 런던 철길 아치 아래 차고에서 일하던 패트릭 헤드(Patrick Head)를 만났던 이야기를 떠올리게 합니다. 첫 윌리엄스 그랑프리 엔지니어링 차 FW06, 넬송 피케(Nelson Piquet)의 1987년 우승차 FW11B, 나이절 만셀(Nigel Mansell)의 1992년 FW14B, 자크 빌뇌브(Jacques Villeneuve)의 1997년 FW19, 평균 속도 기록을 세운 후안 파블로 몬토야(Juan Pablo Montoya)의 FW25, 보타스가 시속 378km 최고 속도 기록을 세운 FW38, 그리고 FW50 쇼카가 전시됩니다.</p>
+          <p>팬들은 영국 GP에서 쓸 한 번뿐인 특별 리버리를 투표로 고릅니다. 실버스톤은 윌리엄스가 첫 승(1979년 클레이 레가초니)과 100번째 승(1997년 빌뇌브)을 거둔 곳입니다. 굿우드 페스티벌 오브 스피드에서는 빌뇌브의 1997년 챔피언 30주년을 기념하고, 한정판 상품(윌리엄스 W50 모노폴리, 화보집 등)도 1년 내내 나옵니다. 팀 통산 기록은 컨스트럭터 타이틀 9회, 드라이버 타이틀 7회, 114승입니다.</p>
+          <p>제임스 보울스(James Vowles) 대표는 “프랭크 윌리엄스가 거의 맨손으로 이 팀을 세운 뒤 100개가 넘는 F1 팀이 왔다가 사라졌다. 그 독립성과 열정, 이기려는 의지는 50번째 해에도 우리 DNA에 남아 있다”고 말했습니다. 도메니칼리 CEO는 “윌리엄스는 F1 역사의 중요한 일부일 뿐 아니라 F1 정체성의 일부”라고 했습니다. 알본과 사인츠가 50주년 시즌을 함께 달립니다(Formula1.com 보도 포함).</p>
+          </div>
+        </details>
+        <a class="go" href="https://racingnews365.com/williams-make-early-announcement-for-special-name-of-2027-f1-car" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 레이스 결과가 담긴 레드불 엔진 개발 분석 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/Spacesuit-CE-F1-SGP-10-10-26-9457.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>후속: 새 부품 없이 어떻게 더 빨라졌나 — 레드불 엔진의 비밀은 ‘캘리브레이션’, 호지킨슨 “연소 시스템은 좀 까다로운 디바”</h3>
+          <p class="orig">How Red Bull has improved its F1 engine without ADUO</p>
+          <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.10.15</span></div>
+          <p class="sum">레드불 파워트레인(RBPT)은 FIA가 두 번이나 ‘기준 엔진’으로 판정해 추가 개발 혜택을 받지 못하는데도 성능을 끌어올렸습니다. 기술 이사 벤 호지킨슨은 하드웨어가 아니라 캘리브레이션(엔진 제어 소프트웨어 조율)에서 이득을 얻었다고 설명했습니다. 페르스타펜은 말레이시아와 싱가포르에서 연속 우승했고, 세팡에서 RBPT 엔진의 첫 우승이 나왔습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p><b>지난 보도 이후 바뀐 것:</b> 10월 14일 브리핑에서는 레드불 기술 책임자 와셰의 “우리 엔진은 10점 만점에 4~5점”이라는 평가를 전했습니다. 이번에는 엔진 쪽 책임자 호지킨슨이 실제로 어디서 성능을 찾았는지, 2027년은 어떻게 될지를 자세히 설명했습니다.</p>
+            <p>ADUO(성능이 뒤처진 엔진 제조사에 주는 추가 개발 기회)를 두고 페라리는 업그레이드 두 번을 모두 썼고, 메르세데스는 최소 미국 GP까지 아껴 두고 있습니다. 레드불은 FIA가 두 번이나 기준 엔진으로 판정해 새 부품을 넣을 수 없습니다. 기사는 바쿠 섀시 업그레이드로 다운포스(차를 노면에 눌러 주는 힘)와 공기역학 안정성이 좋아졌고, 레드불의 폴 포지션은 코너만큼이나 직선 속도에서 나왔다고 분석했습니다.</p>
+            <p>호지킨슨은 연료 공급사 엑손모빌, 밀턴킨스 엔지니어들과 함께 출력·연료 사용·에너지 회수·전기 배분의 균형을 맞추는 캘리브레이션을 계속 다듬었다고 했습니다. 계획보다 늦게까지 하드웨어 개발을 이어 가느라 “사실 시즌을 꽤 미성숙한 캘리브레이션으로 시작했다”는 것입니다. 또 “우리가 만들 수 있는 가장 강력한 엔진은 꽤 까다로운 연소 시스템을 낳았다”며 그것을 “좀 디바 같다”고 표현했고, 다이노(엔진 시험대)에서 이론상 최고치까지는 아직 여유가 있다고 했습니다.</p>
+            <p>2027년에는 연료 유량 규정과 터보 압력 규정이 바뀌어 엔진 개발이 사실상 다시 시작됩니다. 호지킨슨은 “다듬기만 하면 됐을 해에 연소 시스템을 다시 만들어야 한다”고 했습니다. 메르세데스의 토토 볼프는 “레드불 엔진이 뒤처진다는 건 보이지 않는다, 내년엔 레드불도 본격적인 싸움에 들어온다”고 했고, 해밀턴은 “그리드에서 가장 강력한 엔진을 추월하는 건 쉽지 않다”고 말했습니다. 기사는 현재 챔피언십 선두가 메르세데스라는 점도 짚었습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.the-race.com/formula-1/key-gains-red-bull-has-made-with-its-race-winning-f1-engine/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 레이스 결과·순위가 담긴 맥라렌 업그레이드 점검 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Norris/XPB_1444375_HiRes.jpg?v=1791723036&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=3368%2C1769%2C0%2C61" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>맥라렌 “바쿠 업그레이드가 차를 느리게 만든 건 아니었다” — 세팡의 ‘아주 이상한’ 데이터 탓에 싱가포르에서야 확인</h3>
+          <p class="orig">McLaren answer vital question after 'doubts' and 'very weird' concern</p>
+          <div class="meta"><span class="src">RacingNews365</span><span>·</span><span>2026.10.15</span></div>
+          <p class="sum">맥라렌 대표 안드레아 스텔라(Andrea Stella)는 바쿠에서 넣은 업그레이드가 오히려 차를 느리게 했을지 모른다는 의심이 있었지만, 싱가포르에서 그렇지 않다는 걸 확인했다고 밝혔습니다. 노리스는 말레이시아 9위, 싱가포르 4위였고, 맥라렌은 컨스트럭터 순위 3위로 레드불에 7점 앞서 있습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>맥라렌은 바쿠에서 직선 속도를 높이려고 사이드포드(차 옆구리의 냉각용 공기 흡입 부분)와 냉각 구조를 바꾼 업그레이드를 넣었습니다. 두 대에 한꺼번에 달아서 비교할 기준이 없었습니다. 스텔라는 “바쿠에서 넣은 패키지에 의심이 있었다. 비교 대상이 없었다”고 했습니다.</p>
+            <p>다음 대회 세팡은 노면이 매우 거칠어 실제 주행 데이터와 맥라렌 시뮬레이션 도구 사이의 평소 연결 고리가 깨졌습니다. 스텔라는 그 데이터를 “아주 이상했다”고 표현했습니다. 더 평범한 서킷인 싱가포르에서야 제대로 확인할 수 있었고, “적어도 그건 아니라는 걸 분명히 할 수 있는 상황이 됐다”고 말했습니다.</p>
+            <p>그는 바쿠에서 파워 유닛 최적화(엔진을 얼마나 잘 쓰느냐)가 “랩타임에 상당한 역할”을 했고, 현재 세팅에서는 기어비 같은 섀시 요소가 긴 직선에서 맥라렌에 불리하다고 설명했습니다.</p>
+            <p>순위 맥락: 기사는 노리스가 헝가리·잔드보르트·마드리드에서 두 번 우승하고 한 번 3위를 하며 가장 빨랐던 시기와 달리, 최근엔 말레이시아 9위·싱가포르 4위에 그쳤다고 정리했습니다. 피아스트리는 최근 네 라운드에서 5위보다 높이 들어오지 못했습니다. 맥라렌은 컨스트럭터 순위 3위로 선두 메르세데스에 239점 뒤지고, 4위 레드불에 7점 앞서 있습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://racingnews365.com/mclaren-answer-vital-question-after-doubts-and-very-weird-concern" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ============================ 👤 드라이버/팀 ============================ -->
+  <section id="people" data-cat="people">
+    <div class="sec-head"><h2>👤 드라이버/팀</h2><span class="count">6건 · 스포일러 2건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2025/08/2025-05-18_132011.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>콜라핀토, 자기 팬들에게 “다른 드라이버 공격을 멈춰 달라 — 나를 돕는 게 아니라 해치는 것”</h3>
+        <p class="orig">Colapinto tells his supporters to stop abusing rival drivers: "They don't help me"</p>
+        <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">알핀의 프랑코 콜라핀토(Franco Colapinto)가 SNS 영상으로 자신의 팬들에게 경쟁 드라이버와 팀 동료, 정비사, 엔지니어에 대한 온라인 공격을 멈춰 달라고 호소했습니다. 최근 두 달 동안 FIA와 알핀이 여러 번 비난 성명을 낸 끝에 나온 본인의 첫 직접 호소입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>콜라핀토는 스페인어 영상에서 “그들은 나를 지킨다고 생각하지만 정반대로 하고 있다”며 “결국 다른 드라이버, 동료, 내 팀 동료, 정비사, 엔지니어를 공격하게 된다”고 말했습니다. 그는 이것이 사회 전체의 문제이고 “모두 함께” 바꿔야 한다고 했습니다. AP 통신 번역에 따르면 “그건 나와 내 미래를 해친다”는 말도 했습니다(Grandprix.com 보도).</p>
+          <p>그는 지지자 대다수와, 자신을 감싼다는 명목으로 공격적으로 변한 소수를 구분했습니다. 잘했을 때 팬들이 자랑스러워하는 마음은 이해한다며 고마움을 전했지만, 사고나 부진 뒤에 다른 드라이버나 팀, 크루를 공격하지는 말아 달라고 부탁했습니다.</p>
+          <p>배경: FIA와 알핀은 네덜란드·스페인·아제르바이잔 GP 뒤에 잇달아 온라인 악성 공격을 비난하는 성명을 냈습니다. 피해자로는 팀 동료 피에르 가슬리와 FIA 관계자들이 거론됐습니다. 발단은 잔드보르트의 황색기 위반 벌칙, 마드리드 서킷에서 가슬리 뒤에 잠시 막혔던 장면, 바쿠에서 알핀 두 대와 노리스가 얽힌 충돌이었습니다. 일부 팬은 알핀이 일부러 가슬리에게 더 좋은 장비를 준다고 주장하기도 했습니다. 알핀은 이런 공격이 “최근 레이스마다 반복되고 있으며 용납할 수 없다”고 밝혔습니다.</p>
+          <p>콜라핀토는 2024년 윌리엄스에서 데뷔했고 2025년 초 잭 두한을 대신해 알핀에 들어왔습니다. 두한은 나중에 살해 협박까지 받았다고 털어놓은 적이 있습니다. FIA는 ‘온라인 학대에 맞서 함께(United Against Online Abuse)’ 캠페인을 운영하고 있습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.racefans.net/2026/10/15/colapinto-tells-his-supporters-to-stop-abusing-rival-drivers-they-dont-help-me/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2022%2F10%2F03104114%2Fhelmut-marko-speaking-with-christian-horner-in-the-red-bull-garage-planetf1.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>후속: 호너 회고록에 반박 — 랄프 슈마허 “완전한 거짓말”, 마르코 “페르스타펜을 F1에 데려온 건 나”</h3>
+        <p class="orig">Helmut Marko hits back as Ralf Schumacher brands Christian Horner's claim an 'absolute lie'</p>
+        <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">크리스티안 호너(Christian Horner)가 회고록에 “페르스타펜 영입을 처음 논의할 때 마르코가 반대했다”고 쓴 대목을 두고, 랄프 슈마허(Ralf Schumacher)가 “완전한 거짓말”이라고 반박했습니다. 헬무트 마르코(Helmut Marko)도 오히려 자신이 호너의 반대를 막아 냈다고 맞섰습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p><b>지난 보도 이후 바뀐 것:</b> 10월 15일 브리핑까지는 호너 쪽 주장(회고록 내용·인터뷰)만 전했습니다. 이번에는 회고록에 등장한 당사자 마르코와 주변 인물이 처음으로 공개 반박했습니다.</p>
+          <p>호너는 곧 나올 자서전 『드라이브(Drive)』에서, 막스 페르스타펜 영입 이야기가 처음 나왔을 때 마르코가 아버지 요스 페르스타펜(Jos Verstappen)을 “악몽”이라 부르며 “이 아이는 필요 없다”고 했다고 썼습니다.</p>
+          <p>랄프 슈마허는 스카이 독일 팟캐스트에서 이것이 “완전한 거짓말”이라며, 막스가 11살 반쯤일 때 먼저 다가간 사람이 마르코였다고 말했습니다. 당시 요스는 너무 이르다고 봤고, 마르코는 그건 아버지가 정할 일이라고 했다는 것입니다. 83세의 마르코는 오스트리아 매체 OE24에 호너의 주장은 최대한 무시한다며, 막스를 F1에 데려온 건 자신이고 호너의 레드불 첫 경기인 바르셀로나에서 “너무 어리고 경험이 없다”는 호너에 맞서 그 선택을 지켜야 했다고 말했습니다.</p>
+          <p>마르코는 2005년 호너 영입을 도왔지만 둘의 관계는 나빠졌습니다. 마르코는 마지막 몇 년간 “더러운 게임이 벌어졌다”고 했고, 호너는 더 타임스에 마르코가 일으킨 문제를 자주 수습해야 했다고 말했습니다. 페르스타펜은 PA 통신에 호너가 떠난 뒤 패독이 더 차분하고 스트레스가 덜하다며, 사람들이 잘 지내는 모습이 좋다고 했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.planetf1.com/news/helmut-marko-ralf-schumacher-christian-horner-max-verstappen-claim" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F07%2F05125138%2Fchristian-horner-2026-british-grand-prix.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>후속: 호너, 2024년 의혹 사건을 처음 자세히 언급 — “시기가 우연이 아니었다, 경쟁자들이 약점을 파고들었다”</h3>
+        <p class="orig">Christian Horner opens up on 2024 allegations after 'very tough period'</p>
+        <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">회고록 출간을 앞둔 호너가 팟캐스트에서, 2024년 시즌 직전 회사 동료가 제기한 부적절 행위 의혹 이후의 시간을 “아주, 아주 힘들었다”고 돌아봤습니다. 그는 의혹을 줄곧 부인해 왔고, 이번에는 패독 안 경쟁자들이 그 시기를 이용했다고 주장했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p><b>지난 보도 이후 바뀐 것:</b> 호너의 회고록 홍보 인터뷰는 최근 브리핑에서 여러 번 다뤘지만(마르코와의 갈등, 공황 발작 고백, 해임 이유 등), 2024년 의혹 사건에 대해 자세히 말한 건 이번이 처음입니다.</p>
+          <p>52세의 호너는 ‘업 투 스피드(Up To Speed)’ 팟캐스트에서 당시 조사가 회사 밖 독립 KC(King's Counsel, 영국의 고위 법정 변호사)에게 맡겨졌고, 이의 제기는 “진정으로 독립적이도록” 다른 KC가 심리했다고 설명했습니다. 내부 조사는 그에게 문제가 없다고 결론 냈고 이의 제기도 기각됐습니다. 그는 2025년 7월 레드불을 떠났습니다.</p>
+          <p>그는 언론 유출로 가족까지 주목받았다며 “사람으로서, 인격으로서 시험받는 일”이었다고 했습니다. 아내 제리(Geri)의 지지는 “경이로웠다”고 했습니다. 차고에 들어설 때마다 불편했지만 정비사들은 자신을 판단하지 않았고, 팀은 계속 이겼으며, 떠나는 게 오히려 쉬운 선택이었을 거라고 말했습니다.</p>
+          <p>호너는 경쟁팀들과 “패독 안 특정 세력”이 약해진 틈을 노렸다며 “그 모든 일의 시기는 우연이 아니었다”고 주장했습니다. GPFans도 같은 인터뷰를 “경쟁자들이 레드불 체제를 무너뜨리려 했다”는 제목으로 보도했습니다. 회고록 『드라이브』는 10월 22일 출간됩니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.planetf1.com/news/christian-horner-red-bull-2024-allegations" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Bahrain%20(Malaysia)/GettyImages-2297573553.webp" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>볼프의 드라이버 관리법은 알랭 프로스트와의 대화에서 나왔다 — “편애를 모르게 하면 불신이 자란다”</h3>
+        <p class="orig">How a chat with Prost inspired Wolff's F1 driver management</p>
+        <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">메르세데스 대표 토토 볼프는 윌리엄스에 있던 초창기, 알랭 프로스트(Alain Prost)에게 세나와의 불화가 왜 커졌는지 물었던 대화가 지금의 드라이버 관리 원칙이 됐다고 밝혔습니다. 핵심은 투명함입니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>볼프는 TV로 프로스트와 아일톤 세나(Ayrton Senna)의 경쟁을 보며 자랐고, 경력 초기 윌리엄스에서 일할 때 프로스트에게 그 불화가 어떻게 그렇게까지 커졌는지 물었습니다.</p>
+          <p>프로스트의 답은 드라이버들이 자신이 우대받는지 아닌지를 몰랐다는 것이었습니다. 팀이 어떤 때는 프로스트를, 어떤 때는 세나를 밀어주면서 “팀 안에 불신”이 생겼다고 합니다. 프로스트는 드라이버를 “상처 입은 여덟 살 아이들”이라고도 표현했습니다. 부모의 꿈을 좇아 카트에 태워졌다가 F1에 와서는 갑자기 팀플레이를 하라고 요구받으니 아주 어렵다는 뜻입니다.</p>
+          <p>볼프가 얻은 교훈은 드라이버가 감정적으로 보호받는다고 느껴야 하고, 대표는 투명해야 한다는 것입니다. 팀 오더(팀이 드라이버 간 순서를 정해 주는 지시)를 내릴 때는 공개적으로 말하고 규칙을 설명한다고 합니다.</p>
+          <p>그는 루이스 해밀턴–니코 로스베르크(Nico Rosberg) 시절이 훨씬 심했다고 돌아봤습니다. 올해도 안토넬리와 러셀 사이에 개입한 적이 있는데, 가장 뚜렷했던 건 캐나다에서 둘이 바퀴를 맞대고 싸웠을 때였습니다. 볼프는 투명함이 메르세데스를 더 강하게 만들었다고 믿고, 내부의 솔직한 반대 의견도 환영한다고 말했습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.formula1.com/en/latest/article/how-a-conversation-with-alain-prost-inspired-toto-wolff-in-managing-mercedes-drivers.4qT8o2fJt8rsZJT7BmAQ6Z" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 챔피언십 순위·결과가 담긴 피아스트리 부진 분석 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Piastri/XPB_1441394_HiRes.jpg?v=1791007314&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=5472%2C2873%2C0%2C387" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>후속: 스텔라 “피아스트리의 장기인 ‘빠르고 깔끔한’ 주행이 올해 차와 맞지 않는다”</h3>
+          <p class="orig">McLaren identify Oscar Piastri 'signature' key to ongoing F1 struggles</p>
+          <div class="meta"><span class="src">RacingNews365</span><span>·</span><span>2026.10.14</span></div>
+          <p class="sum">맥라렌 대표 스텔라는 피아스트리의 부진 원인으로 2026년 차의 성격을 꼽았습니다. 뒤가 많이 움직이는 새 차는 힘으로 몰아붙여야 기록이 나와서, 깔끔하고 반복 가능한 랩이 장기인 피아스트리와 맞지 않는다는 것입니다. 피아스트리는 올해 포디움이 두 번뿐이고 138점으로 노리스(201점)에 뒤져 있습니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p><b>지난 보도 이후 바뀐 것:</b> 10월 14일 브리핑에서는 “맥라렌 차의 다루기 어려운 성격은 2027년 MCL41에서나 고친다”는 소식을 전했습니다. 이번에는 그 성격이 특히 피아스트리에게 왜 불리한지에 대한 스텔라의 설명이 새로 나왔습니다.</p>
+            <p>스텔라에 따르면 2026년 차는 다운포스를 만드는 방식이 달라서, 바닥에 붙어 있던 2025년 차와 달리 뒤쪽이 훨씬 많이 움직입니다. 이 차는 “랩타임을 내려면 상당히 많은 노력이 필요”해서 피아스트리는 차를 억지로 몰아붙이는 법, 빠른 랩이 늘 깔끔하지는 않다는 걸 받아들이는 법을 배워야 했습니다.</p>
+            <p>깔끔하고 반복 가능하며 빠른 랩이라는 그의 ‘서명’은 이 차에서 좀처럼 나오지 않습니다. 스텔라는 피아스트리가 “노리스에 비해 경쟁력을 조금 잃은 것처럼 보이기도 한다”며, 기술적 문제이면서 드라이버도 많이 노력해야 하는 문제라고 했습니다. 시즌 후반 업그레이드가 오지만 차를 몰기 쉽게 만들지는 않고, 근본 해결은 2027년 MCL41에서 할 계획입니다.</p>
+            <p>순위 맥락: 피아스트리는 새 규정 차로 그랑프리 포디움이 두 번뿐이고, 마이애미 3위 이후 14개 그랑프리째 포디움이 없습니다. 드라이버 순위에서 138점으로 팀 동료 노리스(201점)에 뒤져 있습니다. 2025년에는 7승을 거두고 노리스·페르스타펜에 이어 시즌 3위였습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://racingnews365.com/mclaren-identify-oscar-piastri-signature-key-to-ongoing-f1-struggles" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 챔피언십 순위가 담긴 미국 GP 기록 전망 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://cdn-7.motorsport.com/images/amp/YN7vqAa6/s6/untitled-design-28-2.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>후속: 안토넬리가 오스틴에서 챔피언이 되면 깨지는 기록들 — 최연소, 73년 만의 이탈리아인</h3>
+          <p class="orig">Every Record Kimi Antonelli breaks if he wins the F1 title in Austin</p>
+          <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.10.15</span></div>
+          <p class="sum">안토넬리는 340점으로 러셀(238점), 해밀턴(229점)을 앞서 있고, 미국 GP에서 조건이 맞으면 챔피언이 확정됩니다. Motorsport.com은 그때 새로 쓰일 기록을 정리했습니다. 20세 61일로 페텔의 최연소 챔피언 기록을 3년 이상 앞당기게 됩니다.</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p><b>지난 보도 이후 바뀐 것:</b> 10월 14일 브리핑에서는 오스틴 확정 조건(경우의 수)을 전했습니다. 이번에는 그 경우 깨지는 기록 목록과 페텔의 반응이 새로 나왔습니다.</p>
+            <p>순위와 조건: 안토넬리 340점, 러셀 238점, 해밀턴 229점입니다. 안토넬리가 우승하고 러셀이 9위 이하, 해밀턴이 5위 이하로 들어오면 따라잡을 수 없는 격차가 됩니다. 러셀의 엔진 페널티는 오스틴이 아니라 라스베이거스에서 받을 것으로 예상됩니다.</p>
+            <p>깨질 기록: 20세 61일에 챔피언이 되면 세바스티안 페텔의 최연소 기록(23세 134일, 2010년 아부다비)을 3년 넘게 앞당기고, 2000년대생 첫 챔피언이 됩니다(노리스는 1999년생). 1952~53년 알베르토 아스카리(Alberto Ascari) 이후 73년 만의 이탈리아인 챔피언이자, 1950년 주세페 파리나(Giuseppe Farina)까지 포함해 세 번째 이탈리아인 챔피언이고, 이탈리아 팀이 아닌 팀에서 우승한 첫 이탈리아인이 됩니다. 오스틴에서 이기면 통산 9승으로 아스카리의 이탈리아인 최다승(13승)에 4승 차로 다가섭니다. 데뷔 2년 차 챔피언은 해밀턴(2008년)과 자크 빌뇌브(1997년) 이후입니다.</p>
+            <p>올해 이미 세운 기록으로는 최연소 폴 포지션(중국), 최연소 챔피언십 선두(일본, 19세 216일), 60여 년 만의 몬차 이탈리아인 우승자가 있습니다. 페텔은 “그가 해낸다면 정말 기쁠 것이다. 기록은 깨지라고 있는 것이고, 누가 이기든 자격이 있다”고 말했습니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.motorsport.com/f1/news/every-record-kimi-antonelli-breaks-if-he-wins-f1-title-in-austin/10865385/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <!-- ============================ 📰 기타 ============================ -->
+  <section id="etc" data-cat="etc">
+    <div class="sec-head"><h2>📰 기타</h2><span class="count">4건 · 스포일러 1건</span></div>
+
+    <article class="art">
+      <div class="thumb"><img src="https://cdn.racingnews365.com/2026/African-Grand-Prix-render.jpg.jpeg?v=1791881335&amp;width=1200&amp;height=630&amp;quality=75&amp;crop=1600%2C840%2C0%2C113" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>후속: 남아공 장관 “르완다와 경쟁하는 게 아니다, 추첨도 아니고” — 자국 GP는 2028~29년 목표, 후원사 협의 중</h3>
+        <p class="orig">South African minister fires punchy response after Rwanda handed major F1 contract</p>
+        <div class="meta"><span class="src">RacingNews365</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">르완다가 F1과 10년 계약을 맺자, 남아프리카공화국 체육부 장관 게이턴 매켄지(Gayton McKenzie)는 “이건 추첨이 아니다”라며 남아공이 진 게 아니라고 반박했습니다. 남아공은 2028년이나 2029년 자국 GP 개최를 목표로 후원사들과 협의 중이라고 밝혔습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p><b>지난 보도 이후 바뀐 것:</b> 10월 14일 브리핑에서는 르완다 계약 발표와 “르완다가 왜 남아공을 이겼나” 분석을 전했습니다. 이번에는 남아공 정부의 공식 반응과 구체적 목표 시점, 후원사 이름이 새로 나왔습니다.</p>
+          <p>매켄지 장관은 언론 브리핑에서(남아공 매체 IOL 보도) 르완다와 대통령을 축하하면서도 “이건 추첨이 아니다”라고 했습니다. 르완다는 몇 년 전에 신청해 필요한 일을 해 왔고, 두 나라는 “경쟁 관계가 아니다”라는 것입니다.</p>
+          <p>남아공은 여전히 자국 그랑프리를 원하며 2028년이나 2029년, 늦어도 이번 10년이 끝나기 전 개최를 목표로 합니다. 장관은 통신사 MTN, 베팅 업체 Betway, 보험사 Discovery, 방송사 Canal+와 이야기를 나눴고, 이름을 밝히지 않은 대형 은행도 나중에 발표하겠다고 했습니다. 앞서 키알라미 서킷 부활 시도는 2023년 이전에 주최 측이 F1의 재정 보증 조건을 맞추지 못해 무산된 바 있습니다.</p>
+          <p>르완다 대회는 2030년대 초부터 수도 키갈리에서 남쪽으로 약 40km 떨어진 부게세라의 ‘RISE 모터드롬’에서 열릴 예정입니다. 틸케(Tilke)와 알렉산더 부르츠(Alexander Wurz)의 설계 회사가 FIA 그레이드 1(F1 개최에 필요한 최고 등급) 기준으로 설계하고 있으며, 새로 짓는 공항 옆에 들어섭니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://racingnews365.com/south-african-minister-fires-punchy-response-after-rwanda-handed-major-f1-contract" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/d52195832c9cc7974e8ef08c6d25e862c967ed54.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>후속: 페르스타펜의 GT 데뷔 주말 시작 — 포르티망 테스트에서 팀 2위, 로시 팀은 28위</h3>
+        <p class="orig">Max Verstappen team second after test day in GT World Challenge at Portimao</p>
+        <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">F1 휴식 주말을 이용해 GT 월드 챌린지 유럽(GT 스포츠카 내구 레이스 시리즈)에 정식 데뷔하는 페르스타펜의 팀이 포르티망 공식 테스트에서 61대 중 두 번째로 빠른 기록을 냈습니다. 페르스타펜 본인은 데이터 수집에 집중했습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p><b>지난 보도 이후 바뀐 것:</b> 10월 13~14일 브리핑에서는 출전 확정과 발렌티노 로시(Valentino Rossi)와의 맞대결 예고를 전했습니다. 이번에는 첫 실제 주행 기록이 나왔습니다.</p>
+          <p>2시간짜리 유료 테스트에 61대 중 60대가 나왔습니다. 페르스타펜 레이싱의 메르세데스-AMG는 팀 정규 드라이버 크리스 럴럼(Chris Lulham)이 1분 43초 076을 기록해 전체 2위였습니다. 1위는 파비안 실러(Fabian Schiller)가 GetSpeed 메르세데스로 낸 1분 42초 974로, 0.102초 차였습니다. 3위는 Haupt-Mustang 팀(1분 43초 102)이었습니다.</p>
+          <p>페르스타펜 팀은 벤 바니콧(Ben Barnicoat), 럴럼, 페르스타펜 순서로 탔고, 페르스타펜은 마지막 공격 랩에서 1분 43초 203을 냈습니다. 팀은 기록보다 데이터 수집에 무게를 뒀다고 합니다. 로시의 WRT BMW는 닐 버헤이건(Neil Verhagen)이 1분 43초 736을 기록해 28위였습니다.</p>
+          <p>트랙 리미트(코스 경계선) 위반으로 10분 이상 정지 벌칙을 받은 드라이버도 여럿 있었습니다. 금요일에는 연습 주행 두 번과 예선이 열리고, 토요일 3시간 레이스로 이어집니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.gpfans.com/en/f1-news/1091595/max-verstappen-gt-world-challenge-mercedes-portimao-test-day-chris-lulham/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/716ac3c9839b5384d87865856ca1a7f07047a328.jpg" alt="" loading="lazy"></div>
+      <div class="art-body">
+        <h3>몬토야 “F2 시트 값은 말도 안 된다” — 돈으로 자리를 사는 하부 리그에 경고</h3>
+        <p class="orig">Juan Pablo Montoya sounds alarm over 'ridiculous' money in F2</p>
+        <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.10.15</span></div>
+        <p class="sum">F1·인디카·나스카에서 모두 우승한 후안 파블로 몬토야가 F2 시트에 오가는 돈이 “터무니없다”고 비판했습니다. 아들 세바스티안이 F2 2년 차를 뛰고 있는 그는 늘어난 해외 일정도 비용 상승의 원인으로 꼽았습니다.</p>
+        <details class="more">
+          <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+          <div class="detail-body">
+          <p>몬토야는 이번 세기에 F1, 인디카, 나스카(미국 스톡카 레이스)에서 모두 우승한 유일한 드라이버입니다. 그는 콜롬비아 매체 AS 콜롬비아에 “돈이 아주 많은 드라이버가 점점 늘고 있고, 시트를 사는 방식이 말도 안 된다”고 말했습니다.</p>
+          <p>그는 “사람들이 F2 시트에 제시하는 금액을 알면 기가 막힐 것”이라고 덧붙였습니다. BBC는 올해 초 F2 한 시즌 비용을 200만~230만 파운드(약 36억~41억 원)로 추산했습니다. 일부 팀은 돈을 많이 가져오는 드라이버로 재능은 있지만 형편이 어려운 다른 드라이버의 비용을 일부 메우기도 합니다.</p>
+          <p>몬토야는 일정도 문제라고 했습니다. 약 10년 전 F2는 유럽 밖 대회가 두 번(바쿠 포함 세 번)이었지만 2026년에는 다섯 번(바쿠 포함 여섯 번)으로 늘어 팀 비용이 커졌다는 것입니다.</p>
+          <p>그의 아들 세바스티안 몬토야(Sebastian Montoya, 21세)는 프레마(Prema) 팀에서 F2 두 번째 시즌을 보내고 있습니다. 팀 동료 마리 보야(Mari Boya)보다는 잘하고 있지만, 두 라운드를 남기고 F2 순위 17위에 머물러 있습니다.</p>
+          </div>
+        </details>
+        <a class="go" href="https://www.gpfans.com/en/f1-news/1091555/f1-juan-pablo-montoya-exposes-f2-money-offers-prices-drivers/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+      </div>
+    </article>
+
+    <details class="spoiler">
+      <summary><span class="lock">⚠️</span> 스포일러 주의: 썸네일에 말레이시아 대회 시상대 사진이 담긴 세팡 F1 복귀 검토 소식 <span class="hint"></span></summary>
+      <article class="art">
+        <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/races/pbah26/sun/red/00-master/verstappen-russell-antonelli1.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <h3>말레이시아, F1 정식 복귀 여부를 11월 말까지 결정 — 세팡 대체 대회 관중은 2017년의 세 배</h3>
+          <p class="orig">Malaysia sets November decision on Formula 1 return</p>
+          <div class="meta"><span class="src">Grandprix.com</span><span>·</span><span>2026.10.15</span></div>
+          <p class="sum">말레이시아 정부가 11월 말까지 경제성·인프라 검토를 마친 뒤 세팡의 F1 정식 복귀 여부를 내각에서 결정합니다. 이달 세팡에서 열린 대체 대회(바레인 GP)는 표가 10만 장 가까이 팔렸지만, 정부는 매년 그만한 효과가 날지가 진짜 문제라고 봅니다. (본문에는 결과가 없지만 썸네일이 이 대회 시상대 사진이라 접어 두었습니다.)</p>
+          <details class="more">
+            <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+            <div class="detail-body">
+            <p>모하메드 타우피크 조하리(Mohammed Taufiq Johari) 청소년체육부 장관은 의회에서, 여러 부처와 내각 수석 비서관이 참여하는 위원회가 비용, 투자 대비 효과, 세팡 서킷의 준비 상태를 검토하고 있다고 밝혔습니다. 결과는 11월 말까지 나오고, 그 뒤 내각이 정식 복귀 여부를 결정합니다.</p>
+            <p>아직 합의된 건 없습니다. F1은 말레이시아 GP를 발표하지 않았고, 정부 예산도 승인되지 않았습니다. 이달 세팡에서 열린 ‘말레이시아에서 치른 바레인 GP’는 9억 5천만 링깃(약 2억 3,300만 달러)의 경제 효과가 예상됐고, 표가 10만 장 가까이 팔렸습니다. 마지막 말레이시아 GP였던 2017년의 약 3만 장보다 훨씬 많습니다.</p>
+            <p>기사는 이 비교에 한계가 있다고 지적합니다. 이번 대회는 급히 마련된 한 번짜리 구조 대회였고, 9년 만의 귀환이라는 신선함도 있었습니다. 장관도 이런 효과가 매년 반복될 수 있느냐가 진짜 질문이라고 했습니다. 몇 년마다 다른 나라와 번갈아 개최하는 방안도 나왔지만 아직 초기 단계입니다.</p>
+            <p>장관은 F1 비용이 선수 육성이나 다른 종목 예산에서 나와서는 안 된다고 강조했고, 안와르 이브라힘(Anwar Ibrahim) 총리도 이달 초 비용과 국익이 판단의 핵심이라고 말했습니다. 세팡은 1999년부터 2017년까지 F1을 개최했고, 지금도 FIA 그레이드 1 서킷입니다.</p>
+            </div>
+          </details>
+          <a class="go" href="https://www.grandprix.com/news/malaysia-sets-november-decision-on-formula-1-return.html" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+        </div>
+      </article>
+    </details>
+  </section>
+
+  <section id="glossary" data-cat="glossary">
+    <div class="sec-head"><h2>📖 오늘의 용어</h2><span class="count">16개</span></div>
+    <dl class="glossary">
+      <div class="term"><dt>F2 <span>(Formula 2)</span></dt><dd>F1 바로 아래 단계의 국제 오픈휠 레이스 리그입니다. F1 주말에 함께 열리며, F1으로 가는 마지막 관문으로 꼽힙니다.</dd></div>
+      <div class="term"><dt>페라리 드라이버 아카데미 <span>(Ferrari Driver Academy, FDA)</span></dt><dd>페라리가 어린 드라이버를 뽑아 하부 리그 출전과 훈련을 지원하는 육성 프로그램입니다. 르클레르·베어먼이 이 출신입니다.</dd></div>
+      <div class="term"><dt>TPC <span>(Testing of Previous Cars)</span></dt><dd>2년 전 등 예전 규정의 F1 차로 하는 시험 주행입니다. 현재 차 테스트는 엄격히 제한돼 있어, 팀들이 신인 평가에 주로 씁니다.</dd></div>
+      <div class="term"><dt>슈퍼 라이선스 <span>(Super Licence)</span></dt><dd>F1에 출전하려면 필요한 FIA 자격증입니다. 하부 리그 성적과 연습 주행 출전으로 포인트를 쌓아야 받을 수 있습니다.</dd></div>
+      <div class="term"><dt>FP1 <span>(Free Practice 1)</span></dt><dd>그랑프리 주말 첫 연습 주행입니다. 팀은 시즌 중 몇 번 이 세션에 신인을 대신 태워야 합니다.</dd></div>
+      <div class="term"><dt>옵션 <span>(Contract option)</span></dt><dd>계약 기간을 한 해 더 늘릴지 팀이나 드라이버가 정할 수 있는 선택권입니다. 행사하기 전까지는 확정이 아닙니다.</dd></div>
+      <div class="term"><dt>비용 상한 <span>(Cost cap)</span></dt><dd>팀이 1년 동안 차 성능에 쓸 수 있는 돈의 한도입니다. 사고로 부서진 부품을 다시 만드는 비용도 이 안에 들어갑니다.</dd></div>
+      <div class="term"><dt>캘리브레이션 <span>(Calibration)</span></dt><dd>엔진 하드웨어는 그대로 두고 제어 소프트웨어 값을 조율해 출력·연료 사용·전기 배분의 균형을 맞추는 작업입니다.</dd></div>
+      <div class="term"><dt>ADUO <span>(Additional Development and Upgrade Opportunities)</span></dt><dd>성능이 크게 뒤처진 엔진 제조사에게 추가 개발·업그레이드 기회를 주는 2026년 제도입니다.</dd></div>
+      <div class="term"><dt>다운포스 <span>(Downforce)</span></dt><dd>공기 흐름이 차를 노면 쪽으로 눌러 주는 힘입니다. 클수록 코너를 빠르게 돌 수 있지만 직선에서는 저항이 됩니다.</dd></div>
+      <div class="term"><dt>사이드포드 <span>(Sidepod)</span></dt><dd>운전석 양옆의 불룩한 부분으로, 안에 라디에이터가 있어 냉각 공기를 받아들입니다. 모양이 공기 흐름과 성능에 큰 영향을 줍니다.</dd></div>
+      <div class="term"><dt>가상 세이프티카 <span>(VSC, Virtual Safety Car)</span></dt><dd>사고 처리 중 실제 안전차 없이 모든 차가 정해진 속도 이하로 달리게 하는 상태입니다. 이때 피트에 들어가면 시간 손해가 줄어듭니다.</dd></div>
+      <div class="term"><dt>그리드 페널티 <span>(Grid penalty)</span></dt><dd>규정 위반이나 허용 개수를 넘는 부품 교체 때문에 출발 순서를 뒤로 미는 벌칙입니다.</dd></div>
+      <div class="term"><dt>팀 오더 <span>(Team orders)</span></dt><dd>팀이 같은 팀 두 드라이버 사이의 순서나 행동을 정해 주는 지시입니다.</dd></div>
+      <div class="term"><dt>리버리 <span>(Livery)</span></dt><dd>차체의 색과 무늬, 후원사 로고 배치를 합친 도색 디자인입니다. 특별한 대회에 한 번만 쓰는 특별 리버리도 있습니다.</dd></div>
+      <div class="term"><dt>FIA 그레이드 1 <span>(FIA Grade 1)</span></dt><dd>FIA가 서킷 안전·시설에 매기는 최고 등급으로, F1 그랑프리를 열려면 반드시 갖춰야 합니다.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span class="brand">Claude</span>가 번역·정리한 F1 뉴스 · 2026.10.16<br>
+    원문 저작권은 각 매체에 있으며, 핵심 요약만 제공합니다.
+  </footer>
+</div>
+<script>
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-cat]'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var cat = chip.dataset.cat;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      sections.forEach(function (s) { s.classList.toggle('hidden', cat !== 'all' && s.dataset.cat !== cat); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  var btn = document.getElementById('unlockAll');
+  var spoilers = Array.prototype.slice.call(document.querySelectorAll('details.spoiler'));
+  function render(open) { btn.setAttribute('aria-pressed', String(open)); btn.textContent = open ? '🔒 스포일러 모두 접기' : '🔓 스포일러 모두 펼치기'; }
+  btn.addEventListener('click', function () { var open = btn.getAttribute('aria-pressed') !== 'true'; spoilers.forEach(function (d) { d.open = open; }); render(open); });
+  spoilers.forEach(function (d) { d.addEventListener('toggle', function () { render(spoilers.every(function (x) { return x.open; })); }); });
+  render(false);
+})();
+</script>
+
+</body>
+</html>
