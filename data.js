@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-17",
+    updatedAt: "2026-10-18",
     season: 2026,
     standingsAsOf: { round: 17, name: "싱가포르 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-18", file: "briefings/f1-news-2026-10-18.html", count: 26, spoilers: 11,
+      headline: "레드불 “AI가 실제로 결정을 내린다” — 오라클과 만든 레이스 전략 AI · 르완다 새 서킷, 고저 차 197m — 설계자 부르츠가 밝힌 세부 · 호너 “비용 상한은 2억 달러인데 팀들은 5억~6억 달러를 쓴다”" },
     { date: "2026-10-17", file: "briefings/f1-news-2026-10-17.html", count: 27, spoilers: 9,
       headline: "페라리, F2 드라이버 디노 베가노비치를 2027년 F1 리저브로 승격 · 코마츠 “‘페라리 B팀’은 말도 안 된다” — 베어먼 재계약은 “곧 확정” · BBC, 32년 지켜 온 F1 라디오 중계권 잃을 수도" },
     { date: "2026-10-16", file: "briefings/f1-news-2026-10-16.html", count: 26, spoilers: 10,
