@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-18",
+    updatedAt: "2026-10-19",
     season: 2026,
     standingsAsOf: { round: 17, name: "싱가포르 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-19", file: "briefings/f1-news-2026-10-19.html", count: 34, spoilers: 20,
+      headline: "혼다 HRC 사장 “우리 엔진은 명백히 열세, 사실상 2년 허비” · 페라리 오스틴 업그레이드 세부 — 바닥판 앞부터 디퓨저까지 전면 재설계 · 르완다 정부 “F1으로 관광 수입 11억 달러 목표”" },
     { date: "2026-10-18", file: "briefings/f1-news-2026-10-18.html", count: 26, spoilers: 11,
       headline: "레드불 “AI가 실제로 결정을 내린다” — 오라클과 만든 레이스 전략 AI · 르완다 새 서킷, 고저 차 197m — 설계자 부르츠가 밝힌 세부 · 호너 “비용 상한은 2억 달러인데 팀들은 5억~6억 달러를 쓴다”" },
     { date: "2026-10-17", file: "briefings/f1-news-2026-10-17.html", count: 27, spoilers: 9,
