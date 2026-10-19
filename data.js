@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-19",
+    updatedAt: "2026-10-20",
     season: 2026,
     standingsAsOf: { round: 17, name: "싱가포르 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-20", file: "briefings/f1-news-2026-10-20.html", count: 29, spoilers: 15,
+      headline: "맥라렌, 포르나롤리를 2027년 리저브로 유지 — 새 하이퍼카로 WEC 데뷔도 · 하스, 미국 GP에서 ‘고질라’ 특별 도색 · 볼프 “2016년 아부다비 무전 개입은 내 잘못” 10년 만의 반성" },
     { date: "2026-10-19", file: "briefings/f1-news-2026-10-19.html", count: 34, spoilers: 20,
       headline: "혼다 HRC 사장 “우리 엔진은 명백히 열세, 사실상 2년 허비” · 페라리 오스틴 업그레이드 세부 — 바닥판 앞부터 디퓨저까지 전면 재설계 · 르완다 정부 “F1으로 관광 수입 11억 달러 목표”" },
     { date: "2026-10-18", file: "briefings/f1-news-2026-10-18.html", count: 26, spoilers: 11,
