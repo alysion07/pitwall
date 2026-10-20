@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-20",
+    updatedAt: "2026-10-21",
     season: 2026,
     standingsAsOf: { round: 17, name: "싱가포르 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-21", file: "briefings/f1-news-2026-10-21.html", count: 24, spoilers: 9,
+      headline: "MotoGP 머신, 미국 GP에서 F1 주말 첫 시범 주행 · 페르스타펜의 새 레이스 엔지니어 톰 하트 — 남은 6경기 중 3경기 · 2027년 짧아지는 경기 거리, 2028년엔 305km로 복귀" },
     { date: "2026-10-20", file: "briefings/f1-news-2026-10-20.html", count: 29, spoilers: 15,
       headline: "맥라렌, 포르나롤리를 2027년 리저브로 유지 — 새 하이퍼카로 WEC 데뷔도 · 하스, 미국 GP에서 ‘고질라’ 특별 도색 · 볼프 “2016년 아부다비 무전 개입은 내 잘못” 10년 만의 반성" },
     { date: "2026-10-19", file: "briefings/f1-news-2026-10-19.html", count: 34, spoilers: 20,
