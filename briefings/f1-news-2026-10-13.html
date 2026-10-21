@@ -87,16 +87,23 @@
   .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
   .go:hover { border-color:var(--text); background:var(--bg-soft); }
   .go svg { width:11px; height:11px; }
-  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
-  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler { position:relative; border-bottom:1px solid var(--border-soft); }
+  section > details.spoiler:last-child { border-bottom:none; }
+  details.spoiler > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:20px 0; user-select:none; }
   details.spoiler > summary::-webkit-details-marker { display:none; }
-  details.spoiler > summary:hover { background:var(--accent-soft); }
-  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
-  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
-  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
-  details.spoiler[open] > summary .hint::after { content:"접기"; }
-  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
-  details.spoiler .art { padding:18px; border-bottom:none; }
+  details.spoiler > summary .lock { flex:0 0 auto; width:44px; height:44px; border-radius:11px; display:grid; place-items:center; font-size:17px; background:var(--spoiler-bg); border:1px solid var(--spoiler-border); }
+  details.spoiler > summary .label { flex:1 1 auto; min-width:0; font-size:15px; font-weight:650; color:var(--text); line-height:1.45; letter-spacing:-0.015em; }
+  details.spoiler > summary .label .tag { color:var(--accent); font-weight:700; margin-right:4px; }
+  details.spoiler > summary .smeta { display:block; margin-top:3px; font-size:12px; font-weight:500; color:var(--text-dim); }
+  details.spoiler > summary .hint { flex:0 0 auto; font-size:12.5px; font-weight:650; color:var(--accent); background:var(--spoiler-bg); border:1px solid var(--spoiler-border); padding:7px 13px; border-radius:8px; transition:background .15s; }
+  details.spoiler > summary:hover .hint { background:var(--accent-soft); }
+  details.spoiler > summary .hint::after { content:"펼쳐 보기"; }
+  details.spoiler[open] > summary { position:absolute; top:38px; right:12px; z-index:2; padding:0; }
+  details.spoiler[open] > summary .hint { background:var(--card); box-shadow:var(--shadow); }
+  details.spoiler[open] > summary .lock, details.spoiler[open] > summary .label { display:none; }
+  details.spoiler[open] > summary .hint::after { content:"다시 접기"; }
+  details.spoiler .art { border-bottom:none; }
+  @media (max-width:560px) { details.spoiler > summary { gap:11px; } details.spoiler > summary .lock { width:38px; height:38px; font-size:15px; } }
   .glossary { margin-top:12px; }
   .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
   .term:last-child { border-bottom:none; }
@@ -175,7 +182,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 전략 분석(마크 휴스) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 결승 전략 분석(마크 휴스)<span class="smeta">Motor Sport Magazine · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://motorsportmagazine.b-cdn.net/wp-content/uploads/2026/10/Max-Verstappen-edges-ahead-of-Charles-leclerc-at-the-start-of-the-2026-F1-Singapore-GP-scaled.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -198,7 +205,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 주말 총정리(결과·순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 주말 총정리(결과·순위 포함)<span class="smeta">The Race · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/XPB_1443723_HiRes.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -221,7 +228,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 드라이버 평점(결승 순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 드라이버 평점(결승 순위 포함)<span class="smeta">The Race · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/Spacesuit-CE-F1-SGP-11-10-26-5056.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -244,7 +251,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 선두 다툼 뒷이야기 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 결승 선두 다툼 뒷이야기<span class="smeta">Autosport · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-8.motorsport.com/images/amp/25dL7LJ0/s6/charles-leclerc-ferrari-max-ve.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -267,7 +274,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 중 페라리 팀 무전 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 결승 중 페라리 팀 무전<span class="smeta">RaceFans · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/10/racefansdotnet-24-10-09-10-47-47-3-261009_R17_SINGAPORE_DP_VA1_2665.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -290,7 +297,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 페라리 전략 논란(후속) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 결승 페라리 전략 논란(후속)<span class="smeta">RaceFans · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/10/racefansdotnet-24-10-11-15-25-18-4-261011_R17_SINGAPORE_DP_AV1_7807.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -313,7 +320,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 뒤 스튜어드 결정(리타이어 내용 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 결승 뒤 스튜어드 결정(리타이어 내용 포함)<span class="smeta">PlanetF1 · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F10%2F11164048%2Flance-stroll-aston-martin-singapore-2026-planetf1.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -368,7 +375,7 @@
     <div class="sec-head"><h2>🔧 기술/규정</h2><span class="count">2건 · 스포일러 2건</span></div>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 레드불 2027년 전망(현재 챔피언십 순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 레드불 2027년 전망(현재 챔피언십 순위 포함)<span class="smeta">Autosport · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-5.motorsport.com/images/amp/YpbAG3d0/s6/max-verstappen-red-bull-racing.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -391,7 +398,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 메르세데스 업그레이드 평가(싱가포르 GP 결과 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 메르세데스 업그레이드 평가(싱가포르 GP 결과 포함)<span class="smeta">Motorsport.com · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-4.motorsport.com/images/amp/2eZxny9Y/s6/untitled-design-97-2.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -440,7 +447,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 호너 인터뷰(레드불 파워 유닛 최근 성적 언급 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 호너 인터뷰(레드불 파워 유닛 최근 성적 언급 포함)<span class="smeta">RaceFans · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/10/racefansdotnet-24-10-11-17-28-23-4-SI202610110490.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -463,7 +470,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 휠켄베르크의 싱가포르 GP(결승 순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 휠켄베르크의 싱가포르 GP(결승 순위 포함)<span class="smeta">Formula1.com · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://media.formula1.com/image/upload/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_Of_Singapore/2299645413.webp" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -486,7 +493,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 맥라렌 팀 내 충돌 후속(결승 순위·팀 순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 맥라렌 팀 내 충돌 후속(결승 순위·팀 순위 포함)<span class="smeta">PlanetF1 · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F10%2F12140207%2Flando-norris-oscar-piastri-mclaren-singapore-2026-planetf1.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -509,7 +516,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 하자르의 싱가포르 GP(결승 순위·우승 관련 언급 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 하자르의 싱가포르 GP(결승 순위·우승 관련 언급 포함)<span class="smeta">PlanetF1 · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F10%2F12101015%2FIMAGE-WITH-COLOUR-NEON-7.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -558,7 +565,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 중 트랙 리미트 판정 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 결승 중 트랙 리미트 판정<span class="smeta">The Race · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/XPB_1444374_HiRes.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -581,7 +588,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 뒤 FIA 차량 검사(결과·점수 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 결승 뒤 FIA 차량 검사(결과·점수 포함)<span class="smeta">GPFans · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/476aa4185f092a4ae88441123c1d7da5b637c2c3.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -670,7 +677,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 시상식 직전 중계 장면(결과 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 시상식 직전 중계 장면(결과 포함)<span class="smeta">Crash.net · 2026.10.12</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-10/si202610110472.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy"></div>
         <div class="art-body">

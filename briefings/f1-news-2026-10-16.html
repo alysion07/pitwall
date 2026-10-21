@@ -87,16 +87,23 @@
   .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
   .go:hover { border-color:var(--text); background:var(--bg-soft); }
   .go svg { width:11px; height:11px; }
-  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
-  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler { position:relative; border-bottom:1px solid var(--border-soft); }
+  section > details.spoiler:last-child { border-bottom:none; }
+  details.spoiler > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:20px 0; user-select:none; }
   details.spoiler > summary::-webkit-details-marker { display:none; }
-  details.spoiler > summary:hover { background:var(--accent-soft); }
-  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
-  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
-  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
-  details.spoiler[open] > summary .hint::after { content:"접기"; }
-  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
-  details.spoiler .art { padding:18px; border-bottom:none; }
+  details.spoiler > summary .lock { flex:0 0 auto; width:44px; height:44px; border-radius:11px; display:grid; place-items:center; font-size:17px; background:var(--spoiler-bg); border:1px solid var(--spoiler-border); }
+  details.spoiler > summary .label { flex:1 1 auto; min-width:0; font-size:15px; font-weight:650; color:var(--text); line-height:1.45; letter-spacing:-0.015em; }
+  details.spoiler > summary .label .tag { color:var(--accent); font-weight:700; margin-right:4px; }
+  details.spoiler > summary .smeta { display:block; margin-top:3px; font-size:12px; font-weight:500; color:var(--text-dim); }
+  details.spoiler > summary .hint { flex:0 0 auto; font-size:12.5px; font-weight:650; color:var(--accent); background:var(--spoiler-bg); border:1px solid var(--spoiler-border); padding:7px 13px; border-radius:8px; transition:background .15s; }
+  details.spoiler > summary:hover .hint { background:var(--accent-soft); }
+  details.spoiler > summary .hint::after { content:"펼쳐 보기"; }
+  details.spoiler[open] > summary { position:absolute; top:38px; right:12px; z-index:2; padding:0; }
+  details.spoiler[open] > summary .hint { background:var(--card); box-shadow:var(--shadow); }
+  details.spoiler[open] > summary .lock, details.spoiler[open] > summary .label { display:none; }
+  details.spoiler[open] > summary .hint::after { content:"다시 접기"; }
+  details.spoiler .art { border-bottom:none; }
+  @media (max-width:560px) { details.spoiler > summary { gap:11px; } details.spoiler > summary .lock { width:38px; height:38px; font-size:15px; } }
   .glossary { margin-top:12px; }
   .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
   .term:last-child { border-bottom:none; }
@@ -194,7 +201,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 결과가 담긴 러셀 차량 부품 보도 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 결승 결과가 담긴 러셀 차량 부품 보도<span class="smeta">Motorsport.com · 2026.10.15</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-1.motorsport.com/images/amp/0R7BqAO2/s6/untitled-design-25-3.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -217,7 +224,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 결과가 담긴 마크 휴스의 1번 코너 분석 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 결승 결과가 담긴 마크 휴스의 1번 코너 분석<span class="smeta">Motor Sport Magazine · 2026.10.14</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://motorsportmagazine.b-cdn.net/wp-content/uploads/2026/10/Max-Verstappen-alongside-Charles-Leclerc-at-the-start-of-the-2026-Singapore-GP-scaled.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -240,7 +247,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 결과가 담긴 해밀턴 전략 논란 분석 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 결승 결과가 담긴 해밀턴 전략 논란 분석<span class="smeta">Crash.net · 2026.10.15</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-10/xpb_1444153_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -263,7 +270,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 결과가 담긴 레드불 무전 고장 분석 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 결승 결과가 담긴 레드불 무전 고장 분석<span class="smeta">Motorsport.com · 2026.10.15</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-3.motorsport.com/images/amp/0R7BqRO2/s6/untitled-design-50.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -286,7 +293,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 레이스 결과가 담긴 레드불 팀 대표 인터뷰 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 최근 레이스 결과가 담긴 레드불 팀 대표 인터뷰<span class="smeta">PlanetF1 · 2026.10.15</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F10%2F14162327%2Fmax-verstappen-george-russell-singapore-sprint-start-planetf1.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -459,7 +466,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 레이스 결과가 담긴 레드불 엔진 개발 분석 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 최근 레이스 결과가 담긴 레드불 엔진 개발 분석<span class="smeta">The Race · 2026.10.15</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/Spacesuit-CE-F1-SGP-10-10-26-9457.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -482,7 +489,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 레이스 결과·순위가 담긴 맥라렌 업그레이드 점검 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 최근 레이스 결과·순위가 담긴 맥라렌 업그레이드 점검<span class="smeta">RacingNews365 · 2026.10.15</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Norris/XPB_1444375_HiRes.jpg?v=1791723036&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=3368%2C1769%2C0%2C61" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -590,7 +597,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 챔피언십 순위·결과가 담긴 피아스트리 부진 분석 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 챔피언십 순위·결과가 담긴 피아스트리 부진 분석<span class="smeta">RacingNews365 · 2026.10.14</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Piastri/XPB_1441394_HiRes.jpg?v=1791007314&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=5472%2C2873%2C0%2C387" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -613,7 +620,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 챔피언십 순위가 담긴 미국 GP 기록 전망 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 챔피언십 순위가 담긴 미국 GP 기록 전망<span class="smeta">Motorsport.com · 2026.10.15</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-7.motorsport.com/images/amp/YN7vqAa6/s6/untitled-design-28-2.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -701,7 +708,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 썸네일에 말레이시아 대회 시상대 사진이 담긴 세팡 F1 복귀 검토 소식 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 썸네일에 말레이시아 대회 시상대 사진이 담긴 세팡 F1 복귀 검토 소식<span class="smeta">Grandprix.com · 2026.10.15</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/races/pbah26/sun/red/00-master/verstappen-russell-antonelli1.jpg" alt="" loading="lazy"></div>
         <div class="art-body">

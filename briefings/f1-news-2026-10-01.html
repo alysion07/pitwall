@@ -87,16 +87,23 @@
   .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
   .go:hover { border-color:var(--text); background:var(--bg-soft); }
   .go svg { width:11px; height:11px; }
-  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
-  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler { position:relative; border-bottom:1px solid var(--border-soft); }
+  section > details.spoiler:last-child { border-bottom:none; }
+  details.spoiler > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:20px 0; user-select:none; }
   details.spoiler > summary::-webkit-details-marker { display:none; }
-  details.spoiler > summary:hover { background:var(--accent-soft); }
-  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
-  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
-  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
-  details.spoiler[open] > summary .hint::after { content:"접기"; }
-  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
-  details.spoiler .art { padding:18px; border-bottom:none; }
+  details.spoiler > summary .lock { flex:0 0 auto; width:44px; height:44px; border-radius:11px; display:grid; place-items:center; font-size:17px; background:var(--spoiler-bg); border:1px solid var(--spoiler-border); }
+  details.spoiler > summary .label { flex:1 1 auto; min-width:0; font-size:15px; font-weight:650; color:var(--text); line-height:1.45; letter-spacing:-0.015em; }
+  details.spoiler > summary .label .tag { color:var(--accent); font-weight:700; margin-right:4px; }
+  details.spoiler > summary .smeta { display:block; margin-top:3px; font-size:12px; font-weight:500; color:var(--text-dim); }
+  details.spoiler > summary .hint { flex:0 0 auto; font-size:12.5px; font-weight:650; color:var(--accent); background:var(--spoiler-bg); border:1px solid var(--spoiler-border); padding:7px 13px; border-radius:8px; transition:background .15s; }
+  details.spoiler > summary:hover .hint { background:var(--accent-soft); }
+  details.spoiler > summary .hint::after { content:"펼쳐 보기"; }
+  details.spoiler[open] > summary { position:absolute; top:38px; right:12px; z-index:2; padding:0; }
+  details.spoiler[open] > summary .hint { background:var(--card); box-shadow:var(--shadow); }
+  details.spoiler[open] > summary .lock, details.spoiler[open] > summary .label { display:none; }
+  details.spoiler[open] > summary .hint::after { content:"다시 접기"; }
+  details.spoiler .art { border-bottom:none; }
+  @media (max-width:560px) { details.spoiler > summary { gap:11px; } details.spoiler > summary .lock { width:38px; height:38px; font-size:15px; } }
   .glossary { margin-top:12px; }
   .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
   .term:last-child { border-bottom:none; }
@@ -235,7 +242,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 세팡 주말 ‘꼭 알아야 할 것’ 가이드(바쿠 결과·챔피언십 순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 세팡 주말 ‘꼭 알아야 할 것’ 가이드(바쿠 결과·챔피언십 순위 포함)<span class="smeta">Formula1.com · 2026.09.30</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Miscellaneous/GettyImages-854947400.webp" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -258,7 +265,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 세팡 관전 포인트 여섯 가지(챔피언십 판도 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 세팡 관전 포인트 여섯 가지(챔피언십 판도 포함)<span class="smeta">RaceFans · 2026.09.30</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2018/07/racefansdotnet-20180726-222846-1.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -281,7 +288,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 세팡 챔피언십 전망 칼럼(바쿠 결과·포인트 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 세팡 챔피언십 전망 칼럼(바쿠 결과·포인트 포함)<span class="smeta">Motor Sport Magazine · 2026.09.30</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://motorsportmagazine.b-cdn.net/wp-content/uploads/2026/09/M537060_2025_Azerbaijan_Grand_Prix__Sunday__Jiri_Krenek.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -304,7 +311,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 드라이버들의 말레이시아 사전 여행기(챔피언십 포인트 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 드라이버들의 말레이시아 사전 여행기(챔피언십 포인트 포함)<span class="smeta">Motorsport.com · 2026.09.30</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-4.motorsport.com/images/amp/2y7QPke6/s6/george-russell-mercedes.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -459,7 +466,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 맥라렌 바쿠 업그레이드 평가(바쿠 결승 결과·컨스트럭터 순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 맥라렌 바쿠 업그레이드 평가(바쿠 결승 결과·컨스트럭터 순위 포함)<span class="smeta">Motorsport.com · 2026.09.30</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-5.motorsport.com/images/amp/Y9lNXjx2/s6/lando-norris-mclaren.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -548,7 +555,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 하자르가 말하는 페르스타펜(바쿠 결승 결과 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 하자르가 말하는 페르스타펜(바쿠 결승 결과 포함)<span class="smeta">Formula1.com · 2026.09.30</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Azerbaijan/2297245049.webp" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -571,7 +578,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 챔피언십 선두 드라이버 심리 분석(바쿠 결과·포인트 차 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 챔피언십 선두 드라이버 심리 분석(바쿠 결과·포인트 차 포함)<span class="smeta">Motorsport.com · 2026.09.30</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-3.motorsport.com/images/amp/0arEBjr2/s6/andrea-kimi-antonelli-mercedes.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -666,7 +673,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 팬들의 온라인 악플 논란(바쿠 결승 사고 내용 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 팬들의 온라인 악플 논란(바쿠 결승 사고 내용 포함)<span class="smeta">Motorsport.com · 2026.09.30</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-5.motorsport.com/images/amp/68VwyNx2/s6/start-action.jpg" alt="" loading="lazy"></div>
         <div class="art-body">

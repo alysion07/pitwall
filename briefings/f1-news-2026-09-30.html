@@ -87,16 +87,23 @@
   .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
   .go:hover { border-color:var(--text); background:var(--bg-soft); }
   .go svg { width:11px; height:11px; }
-  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
-  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler { position:relative; border-bottom:1px solid var(--border-soft); }
+  section > details.spoiler:last-child { border-bottom:none; }
+  details.spoiler > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:20px 0; user-select:none; }
   details.spoiler > summary::-webkit-details-marker { display:none; }
-  details.spoiler > summary:hover { background:var(--accent-soft); }
-  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
-  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
-  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
-  details.spoiler[open] > summary .hint::after { content:"접기"; }
-  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
-  details.spoiler .art { padding:18px; border-bottom:none; }
+  details.spoiler > summary .lock { flex:0 0 auto; width:44px; height:44px; border-radius:11px; display:grid; place-items:center; font-size:17px; background:var(--spoiler-bg); border:1px solid var(--spoiler-border); }
+  details.spoiler > summary .label { flex:1 1 auto; min-width:0; font-size:15px; font-weight:650; color:var(--text); line-height:1.45; letter-spacing:-0.015em; }
+  details.spoiler > summary .label .tag { color:var(--accent); font-weight:700; margin-right:4px; }
+  details.spoiler > summary .smeta { display:block; margin-top:3px; font-size:12px; font-weight:500; color:var(--text-dim); }
+  details.spoiler > summary .hint { flex:0 0 auto; font-size:12.5px; font-weight:650; color:var(--accent); background:var(--spoiler-bg); border:1px solid var(--spoiler-border); padding:7px 13px; border-radius:8px; transition:background .15s; }
+  details.spoiler > summary:hover .hint { background:var(--accent-soft); }
+  details.spoiler > summary .hint::after { content:"펼쳐 보기"; }
+  details.spoiler[open] > summary { position:absolute; top:38px; right:12px; z-index:2; padding:0; }
+  details.spoiler[open] > summary .hint { background:var(--card); box-shadow:var(--shadow); }
+  details.spoiler[open] > summary .lock, details.spoiler[open] > summary .label { display:none; }
+  details.spoiler[open] > summary .hint::after { content:"다시 접기"; }
+  details.spoiler .art { border-bottom:none; }
+  @media (max-width:560px) { details.spoiler > summary { gap:11px; } details.spoiler > summary .lock { width:38px; height:38px; font-size:15px; } }
   .glossary { margin-top:12px; }
   .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
   .term:last-child { border-bottom:none; }
@@ -214,7 +221,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 말레이시아 GP 앞둔 5가지 관전 포인트(바쿠 결과·순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 말레이시아 GP 앞둔 5가지 관전 포인트(바쿠 결과·순위 포함)<span class="smeta">Formula1.com · 2026.09.29</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Bahrain%20(Malaysia)/It%27s%20Race%20Week%20HEADER%20Bahrain%20Malaysia.webp" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -237,7 +244,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 아제르바이잔 GP 결승 후 레드불 분석 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 아제르바이잔 GP 결승 후 레드불 분석<span class="smeta">Autosport · 2026.09.29</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-3.motorsport.com/images/amp/2y7QPgo6/s6/max-verstappen-red-bull-racing-2.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -260,7 +267,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 아제르바이잔 GP 결승 무전 분석 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 아제르바이잔 GP 결승 무전 분석<span class="smeta">RaceFans · 2026.09.29</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/09/racefansdotnet-24-09-26-14-23-39-2-2297225879.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -283,7 +290,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 아제르바이잔 GP 결승 결과와 챔피언십 포인트 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 아제르바이잔 GP 결승 결과와 챔피언십 포인트<span class="smeta">Motorsport.com · 2026.09.29</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-9.motorsport.com/images/amp/2eZxyJPY/s6/george-russell-mercedes.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -306,7 +313,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 아제르바이잔 GP 파워 랭킹(결승 결과 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 아제르바이잔 GP 파워 랭킹(결승 결과 포함)<span class="smeta">Formula1.com · 2026.09.29</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://media.formula1.com/image/upload/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Power%20Rankings%202026/Power%20Rankings%20Hero%20Image%202026%20HEADER.webp" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -414,7 +421,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 레이싱 불스 2027년 라인업 전망(바쿠 결승 내용 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 레이싱 불스 2027년 라인업 전망(바쿠 결승 내용 포함)<span class="smeta">RacingNews365 · 2026.09.29</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Lawson/Lawson-Baku.jpg?v=1790683323&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=5185%2C2723%2C0%2C94" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -482,7 +489,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 레드불 파워유닛 부품 현황(바쿠 결승 내용 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 레드불 파워유닛 부품 현황(바쿠 결승 내용 포함)<span class="smeta">GPFans · 2026.09.28</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/76cdb7f8eb701ee47f0e2146945f80181e7f4738.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -505,7 +512,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 윌리엄스 업그레이드와 바쿠 결승 결과 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 윌리엄스 업그레이드와 바쿠 결승 결과<span class="smeta">The Race · 2026.09.29</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/XPB_1438949_HiRes.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -528,7 +535,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 맥라렌 바쿠 결승 분석 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 맥라렌 바쿠 결승 분석<span class="smeta">RacingNews365 · 2026.09.29</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Norris/XPB_1438940_HiRes.jpg?v=1790337048&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=5472%2C2873%2C0%2C387" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -616,7 +623,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 레드불 드라이버 인터뷰(바쿠 결승 내용 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 레드불 드라이버 인터뷰(바쿠 결승 내용 포함)<span class="smeta">RacingNews365 · 2026.09.29</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Hadjar/Hadjar-Baku_2026-09-26-133217_xinx.jpg?v=1790429538&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=5185%2C2723%2C0%2C369" alt="" loading="lazy"></div>
         <div class="art-body">

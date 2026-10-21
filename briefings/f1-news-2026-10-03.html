@@ -87,16 +87,23 @@
   .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
   .go:hover { border-color:var(--text); background:var(--bg-soft); }
   .go svg { width:11px; height:11px; }
-  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
-  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler { position:relative; border-bottom:1px solid var(--border-soft); }
+  section > details.spoiler:last-child { border-bottom:none; }
+  details.spoiler > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:20px 0; user-select:none; }
   details.spoiler > summary::-webkit-details-marker { display:none; }
-  details.spoiler > summary:hover { background:var(--accent-soft); }
-  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
-  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
-  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
-  details.spoiler[open] > summary .hint::after { content:"접기"; }
-  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
-  details.spoiler .art { padding:18px; border-bottom:none; }
+  details.spoiler > summary .lock { flex:0 0 auto; width:44px; height:44px; border-radius:11px; display:grid; place-items:center; font-size:17px; background:var(--spoiler-bg); border:1px solid var(--spoiler-border); }
+  details.spoiler > summary .label { flex:1 1 auto; min-width:0; font-size:15px; font-weight:650; color:var(--text); line-height:1.45; letter-spacing:-0.015em; }
+  details.spoiler > summary .label .tag { color:var(--accent); font-weight:700; margin-right:4px; }
+  details.spoiler > summary .smeta { display:block; margin-top:3px; font-size:12px; font-weight:500; color:var(--text-dim); }
+  details.spoiler > summary .hint { flex:0 0 auto; font-size:12.5px; font-weight:650; color:var(--accent); background:var(--spoiler-bg); border:1px solid var(--spoiler-border); padding:7px 13px; border-radius:8px; transition:background .15s; }
+  details.spoiler > summary:hover .hint { background:var(--accent-soft); }
+  details.spoiler > summary .hint::after { content:"펼쳐 보기"; }
+  details.spoiler[open] > summary { position:absolute; top:38px; right:12px; z-index:2; padding:0; }
+  details.spoiler[open] > summary .hint { background:var(--card); box-shadow:var(--shadow); }
+  details.spoiler[open] > summary .lock, details.spoiler[open] > summary .label { display:none; }
+  details.spoiler[open] > summary .hint::after { content:"다시 접기"; }
+  details.spoiler .art { border-bottom:none; }
+  @media (max-width:560px) { details.spoiler > summary { gap:11px; } details.spoiler > summary .lock { width:38px; height:38px; font-size:15px; } }
   .glossary { margin-top:12px; }
   .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
   .term:last-child { border-bottom:none; }
@@ -334,7 +341,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 콜라핀토 그리드 강등 추가(컨스트럭터 순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 콜라핀토 그리드 강등 추가(컨스트럭터 순위 포함)<span class="smeta">Motorsport.com · 2026.10.02</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-9.motorsport.com/images/amp/0rVPdN50/s6/franco-colapinto-alpine.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -427,7 +434,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 바쇠르, 거취 루머에 입을 열다(컨스트럭터 순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 바쇠르, 거취 루머에 입을 열다(컨스트럭터 순위 포함)<span class="smeta">Motorsport.com · 2026.10.02</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-4.motorsport.com/images/amp/6n7bqro0/s6/untitled-design-12.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -450,7 +457,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 레드불 드라이버들의 2027 준비론(시즌 성적 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 레드불 드라이버들의 2027 준비론(시즌 성적 포함)<span class="smeta">Motorsport.com · 2026.10.02</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-1.motorsport.com/images/amp/Y9lN5B82/s6/max-verstappen-red-bull-racing-2.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -473,7 +480,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 레드불 팀 오더 질문(바쿠 결승 내용 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 레드불 팀 오더 질문(바쿠 결승 내용 포함)<span class="smeta">PlanetF1 · 2026.10.02</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F08%2F19071336%2Fisack-hadjar-red-bull-f1-2026-hungarian-grand-prix.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -496,7 +503,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 하자르의 부상 공백 회고(바쿠 결과 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 하자르의 부상 공백 회고(바쿠 결과 포함)<span class="smeta">Motorsport.com · 2026.10.02</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-3.motorsport.com/images/amp/27NoRXm0/s6/untitled-design-10.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -584,7 +591,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 알핀의 스튜어드 판정 이의(바쿠 결승 순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 알핀의 스튜어드 판정 이의(바쿠 결승 순위 포함)<span class="smeta">RaceFans · 2026.10.02</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/09/racefansdotnet-24-09-26-16-43-19-2-SI202609260289.jpg" alt="" loading="lazy"></div>
         <div class="art-body">

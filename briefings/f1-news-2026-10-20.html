@@ -87,16 +87,23 @@
   .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
   .go:hover { border-color:var(--text); background:var(--bg-soft); }
   .go svg { width:11px; height:11px; }
-  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
-  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler { position:relative; border-bottom:1px solid var(--border-soft); }
+  section > details.spoiler:last-child { border-bottom:none; }
+  details.spoiler > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:20px 0; user-select:none; }
   details.spoiler > summary::-webkit-details-marker { display:none; }
-  details.spoiler > summary:hover { background:var(--accent-soft); }
-  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
-  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
-  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
-  details.spoiler[open] > summary .hint::after { content:"접기"; }
-  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
-  details.spoiler .art { padding:18px; border-bottom:none; }
+  details.spoiler > summary .lock { flex:0 0 auto; width:44px; height:44px; border-radius:11px; display:grid; place-items:center; font-size:17px; background:var(--spoiler-bg); border:1px solid var(--spoiler-border); }
+  details.spoiler > summary .label { flex:1 1 auto; min-width:0; font-size:15px; font-weight:650; color:var(--text); line-height:1.45; letter-spacing:-0.015em; }
+  details.spoiler > summary .label .tag { color:var(--accent); font-weight:700; margin-right:4px; }
+  details.spoiler > summary .smeta { display:block; margin-top:3px; font-size:12px; font-weight:500; color:var(--text-dim); }
+  details.spoiler > summary .hint { flex:0 0 auto; font-size:12.5px; font-weight:650; color:var(--accent); background:var(--spoiler-bg); border:1px solid var(--spoiler-border); padding:7px 13px; border-radius:8px; transition:background .15s; }
+  details.spoiler > summary:hover .hint { background:var(--accent-soft); }
+  details.spoiler > summary .hint::after { content:"펼쳐 보기"; }
+  details.spoiler[open] > summary { position:absolute; top:38px; right:12px; z-index:2; padding:0; }
+  details.spoiler[open] > summary .hint { background:var(--card); box-shadow:var(--shadow); }
+  details.spoiler[open] > summary .lock, details.spoiler[open] > summary .label { display:none; }
+  details.spoiler[open] > summary .hint::after { content:"다시 접기"; }
+  details.spoiler .art { border-bottom:none; }
+  @media (max-width:560px) { details.spoiler > summary { gap:11px; } details.spoiler > summary .lock { width:38px; height:38px; font-size:15px; } }
   .glossary { margin-top:12px; }
   .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
   .term:last-child { border-bottom:none; }
@@ -197,7 +204,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 미국 GP 프리뷰 (챔피언십 순위·확정 조건 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 미국 GP 프리뷰 (챔피언십 순위·확정 조건 포함)<span class="smeta">Formula1.com · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://media.formula1.com/image/upload/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/United%20States/GettyImages-2242055817.webp" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -220,7 +227,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 2026 스프린트 6경기 점수 합산 (순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 2026 스프린트 6경기 점수 합산 (순위 포함)<span class="smeta">Motorsport.com · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-4.motorsport.com/images/amp/68VwdNl2/s6/72945935-1.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -243,7 +250,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 미국 GP 컨스트럭터 순위 경우의 수 (점수 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 미국 GP 컨스트럭터 순위 경우의 수 (점수 포함)<span class="smeta">Motorsport.com · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-4.motorsport.com/images/amp/6zoDkOp0/s6/72945935-2-2.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -266,7 +273,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 메르세데스 컨스트럭터 타이틀 확정 시점 계산 (점수 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 메르세데스 컨스트럭터 타이틀 확정 시점 계산 (점수 포함)<span class="smeta">Motorsport.com · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-6.motorsport.com/images/amp/0mXyo5M6/s6/72945935-6.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -321,7 +328,7 @@
     <div class="sec-head"><h2>🔧 기술/규정</h2><span class="count">2건 · 스포일러 2건</span></div>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 중 한 드라이버의 경기 내용이 담긴 냉각 조끼 이야기 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 결승 중 한 드라이버의 경기 내용이 담긴 냉각 조끼 이야기<span class="smeta">Motorsport.com · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-7.motorsport.com/images/amp/YvKBvmE6/s6/alexander-albon-williams-carlo.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -344,7 +351,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 두 대회 결과가 언급된 레드불 부활 분석 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 최근 두 대회 결과가 언급된 레드불 부활 분석<span class="smeta">RacingNews365 · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Verstappen/XPB_1444148_HiRes.jpg?v=1791699491&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=5053%2C2653%2C0%2C358" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -493,7 +500,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 페르스타펜 GT 경주 결과와 F1 최근 성적이 언급된 기사 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 페르스타펜 GT 경주 결과와 F1 최근 성적이 언급된 기사<span class="smeta">Motorsport.com · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-2.motorsport.com/images/amp/YpbAo1j0/s6/72945935-5.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -516,7 +523,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 캐딜락의 올 시즌 득점 기록이 언급된 페레스 인터뷰 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 캐딜락의 올 시즌 득점 기록이 언급된 페레스 인터뷰<span class="smeta">Motorsport.com · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-8.motorsport.com/images/amp/2y7QlAg6/s6/sergio-perez-cadillac-racing.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -539,7 +546,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 현재 드라이버 순위가 포함된 러셀 인터뷰 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 현재 드라이버 순위가 포함된 러셀 인터뷰<span class="smeta">Motorsport.com · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-3.motorsport.com/images/amp/YXyKqkR6/s6/72945935-2.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -562,7 +569,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 노리스의 현재 순위와 최근 대회 장면이 담긴 분석 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 노리스의 현재 순위와 최근 대회 장면이 담긴 분석<span class="smeta">GPFans · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/9eddf712cf0d470fd3ce20357f3628f7d3afdc33.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -585,7 +592,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 맥라렌의 팀 순위·점수 차와 올 시즌 우승 기록이 담긴 인터뷰 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 맥라렌의 팀 순위·점수 차와 올 시즌 우승 기록이 담긴 인터뷰<span class="smeta">RacingNews365 · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Brown_2026-10-16-153604_uiuk.jpg?v=1792164967&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=6000%2C3150%2C0%2C425" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -608,7 +615,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 두 그랑프리 우승 팀이 언급된 바쇠르 인터뷰 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 최근 두 그랑프리 우승 팀이 언급된 바쇠르 인터뷰<span class="smeta">RacingNews365 · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Leclerc/Ferrari-Red-Bull.jpg?v=1792066101&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=5253%2C2758%2C0%2C372" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -631,7 +638,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 맥라렌 팀 순위와 피아스트리의 최근 성적이 언급된 인터뷰 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 맥라렌 팀 순위와 피아스트리의 최근 성적이 언급된 인터뷰<span class="smeta">RacingNews365 · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Piastri/Piastri-Sepang.jpg?v=1790855401&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=6000%2C3150%2C0%2C425" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -766,7 +773,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 캐딜락 드라이버들의 현재 순위가 언급된 기사 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 캐딜락 드라이버들의 현재 순위가 언급된 기사<span class="smeta">Motorsport.com · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-3.motorsport.com/images/amp/0R7BqaB2/s6/72945935-4.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -789,7 +796,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 GP 결승 결과가 언급된 기사 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 GP 결승 결과가 언급된 기사<span class="smeta">Motorsport.com · 2026.10.19</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-6.motorsport.com/images/amp/YvKBw5L6/s6/72945935-1-2.jpg" alt="" loading="lazy"></div>
         <div class="art-body">

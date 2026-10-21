@@ -87,16 +87,23 @@
   .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
   .go:hover { border-color:var(--text); background:var(--bg-soft); }
   .go svg { width:11px; height:11px; }
-  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
-  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler { position:relative; border-bottom:1px solid var(--border-soft); }
+  section > details.spoiler:last-child { border-bottom:none; }
+  details.spoiler > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:20px 0; user-select:none; }
   details.spoiler > summary::-webkit-details-marker { display:none; }
-  details.spoiler > summary:hover { background:var(--accent-soft); }
-  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
-  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
-  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
-  details.spoiler[open] > summary .hint::after { content:"접기"; }
-  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
-  details.spoiler .art { padding:18px; border-bottom:none; }
+  details.spoiler > summary .lock { flex:0 0 auto; width:44px; height:44px; border-radius:11px; display:grid; place-items:center; font-size:17px; background:var(--spoiler-bg); border:1px solid var(--spoiler-border); }
+  details.spoiler > summary .label { flex:1 1 auto; min-width:0; font-size:15px; font-weight:650; color:var(--text); line-height:1.45; letter-spacing:-0.015em; }
+  details.spoiler > summary .label .tag { color:var(--accent); font-weight:700; margin-right:4px; }
+  details.spoiler > summary .smeta { display:block; margin-top:3px; font-size:12px; font-weight:500; color:var(--text-dim); }
+  details.spoiler > summary .hint { flex:0 0 auto; font-size:12.5px; font-weight:650; color:var(--accent); background:var(--spoiler-bg); border:1px solid var(--spoiler-border); padding:7px 13px; border-radius:8px; transition:background .15s; }
+  details.spoiler > summary:hover .hint { background:var(--accent-soft); }
+  details.spoiler > summary .hint::after { content:"펼쳐 보기"; }
+  details.spoiler[open] > summary { position:absolute; top:38px; right:12px; z-index:2; padding:0; }
+  details.spoiler[open] > summary .hint { background:var(--card); box-shadow:var(--shadow); }
+  details.spoiler[open] > summary .lock, details.spoiler[open] > summary .label { display:none; }
+  details.spoiler[open] > summary .hint::after { content:"다시 접기"; }
+  details.spoiler .art { border-bottom:none; }
+  @media (max-width:560px) { details.spoiler > summary { gap:11px; } details.spoiler > summary .lock { width:38px; height:38px; font-size:15px; } }
   .glossary { margin-top:12px; }
   .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
   .term:last-child { border-bottom:none; }
@@ -255,7 +262,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 아제르바이잔 GP 캐딜락·페레스 전망 (시즌 성적 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 아제르바이잔 GP 캐딜락·페레스 전망 (시즌 성적 포함)<span class="smeta">RacingNews365 · 2026.09.22</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Perez/XPB_1431286_HiRes.jpg?v=1787485319&width=1800&height=945&quality=75&crop=6000%2C3150%2C0%2C425" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -278,7 +285,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 아제르바이잔 GP 관전 포인트 다섯 가지 (챔피언십 순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 아제르바이잔 GP 관전 포인트 다섯 가지 (챔피언십 순위 포함)<span class="smeta">Motorsport.com · 2026.09.22</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-9.motorsport.com/images/amp/Yv87Xr70/s6/drivers-take-the-start-of-the-.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -301,7 +308,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 드라이버 챔피언십 확정 시나리오 (포인트 순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 드라이버 챔피언십 확정 시나리오 (포인트 순위 포함)<span class="smeta">Formula1.com · 2026.09.22</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Spain/2295053177.webp" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -350,7 +357,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 하스 2027 라인업 관련 소식 (팀 성적 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 하스 2027 라인업 관련 소식 (팀 성적 포함)<span class="smeta">RacingNews365 · 2026.09.22</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Bearman/XPB_1435766_HiRes.jpg?v=1789152811&width=1800&height=945&quality=75&crop=5185%2C2723%2C0%2C369" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -373,7 +380,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 2027 계약 미확정 드라이버 9명 (시즌 성적 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 2027 계약 미확정 드라이버 9명 (시즌 성적 포함)<span class="smeta">RacingNews365 · 2026.09.22</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Zandvoort-sprint-start.jpg?v=1789988393&width=1800&height=945&quality=75&crop=5185%2C2723%2C0%2C94" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -442,7 +449,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 맥라렌 바쿠 업그레이드 (챔피언십 순위·지난 경기 결과 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 맥라렌 바쿠 업그레이드 (챔피언십 순위·지난 경기 결과 포함)<span class="smeta">PlanetF1 · 2026.09.21</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F09%2F21164133%2Fmclaren-oscar-piastri-h-wing-italian-gp-planetf1.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -465,7 +472,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 애스턴 마틴 2027년 차 관련 소식 (컨스트럭터 순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 애스턴 마틴 2027년 차 관련 소식 (컨스트럭터 순위 포함)<span class="smeta">PlanetF1 · 2026.09.21</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F09%2F20112936%2Fadrian-newey-aston-martin-f1-2026-dutch-grand-prix.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -488,7 +495,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: ADUO 제도 개편 논의 (팀별 시즌 성적 언급 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> ADUO 제도 개편 논의 (팀별 시즌 성적 언급 포함)<span class="smeta">The Race · 2026.09.21</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/09/Spacesuit-AS-F1-SGP-10-09-26-922.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -511,7 +518,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 레드불 IT 책임자 인터뷰 — F1 소프트웨어 20년 (팀 성적 언급 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 레드불 IT 책임자 인터뷰 — F1 소프트웨어 20년 (팀 성적 언급 포함)<span class="smeta">Racecar Engineering · 2026.08.26</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://www.racecar-engineering.com/wp-content/uploads/2026/08/XPB_1423567_HiRes.jpg" alt="" loading="lazy"></div>
         <div class="art-body">

@@ -87,16 +87,23 @@
   .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
   .go:hover { border-color:var(--text); background:var(--bg-soft); }
   .go svg { width:11px; height:11px; }
-  details.spoiler { border:1px solid var(--spoiler-border); background:var(--spoiler-bg); border-radius:12px; margin:14px 0; overflow:hidden; }
-  details.spoiler > summary { list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--accent); user-select:none; transition:background .15s; }
+  details.spoiler { position:relative; border-bottom:1px solid var(--border-soft); }
+  section > details.spoiler:last-child { border-bottom:none; }
+  details.spoiler > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:20px 0; user-select:none; }
   details.spoiler > summary::-webkit-details-marker { display:none; }
-  details.spoiler > summary:hover { background:var(--accent-soft); }
-  details.spoiler > summary .lock { font-size:15px; flex:0 0 auto; }
-  details.spoiler > summary .hint { margin-left:auto; font-size:11.5px; font-weight:500; color:var(--text-dim); flex:0 0 auto; }
-  details.spoiler[open] > summary { border-bottom:1px solid var(--spoiler-border); margin-bottom:2px; }
-  details.spoiler[open] > summary .hint::after { content:"접기"; }
-  details.spoiler > summary .hint::after { content:"클릭하여 확인"; }
-  details.spoiler .art { padding:18px; border-bottom:none; }
+  details.spoiler > summary .lock { flex:0 0 auto; width:44px; height:44px; border-radius:11px; display:grid; place-items:center; font-size:17px; background:var(--spoiler-bg); border:1px solid var(--spoiler-border); }
+  details.spoiler > summary .label { flex:1 1 auto; min-width:0; font-size:15px; font-weight:650; color:var(--text); line-height:1.45; letter-spacing:-0.015em; }
+  details.spoiler > summary .label .tag { color:var(--accent); font-weight:700; margin-right:4px; }
+  details.spoiler > summary .smeta { display:block; margin-top:3px; font-size:12px; font-weight:500; color:var(--text-dim); }
+  details.spoiler > summary .hint { flex:0 0 auto; font-size:12.5px; font-weight:650; color:var(--accent); background:var(--spoiler-bg); border:1px solid var(--spoiler-border); padding:7px 13px; border-radius:8px; transition:background .15s; }
+  details.spoiler > summary:hover .hint { background:var(--accent-soft); }
+  details.spoiler > summary .hint::after { content:"펼쳐 보기"; }
+  details.spoiler[open] > summary { position:absolute; top:38px; right:12px; z-index:2; padding:0; }
+  details.spoiler[open] > summary .hint { background:var(--card); box-shadow:var(--shadow); }
+  details.spoiler[open] > summary .lock, details.spoiler[open] > summary .label { display:none; }
+  details.spoiler[open] > summary .hint::after { content:"다시 접기"; }
+  details.spoiler .art { border-bottom:none; }
+  @media (max-width:560px) { details.spoiler > summary { gap:11px; } details.spoiler > summary .lock { width:38px; height:38px; font-size:15px; } }
   .glossary { margin-top:12px; }
   .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
   .term:last-child { border-bottom:none; }
@@ -177,7 +184,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 미국 GP를 앞둔 메르세데스 볼프 대표 인터뷰 (챔피언십 상황 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 미국 GP를 앞둔 메르세데스 볼프 대표 인터뷰 (챔피언십 상황 포함)<span class="smeta">Crash.net · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-10/xpb_1415250_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -200,7 +207,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 대회 성적과 순위가 언급된 노리스의 미국 GP 앞 맥라렌 전망 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 최근 대회 성적과 순위가 언급된 노리스의 미국 GP 앞 맥라렌 전망<span class="smeta">PlanetF1 · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F10%2F17160712%2F3FRFXDN.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -269,7 +276,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 대회 성적이 언급된 로슨의 2027년 거취 관련 발언 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 최근 대회 성적이 언급된 로슨의 2027년 거취 관련 발언<span class="smeta">PlanetF1 · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F10%2F18133245%2Fliam-lawson-racing-bulls-baku-2026-planetf1.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -378,7 +385,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 주말 예선·결승 흐름이 언급된 메르세데스 업그레이드 분석 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 주말 예선·결승 흐름이 언급된 메르세데스 업그레이드 분석<span class="smeta">Autosport · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-1.motorsport.com/images/amp/2jEAGLp0/s6/andrea-kimi-antonelli-mercedes.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -401,7 +408,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 대회 결과와 순위가 언급된 메르세데스 업그레이드 효과 분석 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 최근 대회 결과와 순위가 언급된 메르세데스 업그레이드 효과 분석<span class="smeta">Motorsport.com · 2026.10.16</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-3.motorsport.com/images/amp/2jEAokE0/s6/untitled-design-52.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -470,7 +477,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 현재 드라이버 순위가 언급된 노리스 F2 팀 참가 심사 소식 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 현재 드라이버 순위가 언급된 노리스 F2 팀 참가 심사 소식<span class="smeta">Motorsport.com · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn-7.motorsport.com/images/amp/6VyKwD7Y/s6/72945935.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -493,7 +500,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 대회 경기 내용이 언급된 알론소·애스턴 마틴 엔진 논란 분석 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 최근 대회 경기 내용이 언급된 알론소·애스턴 마틴 엔진 논란 분석<span class="smeta">The Race · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/2296875749-1.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -516,7 +523,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 해밀턴의 아버지가 포르티망 GT 경주장에서 페르스타펜·로시와 만난 이야기 (GT 경주 결과 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 해밀턴의 아버지가 포르티망 GT 경주장에서 페르스타펜·로시와 만난 이야기 (GT 경주 결과 포함)<span class="smeta">Crash.net · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-10/untitled-design-18.png?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -539,7 +546,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 페르스타펜, GT 팀 동료 향한 온라인 악성 댓글에 공개 비판 (GT 경주 순위 언급) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 페르스타펜, GT 팀 동료 향한 온라인 악성 댓글에 공개 비판 (GT 경주 순위 언급)<span class="smeta">Crash.net · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-10/timthumb-2-1.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -562,7 +569,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 레드불 메키스 대표가 말하는 페르스타펜과의 솔직한 관계 (최근 대회 결과 언급) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 레드불 메키스 대표가 말하는 페르스타펜과의 솔직한 관계 (최근 대회 결과 언급)<span class="smeta">Crash.net · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-10/xpb_1435453_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -585,7 +592,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 현재 챔피언십 상황이 언급된 토토 볼프의 리더십 인터뷰 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 현재 챔피언십 상황이 언급된 토토 볼프의 리더십 인터뷰<span class="smeta">GPFans · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/29dc5e8fc7e4d32eb14ad9e1b050122be0f2ef06.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -608,7 +615,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 호너가 볼프·브라운과의 라이벌 관계와 Drive to Survive에 대해 말한 인터뷰 (최근 대회 결과 언급 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 호너가 볼프·브라운과의 라이벌 관계와 Drive to Survive에 대해 말한 인터뷰 (최근 대회 결과 언급 포함)<span class="smeta">PlanetF1 · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F10%2F06133422%2Ftoto-wolff-mercedes-f1-2026-australian-grand-prix-press-conference.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -631,7 +638,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 맥라렌 스텔라 대표의 경쟁 구도 분석 (최근 대회 결과·순위 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 맥라렌 스텔라 대표의 경쟁 구도 분석 (최근 대회 결과·순위 포함)<span class="smeta">RacingNews365 · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Team-Principals-and-senior-figures/Stella-Mekies.jpg?v=1792059172&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=5472%2C2873%2C0%2C387" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -654,7 +661,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 레드불 기술 디렉터 와셰가 팀의 목표와 만족 기준을 밝힌 단독 인터뷰 (최근 결과·챔피언십 언급 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 레드불 기술 디렉터 와셰가 팀의 목표와 만족 기준을 밝힌 단독 인터뷰 (최근 결과·챔피언십 언급 포함)<span class="smeta">RacingNews365 · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/exc-wache-com-3.jpg?v=1792315495&amp;width=1200&amp;height=630&amp;quality=75&amp;crop=1920%2C1008%2C0%2C36" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -677,7 +684,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 시즌 순위·승수가 언급된 피아스트리의 맥라렌 차량 고민 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 시즌 순위·승수가 언급된 피아스트리의 맥라렌 차량 고민<span class="smeta">RacingNews365 · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Piastri/XPB_1441394_HiRes.jpg?v=1791007314&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=5472%2C2873%2C0%2C387" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -700,7 +707,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 대회 순위가 언급된 맥라렌 CEO의 피아스트리 평가 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 최근 대회 순위가 언급된 맥라렌 CEO의 피아스트리 평가<span class="smeta">Formula1.com · 2026.10.16</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Spain%20(Madrid)/Piastri%20Brown%20Spain%20Sunday.webp" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -769,7 +776,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 싱가포르 대회 결과가 언급된 서킷 개선 요구 기사 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 싱가포르 대회 결과가 언급된 서킷 개선 요구 기사<span class="smeta">PlanetF1 · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F10%2F10183858%2Flewis-hamilton-qualifying-singapore-gp-error.jpg" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -792,7 +799,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 두 대회의 기술 문제를 짚은 브런들의 'F1 시스템 피로' 경고 (레이스 중 사건 언급 포함) <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 최근 두 대회의 기술 문제를 짚은 브런들의 'F1 시스템 피로' 경고 (레이스 중 사건 언급 포함)<span class="smeta">RacingNews365 · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Singapore-practice-start.jpg?v=1791542046&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=5185%2C2723%2C0%2C369" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -815,7 +822,7 @@
     </details>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 원문 페이지에 최근 대회 결과를 암시하는 홍보 문구가 붙은 볼프의 예산 상한 개편 반대 기사 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 원문 페이지에 최근 대회 결과를 암시하는 홍보 문구가 붙은 볼프의 예산 상한 개편 반대 기사<span class="smeta">RacingNews365 · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Team-Principals-and-senior-figures/XPB_1436072_HiRes.jpg?v=1789212539&amp;width=1800&amp;height=945&amp;quality=75&amp;crop=5185%2C2723%2C0%2C369" alt="" loading="lazy"></div>
         <div class="art-body">
@@ -904,7 +911,7 @@
     </article>
 
     <details class="spoiler">
-      <summary><span class="lock">⚠️</span> 스포일러 주의: 최근 대회 이야기로 시작하는 '무전 끊긴 드라이버' 역사 모음 <span class="hint"></span></summary>
+      <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 최근 대회 이야기로 시작하는 '무전 끊긴 드라이버' 역사 모음<span class="smeta">Formula1.com · 2026.10.18</span></span><span class="hint"></span></summary>
       <article class="art">
         <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Miscellaneous/Drivers%20who%20lost%20comms%20header.webp" alt="" loading="lazy"></div>
         <div class="art-body">
