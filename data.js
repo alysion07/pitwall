@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-22",
+    updatedAt: "2026-10-23",
     season: 2026,
     standingsAsOf: { round: 17, name: "싱가포르 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-23", file: "briefings/f1-news-2026-10-23.html", count: 26, spoilers: 7,
+      headline: "페르스타펜 “COTA 노면 요철은 용납 못 해, 이제 통제 불능” · 아우디, 18세 슬레이터에게 멕시코·브라질 FP1 · 캐딜락, 12월 18일 샬럿에 F1 엔진 공장 개소" },
     { date: "2026-10-22", file: "briefings/f1-news-2026-10-22.html", count: 29, spoilers: 11,
       headline: "FIA, 비용 상한 빈틈 봉쇄 — 2027년부터 F1 직원과 다른 사업부 직원은 사무실·IT까지 분리 · FIA, 영국 비긴 힐에 원격 ‘레이스 운영 센터’ 개소 — AI로 반칙 감지 · 메르세데스, 달 궤도 비행 ‘아르테미스 II’ 사령관을 홍보대사로" },
     { date: "2026-10-21", file: "briefings/f1-news-2026-10-21.html", count: 24, spoilers: 9,
