@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-25",
+    updatedAt: "2026-10-26",
     season: 2026,
-    standingsAsOf: { round: 17, name: "싱가포르 GP" }   // 순위표 기준 시점 (결과 노출 없음)
+    standingsAsOf: { round: 18, name: "미국 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-26", file: "briefings/f1-news-2026-10-26.html", count: 22, spoilers: 9,
+      headline: "연습 1위 페라리, 미국 GP 예선은 4·5위 — 르클레르 “타이어 조사해야”, 해밀턴 “직선에서 진다” · 페르스타펜, COTA 회장에 “내 차 5랩 타보면 걷지도 못할 것” · 보타스, 캐딜락 퇴출설 첫 직접 부인 “다 괜찮다”" },
     { date: "2026-10-25", file: "briefings/f1-news-2026-10-25.html", count: 32, spoilers: 15,
       headline: "안토넬리, 미국 GP 폴 포지션 — 레드불 두 대가 2·3번 그리드 · FIA, 금요일 랩 기록 207개 삭제 뒤 코너 경계 완화 · 캐딜락 대표, 2027년 보타스·페레스 유지 확답 안 해" },
     { date: "2026-10-24", file: "briefings/f1-news-2026-10-24.html", count: 25, spoilers: 9,
@@ -185,16 +187,16 @@ window.F1DATA = {
 
   // ⚠️ 스포일러 — 드라이버 순위 (standingsAsOf 기준)
   drivers: [
-    { pos: 1,  code: "ANT", name: "키미 안토넬리",     en: "Kimi Antonelli",    team: "Mercedes",     pts: 340 },
-    { pos: 2,  code: "RUS", name: "조지 러셀",         en: "George Russell",    team: "Mercedes",     pts: 238 },
-    { pos: 3,  code: "HAM", name: "루이스 해밀턴",     en: "Lewis Hamilton",    team: "Ferrari",      pts: 229 },
-    { pos: 4,  code: "VER", name: "막스 페르스타펜",   en: "Max Verstappen",    team: "Red Bull",     pts: 221 },
-    { pos: 5,  code: "LEC", name: "샤를 르클레르",     en: "Charles Leclerc",   team: "Ferrari",      pts: 215 },
-    { pos: 6,  code: "NOR", name: "랜도 노리스",       en: "Lando Norris",      team: "McLaren",      pts: 201 },
-    { pos: 7,  code: "PIA", name: "오스카 피아스트리", en: "Oscar Piastri",     team: "McLaren",      pts: 138 },
-    { pos: 8,  code: "HAD", name: "이자크 하자르",     en: "Isack Hadjar",      team: "Red Bull",     pts: 97 },
-    { pos: 9,  code: "LAW", name: "리암 로슨",         en: "Liam Lawson",       team: "Racing Bulls", pts: 75 },
-    { pos: 10, code: "GAS", name: "피에르 가슬리",     en: "Pierre Gasly",      team: "Alpine",       pts: 41 },
+    { pos: 1,  code: "ANT", name: "키미 안토넬리",     en: "Kimi Antonelli",    team: "Mercedes",     pts: 365 },
+    { pos: 2,  code: "RUS", name: "조지 러셀",         en: "George Russell",    team: "Mercedes",     pts: 242 },
+    { pos: 3,  code: "HAM", name: "루이스 해밀턴",     en: "Lewis Hamilton",    team: "Ferrari",      pts: 241 },
+    { pos: 4,  code: "VER", name: "막스 페르스타펜",   en: "Max Verstappen",    team: "Red Bull",     pts: 236 },
+    { pos: 5,  code: "LEC", name: "샤를 르클레르",     en: "Charles Leclerc",   team: "Ferrari",      pts: 233 },
+    { pos: 6,  code: "NOR", name: "랜도 노리스",       en: "Lando Norris",      team: "McLaren",      pts: 211 },
+    { pos: 7,  code: "PIA", name: "오스카 피아스트리", en: "Oscar Piastri",     team: "McLaren",      pts: 144 },
+    { pos: 8,  code: "HAD", name: "이자크 하자르",     en: "Isack Hadjar",      team: "Red Bull",     pts: 105 },
+    { pos: 9,  code: "LAW", name: "리암 로슨",         en: "Liam Lawson",       team: "Racing Bulls", pts: 77 },
+    { pos: 10, code: "GAS", name: "피에르 가슬리",     en: "Pierre Gasly",      team: "Alpine",       pts: 42 },
     { pos: 11, code: "LIN", name: "아르비드 린드블라드", en: "Arvid Lindblad",  team: "Racing Bulls", pts: 38 },
     { pos: 12, code: "COL", name: "프랑코 콜라핀토",   en: "Franco Colapinto",  team: "Alpine",       pts: 27 },
     { pos: 13, code: "BEA", name: "올리버 베어먼",     en: "Oliver Bearman",    team: "Haas",         pts: 23 },
@@ -212,12 +214,12 @@ window.F1DATA = {
 
   // ⚠️ 스포일러 — 컨스트럭터 순위
   constructors: [
-    { pos: 1,  team: "Mercedes",     pts: 578 },
-    { pos: 2,  team: "Ferrari",      pts: 444 },
-    { pos: 3,  team: "McLaren",      pts: 339 },
-    { pos: 4,  team: "Red Bull",     pts: 332 },
-    { pos: 5,  team: "Racing Bulls", pts: 100 },
-    { pos: 6,  team: "Alpine",       pts: 68 },
+    { pos: 1,  team: "Mercedes",     pts: 607 },
+    { pos: 2,  team: "Ferrari",      pts: 474 },
+    { pos: 3,  team: "Red Bull",     pts: 355 },
+    { pos: 4,  team: "McLaren",      pts: 355 },
+    { pos: 5,  team: "Racing Bulls", pts: 102 },
+    { pos: 6,  team: "Alpine",       pts: 69 },
     { pos: 7,  team: "Haas",         pts: 30 },
     { pos: 8,  team: "Audi",         pts: 23 },
     { pos: 9,  team: "Williams",     pts: 12 },
