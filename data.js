@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-26",
+    updatedAt: "2026-10-27",
     season: 2026,
     standingsAsOf: { round: 18, name: "미국 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-27", file: "briefings/f1-news-2026-10-27.html", count: 22, spoilers: 10,
+      headline: "브리지스톤, F1 타이어 공급사 복귀 노려 — 싱가포르·오스틴에 고위 대표단 · 페라리 회장 엘칸, 오스틴서 맥라렌 모터홈 방문에 스텔라 영입설 · 호너 “2012년 해밀턴 메르세데스행, 라우다에게 내가 권했다”" },
     { date: "2026-10-26", file: "briefings/f1-news-2026-10-26.html", count: 22, spoilers: 9,
       headline: "연습 1위 페라리, 미국 GP 예선은 4·5위 — 르클레르 “타이어 조사해야”, 해밀턴 “직선에서 진다” · 페르스타펜, COTA 회장에 “내 차 5랩 타보면 걷지도 못할 것” · 보타스, 캐딜락 퇴출설 첫 직접 부인 “다 괜찮다”" },
     { date: "2026-10-25", file: "briefings/f1-news-2026-10-25.html", count: 32, spoilers: 15,
