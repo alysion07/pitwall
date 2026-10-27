@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-27",
+    updatedAt: "2026-10-28",
     season: 2026,
     standingsAsOf: { round: 18, name: "미국 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-28", file: "briefings/f1-news-2026-10-28.html", count: 22, spoilers: 8,
+      headline: "FIA V8 엔진 초안 수치 공개 — 2.0~2.3리터·약 900마력, 엔진 예산 절반으로 · 혼다 “멕시코는 올해 가장 혹독한 터보 시험장” — 2027년 두 차례 큰 업그레이드 · 레드불 “세 번째 엔진 고객팀 받을 준비 안 됐다”" },
     { date: "2026-10-27", file: "briefings/f1-news-2026-10-27.html", count: 22, spoilers: 10,
       headline: "브리지스톤, F1 타이어 공급사 복귀 노려 — 싱가포르·오스틴에 고위 대표단 · 페라리 회장 엘칸, 오스틴서 맥라렌 모터홈 방문에 스텔라 영입설 · 호너 “2012년 해밀턴 메르세데스행, 라우다에게 내가 권했다”" },
     { date: "2026-10-26", file: "briefings/f1-news-2026-10-26.html", count: 22, spoilers: 9,
