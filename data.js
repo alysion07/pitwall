@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-28",
+    updatedAt: "2026-10-29",
     season: 2026,
     standingsAsOf: { round: 18, name: "미국 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-29", file: "briefings/f1-news-2026-10-29.html", count: 15, spoilers: 3,
+      headline: "페레스, 캐딜락과 2029년까지 재계약 — 남은 한 자리는 보타스냐 허타냐 · 아우디, 전 메르세데스 엔진 수장 토마스 푸어를 엔진 회사 CEO로 영입 · FIA, AWS와 손잡고 AI로 2030년 규정 설계" },
     { date: "2026-10-28", file: "briefings/f1-news-2026-10-28.html", count: 22, spoilers: 8,
       headline: "FIA V8 엔진 초안 수치 공개 — 2.0~2.3리터·약 900마력, 엔진 예산 절반으로 · 혼다 “멕시코는 올해 가장 혹독한 터보 시험장” — 2027년 두 차례 큰 업그레이드 · 레드불 “세 번째 엔진 고객팀 받을 준비 안 됐다”" },
     { date: "2026-10-27", file: "briefings/f1-news-2026-10-27.html", count: 22, spoilers: 10,
