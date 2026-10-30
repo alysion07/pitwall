@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-30",
+    updatedAt: "2026-10-31",
     season: 2026,
     standingsAsOf: { round: 18, name: "미국 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-31", file: "briefings/f1-news-2026-10-31.html", count: 21, spoilers: 9,
+      headline: "허타, 멕시코 FP1 30랩으로 슈퍼라이선스 40점 달성 · 캐딜락 대표 “보타스는 오스틴 같은 주말을 매번 보여 줘야” · 하스 대표, 베어먼 ‘600만 유로 연봉 요구설’에 “말도 안 되는 소리”" },
     { date: "2026-10-30", file: "briefings/f1-news-2026-10-30.html", count: 22, spoilers: 7,
       headline: "보타스·안토넬리, 몸살로 멕시코 미디어 데이 불참 — 페레스 “보타스냐 허타냐, 쉽지 않은 결정” · 알론소 “하위권 수준 낮다” 발언 고수, 알본 “이제 페이 드라이버는 없다” · 페레스, 300번째 GP 앞두고 영화 ‘F1’ 촬영용 차로 레포르마 거리 시범 주행" },
     { date: "2026-10-29", file: "briefings/f1-news-2026-10-29.html", count: 15, spoilers: 3,
