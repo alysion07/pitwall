@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-29",
+    updatedAt: "2026-10-30",
     season: 2026,
     standingsAsOf: { round: 18, name: "미국 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-10-30", file: "briefings/f1-news-2026-10-30.html", count: 22, spoilers: 7,
+      headline: "보타스·안토넬리, 몸살로 멕시코 미디어 데이 불참 — 페레스 “보타스냐 허타냐, 쉽지 않은 결정” · 알론소 “하위권 수준 낮다” 발언 고수, 알본 “이제 페이 드라이버는 없다” · 페레스, 300번째 GP 앞두고 영화 ‘F1’ 촬영용 차로 레포르마 거리 시범 주행" },
     { date: "2026-10-29", file: "briefings/f1-news-2026-10-29.html", count: 15, spoilers: 3,
       headline: "페레스, 캐딜락과 2029년까지 재계약 — 남은 한 자리는 보타스냐 허타냐 · 아우디, 전 메르세데스 엔진 수장 토마스 푸어를 엔진 회사 CEO로 영입 · FIA, AWS와 손잡고 AI로 2030년 규정 설계" },
     { date: "2026-10-28", file: "briefings/f1-news-2026-10-28.html", count: 22, spoilers: 8,
