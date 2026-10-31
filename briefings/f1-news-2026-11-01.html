@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>F1 데일리 브리핑 — 2026.11.01</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../favicon-192.png">
+<style>
+  :root {
+    --bg:#ffffff; --bg-soft:#f7f7f9; --card:#ffffff; --card-hover:#fbfbfc;
+    --text:#14141a; --text-mid:#4a4a57; --text-dim:#86868f;
+    --border:#e6e6ec; --border-soft:#f0f0f4;
+    --accent:#E10600; --accent-soft:rgba(225,6,0,.08);
+    --spoiler-bg:#fbf7f7; --spoiler-border:#ecdcdc; --chip-bg:#f2f2f5;
+    --shadow:0 1px 2px rgba(20,20,26,.04),0 8px 24px -12px rgba(20,20,26,.10);
+    --bar-bg:rgba(255,255,255,.82);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0e0e11; --bg-soft:#141419; --card:#16161b; --card-hover:#1b1b21;
+      --text:#f0f0f3; --text-mid:#b6b6c0; --text-dim:#82828e;
+      --border:#26262e; --border-soft:#1e1e25;
+      --accent:#FF3B30; --accent-soft:rgba(255,59,48,.12);
+      --spoiler-bg:#1a1416; --spoiler-border:#3a2528; --chip-bg:#1e1e25;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+      --bar-bg:rgba(14,14,17,.82);
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;
+    font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0 24px; }
+  header { padding:72px 0 32px; }
+  .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+  .kicker .dot { width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  h1 { font-size:clamp(34px,7vw,46px); line-height:1.12; margin:0 0 20px; font-weight:800; letter-spacing:-0.035em; }
+  h1 .accent { color:var(--accent); }
+  .lede { font-size:15px; color:var(--text-mid); margin:0; padding-bottom:28px; border-bottom:1px solid var(--border); }
+  .lede b { color:var(--text); font-weight:600; }
+  .digest { margin:28px 0 0; padding:20px 22px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:14px; }
+  .digest h2 { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:0 0 12px; }
+  .digest ol { margin:0; padding-left:20px; }
+  .digest li { font-size:14.5px; color:var(--text-mid); margin-bottom:7px; }
+  .digest li:last-child { margin-bottom:0; }
+  .digest li b { color:var(--text); font-weight:600; }
+  .bar { position:sticky; top:0; z-index:20; margin:36px 0 8px; padding:12px 0; background:var(--bar-bg); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--border-soft); }
+  .bar-inner { display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap; }
+  .chips { display:flex; gap:7px; flex-wrap:wrap; flex:1 1 auto; scrollbar-width:none; -ms-overflow-style:none; padding:2px 0; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip { flex:0 0 auto; border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:500; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s,color .15s,border-color .15s; }
+  .chip:hover { color:var(--text); }
+  .chip[aria-pressed="true"] { background:var(--text); color:var(--bg); border-color:var(--text); }
+  .chip .n { opacity:.5; margin-left:4px; font-variant-numeric:tabular-nums; }
+  .unlock { flex:0 0 auto; border:1px solid var(--spoiler-border); background:var(--spoiler-bg); color:var(--accent); font:inherit; font-size:13px; font-weight:600; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s; }
+  .unlock:hover { background:var(--accent-soft); }
+  section { padding-top:44px; scroll-margin-top:70px; }
+  section.hidden { display:none; }
+  .sec-head { display:flex; align-items:baseline; gap:10px; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--text); }
+  .sec-head h2 { font-size:19px; font-weight:750; margin:0; letter-spacing:-0.02em; }
+  .sec-head .count { font-size:12px; color:var(--text-dim); font-variant-numeric:tabular-nums; margin-left:auto; font-weight:500; }
+  .art { display:flex; flex-direction:column; align-items:stretch; gap:16px; padding:26px 0; border-bottom:1px solid var(--border-soft); }
+  .art:last-child { border-bottom:none; }
+  .thumb { width:100%; height:340px; border-radius:14px; overflow:hidden; background:linear-gradient(135deg,var(--accent) 0%,#600 100%); border:1px solid var(--border-soft); }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .art-body { min-width:0; }
+  .art h3 { font-size:21px; font-weight:750; line-height:1.36; margin:0 0 6px; letter-spacing:-0.025em; }
+  .orig { font-size:13px; color:var(--text-dim); margin:0 0 11px; font-style:italic; line-height:1.45; }
+  .meta { display:flex; align-items:center; gap:7px; flex-wrap:wrap; font-size:12px; color:var(--text-dim); margin-bottom:12px; }
+  .src { font-weight:650; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:5px; font-size:11.5px; }
+  .sum { font-size:15px; color:var(--text-mid); margin:0 0 4px; line-height:1.75; }
+  details.more { margin:8px 0 14px; }
+  details.more > summary { list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:650; color:var(--accent); padding:7px 0; user-select:none; }
+  details.more > summary::-webkit-details-marker { display:none; }
+  details.more > summary .caret { transition:transform .18s; font-size:10px; }
+  details.more[open] > summary .caret { transform:rotate(90deg); }
+  .detail-body { margin-top:4px; padding:14px 16px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:12px; }
+  .detail-body p { margin:0 0 10px; font-size:14.5px; color:var(--text-mid); line-height:1.8; }
+  .detail-body p:last-child { margin-bottom:0; }
+  .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
+  .go:hover { border-color:var(--text); background:var(--bg-soft); }
+  .go svg { width:11px; height:11px; }
+  details.spoiler { position:relative; border-bottom:1px solid var(--border-soft); }
+  section > details.spoiler:last-child { border-bottom:none; }
+  details.spoiler > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:20px 0; user-select:none; }
+  details.spoiler > summary::-webkit-details-marker { display:none; }
+  details.spoiler > summary .lock { flex:0 0 auto; width:44px; height:44px; border-radius:11px; display:grid; place-items:center; font-size:17px; background:var(--spoiler-bg); border:1px solid var(--spoiler-border); }
+  details.spoiler > summary .label { flex:1 1 auto; min-width:0; font-size:15px; font-weight:650; color:var(--text); line-height:1.45; letter-spacing:-0.015em; }
+  details.spoiler > summary .label .tag { color:var(--accent); font-weight:700; margin-right:4px; }
+  details.spoiler > summary .smeta { display:block; margin-top:3px; font-size:12px; font-weight:500; color:var(--text-dim); }
+  details.spoiler > summary .hint { flex:0 0 auto; font-size:12.5px; font-weight:650; color:var(--accent); background:var(--spoiler-bg); border:1px solid var(--spoiler-border); padding:7px 13px; border-radius:8px; transition:background .15s; }
+  details.spoiler > summary:hover .hint { background:var(--accent-soft); }
+  details.spoiler > summary .hint::after { content:"펼쳐 보기"; }
+  details.spoiler[open] > summary { position:absolute; top:38px; right:12px; z-index:2; padding:0; }
+  details.spoiler[open] > summary .hint { background:var(--card); box-shadow:var(--shadow); }
+  details.spoiler[open] > summary .lock, details.spoiler[open] > summary .label { display:none; }
+  details.spoiler[open] > summary .hint::after { content:"다시 접기"; }
+  details.spoiler .art { border-bottom:none; }
+  @media (max-width:560px) { details.spoiler > summary { gap:11px; } details.spoiler > summary .lock { width:38px; height:38px; font-size:15px; } }
+  .glossary { margin-top:12px; }
+  .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
+  .term:last-child { border-bottom:none; }
+  .term dt { font-size:14.5px; font-weight:700; margin-bottom:3px; }
+  .term dt span { color:var(--text-dim); font-weight:500; font-size:13px; }
+  .term dd { margin:0; font-size:14px; color:var(--text-mid); line-height:1.65; }
+  footer { margin-top:64px; padding:28px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
+  footer .brand { color:var(--accent); font-weight:650; }
+  @media (max-width:560px) {
+    .wrap { padding:0 18px; }
+    header { padding:48px 0 24px; }
+    .thumb { height:210px; }
+    .art h3 { font-size:19px; }
+    .sec-head h2 { font-size:17px; }
+    .bar-inner { flex-wrap:nowrap; flex-direction:column; align-items:stretch; }
+    .chips { flex-wrap:nowrap; overflow-x:auto; width:100%; }
+    .unlock { width:100%; }
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker"><span class="dot"></span> 2026년 11월 1일 일요일 <a href="../index.html" style="margin-left:auto;color:var(--text-dim);text-decoration:none;font-weight:600;letter-spacing:0;text-transform:none">← PIT WALL</a></div>
+    <h1>F1 데일리 <span class="accent">브리핑</span></h1>
+    <p class="lede">해외 매체 <b>9곳</b>(Formula1.com · Motorsport.com · The Race · RaceFans · PlanetF1 · Crash.net · GPFans · Grandprix.com · Motor Sport Magazine)의 기사 <b>24건</b>을 정리했습니다. 멕시코시티 GP 금요일 2차 연습(FP2), 토요일 3차 연습(FP3)과 예선 기사가 중심이고, 하스가 에스테반 오콘을 주말 도중 빼고 히라카와 료를 투입한 깜짝 교체가 가장 큰 소식입니다. 연습 주행 기록은 스포일러가 아니지만, 이번엔 대부분의 매체가 연습 보도에 챔피언십 판도를 함께 적어, 그런 언급이 없는 Grandprix.com(FP3)·PlanetF1(FP2) 기사로 카드를 만들었습니다. 본문에 순위나 지난 경기 결과가 섞인 <b>7건</b>은 접어 두었습니다. 어제 브리핑에서 "허타가 슈퍼라이선스 40점을 채웠다"고 전했는데, FIA 확인 결과 <b>아직 1점 모자란 것</b>으로 드러나 바로잡는 후속 카드를 실었습니다. 예선은 브리핑 작성 중에 끝나, 먼저 나온 RaceFans 기사로 결과를 실었고 드라이버 소감은 내일 다룹니다. 결승은 한국 시각 11월 2일(월) 05:00입니다. Racecar Engineering은 새 F1 글이 없었습니다.</p>
+    <div class="digest">
+      <h2>오늘의 요약</h2>
+      <ol>
+        <li><b>멕시코 GP 예선·연습:</b> 해밀턴이 러셀을 0.009초 차로 제치고 3년 만이자 페라리 이적 후 첫 폴포지션을 잡았고, 피아스트리는 Q2에서 탈락했습니다. FP2에서 부딪힌 페르스타펜과 로슨은 둘 다 한 계단 그리드 강등을 받았습니다.</li>
+        <li><b>이적·팀:</b> 하스가 "아파서가 아니다"라며 오콘을 남은 주말에서 빼고 토요타 소속 히라카와를 F1 결승에 데뷔시킵니다. 허타는 인디카 순위표 오류 탓에 슈퍼라이선스가 아직 1점 모자라 브라질 FP1에 한 번 더 나설 전망입니다.</li>
+        <li>🏁 멕시코 GP·미국 GP 관련 소식 <b>7건</b> — 아래 스포일러 섹션을 열어 확인하세요.</li>
+      </ol>
+    </div>
+  </header>
+
+
+  <div class="bar">
+    <div class="bar-inner">
+      <div class="chips" role="group" aria-label="카테고리 필터">
+        <button class="chip" data-cat="all" aria-pressed="true">전체<span class="n">24</span></button>
+        <button class="chip" data-cat="race" aria-pressed="false">🏁 레이스 위크<span class="n">9</span></button>
+        <button class="chip" data-cat="transfer" aria-pressed="false">🔄 이적/계약<span class="n">5</span></button>
+        <button class="chip" data-cat="tech" aria-pressed="false">🔧 기술/규정<span class="n">5</span></button>
+        <button class="chip" data-cat="fia" aria-pressed="false">⚖️ FIA/거버넌스<span class="n">1</span></button>
+        <button class="chip" data-cat="people" aria-pressed="false">👤 드라이버/팀<span class="n">2</span></button>
+        <button class="chip" data-cat="etc" aria-pressed="false">📰 기타<span class="n">2</span></button>
+        <button class="chip" data-cat="glossary" aria-pressed="false">📖 용어</button>
+      </div>
+      <button class="unlock" id="unlockAll" aria-pressed="false">🔓 스포일러 모두 펼치기</button>
+    </div>
+  </div>
+
+  <!-- ============================ 🏁 레이스 위크 ============================ -->
+  <section id="race" data-cat="race">
+    <div class="sec-head"><h2>🏁 레이스 위크</h2><span class="count">9건 · 스포일러 2건</span></div>
+
+    <article class="art">
+          <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/10/racefansdotnet-21-10-30-19-49-15-4.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>멕시코 GP 예선: 해밀턴, 3년 만의 폴포지션 — 페라리 이적 후 첫 폴, 러셀을 0.009초 차로 제쳐</h3>
+            <p class="orig">Hamilton claims first pole position for three years ahead of Russell in Mexico</p>
+            <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">페라리(Ferrari)의 루이스 해밀턴(Lewis Hamilton)이 멕시코시티 GP 예선에서 1분 16.514초로 폴포지션(예선 1위로 맨 앞에서 출발하는 자리)을 차지했습니다. 메르세데스(Mercedes)의 조지 러셀(George Russell)을 0.009초 차로 제쳤고, 2023년 헝가리 GP 이후 3년 만이자 페라리 이적 뒤 첫 폴입니다. 맥라렌(McLaren)의 오스카 피아스트리(Oscar Piastri)는 Q2에서 탈락해 13위에서 출발합니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>예선 상위 10명은 해밀턴, 러셀(+0.009초), 샤를 르클레르(Charles Leclerc, +0.119초), 막스 페르스타펜(Max Verstappen, +0.178초), 키미 안토넬리(Kimi Antonelli, +0.193초), 랜도 노리스(Lando Norris, +0.310초), 이삭 하자르(Isack Hadjar), 리엄 로슨(Liam Lawson), 아르비드 린드블라드(Arvid Lindblad), 피에르 가슬리(Pierre Gasly)였습니다(The Race 집계). Crash.net에 따르면 해밀턴의 통산 105번째 폴로, 자신이 가진 최다 기록을 또 늘렸습니다.</p>
+              <p>마지막으로 달린 노리스와 페르스타펜도 위협적이었지만, 노리스는 랩 중간에 하자르를 만나 속도를 늦췄고, 페르스타펜은 노리스를 앞지르며 13번 코너에서 바퀴가 잠겼습니다. 하자르는 13번 코너에서 여러 번 바퀴를 잠그며 어수선한 예선을 보냈습니다.</p>
+              <p>그리드 강등이 순서를 조금 바꿉니다. FP2 충돌로 한 계단 강등된 페르스타펜은 4위에서 5위로 밀려 안토넬리가 4번 그리드에 섭니다. 로슨도 같은 벌칙으로 8위에서 9위가 되어, 레이싱 불스 두 차의 자리가 맞바뀝니다. 엔진 부품을 한꺼번에 바꾼 발테리 보타스(Valtteri Bottas)는 원래대로 맨 뒤에서 출발합니다.</p>
+              <p>맥라렌은 공격적인 전략이 역효과를 냈습니다. 두 드라이버 모두 Q2에서 새 소프트 타이어 한 세트만 썼는데, 노리스는 Q2 1위였지만 피아스트리는 마지막 랩에서 뒤쪽 그립을 잃어 0.9초 느렸고, Q3 진출선에 0.4초 모자랐습니다. 피아스트리는 "무슨 일인지 모르겠다, 뒤쪽 그립이 없었다"고 했습니다. 니코 휠켄베르크(Nico Hülkenberg)는 0.03초도 안 되는 차이로 10위를 놓쳤습니다.</p>
+              <p>연습 주행 내내 문제를 겪은 가브리에우 보르툴레투(Gabriel Bortoleto)는 14위로 팀 동료에 꽤 근접했습니다. 하스(Haas)에서 유일하게 Q2에 오른 올리버 베어먼(Oliver Bearman)은 12번 코너 실수로 15위에 그쳤고, 이날 오콘 대신 투입된 히라카와 료(Ryo Hirakawa)는 베어먼보다 0.875초 느린 19위였습니다.</p>
+              <p>Q1에서는 알렉스 알본(Alex Albon), 페르난도 알론소(Fernando Alonso), 히라카와, 랜스 스트롤(Lance Stroll), 세르히오 페레스(Sergio Perez), 보타스가 탈락했습니다. 금요일 FP1 7위로 기대를 모았던 알론소는 첫 랩 뒤 냉각수 압력이 떨어져 곧바로 차를 세우라는 지시를 받았습니다. 화가 난 채 내린 그는 스티어링 휠을 차에 다시 끼우지 않아, '일반 안전' 위반으로 견책(기록에 남는 가벼운 징계)을 받았습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.racefans.net/2026/10/31/hamilton-claims-first-pole-position-for-three-years-ahead-of-russell-in-mexico/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/originals/2026/pmex26/fri/mcl/norris9.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>멕시코 GP 3차 연습: 노리스가 안토넬리를 0.001초 차로 제치고 1위 — 금요일 1위 르클레르는 3위</h3>
+            <p class="orig">Norris edges Antonelli by 0.001s in Mexican GP final practice</p>
+            <div class="meta"><span class="src">Grandprix.com</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">멕시코시티 GP 마지막 연습 주행(FP3)에서 맥라렌(McLaren)의 랜도 노리스(Lando Norris)가 1분 17.600초로 가장 빨랐습니다. 메르세데스(Mercedes)의 키미 안토넬리(Kimi Antonelli)는 1분 17.601초로 불과 1000분의 1초 뒤졌고, 금요일 두 세션을 모두 1위로 마친 페라리(Ferrari)의 샤를 르클레르(Charles Leclerc)가 0.117초 차 3위였습니다. 맥라렌·메르세데스·페라리가 0.1초 남짓 안에 몰려 예선 판도를 점치기 어려운 상황이 됐습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>승부는 세션 마지막 4분의 1에 갈렸습니다. 상위 팀들이 가장 무른 소프트 타이어로 바꾸자 조지 러셀(George Russell)이 1분 18.107초로 먼저 앞섰고, 노리스가 1분 17.873초로 기준을 낮췄습니다. 이어 안토넬리가 크게 단축한 1분 17.601초를 냈고, 이 기록은 노리스가 막판 마지막 시도에서 1분 17.600초를 찍을 때까지 버텼습니다.</p>
+              <p>르클레르는 첫 소프트 타이어 랩에서 10번 코너 연석(코너 안팎의 턱)을 너무 많이 밟아 기록을 망쳤습니다. 막판에 1분 17.717초로 기록을 줄였지만 3위에 머물러, 연습 주행 세 세션을 모두 1위로 마치지는 못했습니다. 맥라렌은 오스카 피아스트리(Oscar Piastri)가 0.195초 차 4위(1분 17.795초)에 올라 두 대 모두 4위 안에 들었습니다.</p>
+              <p>레드불(Red Bull)의 막스 페르스타펜(Max Verstappen)은 1분 17.951초로 5위였습니다. 4번 코너에서 밖으로 밀려나는 실수가 있었고 브레이크에 대한 불만도 무전으로 전했습니다. 팀 동료 이삭 하자르(Isack Hadjar)도 차의 거동 때문에 애를 먹었습니다.</p>
+              <p>금요일 FP2에서 차가 멈춰 주행 시간을 잃었던 루이스 해밀턴(Lewis Hamilton)은 6위(1분 18.069초)로 회복했고, 러셀(1분 18.107초)이 7위였습니다. 하자르(1분 18.109초)는 러셀에 1000분의 2초 뒤진 8위, 레이싱 불스(Racing Bulls)의 리엄 로슨(Liam Lawson, 1분 18.113초)과 아르비드 린드블라드(Arvid Lindblad, 1분 18.137초)가 9·10위였습니다. 7위부터 10위까지가 0.03초 안에 몰렸습니다.</p>
+              <p>11위 이하는 니코 휠켄베르크(Nico Hülkenberg, 아우디), 프랑코 콜라핀토(Franco Colapinto)·피에르 가슬리(Pierre Gasly, 알핀), 페르난도 알론소(Fernando Alonso, 애스턴 마틴, 14위), 올리버 베어먼(Oliver Bearman, 하스) 순이었습니다. 윌리엄스(Williams)의 카를로스 사인츠(Carlos Sainz)·알렉스 알본(Alex Albon)이 16·17위, 랜스 스트롤(Lance Stroll)이 18위였습니다.</p>
+              <p>이번 주말 에스테반 오콘(Esteban Ocon) 대신 하스(Haas)에 오른 히라카와 료(Ryo Hirakawa)는 19위(1분 19.504초), 캐딜락(Cadillac)의 발테리 보타스(Valtteri Bottas)가 20위였습니다. 세르히오 페레스(Sergio Perez)와 가브리에우 보르툴레투(Gabriel Bortoleto)는 기록을 내지 못했습니다. 캐딜락은 예방 차원에서 페레스 차의 파워유닛(엔진과 전기 모터를 묶은 동력 장치)을 바꿨고, 보르툴레투의 아우디도 파워유닛 문제로 연기를 내며 들어와 두 사람 모두 예선 준비가 부족한 채 토요일 오후를 맞았습니다.</p>
+              <p>매체는 노리스가 금요일 서열을 뒤집긴 했지만, 1000분의 1초는 예선에서 지켜 낼 여유가 거의 없는 차이라고 짚었습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.grandprix.com/races/mexican-gp-2026-practice-3-report.html" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F10%2F30225627%2Flewis-hamilton-ferrari-mexico-gp-2026-planetf1.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>멕시코 GP 2차 연습: 르클레르, 금요일 두 세션 모두 1위 — 페르스타펜·로슨 충돌로 적기, 해밀턴은 출력 잃고 멈춰</h3>
+            <p class="orig">Mexican Grand Prix FP2 report</p>
+            <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.10.30</span></div>
+            <p class="sum">페라리(Ferrari)의 샤를 르클레르(Charles Leclerc)가 2차 연습 주행(FP2)에서도 1분 17.827초로 1위에 올라 금요일 두 세션을 모두 가져갔습니다. 다만 FP1에서 0.6초가 넘던 격차는 노리스와 0.103초로 크게 줄었습니다. 세션 도중 막스 페르스타펜(Max Verstappen)과 리엄 로슨(Liam Lawson)이 스타디움 구간에서 부딪혀 적기(세션을 멈추는 빨간 깃발)가 나왔고, 루이스 해밀턴(Lewis Hamilton)은 출력을 잃어 차를 세우는 바람에 11위에 그쳤습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>루키 10명이 나섰던 FP1 뒤, 정규 드라이버들이 돌아온 FP2는 훨씬 촘촘했습니다. 최종 순위는 르클레르, 랜도 노리스(Lando Norris, +0.103초), 조지 러셀(George Russell, +0.106초), 키미 안토넬리(Kimi Antonelli, +0.217초), 페르스타펜(+0.311초), 이삭 하자르(Isack Hadjar), 아르비드 린드블라드(Arvid Lindblad), 피에르 가슬리(Pierre Gasly), 로슨, 오스카 피아스트리(Oscar Piastri) 순이었습니다(The Race·Grandprix.com 집계). 상위 10명이 0.642초 안에 들었습니다.</p>
+              <p>초반엔 하스(Haas)의 올리버 베어먼(Oliver Bearman)이 출력 문제로 2번 코너 밖에 잠시 멈췄다가 피트로 돌아왔습니다. 세르히오 페레스(Sergio Perez)는 피트레인 규정 위반으로 흑백기(한 번 더 하면 벌칙이라는 경고 깃발)를 받았고, 맥라렌 두 대는 1번 코너에서 잇따라 잔디로 빠졌습니다.</p>
+              <p>FP1을 이와사 아유무(Ayumu Iwasa)에게 맡겼던 페르스타펜은 나오자마자 소프트 타이어를 끼웠습니다. 그러다 12번 코너에서 로슨의 안쪽으로 파고들었고, 두 차는 손짓까지 주고받으며 나란히 스타디움 구간을 지나다 바퀴끼리 부딪쳤습니다. 잔해 때문에 적기가 나왔고, 남은 42분에 재개됐을 때 로슨은 새 앞날개를, 페르스타펜은 바지보드(차 옆면에서 공기 흐름을 다듬는 날개 부품)가 부서진 채였습니다.</p>
+              <p>소프트 타이어 한 바퀴 기록 경쟁에서 르클레르는 12번 코너에서 페레스를 만나 랩을 망쳤고, 다음 시도에선 1번 코너에서 바퀴가 잠기며(브레이크를 너무 세게 밟아 타이어가 미끄러지는 것) 밖으로 나갔습니다. 그 틈에 노리스가 1위에 올랐지만, 르클레르가 세 번째 시도에서 1분 17.827초를 내며 다시 앞섰습니다.</p>
+              <p>해밀턴은 "차를 세워야 한다"는 무전을 받고 4번 코너로 가는 길가에 차를 댔고, 짧은 버추얼 세이프티카(모든 차가 정해진 속도로 줄여 달리는 조치)가 나왔습니다. 13랩만 달린 해밀턴은 Formula1.com에 "그 전까진 차가 정말 좋았다, 운이 나빴다"며 "모든 게 괜찮기를 기도할 뿐"이라고 말했습니다. 롱런(결승을 흉내 낸 긴 주행)을 못 해 페이스를 모르지만 "팀으로서 이번 주말 정말 경쟁력이 있다"고 덧붙였습니다.</p>
+              <p>해밀턴은 FP1에서도 차 앞부분 공기 흐름을 재는 측정 장치(에어로 레이크)를 달고 달리느라 시간을 썼다며, 사실상 한 세션의 절반도 못 달렸다고 했습니다. 페라리 대표 프레데리크 바쇠르(Frédéric Vasseur)는 FP3·예선 전에 해밀턴 차를 어떻게 고칠지 "오늘 밤 결정하겠다"고 했습니다. 아우디(Audi)의 가브리에우 보르툴레투(Gabriel Bortoleto)는 바닥판(플로어)을 통째로 바꾸느라 11랩만 달렸습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.planetf1.com/news/2026-mexican-grand-prix-fp2-report" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Mexico/GettyImages-2302766016.webp" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>페르스타펜·로슨, 연습 주행 충돌로 나란히 그리드 한 계단 강등 — 페르스타펜 "자리를 걸고 싸우는 처지라면 영리하지 못한 행동"</h3>
+            <p class="orig">Verstappen and Lawson get grid penalties after 'clumsy' Mexico City practice clash</p>
+            <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">FP2에서 부딪힌 막스 페르스타펜(Max Verstappen)과 리엄 로슨(Liam Lawson)이 결승에서 각각 그리드 한 계단 강등과 벌점 1점을 받았습니다. 당시 페르스타펜은 기록 측정 랩을 준비하던 중이었고, 로슨은 타이어를 식히며 돌던 중이었습니다. 스튜어드(경기 심판단)는 두 사람이 그날 팀 매니저 회의에서 이미 주의를 받았는데도 이런 일이 생겼다며 "용납할 수 없다"고 봤고, 두 드라이버도 움직임이 "서툴렀다(clumsy)"고 인정했습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>두 사람은 FP1을 신인 이와사 아유무(Ayumu Iwasa)와 니콜라 촐로프(Nikola Tsolov)에게 맡기고 FP2부터 나왔습니다. 페르스타펜이 12번 코너에서 로슨을 추월하자 로슨은 스타디움 구간 왼쪽 코너에서 되찾으려 했고, 페르스타펜이 출구에서 연석을 넘어 로슨 옆으로 돌아오며 부딪쳤습니다. 레드불(Red Bull)은 바닥판(플로어)이, 레이싱 불스(Racing Bulls)는 앞날개가 부서졌습니다.</p>
+              <p>스튜어드는 올해 연습 주행 중 드라이버끼리 비슷한 일이 있었고 예전에도 이런 접촉이 반복된 점을 들어, 보통의 '공식 경고'보다 한 단계 무거운 그리드 강등을 택했다고 설명했습니다. 벌점(Penalty points)은 12개월 안에 12점이 쌓이면 한 경기 출전이 정지되는 누적 점수입니다.</p>
+              <p>페르스타펜은 세션 뒤 "운이 나빴다고 할 일이 아니다, 그가 하려던 건 별로 영리하지 않았다"며 "내 주말이 달라지진 않겠지만, 내가 그라면 좀 더 영리하게 행동했을 것이다, 특히 자기 자리를 걸고 싸우는 처지라면"이라고 말했습니다. 로슨은 레이싱 불스와의 계약이 올해 말 끝나 2027년 자리가 확정되지 않았습니다.</p>
+              <p>레이싱 불스 대표 앨런 퍼메인(Alan Permane)은 충돌을 한마디로 "불필요했다"고 정리했습니다(Crash.net 보도). 그는 타이어를 식히는 랩이라도 마지막 구간은 빠르게 달려야 다음 랩 1번 코너에서 타이어 온도가 맞아 앞바퀴가 잠기지 않는다며, 두 드라이버 모두 그 구간을 노렸다고 설명했습니다. 또 차분히 돌아보면 둘 다 더 잘할 수 있었다고 느낄 것이고, 누구도 싸움을 걸려던 건 아니라고 했습니다.</p>
+              <p>퍼메인은 이번 일이 로슨의 거취에 영향을 주느냐는 질문에 "아니다"라고 답했습니다. 레드불 대표 로랑 메키스(Laurent Mekies)도 같은 날 레이싱 불스 라인업은 그 팀만 정한다며 선을 그었습니다(이적/계약 섹션 참조).</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.formula1.com/en/latest/article/verstappen-and-lawson-get-grid-penalties-after-clumsy-mexico-city-practice-clash.2m2ey8Pl7g5IfQfGeepilD" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://cdn-1.motorsport.com/images/amp/0LdejdJ0/s6/max-verstappen-red-bull-racing.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>레드불 "RB22 앞뒤 균형이 따로 논다" — 페르스타펜 "더 미끄러져 인내심이 필요, 솔직히 재미는 없다"</h3>
+            <p class="orig">Red Bull finds 'disconnect' in RB22 in F1 Mexico GP practice</p>
+            <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">레드불(Red Bull)은 멕시코 금요일 주행 뒤 아직 할 일이 많다고 인정했습니다. 기술 이사 피에르 바셰(Pierre Waché)는 제동과 코너 꼭짓점에선 앞이, 돌아 나갈 땐 뒤가 문제여서 "앞뒤 균형이 따로 논다"고 진단했습니다. 막스 페르스타펜(Max Verstappen)은 로슨과의 충돌로 차 옆 부품이 떨어져 나가 다운포스(차를 노면에 눌러 주는 힘)를 잃었는데도 0.3초 차 5위였습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>페르스타펜에게 FP2는 이날 유일한 세션이었습니다. FP1은 이와사 아유무(Ayumu Iwasa)가 탔기 때문입니다. 그는 "바지보드인지 뭔지 하는 게 떨어져 나가 당연히 다운포스를 잃었다"며 "나쁘진 않았지만 고치고 싶은 게 몇 가지 있다"고 말했습니다.</p>
+              <p>그는 "한 세션만 탔고, 그립은 모두에게 좋지 않다, 다른 드라이버들 온보드 영상을 봐도 누구도 운전이 즐거워 보이지 않는다"며 "우리 차에서 페이스를 조금 더 찾아 한 단계 올라서야 한다"고 했습니다.</p>
+              <p>고지대인 멕시코는 늘 공기가 희박해 그립과 다운포스가 적지만, 움직이는 날개(액티브 에어로)를 쓰는 올해 규정에선 그 경향이 더 심하다는 게 페르스타펜의 설명입니다. 그는 "훨씬 더 미끄러져서 아주 인내심 있게 운전해야 한다"며 "개인적으로 가장 재미있지는 않지만 다른 종류의 도전"이라고 말했습니다.</p>
+              <p>바셰는 "지금은 제동 구간과 꼭짓점에선 앞이, 그 뒤 돌아 나갈 땐 뒤가 문제라 균형이 분명히 따로 논다"며 내일까지 고치겠다고 했습니다. 충돌 손상 때문에 차의 진짜 균형을 판단하기도 어려웠다며 "앞뒤 모두 손상돼 전체 그립이 떨어졌고, 바닥판을 고친 뒤 나아지는지 보자"고 했습니다.</p>
+              <p>그는 문제의 해법이 세팅에 있다면서도, 한 바퀴 기록용 균형을 고치다 롱런(결승을 흉내 낸 긴 주행)에서 타이어를 상하게 해서는 안 된다고 했습니다. 또 "마지막 구간에서 타이어가 확실히 과열된다"며 FP2 동안 노면 온도가 10도 넘게 떨어져 롱런 데이터가 일요일 결승을 제대로 보여 주지 못한다고 경고했습니다. 결승에서는 타이어 마모가 더 크고 미디엄 타이어가 나을 수도 있다는 전망입니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.motorsport.com/f1/news/red-bull-finds-disconnect-in-rb22-in-f1-mexico-gp-practice/10870035/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Mexico___Practice/2302755784.webp" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>피아스트리 "맥라렌의 멕시코 전망은 알기 어렵다" — 맥라렌 "선두 네 팀은 촘촘, 중위권도 어느 때보다 가까워"</h3>
+            <p class="orig">Piastri explains why McLaren's Mexico prospects are 'very difficult to know' after first day on track</p>
+            <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">맥라렌(McLaren)의 오스카 피아스트리(Oscar Piastri)는 금요일 FP1 8위, FP2 10위로 마친 뒤 "괜찮아 보였다"면서도 토요일 전망은 "알기 매우 어렵다"고 했습니다. 많은 정규 드라이버가 FP1을 건너뛰어 비교가 어렵다는 이유입니다. 팀 동료 랜도 노리스(Lando Norris)는 FP2에서 르클레르에 이은 2위였습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>FP1에서 피아스트리는 리저브 드라이버 레오나르도 포르나롤리(Leonardo Fornaroli, 17위)와 함께 달렸고, 노리스는 FP2부터 나왔습니다. 피아스트리는 FP2 도중 방호벽에 닿을 뻔한 아찔한 순간도 겪었습니다.</p>
+              <p>그는 "솔직히 괜찮아 보였다, 페라리가 아주 강해 보이지만 우리도 괜찮다"며 "FP2 소프트 타이어 랩은 끝에 꽤 엉성했지만 대체로 잘 풀리고 있다"고 말했습니다. 멕시코는 조건이 늘 까다롭고 트랙이 빠르게 좋아지는 느낌이라고 덧붙였습니다.</p>
+              <p>토요일 전망을 묻자 그는 "많은 드라이버가 FP1을 놓친 오늘 같은 날은 늘 좀 까다롭다"며 "배우고 고칠 게 많다"고 했습니다.</p>
+              <p>맥라렌 레이싱 총괄 랜디 싱(Randy Singh)은 FP1에서 포르나롤리 차로 여러 실험을 해 고지대에 맞는 세팅을 잡았다며 "레오가 아주 잘해 줬다"고 칭찬했습니다. 그 뒤 FP2에서 성능을 좀 더 끌어올리는 데 집중했다고 합니다.</p>
+              <p>싱은 "선두 네 팀은 여전히 아주 촘촘하고, 중위권은 최근 경기들보다 훨씬 가까워 보여 예선이 빡빡할 것"이라고 내다봤습니다. 또 "일요일엔 온도 관리에 애먹는 팀이 많을 것이고, 오늘 바퀴가 잠기는 장면이 많았는데 일요일도 같을 것"이라고 했습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.formula1.com/en/latest/article/piastri-explains-why-mclarens-mexico-prospects-are-very-difficult-to-know-after-first-day-on-track.4PGo71V75Iiks8Tdhj5z4B" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Mexico/GettyImages-2302753182.webp" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>알론소 "기대 이상" — 애스턴 마틴, 멕시코 금요일 르클레르와 0.769초 차… 시즌 초엔 몇 초씩 벌어지던 격차</h3>
+            <p class="orig">Alonso cautiously upbeat after strong Friday in Mexico for Aston Martin</p>
+            <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">긴 직선이 많아 애스턴 마틴(Aston Martin)에 불리할 것으로 보였던 멕시코에서 페르난도 알론소(Fernando Alonso)가 금요일 FP1 7위, FP2 12위를 기록했습니다. FP2에서 1위와의 차이는 0.769초로, 시즌 초 몇 초씩 뒤지던 때와 비교하면 큰 발전입니다. 알론소는 성적이 기대를 넘었느냐는 질문에 "아마 그렇다"고 답했습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>FP1 7위는 루키가 많이 나선 세션이라 대표성이 떨어지지만, 1위와 1.229초 차라는 점은 고무적이었습니다. 매체는 AMR26이 일곱 번째로 빠른 차로 평가됐고, 고지대 조건에 잘 대처했다고 봤습니다. 다만 다른 차는 힘든 하루였습니다. FP1에서 잭 크로퍼드(Jak Crawford)가 트랙에 차를 세웠고, 랜스 스트롤(Lance Stroll)은 FP2에서 뒤처진 일정을 따라잡느라 바빴습니다.</p>
+              <p>알론소는 "멕시코는 고도 같은 특수한 조건이 있어 좋은 놀라움이 있을지도 모른다고 열린 마음으로 왔다"며 "적어도 내 쪽 차고에선 차가 잘 움직인다, 랜스 차는 내일까지 점검할 문제가 있다"고 말했습니다. 고도·터보 회전수·온도·브레이크가 모두 한계에 가깝지만 그 밖엔 큰 걱정이 없다고 했습니다.</p>
+              <p>올해 차의 다운포스(차를 노면에 눌러 주는 힘)가 적어 걱정했던 점에 대해서는 "솔직히 큰 차이가 없다, 지난 몇 년 이곳에서 탄 차와 느낌이 아주 비슷하다"고 했습니다.</p>
+              <p>팀의 페드로 데 라 로사(Pedro de la Rosa)는 "예상보다 조금 낫다"며 1~6번 코너와 마지막 구간처럼 저속 코너가 많은 트랙 특성이 차를 강해 보이게 만든다고 분석했습니다. 다만 온도·엔진·제동 관리는 여전히 과제라고 했습니다.</p>
+              <p>그는 다운포스가 아주 적은 차는 경험 많은 드라이버가 더 빨리 적응한다고도 했습니다. 또 새로 포장한 구간과 옛 포장 구간이 나뉘어 마지막 구간에선 그립이 더 좋아 더 밀어붙일 수 있다고 설명했습니다.</p>
+              <p>파워유닛을 공급하는 혼다(Honda)에 대해서는 "터보 랙(가속 페달을 밟은 뒤 터보가 힘을 내기까지의 지연)에 대한 드라이버 불만이 거의 없었다"며 혼다가 잘 줄였다고 평가했습니다. 해발 2,200m에서는 터보 랙보다 엔진·브레이크 냉각이 더 큰 과제라고 덧붙였습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.formula1.com/en/latest/article/alonso-cautiously-upbeat-after-strong-friday-in-mexico-for-aston-martin.4vekgCuq0xUq8VaOuuxWAt" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 페라리 대표의 멕시코 GP 기대치 발언<span class="smeta">Motorsport.com · 2026.10.31</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://cdn-8.motorsport.com/images/amp/6O7zXZJ6/s6/charles-leclerc-ferrari.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>바쇠르, 금요일 1위에도 기대 낮춰 — "조건이 극단적, 1번 코너 앞 요철은 위험할 정도"… 오스틴의 '금요일 1위, 예선 4·5위' 반복 경계</h3>
+              <p class="orig">Fred Vasseur downplays expectations for F1 Mexico GP despite blistering Friday</p>
+              <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.10.31</span></div>
+              <p class="sum">페라리(Ferrari) 대표 프레데리크 바쇠르(Frédéric Vasseur)는 샤를 르클레르(Charles Leclerc)가 금요일 두 세션을 모두 1위로 마쳤는데도 기대를 낮췄습니다. 지난주 오스틴에서도 페라리는 모든 연습 주행 1위였지만 예선 4·5위, 결승 2·4위에 그쳤기 때문입니다. 그는 고도 때문에 조건이 "극단적"이고 1번 코너 앞 요철은 "거의 위험한 수준"이라고 지적했습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>르클레르는 FP1에서 1분 18.128초, FP2에서 1분 17.827초로 모두 1위였습니다. 해밀턴(Lewis Hamilton)도 FP1 4위(0.738초 차)에 올랐고, FP2 중반 엔진이 멈추기 전까지 5위 안에 있었습니다.</p>
+                <p>바쇠르는 "자신 있느냐 아니냐는 중요하지 않다, 내일을 위해 최선을 다해 일해야 한다"며 "고도 때문에 조건이 우리가 알던 것보다 훨씬 극단적이다, 우리에게도 남들에게도 도전이고 오늘 밤 할 일이 많다"고 말했습니다.</p>
+                <p>그는 "노면이 엄청 울퉁불퉁하다, 1번 코너 앞은 좀 지나쳐서 거의 위험할 정도"라며 "오늘 밤 뭔가 해야 한다"고 했습니다. 전체적으로는 좋은 출발이지만 갈 길이 멀다는 평가입니다.</p>
+                <p>이 발언에는 지난주 기억이 깔려 있습니다. 페라리는 오스틴에서 연습 주행을 모두 1위로 마쳤지만 예선 4·5위, 결승 2·4위에 그쳤습니다. 르클레르는 트랙이 빠르게 좋아지는 변화에 대응하지 못했다고 했고, 해밀턴은 Q3(예선 마지막 단계) 부진을 타이어 탓으로 돌렸습니다. 매체는 그립이 낮아 트랙 변화가 큰 멕시코에서도 같은 일이 생길 수 있고, 독주 중인 메르세데스와 되살아난 레드불이 있어 페라리의 폴포지션이 장담할 수 없다고 봤습니다.</p>
+                <p>바쇠르는 "모두 나아지고, 모두 고도에 맞춰 패키지를 다듬을 것"이라며 "드라이버들은 시즌에서 가장 큰 날개를 다는 데 익숙했는데 이 정도 다운포스로 멕시코를 달리는 건 도전"이라고 했습니다. 작년과의 다운포스 차이가 몬자보다 모나코·멕시코에서 훨씬 크다는 설명입니다.</p>
+                <p>그럼에도 매체는 이번 경기가 페라리에 시즌 세 번째 우승(앞선 두 번은 바르셀로나의 해밀턴, 실버스톤의 르클레르) 기회라고 봤습니다. 고지대에선 터보가 더 일해야 하는데 페라리 SF-26의 터보가 작아 지연이 적기 때문입니다. 러셀은 이런 이유로 페라리를 주말 우승 후보로 꼽았지만, 해밀턴은 FP2 뒤 그 평가를 부인했습니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.motorsport.com/f1/news/fred-vasseur-downplays-expectations-for-f1-mexico-gp-despite-blistering-friday/10870125/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 레드불 무전 문제 해결 경과와 미국 GP 회고<span class="smeta">Crash.net · 2026.10.31</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-10/xpb_1448894_hires.jpg?width=1600&amp;aspect_ratio=16:9" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>후속: 메키스 "페르스타펜 무전 문제, 이번엔 고쳤다" — 미국 GP 3위엔 "어수선한 일요일, 안토넬리와 메르세데스가 조금 더 빨랐다"</h3>
+              <p class="orig">Red Bull provides update on F1 radio issues vexing Max Verstappen</p>
+              <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.10.31</span></div>
+              <p class="sum">레드불(Red Bull) 대표 로랑 메키스(Laurent Mekies)는 싱가포르·미국 GP에서 막스 페르스타펜(Max Verstappen)을 괴롭힌 무전 장애를 이번 경기에 맞춰 고쳤다고 밝혔습니다. 한두 경기만 넘기는 게 아니라 통신 품질 자체를 높이려 대대적으로 점검했다는 설명입니다. 그는 페르스타펜이 3위에 그친 미국 GP에 대해 "어수선한 일요일"이었다고 인정했습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>지난 보도 이후 바뀐 점: 10월 29일 브리핑에서 페르스타펜의 새 레이스 엔지니어 톰 하트(Tom Hart)가 오스틴에서 무전 장애 속에 첫 주말을 치렀다고 전했는데, 이번엔 팀 대표가 해결책을 내놓았다고 밝혔습니다.</p>
+                <p>메키스는 FP1과 FP2 사이 팀 대표 기자회견에서 "이번 경기엔 해결책이 있기를 바란다"며 "엔지니어들이 한두 경기만 문제가 사라지는 게 아니라 통신 품질 자체가 한 단계 올라가도록 아주 깊이 파고들었다"고 말했습니다.</p>
+                <p>그는 "이번 주말 많은 것을 바꿨다, 막스는 아직 타지 않았지만 오늘 아침 두 차 모두 확실히 훨씬 나은 수준이었다"며 "이제 확실히 고쳐졌기를 바란다"고 했습니다.</p>
+                <p>말레이시아·싱가포르에서 압도적인 주말을 보낸 레드불에게 미국 GP는 실망스러웠습니다. 페르스타펜은 3위에 그쳤고 자기 경기를 "평범했다"고 평했습니다. 메키스도 "막스 말이 맞다, 꽤 어수선한 일요일이었다"고 인정했습니다.</p>
+                <p>그는 "공정하게 말해 오스틴 일요일엔 키미(안토넬리)와 메르세데스가 우리보다 조금 빨랐다, 말레이시아·싱가포르 때와 같은 성능 수준이 아니었다"며 "일부는 예상했고 일부는 되찾을 수 있다고 본다, 이번 주말엔 몇 가지를 다르게 하겠다"고 말했습니다.</p>
+                <p>멕시코 첫날 레드불은 FP2에서 페르스타펜 5위, 이삭 하자르(Isack Hadjar) 6위로 마쳤습니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.crash.net/f1/news/1108828/1/red-bull-provides-update-f1-radio-issues-vexing-max-verstappen" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+  </section>
+
+  <!-- ============================ 🔄 이적/계약 ============================ -->
+  <section id="transfer" data-cat="transfer">
+    <div class="sec-head"><h2>🔄 이적/계약</h2><span class="count">5건 · 스포일러 1건</span></div>
+
+    <article class="art">
+          <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/10/racefansdotnet-21-10-30-15-46-35-3.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>하스, 멕시코 GP 도중 오콘 전격 제외 — "아파서가 아니다", 토요타 내구 레이서 히라카와가 F1 결승 데뷔</h3>
+            <p class="orig">Ocon out, Hirakawa in as Haas make shock Mexican Grand Prix driver change</p>
+            <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">하스(Haas)가 토요일 FP3 직전, 에스테반 오콘(Esteban Ocon)을 멕시코시티 GP 남은 일정에서 빼고 리저브 드라이버 히라카와 료(Ryo Hirakawa)를 내보낸다고 발표했습니다. 팀은 오콘이 아프지 않다고만 확인했을 뿐 이유는 밝히지 않았습니다. 전날 FP2에서 오콘이 타이어 선택을 두고 레이스 엔지니어와 무전으로 다툰 장면이 배경으로 거론됩니다. 32세 히라카와는 이번이 F1 결승 데뷔입니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>하스의 공식 발표는 "히라카와가 남은 주말 동안 오콘을 대신한다"는 한 줄뿐이었고, "지금은 추가 설명을 하지 않겠다"고 덧붙였습니다. 대변인은 "질병 때문이 아니다"라고 확인했습니다. 팀 대표 고마쓰 아야오(Ayao Komatsu)는 FP3 도중 Sky Sports F1 인터뷰에서 "많이 말할 수는 없지만 아프지 않다는 것만은 말할 수 있다"고 했습니다.</p>
+              <p>오콘이 연습 뒤 "기분이 좋지 않았느냐"는 질문에도 고마쓰는 자세히 말할 수 없다고 했고, 남은 시즌 복귀 여부에는 "솔직히 이 부분은 말할 수 없다, 눈앞의 일과 히라카와를 오늘 오후에 최상의 상태로 만드는 데 집중하고 있다"고 답했습니다(Crash.net 보도).</p>
+              <p>Crash.net은 금요일 FP2 무전을 배경으로 짚었습니다. 레이스 엔지니어 로라 뮐러(Laura Müller)가 "올리(베어먼) 타이어 상태가 좋지 않아 연료를 많이 실은 주행을 미디엄으로 바꿨다"고 하자, 오콘은 "그래도 소프트 맞지?"라고 물었고, 뮐러가 "아니, 미디엄으로 해야 한다"고 답하자 "아니, 난 소프트를 원했어, 나한테 이러지 마"라고 했습니다. 팀은 이 다툼과 교체의 연관성을 공식 확인하지 않았습니다. 오콘은 그 세션을 13위로 마쳐 팀 동료 올리버 베어먼(Oliver Bearman)보다 앞섰습니다.</p>
+              <p>오콘은 이미 올해 말 하스를 떠나기로 정해져 있고, 내년 자리는 페라리 주니어 라파엘 카마라(Rafael Câmara)가 맡습니다. The Race는 둘의 관계가 2025년 베어먼에게 밀리며 오콘이 차(특히 브레이크) 불만을 공개적으로 쏟은 때부터 틀어졌고, 올여름 휴식기 직후 고마쓰가 잔류 가능성이 낮다고 알렸다고 정리했습니다. 2024년에도 오콘은 알핀(Alpine)에서 시즌 마지막 경기를 앞두고 잭 두한(Jack Doohan)으로 교체된 적이 있습니다.</p>
+              <p>히라카와는 토요타(Toyota) 소속으로 세계내구선수권(WEC, 르망 24시간 등을 포함한 장거리 레이스 대회) 챔피언을 두 번 차지했고 르망 24시간에서도 우승했습니다. 이번 주말이 하스와의 아홉 번째 공식 F1 연습 주행이었고, FP1에서는 15위였습니다. 하스의 타이틀 스폰서가 토요타라는 점도 함께 거론됩니다.</p>
+              <p>멕시코 뒤에도 네 경기가 남았지만, 히라카와가 계속 탈지는 정해지지 않았습니다. 그는 WEC 일정으로 돌아가야 해, 다음 주 상파울루 GP에서 카마라가 조기 데뷔할 수 있다는 관측도 나오지만 팀은 확인하지 않았습니다. Motorsport.com은 오콘이 내년 애스턴 마틴(Aston Martin) 리저브 드라이버가 될 것으로 파악했다고 전했습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.racefans.net/2026/10/31/ocon-out-hirakawa-in-as-haas-make-shock-mexican-grand-prix-driver-change/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/XPB_1448550_HiRes.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>후속(정정): 허타, 슈퍼라이선스 아직 1점 모자라 — 인디카 순위표 오류로 작년 6위가 7위로, 브라질 FP1에 한 번 더 나설 전망</h3>
+            <p class="orig">Why Colton Herta is still one point off F1 superlicence</p>
+            <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.10.30</span></div>
+            <p class="sum">캐딜락(Cadillac) 테스트 드라이버 콜튼 허타(Colton Herta)가 멕시코 FP1로 F1 출전 면허인 슈퍼라이선스(Super Licence) 40점을 채운 줄 알았지만, FIA 확인 결과 39점으로 1점이 모자랐습니다. 인디카(IndyCar, 미국 최고 포뮬러 대회) 웹사이트가 2025년 순위에서 허타를 6위로 잘못 표시했고, 실제로는 동점 끝에 7위여서 그 해 점수가 6점이 아닌 4점이었기 때문입니다. 캐딜락은 다음 주 브라질 FP1에 허타를 한 번 더 태울 가능성이 큽니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>지난 보도 이후 바뀐 점: 어제(10월 31일) 브리핑은 PlanetF1 보도를 따라 "허타가 40점을 달성했다"고 전했지만, 이는 사실과 달랐습니다. FIA가 계산한 허타의 점수는 39점입니다.</p>
+              <p>The Race가 정리한 점수는 2023년 인디카 10위 1점, 2024년 2위 30점, 2025년 7위 4점, 올해 F1 FP1 출전 4회 4점으로 합계 39점입니다. 캐딜락은 7월 FIA와 계산을 맞춰 보고 "1점 남았다"고 판단해 멕시코 FP1에 허타를 내보냈습니다.</p>
+              <p>어긋난 곳은 2025년 순위였습니다. 허타와 펠릭스 로센크비스트(Felix Rosenqvist)는 372점 동점이었는데, 동점이면 더 좋은 성적을 많이 낸 쪽이 앞서는 규칙(카운트백)에 따라 2위 횟수가 많은 로센크비스트가 6위여야 했습니다. 그런데 인디카 웹사이트는 허타를 6위로 표시해 왔고, 한 기자가 이번 주 이를 지적하자 순위를 7위로 고쳤습니다. 시즌 직후 배포된 공식 결과에는 처음부터 7위로 적혀 있었다고 합니다.</p>
+              <p>규정상 연습 주행 점수는 100km 이상 달리고 벌점이 없으면 한 경기당 1점이며, 최대 10점까지, 해당 연도와 상관없이 인정됩니다. 그래서 허타는 연습 주행 한 번만 더 하면 됩니다. 남은 기회는 브라질·라스베이거스·카타르·아부다비 네 번이며, 중동 정세로 마지막 두 경기가 불확실해 브라질이나 라스베이거스가 유력합니다(Crash.net 보도).</p>
+              <p>허타는 PlanetF1에 "이번 주말 이것만 하면 슈퍼라이선스를 받는 줄 알았다"며 "나도 여러분과 같은 처지"라고 말했습니다. 기회가 오면 "받겠다"며 "나는 F1에 오고 싶다, 그게 목표"라고 했습니다. Motorsport.com에는 "밖에서 많은 논의가 오가지만 내가 통제할 수 없는 일, 차 안에서 최선을 다하고 그게 보여지길 바랄 뿐"이라고 했습니다.</p>
+              <p>허타는 멕시코 FP1을 1위와 3.237초 차 최하위로 마쳤고, 18위 세르히오 페레스(Sergio Perez)와도 0.970초 차였습니다. 캐딜락은 허타를 2027년 발테리 보타스(Valtteri Bottas) 자리에 앉힐지 검토 중이지만, 면허를 채우는 일정은 그 결정과 별개로 진행될 전망입니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.the-race.com/formula-1/why-colton-herta-still-one-point-off-f1-superlicence/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://cdn-9.motorsport.com/images/amp/YpbAB5A0/s6/frederik-vesti-mercedes.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>후속: 러셀 "베스티는 캐딜락 자리를 받을 자격 있다" — 자기 FP1을 내주며 "기량을 보여 줄 기회를" 요청… 오콘은 애스턴 마틴 리저브행 관측</h3>
+            <p class="orig">George Russell tips Frederik Vesti for F1 2027 Cadillac seat</p>
+            <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">메르세데스(Mercedes)의 조지 러셀(George Russell)이 팀 리저브 드라이버 프레데리크 베스티(Frederik Vesti)를 캐딜락(Cadillac) 2027년 자리의 후보로 공개 지지했습니다. 러셀은 베스티가 대부분의 FP1에서 궂은 테스트만 맡았다며, 이번엔 기록을 낼 기회를 주자고 팀에 직접 요청했다고 밝혔습니다. 베스티는 러셀 차로 나선 멕시코 FP1에서 3위에 올랐습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>지난 보도 이후 바뀐 점: 어제 브리핑에서 베스티가 '깜짝 후보'로 거론됐다고 전했는데, 이번엔 메르세데스 정규 드라이버인 러셀이 공개적으로 그를 밀었습니다. 또 다른 후보로 거론되던 오콘이 애스턴 마틴 리저브로 갈 것이라는 Motorsport.com 취재 내용이 새로 나왔습니다.</p>
+              <p>캐딜락은 수요일 세르히오 페레스(Sergio Perez)와 재계약했지만, 그의 동료로 발테리 보타스(Valtteri Bottas)를 확정하지 않았습니다. 테스트 드라이버 콜튼 허타(Colton Herta)는 아직 슈퍼라이선스가 없고 F2 시즌도 실망스러웠지만 여전히 후보이며, 하스를 떠나는 에스테반 오콘(Esteban Ocon)도 시장에 나와 있습니다. 다만 Motorsport.com은 오콘이 애스턴 마틴(Aston Martin) 리저브 드라이버가 될 것으로 파악했습니다.</p>
+              <p>24세 덴마크 출신 베스티는 2023년 F2 준우승 뒤 아직 F1 결승 데뷔를 하지 못했습니다. 메르세데스 리저브 일과 캐딜락 하이퍼카(르망 등 내구 레이스 최상위 차급) 출전을 함께 해 왔고, 멕시코까지 일곱 번 FP1에 나섰습니다. 이번엔 여러 롱런 프로그램 뒤 막판 소프트 타이어 랩으로 안토넬리에 0.074초, 1위 르클레르에 0.733초 뒤진 3위를 기록했습니다.</p>
+              <p>러셀은 "정말 잘했다, 그가 캐딜락 자리를 노리고 열심히 싸우고 있다는 걸 알고, 기회를 받을 자격이 있다"고 말했습니다. 이어 "그는 우리 팀과 일하는 데 많은 노력을 쏟았고 모두 그를 아주 존중한다, 그동안 FP1마다 힘든 일만 맡고 기록용 주행은 거의 못 했다"고 했습니다.</p>
+              <p>러셀은 "팀에 '그가 무엇을 할 수 있는지 보여 줄 기회를 꼭 주고 싶다, 그게 우리가 해 줄 수 있는 최소한'이라고 말했다"며 "그래서 좋았다"고 덧붙였습니다. 베스티는 FP1 뒤 "아주 기쁘다"고 했습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.motorsport.com/f1/news/george-russell-frederik-vesti-deserves-cadillac-seat-for-f1-2027/10870111/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://cdn-1.motorsport.com/images/amp/2y7QprX6/s6/motorsport-com-graphics-37.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>메키스 "레이싱 불스 2027년 라인업은 그 팀만 정한다" — 로슨과 부딪힌 페르스타펜에게 발언권 없어</h3>
+            <p class="orig">Max Verstappen will have no say in 2027 Racing Bulls driver line-up, says Red Bull boss</p>
+            <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">레드불(Red Bull) CEO 겸 팀 대표 로랑 메키스(Laurent Mekies)가 자매팀 레이싱 불스(Racing Bulls)의 2027년 드라이버는 레이싱 불스가 스스로 정한다고 밝혔습니다. FP2 충돌 뒤 막스 페르스타펜(Max Verstappen)이 리엄 로슨(Liam Lawson)을 두고 "자리를 걸고 싸우는 처지라면 영리하지 못하다"고 말해 논란이 일자, 페르스타펜의 의견이 결정에 영향을 주지 않는다고 선을 그은 것입니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>로슨의 레이싱 불스 계약은 올해 말 끝나고, F2에서 활약 중인 레드불 주니어 니콜라 촐로프(Nikola Tsolov)가 그 자리를 노리고 있습니다. 그래서 페르스타펜의 "자리를 걸고 싸우는 처지" 발언은 더 민감하게 받아들여졌습니다.</p>
+              <p>메키스는 Sky Sports F1에 "두 가지를 분리해야 한다"며 "트랙 위에서 아주 불필요한 일이 있었고 그래서 관련 드라이버와 팀 모두 답답했다, 막스의 대답에서 들리는 게 아마 그것"이라고 말했습니다. 이어 "그리고 드라이버 결정은 별개다, 레이싱 불스 라인업은 그들에게, 오직 그들에게 달렸다"고 했습니다.</p>
+              <p>페르스타펜이 영향을 줄 수 있느냐는 거듭된 질문엔 "막스는 모터스포츠를 너무 잘 알아서 한 번의 일로 흔들리지 않는다"고 답했습니다.</p>
+              <p>메키스는 레드불의 금요일 성적에 대해 "지금까지는 우리가 밀렸다, 다른 상위 세 팀이 우리보다 조금 더 끌어냈다"고 인정했습니다. 그는 "아침에 상황이 아주 나빴을 땐 0.35초쯤 뒤졌다, 그 격차를 조금이라도 줄이면 다시 경쟁에 낄 수 있다"며 엔지니어들이 마지막 수정에 최선을 다하고 있다고 했습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.motorsport.com/f1/news/max-verstappen-will-have-no-say-in-2027-racing-bulls-driver-line-up-says-red-bull-boss/10870282/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 로슨의 2027년 거취 발언<span class="smeta">PlanetF1 · 2026.10.31</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F10%2F26111746%2Fliam-lawson-hand-on-head-1.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>로슨 "무엇을 더 해야 하는지 모르겠다" — 드라이버 순위 9위로 '중위권 1위'인데도 레이싱 불스 자리 불안</h3>
+              <p class="orig">Liam Lawson 'not really sure' what more Red Bull expects as F1 2027 future hangs in balance</p>
+              <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.10.31</span></div>
+              <p class="sum">레이싱 불스(Racing Bulls)의 리엄 로슨(Liam Lawson)은 2027년 자리가 불확실한 데 대해 "무엇을 더 기대하는지 잘 모르겠다"고 말했습니다. 그는 다섯 경기를 남기고 드라이버 순위 9위로 상위 네 팀 밖 드라이버 중 가장 높고, 10위 피에르 가슬리보다 35점 앞서 있습니다. 그런데도 레드불 주니어 니콜라 촐로프가 자리를 노린다는 관측이 이어집니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>로슨은 올해 네 경기를 빼고 모든 그랑프리에서 포인트를 땄고, 다친 이삭 하자르(Isack Hadjar) 대신 레드불 본팀에서 뛰었을 때도 좋은 인상을 남겼습니다. 꾸준한 10위권 성적으로 드라이버 순위 9위를 지키며 가슬리(Pierre Gasly)에 35점 앞서 있습니다.</p>
+                <p>그의 활약 덕에 레이싱 불스는 큰 사고가 없는 한 컨스트럭터(팀) 순위 5위를 사실상 굳혔습니다. 다섯 경기를 남기고 알핀(Alpine)에 33점 앞서 있습니다.</p>
+                <p>그런데도 패독에서는 레드불이 레이싱 불스 라인업을 바꾼다면 팀 동료 아르비드 린드블라드(Arvid Lindblad)가 아니라 로슨이 자리를 잃을 것이라는 이야기가 돕니다. 촐로프(Nikola Tsolov)가 그 후보입니다.</p>
+                <p>로슨은 멕시코 GP 미디어 데이에서 "아주 강한 한 해였고 특히 후반기는 정말 좋았다"며 "F1에서 꾸준함을 찾기는 매우 어렵고, 변수가 많아 금방 사라질 수도 있다, 하지만 올해 특히 후반기엔 정말 많은 걸 최대로 끌어냈다"고 말했습니다.</p>
+                <p>그는 "그래서 무엇을 더 기대하는지 잘 모르겠지만, 자리 선정 문제를 너무 많이 생각하고 있지도 않다"며 "1년 전엔 그 생각을 많이 해서 머릿속을 가득 채웠고 과하게 생각하게 됐다, 올해는 거의 생각하지 않았고 성적도 좋았다"고 했습니다. 남은 경기에서 최대한 많은 포인트를 따는 데 집중하겠다는 것입니다.</p>
+                <p>로슨은 "포인트를 못 딸 차라도 주말이 끝났을 때 할 수 있는 건 다 했다고 느끼는 게 드라이버에게 가장 중요하다"며 "다듬을 건 많지만 전체적으로 아주 강한 시즌이었다, 내년에 달리지 못하더라도 더 할 수 있는 건 많지 않았다고 느낄 것"이라고 말했습니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.planetf1.com/news/liam-lawson-red-bull-racing-bulls-f1-2027-future" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+  </section>
+
+  <!-- ============================ 🔧 기술/규정 ============================ -->
+  <section id="tech" data-cat="tech">
+    <div class="sec-head"><h2>🔧 기술/규정</h2><span class="count">5건 · 스포일러 2건</span></div>
+
+    <article class="art">
+          <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/XPB_1448884_HiRes.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>페라리가 멕시코에서 빠른 진짜 이유 — 작은 터보 덕이 아니라 저속 코너, 직선에선 오히려 메르세데스·레드불에 뒤져</h3>
+            <p class="orig">Ferrari is fastest in Mexico - but not for reasons rivals expected</p>
+            <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">페라리(Ferrari)가 금요일 연습 주행을 휩쓸자 경쟁팀들은 "작은 터보가 희박한 공기에서 유리하다"는 예상이 맞았다고 여겼지만, 데이터는 다른 이야기를 했습니다. The Race 분석에 따르면 페라리는 직선에서 오히려 상위 4개 팀 중 가장 느렸고, 차이는 12번 코너부터 스타디움 구간까지 저속 코너에서 벌어졌습니다. 롱런(결승을 흉내 낸 긴 주행)에서도 타이어를 가장 일정하게 썼습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>해발 2,000m가 넘는 멕시코에선 터보가 공기를 더 세게 압축해야 합니다. 그래서 터보가 작아 반응이 빠른 페라리가 유리할 것이라는 예상이 많았지만, The Race는 부스트(터보가 밀어 넣는 공기 압력)가 빨리 올라와 생긴 이점은 데이터에 보이지 않았다고 봤습니다.</p>
+              <p>소프트 타이어 주행에서 페라리는 2·3번 직선에서 눈에 띄게 느렸고, 4번·12번 코너 진입 속도도 상위 4개 팀 중 가장 낮았습니다. 대신 1~3번, 4~6번 코너에서 조금 앞섰고, 12번 코너부터 스타디움 구간까지 큰 차이를 벌렸습니다.</p>
+              <p>FP2 롱런 평균은 르클레르(미디엄) 1분 21.163초, 노리스(소프트) 1분 21.319초, 하자르(소프트) 1분 21.369초, 러셀(소프트) 1분 21.442초, 안토넬리(미디엄) 1분 21.487초, 페르스타펜(소프트) 1분 21.490초, 피아스트리(소프트) 1분 21.642초였습니다. 매체는 식히는 랩과 앞차 영향을 감안하면 다른 팀들도 르클레르에 꽤 가깝다고 봤습니다.</p>
+              <p>변수도 많습니다. FP2는 늦게 시작해 노면 온도가 10도 넘게 떨어졌고, 레드불 기술 이사 피에르 바셰(Pierre Waché)는 결승에선 타이어 마모가 더 크고 미디엄이 나을 수 있다고 했습니다. 멕시코에선 이론상 최고 속도보다 엔진·브레이크 온도 관리가 페이스를 더 묶고, 추월이 어려운 데다 앞차를 바짝 따라가면 온도가 오르므로 앞에 차가 없는 '깨끗한 공기'가 중요합니다.</p>
+              <p>해밀턴은 메르세데스·레드불이 직선 끝에서 여전히 더 빠르다며 그 구간에서 0.2~0.3초를 잃는다고 했지만 차는 "잘 움직인다"고 했습니다. 러셀은 새 패키지를 아직 다 다루지 못했다고, 피아스트리는 터보가 생각만큼 큰 차이를 만들지 않을 것이라고 말했습니다.</p>
+              <p>매체는 페라리가 최근 몇 주 금요일엔 앞서다 토요일 예선에서 타이어를 알맞은 온도로 맞추지 못해 밀린 적이 있다고 짚었습니다. 페라리 대표 바쇠르는 작년처럼 상위권이 0.5초 안에 몰리고 10번 코너 이후 몇 개 코너에서 큰 차이가 날 것으로 봤습니다. 결국 폴포지션(예선 1위 출발 자리)은 타이어를 랩 끝까지 가장 잘 버티게 하는 쪽이 가져갈 가능성이 크다는 결론입니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.the-race.com/formula-1/ferrari-is-fastest-in-mexico-but-not-for-reasons-rivals-expected/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/XPB_1449189_HiRes-1.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>올해 차가 유독 멕시코에서 빠른 이유 — 2026년형이 처음으로 FP1에서 작년 차보다 빨랐다, "희박한 공기가 새 차에 유리"</h3>
+            <p class="orig">Why F1's 2026 cars are unusually quick at the Mexican GP</p>
+            <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">올해 새 규정 차는 대부분의 서킷에서 작년 차보다 몇 초씩 느렸지만, 멕시코에선 그 차이가 거의 사라졌습니다. 르클레르의 FP1 기록은 작년 같은 세션보다 0.252초 빨라, 올해 차가 FP1에서 작년 차를 앞선 첫 사례가 됐습니다. 피렐리(Pirelli)는 "고지대에서 옛 차가 다운포스를 더 많이 잃었다"는 점을 가장 큰 이유로 꼽았습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>보통 올해 차는 FP1에서 작년 차보다 2~3초 느렸습니다. 멕시코 FP1에서 르클레르는 1분 18.128초로 작년보다 빨랐고, FP2의 1분 17.827초는 작년 페르스타펜의 FP2 기록보다 0.435초 느린 수준이었습니다.</p>
+              <p>작년 폴 기록(1분 15.586초)이 FP2 기록보다 1.8초 빨랐다는 점을 대입하면, 올해 폴은 1분 16초대 초반이 될 수 있습니다. 그러면 작년과 올해 예선 기록 차이는 시즌 최소가 되는데, 지금까지 가장 작았던 곳은 바쿠의 1.409초입니다. 피렐리는 사전 시뮬레이션에서 폴을 1분 17.0초로 봤다가 금요일 주행 뒤 훨씬 빠를 것으로 고쳤습니다.</p>
+              <p>이유 하나는 노면입니다. 10번 코너부터 1번 코너까지 일부를 새로 포장했고, 지원 레이스가 늘어 노면에 고무가 더 쌓였습니다. 다만 FP1 전 주행 시간은 작년보다 10분 늘었을 뿐입니다.</p>
+              <p>가장 중요한 이유는 고도입니다. 바닥 밑 공기 흐름으로 큰 다운포스를 만들던 작년까지의 '그라운드 이펙트' 차는 희박한 공기에서 다운포스를 많이 잃었지만, 올해 차는 덜 잃습니다. 또 전기 모터 출력은 고도의 영향을 받지 않아 전기 비중이 커진 올해 파워유닛에 유리합니다.</p>
+              <p>올해 차는 4번 코너로 이어지는 직선에서 작년보다 0.4초 넘게 빨랐습니다. 다만 그 이득은 뒤따르는 저속 코너에서 빠르게 사라지는데, 그래도 스파(폴 기록 차이 3.799초)·몬자(2.994초)보다는 손해가 훨씬 작습니다. 배터리 에너지에도 여유가 많아 올해 차의 장점을 보여 주기 좋은 트랙이라는 평가입니다.</p>
+              <p>피렐리 수석 엔지니어 시모네 베라(Simone Berra)는 "작년보다 트랙 상태가 좋아진 영향도 있다"면서도 "이곳의 고도 조건이 옛 차보다 이 차에 유리하다, 옛 차는 이번 세대보다 다운포스를 더 많이 잃었다"고 설명했습니다. 그는 "드라이버들이 더 밀어붙일 수 있어 작년과의 랩타임 차이가 줄었다"고 정리했습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.the-race.com/formula-1/why-f1-2026-cars-unusually-quick-mexican-gp/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/10/comaparison-cooling-louvres-top-teams-Mexico--1-.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>공기 25% 희박한 멕시코, 팀들은 차를 어떻게 식히나 — 맥라렌·메르세데스·페라리·레드불 배기구 비교</h3>
+            <p class="orig">How F1 teams are tackling Mexico's altitude challenge in 2026</p>
+            <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">해발 2,240m 멕시코시티는 공기 밀도가 약 25% 낮아, 같은 열을 식히려면 더 많은 공기를 통과시켜야 합니다. 공기 흡입구는 옆면 충돌 구조와 묶여 있어 쉽게 키울 수 없기 때문에, 팀들은 뜨거운 공기를 내보내는 배기구(루버, 차체에 낸 환기 틈)의 크기·위치·개수를 바꾸는 쪽을 택했습니다. The Race가 상위 네 팀의 선택을 비교했습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>희박한 공기 때문에 다운포스와 공기 저항이 함께 줄어 코너에선 더 미끄러지지만 최고 속도는 올라갑니다. 긴 직선 끝에서 더 빠른 속도로 제동하니 브레이크 열도 커집니다. 반면 터보 엔진은 출력이 거의 그대로라 엔진에서 나오는 열은 줄지 않고, 냉각 요구량이 약 25% 늘어납니다. 에너지를 많이 모으고 쓰는 서킷이라 배터리와 제어 장치도 더 뜨거워집니다.</p>
+              <p>흡입구 크기를 바꾸려면 옆면 충돌 시험을 다시 받아야 해서, 팀들은 출구 쪽을 손봤습니다. 차 뒤쪽 배기구를 보면 맥라렌(McLaren)은 배기구 바로 위 부분을 들어 올려 출구 면적을 넓혔습니다. 메르세데스(Mercedes)는 오스틴에서 쓴 2단 배기구를 유지하면서 엔진 덮개 윗부분, 특히 가운데를 높여 삼각형 모양 출구를 만들었습니다.</p>
+              <p>페라리(Ferrari)는 가운데 높이는 그대로 두고 양옆 배기구를 키웠고, 레드불(Red Bull)은 이 부위를 거의 바꾸지 않았습니다. 필자는 팀 간 배기구 위치·크기 차이가 크지 않아 효율에 미치는 영향을 비교하기 쉽다고 봤습니다.</p>
+              <p>냉각 효과가 가장 큰 곳은 사이드포드(차 옆구리 몸통)와 엔진 덮개의 루버입니다. 다만 이곳을 크게 바꾸면 차 뒤쪽 공기 흐름까지 흔들릴 수 있어, 크기보다 차체 표면 압력에 맞춘 위치가 더 중요하다고 합니다. 메르세데스와 페라리는 비슷한 위치에 두 구역으로 나눠 냈고, 맥라렌은 하나로 이어진 깔끔한 모양이었습니다. 레드불은 겉으로 바뀐 게 가장 적었는데, 필자는 다른 경기에서 과하게 식혔을 가능성은 낮다고 봤습니다.</p>
+              <p>가장 어려운 건 브레이크입니다. 연료가 가장 무거운 레이스 초반에 다른 차 뒤에서 달리는 상황을 미리 시뮬레이션하기 어렵기 때문입니다. 브레이크가 과열되면 사용을 줄일 수밖에 없어, 직선 끝에서 미리 가속 페달을 떼고 굴러가는 '리프트 앤 코스트'가 늘어납니다.</p>
+              <p>필자는 냉각과 공기역학 손실을 함께 가장 잘 줄인 팀이 누구인지는 일요일 밤 결승이 끝나야 알 수 있다고 마무리했습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.the-race.com/formula-1/how-f1-teams-are-tackling-mexicos-altitude-challenge-in-2026/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 페라리 예선 약점 분석<span class="smeta">Motor Sport Magazine · 2026.10.30</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://motorsportmagazine.b-cdn.net/wp-content/uploads/2026/10/20261025F1-0076.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>페라리가 아직 못 푼 예선 문제 — 르클레르 "최적 구간을 벗어나면 대가가 크다, 완벽하게 해도 완전히 없앨 순 없다"</h3>
+              <p class="orig">The qualifying problem Ferrari still can't solve</p>
+              <div class="meta"><span class="src">Motor Sport Magazine</span><span>·</span><span>2026.10.30</span></div>
+              <p class="sum">올해 아직 우승을 늘리지 못한 페라리(Ferrari)는 싱가포르·오스틴 연속 2위로 흐름이 나쁘지 않지만, 예선이 계속 발목을 잡습니다. 오스틴에서도 모든 연습 주행 1위였다가 예선에서 성능이 꺾였습니다. 샤를 르클레르(Charles Leclerc)는 차가 '최적 작동 구간'(타이어·차가 가장 잘 움직이는 온도·조건 범위)을 벗어날 때 지나치게 민감한 것이 원인이라고 설명했습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>매체는 페라리가 시즌 우승 수를 더하지는 못했지만 최근 성적에 고무될 이유가 있다고 봤습니다. 르클레르는 싱가포르와 오스틴에서 연달아 2위를 하며 팀이 패키지의 잠재력을 최대로 끌어내고 있다고 믿습니다.</p>
+                <p>그러나 문제는 예선입니다. 오스틴에서 페라리는 주말 내내 경쟁력 있어 보였고 연습 주행을 모두 1위로 마쳤지만, 가장 중요한 순간에 성능이 떨어졌습니다. 르클레르는 그 탓에 첫 줄(1·2번 그리드) 자리를 하나 놓쳤다고 했습니다.</p>
+                <p>르클레르는 멕시코 GP를 앞두고 "강한 차지만, 최적 구간을 벗어날 때마다 아주 민감한 차"라며 "최근 Q3(예선 마지막 단계)에서, 특히 노면 온도가 내려갈 때 대가를 좀 치렀다, 그럴 때 다른 팀보다 모든 걸 알맞은 구간에 유지하기 더 힘들다"고 말했습니다.</p>
+                <p>매체는 페라리의 문제가 기본 속도 부족이 아니라, 조건이 바뀌고 압박이 가장 클 때 그 속도를 꾸준히 뽑아내는 능력이라고 짚었습니다. 예선은 한 바퀴를 위해 차를 정확한 구간에 넣어야 해 작은 어긋남도 결과에 크게 반영되는데, 경쟁팀들은 실수에 대한 여유가 더 있어 보인다는 것입니다.</p>
+                <p>르클레르는 "알고 있고 집중하는 한계"라면서도 "단기간에 해법이 있을지는 모르겠다, 적어도 토요일엔 최대한 맞추려 하겠다"고 했습니다. 완벽한 실행으로 약점을 상쇄할 수 있느냐는 질문엔 "완벽하게 해도 우리는 구간을 벗어나 대가를 치르기 더 쉽다"며 "더 예민한 차라면 여전히 치를 대가가 있고, 완전히 없앨 수는 없다"고 답했습니다.</p>
+                <p>매체는 멕시코의 희박한 공기와 까다로운 타이어 온도가 평소 서열을 뒤집을 수 있어 페라리에 우승 기회가 될 수 있다고 보면서도, 예선 문제가 계속되면 결승이 시작되기도 전에 스스로 일을 어렵게 만들 위험이 있다고 결론지었습니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.motorsportmagazine.com/articles/single-seaters/f1/the-qualifying-problem-ferrari-still-cant-solve/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 메르세데스 엔진 추가 업그레이드 시점<span class="smeta">GPFans · 2026.10.29</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/90ecbf4ce2bfa16cd64dc742eab0557fec51a6b3.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>메르세데스, 허락받은 엔진 추가 업그레이드 쓸 시간 바닥나 — 새 터보 멕시코·브라질에도 안 들어온다, 러셀은 쓰면 그리드 강등</h3>
+              <p class="orig">Mercedes engine upgrade running out of time in F1 2026</p>
+              <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.10.29</span></div>
+              <p class="sum">FIA의 엔진 성능 보정 제도(ADUO) 분석에서 메르세데스(Mercedes) 엔진은 기준인 레드불보다 2~4% 뒤진 것으로 나와, 시즌 중 한 번 추가 업그레이드 권리를 받았습니다. 새 터보차저로 알려졌지만 독일 매체 아우토 모토 운트 슈포르트는 멕시코는 물론 브라질에도 들어오지 않는다고 보도했습니다. 시즌 안에 쓰지 않으면 권리가 사라집니다. 기사에는 안토넬리의 이번 주말 챔피언 확정 조건도 함께 담겼습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>기사는 메르세데스가 2026년 드라이버·컨스트럭터 동시 우승을 앞뒀지만 모든 분야에서 최고는 아니라며 시작합니다. FIA의 ADUO(뒤처진 엔진 제조사에 추가 개발 기회를 주는 제도) 분석에서 내연기관 성능 기준은 레드불이었고, 메르세데스는 2~4% 뒤졌습니다. 그래서 메르세데스(맥라렌·윌리엄스·알핀 포함)는 업그레이드 1회, 페라리(하스·캐딜락 포함)는 2회를 허락받았습니다.</p>
+                <p>메르세데스의 업그레이드는 새 터보차저로 알려졌지만 미국 GP까지 투입되지 않았고, 아우토 모토 운트 슈포르트(auto motor und sport)는 멕시코와 브라질에도 들어오지 않는다고 전했습니다. 그러면 남은 건 라스베이거스·카타르·아부다비 세 경기이고, 중동 두 경기가 취소돼 이몰라가 대신 열리면 두 경기뿐입니다.</p>
+                <p>메르세데스는 2026년 1회, 2027년 1회의 추가 공인(규정에 맞는 부품으로 등록받는 것)을 받았기 때문에 올해 안에 쓰지 않으면 권리를 잃습니다. 메르세데스 엔진을 쓰는 맥라렌·알핀·윌리엄스도 같은 영향을 받습니다.</p>
+                <p>투입 시점에는 그리드 강등도 걸려 있습니다. 조지 러셀(George Russell)은 올해 이미 터보차저 다섯 개를 써서 새것을 달면 강등을 받지만, 키미 안토넬리(Kimi Antonelli)는 미국 GP까지 세 개만 써 네 번째도 허용 범위 안입니다.</p>
+                <p>기사는 안토넬리가 이번 주말 드라이버 타이틀을 확정할 조건도 정리했습니다. 러셀이 멕시코에서 우승해도 안토넬리는 9위(2점)만 하면 되고, 해밀턴이 우승하면 10위(1점)면 됩니다. 러셀도 해밀턴도 우승하지 못하면 안토넬리는 자기 순위와 상관없이 챔피언이 됩니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.gpfans.com/en/f1-news/1092142/mercedes-engine-upgrade-aduo-running-out-of-time-f1-2026" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+  </section>
+
+  <!-- ============================ ⚖️ FIA / 거버넌스 ============================ -->
+  <section id="fia" data-cat="fia">
+    <div class="sec-head"><h2>⚖️ FIA / 거버넌스</h2><span class="count">1건</span></div>
+
+    <article class="art">
+          <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F02%2F11094013%2Fgabriel-bortoleto-audi-r26-f1-2026-barcelona-shakedown-garage.png" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>후속: 아우디, 멕시코 금요일에만 벌금 두 번 1만 2,500유로 — 냉각 팬 단 채 출차, 바닥판 옮기며 천으로 가림막</h3>
+            <p class="orig">FIA confirms second Audi punishment after Mexican GP investigation</p>
+            <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">아우디(Audi)가 멕시코 GP 금요일에 FIA 징계를 두 번 받아 벌금이 모두 1만 2,500유로가 됐습니다. FP1에서는 18세 프레디 슬레이터(Freddie Slater)의 차를 옆구리에 냉각 팬이 붙은 채 내보내 7,500유로를, FP2에서는 가브리에우 보르툴레투(Gabriel Bortoleto) 차의 바닥판을 천으로 덮고 작업 장면을 가려 5,000유로를 물었습니다. 규정은 정비 중인 차를 외부 시선에서 가리지 못하게 합니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>지난 보도 이후 바뀐 점: 어제 브리핑에서 슬레이터 차의 냉각 팬 건을 스튜어드가 조사한다고 전했는데, 결과가 벌금으로 나왔고 FP2에서 두 번째 징계까지 더해졌습니다.</p>
+              <p>첫 번째 징계: F1 레이스 주말에 처음 나선 슬레이터는 보르툴레투의 R26을 몰고 세션 중반에야 트랙에 나섰지만, 사이드포드(차 옆구리 몸통)에 냉각 팬이 붙어 있어 곧바로 불려 들어왔습니다. 팬을 떼고 다시 나갔다가 또 문제가 생겨 엔지니어가 "엔진 꺼, 계속하지 않는다"고 했지만, 결국 다시 나가 21위로 마쳤습니다. 작년 F3 준우승자인 그는 다음 주 브라질 FP1에도 나설 예정입니다.</p>
+              <p>팀 대표는 팬이 붙은 걸 발견한 뒤 엔지니어에게 확인했고 계속 달려도 안전하다는 답을 들었으며, 그 뒤 드라이버를 불러들였다고 설명했습니다. 드라이버는 문제를 몰랐습니다. 스튜어드는 팬이 떨어지지는 않았지만 떨어질 수 있었다며, 올해 호주 GP에서 메르세데스가 받은 것과 같은 7,500유로를 매겼습니다. 당시 안토넬리 차에 붙은 팬 두 개가 실제로 떨어졌고, 하나는 노리스의 맥라렌에 맞았습니다.</p>
+              <p>두 번째 징계: FIA 기술 대표 조 바우어(Jo Bauer)는 아우디가 보르툴레투 차의 바닥판(플로어)을 천으로 덮어 차고 한쪽에서 다른 쪽으로 옮기고, 다른 천으로 정비사가 차 밑에서 일하는 모습을 가린 것을 확인했습니다. 스포츠 규정 B3.3.1조는 부품을 외부 시선에서 가리는 행위를 제한합니다.</p>
+              <p>팀은 위반을 인정하면서 차고 배치가 특이했던 게 주된 이유라고 했지만, 스튜어드는 "바닥판을 제3자가 볼 수 있는 구역으로 옮겨야 했던 사정"이 조항의 예외가 되지는 않는다며 5,000유로를 매겼습니다.</p>
+              <p>바닥판 교체 탓에 보르툴레투는 FP2에서 12랩만 달려 22명 중 가장 느렸고, 팀 동료 니코 휠켄베르크(Nico Hülkenberg)는 1위와 1.196초 차 15위였습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.planetf1.com/news/fia-confirms-second-audi-punishment-mexican-gp-investigation" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+  </section>
+
+  <!-- ============================ 👤 드라이버/팀 ============================ -->
+  <section id="people" data-cat="people">
+    <div class="sec-head"><h2>👤 드라이버/팀</h2><span class="count">2건 · 스포일러 1건</span></div>
+
+    <article class="art">
+          <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/10/racefansdotnet-21-10-31-08-43-56-2.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>하자르, 패독 방문객 밀쳐 공식 경고 — 스튜어드 "상대가 먼저 공격적으로 다가왔다", 가장 가벼운 징계</h3>
+            <p class="orig">Hadjar given formal warning for pushing paddock visitor</p>
+            <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.10.31</span></div>
+            <p class="sum">레드불(Red Bull)의 이삭 하자르(Isack Hadjar)가 멕시코 GP 패독(팀 차고 뒤 관계자 구역)에서 방문객을 밀쳐 스튜어드(경기 심판단)에게 공식 경고를 받았습니다. 스튜어드는 미는 행위 자체는 규정 위반이라고 봤지만, FP1 직전 "초대받지 않은, 꽤 공격적인 행동"을 먼저 당한 점을 인정해 가능한 가장 가벼운 징계를 택했습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>하자르의 진술에 따르면 그는 FP1에 늦은 상황에서 어린 팬과 사진을 찍으려 잠시 멈췄고, 그때 한 방문객이 공격적인 태도로 다가왔습니다. 뒤따르던 보안 요원은 이를 막지 못했습니다.</p>
+              <p>하자르는 처음엔 상대 허리 쪽에 손을 대 거리를 두려 했고, 이어 편 오른손으로 그를 옆으로 밀었습니다. 스튜어드는 이 밀치기를 위반으로 판단했습니다.</p>
+              <p>다만 FIA 국제스포츠규정 부록 B의 지침에 따라 다섯 가지를 감경 사유로 들었습니다. 무례하고 공격적인 접근에 대한 반응이었다는 점, 붐비는 구역을 지나 FP1 출발 지점으로 가던 중이었다는 점, 보안 인력이 충분하지 않았다는 점, 방문객이 동의 없이 개인 공간을 침범했다는 점, 그리고 드라이버들이 패독을 지날 때 흔히 겪는 문제라는 점입니다.</p>
+              <p>RaceFans 독자 댓글에서는 하자르가 거절했는데도 셀카를 찍으려다 밀려났다는 설명, 대수롭지 않은 일이라는 의견, 패독에 방문객이 너무 많다는 지적이 함께 나왔습니다. Motorsport.com은 "하자르는 경고가 아니라 메달을 받아야 한다"는 칼럼을 싣기도 했습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.racefans.net/2026/10/31/hadjar-given-formal-warning-for-pushing-paddock-visitor/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 러셀의 멕시코 금요일 소감<span class="smeta">Motorsport.com · 2026.10.31</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://cdn-6.motorsport.com/images/amp/0R7Bb9M2/s6/george-russell-mercedes.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>러셀 "업그레이드한 W17, 또 최적 구간 밖" — 최근 세 경기 리타이어·9위·8위, 메르세데스 "화려하진 않지만 탄탄한 하루"</h3>
+              <p class="orig">Mercedes out of performance window at Mexico GP - George Russell</p>
+              <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.10.31</span></div>
+              <p class="sum">조지 러셀(George Russell)은 멕시코 FP2에서 1위와 0.1초 차 3위였는데도, 업그레이드한 메르세데스(Mercedes) W17이 여전히 최적 세팅 구간 밖에 있다고 말했습니다. 이 업그레이드는 이달 말레이시아에서 처음 나왔지만 말레이시아·싱가포르에서 페르스타펜에게 밀렸고, 오스틴에선 안토넬리가 폴투윈(예선 1위로 출발해 우승)했습니다. 러셀은 최근 세 경기에서 리타이어, 9위, 8위에 그쳤습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>기사는 챔피언십 선두 팀 메르세데스가 이달 말레이시아에 업그레이드한 W17을 내놓았지만 레드불의 막스 페르스타펜(Max Verstappen)에게 쉽게 졌고, 싱가포르에서도 비슷했다고 정리합니다. 오스틴에서 키미 안토넬리(Kimi Antonelli)가 폴에서 우승하며 페르스타펜의 흐름을 끊었지만, 러셀은 최근 세 경기에서 리타이어·9위·8위였습니다.</p>
+                <p>러셀은 이를 업그레이드의 작동 구간이 좁기 때문이라고 봤고, 멕시코에서도 같은 모습이 보인다고 했습니다. 그는 FP1을 프레데리크 베스티(Frederik Vesti)에게 맡기고 FP2에서 르클레르에 0.1초 뒤진 3위였습니다.</p>
+                <p>러셀은 "아직 새 패키지를 완전히 장악하지 못했다, 극복하기 힘든 균형 한계가 있다"며 "지금 키미와 나는 키미가 오스틴에서 해낸 것처럼 구간 안에 있다기보다, 말레이시아 때처럼 구간 밖에 있다, 밤사이 되돌릴 수 있길 바란다"고 말했습니다.</p>
+                <p>그는 르클레르의 금요일 1위가 놀랍지 않다고 했습니다. 고지대에선 터보가 더 일해야 하는데 페라리 SF-26의 터보가 작아 지연이 적다는 이유로 주말 전부터 페라리를 우승 후보로 꼽았기 때문입니다. 어디를 고쳐야 하느냐는 질문엔 "균형, 코너를 도는 동안의 균형이 원하는 곳에 있지 않고 차가 생각만큼 하나로 맞물리지 않는다"고 답했습니다.</p>
+                <p>그래도 메르세데스가 당황한 건 아닙니다. 미국 GP에서도 르클레르가 금요일을 휩쓸었지만 결국 안토넬리가 압도했기 때문입니다. 부대표 브래들리 로드(Bradley Lord)는 "화려하진 않지만 탄탄한 하루"라며 "올해부터 MGU-H(배기가스 열로 전기를 만들고 터보를 돕던 장치)가 없어져 파워유닛·브레이크 냉각과 터보 부스트 관리가 까다롭다, 한 바퀴도 빠르고 롱런도 버티는 최적의 타협점을 데이터로 더 찾겠다"고 말했습니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.motorsport.com/f1/news/george-russell-mercedes-out-of-performance-window-at-mexico-gp/10870173/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+  </section>
+
+  <!-- ============================ 📰 기타 ============================ -->
+  <section id="etc" data-cat="etc">
+    <div class="sec-head"><h2>📰 기타</h2><span class="count">2건 · 스포일러 1건</span></div>
+
+    <article class="art">
+          <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/cb052c456558848430e4aaa6b21ed578e6584b43.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>랄프 슈마허, 이륙 중 여객기 앞바퀴 터져 급정지 — "브레이크가 아주 셌다, 승무원은 훌륭했다… 저녁은 못 먹겠지만"</h3>
+            <p class="orig">Ralf Schumacher suffers huge plane scare as tyre bursts on take-off</p>
+            <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.10.29</span></div>
+            <p class="sum">윌리엄스(Williams) 시절 그랑프리 6승을 거둔 랄프 슈마허(Ralf Schumacher)가 탄 루프트한자(Lufthansa) 여객기가 프랑크푸르트 공항에서 이륙하던 중 앞바퀴 타이어가 터져 급정지했습니다. 다친 사람은 없었습니다. 슈마허는 인스타그램에 당시 상황을 전하며 승무원과 항공사의 대응을 칭찬했습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>사고는 10월 28일(수) 프랑크푸르트에서 오스트리아 잘츠부르크로 가는 LH1264편에서 일어났습니다. 오후 5시 15분에 떠나 한 시간 뒤 도착할 예정이었는데, 활주로에서 최고 속도로 가속하던 중 앞쪽 랜딩기어 타이어 하나가 터졌고 조종사들이 이륙을 포기하고 급정지했습니다. 비행기는 비상 대응 동안 한 시간가량 묶여 있었습니다.</p>
+              <p>슈마허는 "이미 활주로에서 최고 속도였는데 앞바퀴 두 개 중 하나가 터졌다"며 "당연히 비상 정지를 했고 제동이 아주 셌다, 경찰과 소방대, 온갖 비상 인력이 왔다"고 말했습니다.</p>
+              <p>그는 "승무원들이 환상적으로 일했다, 모든 게 아주 좋았다"며 "루프트한자에 정말 감사하다, 대응과 응대가 훌륭했고 곧바로 다른 항공편을 잡아 줬다"고 했습니다.</p>
+              <p>불편이 없지는 않았습니다. 그는 "집에는 가겠지만 두세 시간 늦을 테니 저녁은 못 먹겠다, 뭐 괜찮다"고 농담했습니다.</p>
+              <p>루프트한자 대변인은 GPFans에 "타이어 파열로 이륙을 중단했으며, 승무원이 표준 절차에 따라 결정했다"며 "탑승한 승객과 승무원 153명 모두 무사하고, 승객들은 터미널로 돌아가 곧바로 다른 항공편으로 옮겼다"고 밝혔습니다. 랄프는 일곱 차례 F1 챔피언 미하엘 슈마허(Michael Schumacher)의 동생입니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.gpfans.com/en/f1-news/1092140/f1-ralf-schumacher-plane-tyre-burst-lufthansa-salzburg-frankfurt-emergency-landing" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 멕시코 GP '망자의 날' 추모 전시<span class="smeta">Motorsport.com · 2026.10.31</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://cdn-4.motorsport.com/images/amp/2dEoOpBY/s6/motorsport-com-graphics-36.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>멕시코 GP '망자의 날' 추모 제단에 해밀턴의 불도그 로스코도 — 세나 사진 바로 아래, 팬들 "멕시코가 제대로 해냈다"</h3>
+              <p class="orig">Mexican GP includes Lewis Hamilton's beloved Roscoe in touching tribute to F1 legends</p>
+              <div class="meta"><span class="src">Motorsport.com</span><span>·</span><span>2026.10.31</span></div>
+              <p class="sum">멕시코 GP 주최 측이 패독에 '망자의 날(Día de Muertos, 세상을 떠난 이들을 기리는 멕시코 명절)' 제단을 꾸미고 세상을 떠난 F1 인물들을 기렸는데, 루이스 해밀턴(Lewis Hamilton)의 불도그 로스코(Roscoe)도 그 사이에 들어갔습니다. 로스코의 사진은 아일톤 세나(Ayrton Senna) 아래 한가운데 놓였습니다. 기사 말미에는 지난주 미국 GP 우승자와 챔피언십 선두가 함께 언급됩니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>한 제단에는 세나 아래 로스코가 있고, 엔초 페라리(Enzo Ferrari), 잭 브라밤(Jack Brabham), 후안 마누엘 판지오(Juan Manuel Fangio), 제임스 헌트(James Hunt), 파트릭 드파이에(Patrick Depailler), 페드로 로드리게스(Pedro Rodríguez), 장마리 발레스트르(Jean-Marie Balestre)가 함께 놓였습니다.</p>
+                <p>다른 제단들에는 알베르토 아스카리(Alberto Ascari), 그레이엄 힐(Graham Hill), 롤란트 라첸베르거(Roland Ratzenberger), 알렉스 자나르디(Alex Zanardi), 콜린 채프먼(Colin Chapman), 맥스 모즐리(Max Mosley), 에디 조던(Eddie Jordan), 스털링 모스(Stirling Moss), 리카르도 로드리게스(Ricardo Rodríguez), 요헨 린트(Jochen Rindt) 등이 있었습니다.</p>
+                <p>제단은 여러 벽에 걸쳐 주황색 금잔화(마리골드) 아치로 둘러싸였고, 촛불과 흑백 초상 사진이 줄지어 놓였습니다. 올해는 망자의 날이 멕시코 GP와 같은 주말에 겹쳤습니다. 이 명절엔 가족들이 사진·촛불·금잔화로 '오프렌다'라는 제단을 꾸며 세상을 떠난 이를 기리며, 반려동물을 함께 올리는 일도 흔합니다.</p>
+                <p>팬들은 소셜미디어에서 "로스코는 한 바퀴도 달린 적 없지만 패독에서 가장 사랑받은 얼굴 중 하나가 됐다, 멕시코가 완벽하게 해냈다", "루이스가 좋아하겠다", "품격 있는 행동"이라며 반겼습니다.</p>
+                <p>기사는 멕시코 GP가 시즌 끝에서 두 번째 트리플헤더(3주 연속 경기)의 두 번째 경기로, 챔피언십 선두 키미 안토넬리(Kimi Antonelli)가 우승한 미국 GP에 이어 열리고 다음 주 브라질 GP로 이어진다고 소개했습니다. 시즌은 계획대로라면 라스베이거스·카타르·아부다비 마지막 트리플헤더로 끝납니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.motorsport.com/f1/news/mexican-gp-includes-lewis-hamiltons-beloved-roscoe-in-touching-tribute-to-f1-legends/10869899/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+  </section>
+
+  <!-- ============================ 📖 용어 ============================ -->
+  <section id="glossary" data-cat="glossary">
+    <div class="sec-head"><h2>📖 오늘의 용어</h2><span class="count">10개</span></div>
+    <dl class="glossary">
+      <div class="term"><dt>적기 <span>(Red flag)</span></dt><dd>사고나 트랙 위 잔해 때문에 세션을 멈추는 빨간 깃발입니다. 모든 차가 피트로 돌아오고, 정리가 끝나면 다시 시작합니다.</dd></div>
+      <div class="term"><dt>벌점 <span>(Penalty points)</span></dt><dd>위험하거나 규정에 어긋난 운전에 매기는 누적 점수입니다. 12개월 안에 12점이 쌓이면 한 경기 출전이 정지됩니다.</dd></div>
+      <div class="term"><dt>공식 경고 · 견책 <span>(Formal warning / Reprimand)</span></dt><dd>스튜어드가 내리는 가장 가벼운 징계들입니다. 벌금이나 강등 없이 위반 사실만 기록으로 남기며, 견책이 한 시즌에 여러 번 쌓이면 그리드 강등으로 이어질 수 있습니다.</dd></div>
+      <div class="term"><dt>슈퍼라이선스 <span>(Super Licence)</span></dt><dd>F1 결승에 나가려면 필요한 FIA 면허입니다. 최근 3년간 하위 대회 성적 점수와 연습 주행 점수(100km당 1점, 최대 10점)를 합쳐 40점이 필요합니다.</dd></div>
+      <div class="term"><dt>세계내구선수권 <span>(WEC, World Endurance Championship)</span></dt><dd>르망 24시간을 포함해 몇 시간씩 달리는 장거리 레이스 세계 대회입니다. 한 차를 여러 드라이버가 번갈아 탑니다.</dd></div>
+      <div class="term"><dt>루버 <span>(Louvre)</span></dt><dd>차체 위에 낸 여러 줄의 환기 틈입니다. 라디에이터를 지난 뜨거운 공기를 밖으로 빼내 엔진과 전기 장치를 식힙니다.</dd></div>
+      <div class="term"><dt>터보 랙 <span>(Turbo lag)</span></dt><dd>가속 페달을 밟은 뒤 터보가 공기를 충분히 밀어 넣어 힘을 내기까지 걸리는 지연입니다. 공기가 희박한 고지대에서 더 두드러집니다.</dd></div>
+      <div class="term"><dt>그라운드 이펙트 <span>(Ground effect)</span></dt><dd>차 바닥 밑으로 빠르게 흐르는 공기로 차를 노면에 빨아들이듯 누르는 방식입니다. 2022~2025년 F1 차가 이 방식으로 다운포스 대부분을 만들었습니다.</dd></div>
+      <div class="term"><dt>ADUO <span>(Additional Development and Upgrade Opportunities)</span></dt><dd>FIA가 엔진 성능을 비교해 뒤처진 제조사에 시즌 중 추가 업그레이드 기회를 주는 제도입니다. 2026년 새 엔진 규정과 함께 도입됐습니다.</dd></div>
+      <div class="term"><dt>리프트 앤 코스트 <span>(Lift and coast)</span></dt><dd>직선 끝에서 제동 전에 미리 가속 페달을 떼고 굴러가는 운전법입니다. 연료나 브레이크·엔진 열을 아낄 때 씁니다.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span class="brand">Claude</span>가 번역·정리한 F1 뉴스 · 2026.11.01<br>
+    원문 저작권은 각 매체에 있으며, 핵심 요약만 제공합니다.
+  </footer>
+</div>
+<script>
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-cat]'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var cat = chip.dataset.cat;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      sections.forEach(function (s) { s.classList.toggle('hidden', cat !== 'all' && s.dataset.cat !== cat); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  var btn = document.getElementById('unlockAll');
+  var spoilers = Array.prototype.slice.call(document.querySelectorAll('details.spoiler'));
+  function render(open) { btn.setAttribute('aria-pressed', String(open)); btn.textContent = open ? '🔒 스포일러 모두 접기' : '🔓 스포일러 모두 펼치기'; }
+  btn.addEventListener('click', function () { var open = btn.getAttribute('aria-pressed') !== 'true'; spoilers.forEach(function (d) { d.open = open; }); render(open); });
+  spoilers.forEach(function (d) { d.addEventListener('toggle', function () { render(spoilers.every(function (x) { return x.open; })); }); });
+  render(false);
+})();
+</script>
+
+</body>
+</html>

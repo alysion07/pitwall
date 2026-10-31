@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-10-31",
+    updatedAt: "2026-11-01",
     season: 2026,
     standingsAsOf: { round: 18, name: "미국 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-01", file: "briefings/f1-news-2026-11-01.html", count: 24, spoilers: 7,
+      headline: "해밀턴, 멕시코 GP 예선서 3년 만의 폴포지션 — 페라리 이적 후 처음 · 하스, 주말 도중 오콘 제외하고 히라카와 F1 데뷔 · 허타 슈퍼라이선스 아직 1점 부족 — 인디카 순위표 오류" },
     { date: "2026-10-31", file: "briefings/f1-news-2026-10-31.html", count: 21, spoilers: 9,
       headline: "허타, 멕시코 FP1 30랩으로 슈퍼라이선스 40점 달성 · 캐딜락 대표 “보타스는 오스틴 같은 주말을 매번 보여 줘야” · 하스 대표, 베어먼 ‘600만 유로 연봉 요구설’에 “말도 안 되는 소리”" },
     { date: "2026-10-30", file: "briefings/f1-news-2026-10-30.html", count: 22, spoilers: 7,
