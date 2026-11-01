@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-01",
+    updatedAt: "2026-11-02",
     season: 2026,
     standingsAsOf: { round: 18, name: "미국 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-02", file: "briefings/f1-news-2026-11-02.html", count: 25, spoilers: 5,
+      headline: "러셀, 연료 1.5kg 차이로 멕시코 GP 폴 놓쳐 · 로슨, 랩 직후 모터 출력 규정 위반으로 예선 실격 · 오콘 첫 입장 “논쟁은 있었지만 몸싸움은 없었다”" },
     { date: "2026-11-01", file: "briefings/f1-news-2026-11-01.html", count: 24, spoilers: 7,
       headline: "해밀턴, 멕시코 GP 예선서 3년 만의 폴포지션 — 페라리 이적 후 처음 · 하스, 주말 도중 오콘 제외하고 히라카와 F1 데뷔 · 허타 슈퍼라이선스 아직 1점 부족 — 인디카 순위표 오류" },
     { date: "2026-10-31", file: "briefings/f1-news-2026-10-31.html", count: 21, spoilers: 9,
