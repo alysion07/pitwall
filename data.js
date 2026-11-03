@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-03",
+    updatedAt: "2026-11-04",
     season: 2026,
     standingsAsOf: { round: 19, name: "멕시코시티 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-04", file: "briefings/f1-news-2026-11-04.html", count: 20, spoilers: 7,
+      headline: "하스, 오콘 남은 시즌 제외 확정 — 브라질 GP는 카마라 F1 데뷔 · 캐딜락 구단주, 약 30억 달러 팀 매각 검토 · 이란 ‘보복 목표’ 목록에 F1 팀 숙소 호텔 포함" },
     { date: "2026-11-03", file: "briefings/f1-news-2026-11-03.html", count: 19, spoilers: 12,
       headline: "하스, 브라질 GP 오콘 자리에 카마라·도한·히라카와 저울질 · 메르세데스 리저브 베스티 “캐딜락 시트 두고 협상 중” · 로슨, 금요일 연습 주행 충돌 뒤 페르스타펜에게 직접 사과" },
     { date: "2026-11-02", file: "briefings/f1-news-2026-11-02.html", count: 25, spoilers: 5,
