@@ -73,6 +73,7 @@ briefings/      ← 오늘 브리핑 추가
 - 헤더 kicker에 `<a href="../index.html">← PIT WALL</a>` 링크
 - 카드는 썸네일 위·본문 아래. `img`에는 `loading="lazy"`만. `referrerpolicy`, `<meta name="referrer">`, `onerror` 숨기기 금지.
 - 카드마다 `<details class="more">` 상세 번역 (스포일러 카드 포함)
+  - 접힌 채로 두되, 펼치면 별도 상자 없이 `.sum` 아래로 같은 글 모양으로 이어진다(2026-11-05 사용자 요청: "별도의 카드에 넣는 게 아니라 자연스럽게 이어서"). CSS는 `.detail-body { margin-top:2px; }` · `.detail-body p { margin:0 0 12px; font-size:15px; color:var(--text-mid); line-height:1.75; }` — 배경·테두리·안쪽 여백을 다시 넣지 않는다. 최신 브리핑의 `<style>`을 복사하면 그대로 이어진다.
 - **스포일러 카드**: 차단은 **접힌 상태와 `<summary>` 문구가 담당**하고, 펼친 안쪽은 비스포일러 카드와 **똑같은 수준으로 채운다.** 펼쳐도 볼 게 없으면 접어둔 의미가 없다.
   - 화면 형태(2026-10-21 개편): 접힌 카드는 다른 카드 목록 사이에 한 줄(🔒 · 라벨 · 출처/날짜 · "펼쳐 보기")로 놓이고, 펼치면 일반 카드와 똑같은 모양이 그 자리에 나타난다("다시 접기"는 썸네일 오른쪽 위). 빨간 박스로 감싸지 않는다. CSS·JS는 최신 브리핑에서 그대로 복사한다.
   - `<summary>` 마크업은 정확히 이 형태: `<summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> {라벨}<span class="smeta">{출처} · {YYYY.MM.DD}</span></span><span class="hint"></span></summary>`
