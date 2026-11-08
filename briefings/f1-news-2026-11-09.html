@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>F1 데일리 브리핑 — 2026.11.09</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../favicon-192.png">
+<style>
+  :root {
+    --bg:#ffffff; --bg-soft:#f7f7f9; --card:#ffffff; --card-hover:#fbfbfc;
+    --text:#14141a; --text-mid:#4a4a57; --text-dim:#86868f;
+    --border:#e6e6ec; --border-soft:#f0f0f4;
+    --accent:#E10600; --accent-soft:rgba(225,6,0,.08);
+    --spoiler-bg:#fbf7f7; --spoiler-border:#ecdcdc; --chip-bg:#f2f2f5;
+    --shadow:0 1px 2px rgba(20,20,26,.04),0 8px 24px -12px rgba(20,20,26,.10);
+    --bar-bg:rgba(255,255,255,.82);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0e0e11; --bg-soft:#141419; --card:#16161b; --card-hover:#1b1b21;
+      --text:#f0f0f3; --text-mid:#b6b6c0; --text-dim:#82828e;
+      --border:#26262e; --border-soft:#1e1e25;
+      --accent:#FF3B30; --accent-soft:rgba(255,59,48,.12);
+      --spoiler-bg:#1a1416; --spoiler-border:#3a2528; --chip-bg:#1e1e25;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+      --bar-bg:rgba(14,14,17,.82);
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;
+    font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0 24px; }
+  header { padding:72px 0 32px; }
+  .kicker { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+  .kicker .dot { width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  h1 { font-size:clamp(34px,7vw,46px); line-height:1.12; margin:0 0 20px; font-weight:800; letter-spacing:-0.035em; }
+  h1 .accent { color:var(--accent); }
+  .lede { font-size:15px; color:var(--text-mid); margin:0; padding-bottom:28px; border-bottom:1px solid var(--border); }
+  .lede b { color:var(--text); font-weight:600; }
+  .digest { margin:28px 0 0; padding:20px 22px; background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:14px; }
+  .digest h2 { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:0 0 12px; }
+  .digest ol { margin:0; padding-left:20px; }
+  .digest li { font-size:14.5px; color:var(--text-mid); margin-bottom:7px; }
+  .digest li:last-child { margin-bottom:0; }
+  .digest li b { color:var(--text); font-weight:600; }
+  .bar { position:sticky; top:0; z-index:20; margin:36px 0 8px; padding:12px 0; background:var(--bar-bg); backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--border-soft); }
+  .bar-inner { display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap; }
+  .chips { display:flex; gap:7px; flex-wrap:wrap; flex:1 1 auto; scrollbar-width:none; -ms-overflow-style:none; padding:2px 0; }
+  .chips::-webkit-scrollbar { display:none; }
+  .chip { flex:0 0 auto; border:1px solid var(--border); background:var(--chip-bg); color:var(--text-mid); font:inherit; font-size:13px; font-weight:500; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s,color .15s,border-color .15s; }
+  .chip:hover { color:var(--text); }
+  .chip[aria-pressed="true"] { background:var(--text); color:var(--bg); border-color:var(--text); }
+  .chip .n { opacity:.5; margin-left:4px; font-variant-numeric:tabular-nums; }
+  .unlock { flex:0 0 auto; border:1px solid var(--spoiler-border); background:var(--spoiler-bg); color:var(--accent); font:inherit; font-size:13px; font-weight:600; padding:6px 13px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .15s; }
+  .unlock:hover { background:var(--accent-soft); }
+  section { padding-top:44px; scroll-margin-top:70px; }
+  section.hidden { display:none; }
+  .sec-head { display:flex; align-items:baseline; gap:10px; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--text); }
+  .sec-head h2 { font-size:19px; font-weight:750; margin:0; letter-spacing:-0.02em; }
+  .sec-head .count { font-size:12px; color:var(--text-dim); font-variant-numeric:tabular-nums; margin-left:auto; font-weight:500; }
+  .art { display:flex; flex-direction:column; align-items:stretch; gap:16px; padding:26px 0; border-bottom:1px solid var(--border-soft); }
+  .art:last-child { border-bottom:none; }
+  .thumb { width:100%; height:340px; border-radius:14px; overflow:hidden; background:linear-gradient(135deg,var(--accent) 0%,#600 100%); border:1px solid var(--border-soft); }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .art-body { min-width:0; }
+  .art h3 { font-size:21px; font-weight:750; line-height:1.36; margin:0 0 6px; letter-spacing:-0.025em; }
+  .orig { font-size:13px; color:var(--text-dim); margin:0 0 11px; font-style:italic; line-height:1.45; }
+  .meta { display:flex; align-items:center; gap:7px; flex-wrap:wrap; font-size:12px; color:var(--text-dim); margin-bottom:12px; }
+  .src { font-weight:650; color:var(--accent); background:var(--accent-soft); padding:2px 8px; border-radius:5px; font-size:11.5px; }
+  .sum { font-size:15px; color:var(--text-mid); margin:0 0 4px; line-height:1.75; }
+  details.more { margin:8px 0 14px; }
+  details.more > summary { list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:650; color:var(--accent); padding:7px 0; user-select:none; }
+  details.more > summary::-webkit-details-marker { display:none; }
+  details.more > summary .caret { transition:transform .18s; font-size:10px; }
+  details.more[open] > summary .caret { transform:rotate(90deg); }
+  .detail-body { margin-top:2px; }
+  .detail-body p { margin:0 0 12px; font-size:15px; color:var(--text-mid); line-height:1.75; }
+  .detail-body p:last-child { margin-bottom:0; }
+  .go { display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--text); text-decoration:none; border:1px solid var(--border); padding:7px 14px; border-radius:8px; transition:border-color .15s,background .15s; }
+  .go:hover { border-color:var(--text); background:var(--bg-soft); }
+  .go svg { width:11px; height:11px; }
+  details.spoiler { position:relative; border-bottom:1px solid var(--border-soft); }
+  section > details.spoiler:last-child { border-bottom:none; }
+  details.spoiler > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:14px; padding:20px 0; user-select:none; }
+  details.spoiler > summary::-webkit-details-marker { display:none; }
+  details.spoiler > summary .lock { flex:0 0 auto; width:44px; height:44px; border-radius:11px; display:grid; place-items:center; font-size:17px; background:var(--spoiler-bg); border:1px solid var(--spoiler-border); }
+  details.spoiler > summary .label { flex:1 1 auto; min-width:0; font-size:15px; font-weight:650; color:var(--text); line-height:1.45; letter-spacing:-0.015em; }
+  details.spoiler > summary .label .tag { color:var(--accent); font-weight:700; margin-right:4px; }
+  details.spoiler > summary .smeta { display:block; margin-top:3px; font-size:12px; font-weight:500; color:var(--text-dim); }
+  details.spoiler > summary .hint { flex:0 0 auto; font-size:12.5px; font-weight:650; color:var(--accent); background:var(--spoiler-bg); border:1px solid var(--spoiler-border); padding:7px 13px; border-radius:8px; transition:background .15s; }
+  details.spoiler > summary:hover .hint { background:var(--accent-soft); }
+  details.spoiler > summary .hint::after { content:"펼쳐 보기"; }
+  details.spoiler[open] > summary { position:absolute; top:38px; right:12px; z-index:2; padding:0; }
+  details.spoiler[open] > summary .hint { background:var(--card); box-shadow:var(--shadow); }
+  details.spoiler[open] > summary .lock, details.spoiler[open] > summary .label { display:none; }
+  details.spoiler[open] > summary .hint::after { content:"다시 접기"; }
+  details.spoiler .art { border-bottom:none; }
+  @media (max-width:560px) { details.spoiler > summary { gap:11px; } details.spoiler > summary .lock { width:38px; height:38px; font-size:15px; } }
+  .glossary { margin-top:12px; }
+  .term { padding:14px 0; border-bottom:1px solid var(--border-soft); }
+  .term:last-child { border-bottom:none; }
+  .term dt { font-size:14.5px; font-weight:700; margin-bottom:3px; }
+  .term dt span { color:var(--text-dim); font-weight:500; font-size:13px; }
+  .term dd { margin:0; font-size:14px; color:var(--text-mid); line-height:1.65; }
+  footer { margin-top:64px; padding:28px 0 56px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-dim); text-align:center; }
+  footer .brand { color:var(--accent); font-weight:650; }
+  @media (max-width:560px) {
+    .wrap { padding:0 18px; }
+    header { padding:48px 0 24px; }
+    .thumb { height:210px; }
+    .art h3 { font-size:19px; }
+    .sec-head h2 { font-size:17px; }
+    .bar-inner { flex-wrap:nowrap; flex-direction:column; align-items:stretch; }
+    .chips { flex-wrap:nowrap; overflow-x:auto; width:100%; }
+    .unlock { width:100%; }
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker"><span class="dot"></span> 2026년 11월 9일 월요일 <a href="../index.html" style="margin-left:auto;color:var(--text-dim);text-decoration:none;font-weight:600;letter-spacing:0;text-transform:none">← PIT WALL</a></div>
+    <h1>F1 데일리 <span class="accent">브리핑</span></h1>
+    <p class="lede">해외 매체 <b>9곳</b>(Formula1.com · Autosport · RaceFans · PlanetF1 · The Race · GPFans · Crash.net · RacingNews365 · Motor Sport Magazine)의 기사 <b>22건</b>을 정리했습니다. 상파울루 GP 결승이 한국 시간 월요일 새벽에 끝난 직후라, 결승 리포트·반응·스튜어드 판정 등 <b>13건</b>은 스포일러로 접어 두었습니다. 접힌 줄에는 중립적인 라벨만 보이고, 펼치면 다른 카드와 똑같은 번역이 나옵니다. 바로 읽을 수 있는 9건은 해밀턴 400번째 GP 축사, 페르스타펜 정비사의 은퇴, 로슨·보타스 자리 문제, 사우디 아람코 타워 피격 소식 등입니다. 다음 라운드는 11월 20~22일 라스베이거스 GP입니다. Motorsport.com은 접속 오류(502)로 열지 못했고, Racecar Engineering에는 새 F1 글이 없었습니다.</p>
+    <div class="digest">
+      <h2>오늘의 요약</h2>
+      <ol>
+        <li><b>400번째 GP를 맞은 해밀턴에게 라이벌들이 보낸 축사:</b> 알론소는 "앞으로 400경기 클럽이 더 늘 것", 러셀은 "그는 다르게 만들어진 사람"이라고 했습니다. 페르스타펜의 2번 정비사 올레 슈막은 20년 근속을 마치고 가족 곁으로 돌아가며, 페르스타펜은 헬멧을 선물했습니다. 울프는 "다른 팀이었다면 안토넬리는 살아남지 못했을 것"이라며 데이터와 보호의 역할을 강조했습니다.</li>
+        <li><b>자리 싸움과 중동 정세:</b> 로슨은 "팀이 나에게 뭘 더 바라는지 모른다"고 했고, Sky의 테드 크라비츠는 "지금 자르면 안 된다"며 솔로프를 1년 더 리저브로 두라고 제안했습니다. Motor Sport Magazine은 캐딜락이 보타스를 허타로 바꾸면 "상업적으론 말이 되지만 스포츠적으론 불분명"하다고 분석했습니다. 리야드의 아람코 타워가 요격 잔해로 파손됐지만 F1은 카타르·아부다비를 강행할 방침입니다.</li>
+        <li>🏁 상파울루 GP 관련 소식 <b>13건</b> — 아래 스포일러 섹션을 열어 확인하세요.</li>
+      </ol>
+    </div>
+  </header>
+
+
+  <div class="bar">
+    <div class="bar-inner">
+      <div class="chips" role="group" aria-label="카테고리 필터">
+        <button class="chip" data-cat="all" aria-pressed="true">전체<span class="n">22</span></button>
+        <button class="chip" data-cat="race" aria-pressed="false">🏁 레이스 위크<span class="n">10</span></button>
+        <button class="chip" data-cat="transfer" aria-pressed="false">🔄 이적/계약<span class="n">2</span></button>
+        <button class="chip" data-cat="tech" aria-pressed="false">🔧 기술/규정<span class="n">1</span></button>
+        <button class="chip" data-cat="people" aria-pressed="false">👤 드라이버/팀<span class="n">5</span></button>
+        <button class="chip" data-cat="fia" aria-pressed="false">⚖️ FIA/거버넌스<span class="n">3</span></button>
+        <button class="chip" data-cat="etc" aria-pressed="false">📰 기타<span class="n">1</span></button>
+        <button class="chip" data-cat="glossary" aria-pressed="false">📖 용어</button>
+      </div>
+      <button class="unlock" id="unlockAll" aria-pressed="false">🔓 스포일러 모두 펼치기</button>
+    </div>
+  </div>
+
+  <!-- ============================ 🏁 레이스 위크 ============================ -->
+  <section id="race" data-cat="race">
+    <div class="sec-head"><h2>🏁 레이스 위크</h2><span class="count">10건</span></div>
+
+    <article class="art">
+          <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F11%2F08054002%2Ffernando-alonso-in-the-rain-1.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>후속: 알론소는 빗속 Q3를 어떻게 뚫었나 — 6~10번 코너에서 1.2초를 벌고, 직선에서는 0.6초를 잃었다</h3>
+            <p class="orig">How Fernando Alonso dragged the Aston Martin into Q3 in the rain at Interlagos</p>
+            <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.11.08</span></div>
+            <p class="sum">지난 브리핑에서 알론소(Fernando Alonso)가 올해 애스턴 마틴(Aston Martin)의 첫 Q3에 올랐다는 소식을 전했는데, PlanetF1이 세션 데이터로 그 비결을 뜯어봤습니다. 알론소는 Q2에서 거의 가장 먼저 인터미디어트 타이어로 나가 첫 랩에 러셀(George Russell)의 기준 기록과 0.05초 차 3위에 올랐습니다. 구간별로 보면 긴 직선에서는 0.6초를 잃었지만 6번에서 10번 코너 사이 느린 구간에서 1.2초를 벌었습니다. 러셀·노리스·안토넬리 세 명 모두 첫 인터미디어트 랩에서 알론소만큼 격차를 만들지 못했습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>지난 보도 이후 바뀐 점: 11월 8일자 브리핑에서는 알론소의 "재미는 없었다, 집중도만 높았다"는 소회를 전했습니다. 이번 기사는 그 랩이 구간별로 어디서 빨랐고 어디서 느렸는지를 수치로 보여 줍니다.</p>
+              <p>배경은 애스턴 마틴의 부진한 시즌입니다. 멕시코에서는 두 대가 5랩 만에 멈춰 "참담한" 주말을 보냈고, 브라질에서는 뭔가 보여 줄 필요가 있었습니다. 알론소는 8번 그리드에서 결승을 출발하게 됐습니다.</p>
+              <p>Q2에서 알론소는 거의 첫 차로 인터미디어트(중간 젖은 노면용) 타이어를 신고 나갔습니다. 덕분에 그립을 찾고 랩을 완성할 시간이 생겼습니다. 첫 인터미디어트 랩은 세션 종료 약 3분 30초 전에 3위, 러셀의 기준 기록과 0.05초 차였습니다. 그 시점 러셀의 가장 빠른 풀 웨트 타이어 랩과 비교하면, 알론소는 첫 세 코너에서는 더 빨랐지만 직선 구간의 속도 열세 때문에 6번 코너에 이를 때는 0.6초가 뒤졌습니다.</p>
+              <p>그 뒤가 핵심입니다. 6번 코너에서 10번 코너까지 1.2초를 벌어 0.6초 열세를 0.6초 우위로 바꿨습니다. 기사는 특히 6번과 9번 코너의 속도 차이를 짚었습니다. 랩 후반에는 격차가 다시 거의 사라졌는데, 메르세데스 W17의 직선 속도와 더불어 알론소가 차의 안정감을 믿지 못해 14번 코너 진입에서 더 일찍 가속을 늦춘 탓이라고 설명했습니다.</p>
+              <p>다음 랩에서는 3번 코너 출구가 더 좋아졌고 6·7번 코너를 더 자신 있게 통과해 첫 두 구간에서 0.9초를 벌었지만, 12번 코너에서 실수가 나와 그 속도를 끝까지 이어 가지 못했습니다. 세션 전체로 보면 상위 팀 밖 드라이버 가운데 2구간에서 알론소보다 빠른 사람은 로슨(Liam Lawson) 한 명뿐이었고 차이는 0.026초였습니다. 2구간에는 긴 직선이 거의 없어, 느린 구간에서 알론소의 강점이 드러난 증거라고 기사는 봤습니다.</p>
+              <p>Q3에서는 기대만큼 되지 않았습니다. 알론소는 "줄 맨 앞에 서서 차가운 타이어로 나갔고 그립이 없었다"고 했습니다. 바로 앞 6위와의 격차는 1.8초로 노릴 수 없는 수준이었습니다. 결승 전망으로는, 알론소 앞 세 명이 상위 4팀 밖 드라이버라는 점과 노면 상태가 도움이 될 수 있지만, 애스턴 마틴의 직선 속도 약점이 공격과 방어를 모두 제한할 것이라고 봤습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.planetf1.com/features/fernando-alonso-dragged-aston-martin-q3-wet-interlagos" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/f969c77e5f08ef99581ce331cf87898d9208d8b3.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>찬독 "저런 건 처음 본다" — 스트롤, FP1 6번 코너에서 미끄러지는 차에 핸들을 더 꺾었다</h3>
+            <p class="orig">Sky Sports F1 pundit questions 'bizarre' Lance Stroll driving at Brazilian GP: 'I've never seen that'</p>
+            <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.11.08</span></div>
+            <p class="sum">Sky Sports F1 해설자 카룬 찬독(Karun Chandhok)이 브라질 GP 금요일 FP1에서 랜스 스트롤(Lance Stroll)의 조향을 보고 "기이하다"고 했습니다. 리플레이에서 스트롤은 고속인 6번 코너에서 차가 바깥으로 밀리는데도 핸들을 더 꺾었습니다. 찬독은 "고속 코너에서 핸들을 저렇게 돌리는 드라이버는 본 적이 없다"며 왜 그랬는지 직접 묻고 싶다고 했습니다. 스트롤은 FP1 19위, FP2 18위였고, 연습 스타트를 위해 그리드로 가는 길에 페르스타펜(Max Verstappen)과도 얽혔습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>장면은 금요일 첫 연습 주행입니다. 리플레이가 나오자 찬독은 "우와, 저게 뭐지?"라고 했고, 중계 캐스터 데이비드 크로프트(David Croft)는 "저 구간에서 차가 전혀 그립을 잡지 못한다"고 받았습니다.</p>
+              <p>찬독의 분석은 이렇습니다. 스트롤은 타이어의 슬립 앵글(타이어가 미끄러지지 않고 버틸 수 있는 조향 각도의 한계)을 넘어선 상태였습니다. 차가 언더스티어(앞바퀴가 원하는 만큼 돌지 않고 바깥으로 밀리는 현상)를 내자 핸들을 더 꺾었고, 그래도 계속 미끄러졌습니다. 보통은 핸들을 더 꺾어도 효과가 없기 때문에 드라이버가 그렇게 하지 않습니다. 찬독은 "아주, 아주 이상하다"며 스트롤에게 이유를 묻고 싶다고 했습니다.</p>
+              <p>배경으로 애스턴 마틴은 직전 멕시코 GP에서 스트롤과 알론소 두 대가 모두 파워유닛 문제로 일찍 멈췄습니다. 브라질 금요일 기록은 스트롤이 FP1 19위, FP2 18위였습니다.</p>
+              <p>같은 날 스트롤은 연습 스타트를 위해 그리드로 향하던 중 페르스타펜과 얽히는 일도 있었습니다. 페르스타펜은 이 상황에 어리둥절했다고 GPFans는 별도로 전했습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.gpfans.com/en/f1-news/1092599/sky-sports-f1-karun-chandhok-lance-stroll-bizarre-driving-brazilian-grand-prix/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 상파울루 GP 결승 리포트<span class="smeta">Formula1.com · 2026.11.08</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Sao%20Paulo%20(Brazil)/GettyImages-2304160279.webp" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>노리스, 젖고 마르고 다시 젖은 인터라고스에서 시즌 3승 — 페르스타펜은 21번 그리드에서 2위, 메르세데스는 팀 타이틀 확정</h3>
+              <p class="orig">Norris beats Verstappen in wet Sao Paulo GP thriller as Mercedes win Constructors' Championship</p>
+              <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.11.08</span></div>
+              <p class="sum">랜도 노리스(Lando Norris)가 71랩 상파울루 GP에서 폴 포지션 출발 뒤 우승했습니다. 레이스는 젖은 노면으로 시작해 말랐다가 막판에 다시 비가 왔고, 노리스는 1시간 35분 23.504초로 막스 페르스타펜(Max Verstappen)을 14.602초 차로 앉혔습니다. 시즌 3승입니다. 페르스타펜은 21번 그리드에서 2위까지 올라왔고, 팀 동료 아이작 하자르(Isack Hadjar)가 3위로 레드불 더블 포디움을 완성했습니다. 조지 러셀(George Russell) 4위, 키미 안토넬리(Kimi Antonelli) 5위로 메르세데스는 2026년 컨스트럭터 챔피언십을 확정했습니다. 안토넬리는 초반 선두를 달렸지만 두 번 스핀했습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>출발 전부터 사건이 있었습니다. 안토넬리는 그리드로 가는 정찰 랩에서 12번 코너를 넓게 돌아 젖은 잔디로 스핀했지만, 개러지로 돌아가 점검을 받고 이상 없음 판정을 받았습니다. 출발에서는 안토넬리가 노리스를 제치고 선두로 나섰고, 노리스는 리암 로슨(Liam Lawson)에게도 2위를 내줬습니다. 20번 그리드의 루이스 해밀턴(Lewis Hamilton)은 첫 랩에 9위까지 올라왔지만 올리버 베어먼(Oliver Bearman)을 코스 밖에서 추월한 건으로 조사를 받아 자리를 되돌려 줬습니다. 페르스타펜은 첫 랩에 21위에서 13위로, 5랩에는 8위까지 올라왔습니다.</p>
+                <p>타이어 전략이 레이스를 갈랐습니다. 노면이 마르면서 인터미디어트 타이어는 과열돼 그립을 잃었습니다. 해밀턴이 가장 먼저 슬릭(홈이 없는 마른 노면용) 타이어로 바꿨고 알렉스 알본(Alex Albon)이 뒤따랐습니다. 노리스·러셀·하자르는 16랩 끝에 피트인했는데, 러셀은 피트 출구에서 스핀해 시간을 잃었습니다. 안토넬리와 페르스타펜은 한 랩 늦게 들어왔고 안토넬리는 선두를 지킨 채 복귀했습니다. 노리스가 0.6초 차까지 붙었고 안토넬리는 서스펜션 문제가 의심된다고 보고했습니다. 그리고 20랩 1번 코너에서 안토넬리가 스핀하면서 선두가 노리스로 넘어갔고 하자르가 2위가 됐습니다. 안토넬리는 그 뒤 한 번 더 스핀해 페르스타펜 뒤로 복귀했습니다.</p>
+                <p>중반 노리스는 9~10초 차 리드를 만들었습니다. 하자르와 페르스타펜이 2위를 두고 다퉜고, 38랩 1번 코너에서 페르스타펜이 자리를 가져갔습니다. 페르스타펜은 늦은 피트 스톱 뒤 5위로 복귀해 다시 올라왔습니다. 니코 휠켄베르크(Nico Hulkenberg)는 1번 코너 코스 이탈로 10초 페널티를 받아 다음 피트 스톱에서 소화했습니다. 노리스는 늦게 피트인해 4위로 나왔지만 곧바로 오스카 피아스트리(Oscar Piastri)를 제쳤습니다. 안토넬리는 53랩 끝에 피트인하며 선두를 내줬고, 그 뒤 러셀이 앞서 있다가 팀 지시로 안토넬리에게 자리를 돌려줬습니다. 기사는 러셀이 지시에 따랐다고 적었습니다.</p>
+                <p>막판에 비가 돌아왔습니다. 61랩에 러셀과 페르난도 알론소(Fernando Alonso)가 가장 먼저 인터미디어트로 바꿨고 대부분이 뒤따랐습니다. 해밀턴은 12번 코너 오르막에서 벽을 스치고 스핀했습니다. 안토넬리는 마지막 피트 스톱에서 알핀 차 앞으로 나온 건으로 레이스 뒤 조사 대상이 됐습니다. 노리스는 14.6초 차로 결승선을 넘었습니다.</p>
+                <p>최종 순위는 1위 노리스(25점), 2위 페르스타펜(+14.602초, 18점), 3위 하자르(+24.485초, 15점), 4위 러셀(+33.991초, 12점), 5위 안토넬리(+41.017초, 10점)입니다. 6위 피아스트리, 7위는 르클레르(Charles Leclerc)였지만 로슨과의 접촉으로 5초 페널티를 받아 로슨이 7위, 르클레르가 8위가 됐습니다. 해밀턴은 400번째 출전에서 20번 그리드 출발 뒤 1랩 뒤진 9위, 휠켄베르크 10위입니다. 아르비드 린드블라드(Arvid Lindblad)가 포인트를 아깝게 놓쳤고, 알론소, 프랑코 콜라핀토(Franco Colapinto), 피에르 가슬리(Pierre Gasly), 15위 알본, 가브리엘 보르톨레토(Gabriel Bortoleto), 베어먼, 세르히오 페레스(Sergio Perez), 카를로스 사인츠(Carlos Sainz), 20위 데뷔전의 라파엘 카마라(Rafael Camara) 순입니다.</p>
+                <p>노리스는 "그냥 차분하게 유지하고 실수를 안 했다"고 말했습니다. RacingNews365에는 "출발이 좋지 않았고 선두를 쫓으며 젖은 노면에서 슬릭으로 가는 건 어려웠다"면서도 "중요할 때 페이스가 있었다"고 했습니다. 최근 몇 주 팀에 좋은 결과로 보답하지 못해 답답했는데 이번 주말이 그 보답이라며 "올해는 폴이나 우승 기회가 오면 잡았고 그게 성과를 냈다"고 덧붙였습니다. 커리어 14승째입니다. 다음 라운드는 11월 20~22일 라스베이거스 GP입니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.formula1.com/en/latest/article/norris-beats-verstappen-in-wet-sao-paulo-gp-thriller-as-mercedes-win-constructors-championship.7JN7MXLZf5lk5l0C3gfKGI" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 상파울루 GP 승자와 패자 (The Race 평가)<span class="smeta">The Race · 2026.11.08</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://storage.ghost.io/c/dd/af/ddafbd99-2ccd-468c-b622-4b3cccf80b49/content/images/size/w1200/2026/11/XPB_1453478_HiRes.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>브라질 GP 승자와 패자 — 노리스·페르스타펜·하자르·로슨·휠켄베르크가 웃고, 안토넬리·러셀·페라리·카마라·보타스는 울었다</h3>
+              <p class="orig">Winners and losers from F1's 2026 Brazilian Grand Prix</p>
+              <div class="meta"><span class="src">The Race</span><span>·</span><span>2026.11.08</span></div>
+              <p class="sum">The Race는 뒤섞인 그리드와 변덕스러운 날씨 속 레이스의 승자로 노리스(1위), 페르스타펜(2위), 하자르(3위), 로슨(7위), 휠켄베르크(10위)를 꼽았습니다. 패자는 선두에서 스핀한 안토넬리(5위), 피트 출구 스핀의 러셀(4위), 올해 최저 득점의 페라리(8·9위), 데뷔전에서 두 랩 뒤진 최하위 카마라(20위), 휠넛 문제로 출발도 못한 보타스(DNS)입니다. 메르세데스는 올해 처음으로 포디움 없는 레이스를 하고도 팀 타이틀을 확정했습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p><b>노리스(승자)</b> — 기사는 커리어 최고 우승 중 하나로 평가했습니다. 1번 코너에서 선두를 잃고 2번 코너에서는 로슨에게 2위까지 밀렸지만, 6랩 비코 지 파투(Bico de Pato) 코너에서 로슨을 되찾았습니다. 그때 안토넬리와는 5초 넘게 벌어져 있었습니다. 맥라렌은 메르세데스보다 한 랩 먼저 슬릭으로 바꿨고, 따뜻해진 타이어로 한 랩을 더 달린 덕에 격차를 좁혀 안토넬리가 미끄러지자 바로 추월했습니다. 남들이 실수한 조건에서 노리스는 실수하지 않았습니다.</p>
+                <p><b>페르스타펜(승자)</b> — 21번 출발. 본인은 클러치를 잘못 잡아 출발이 느렸고 첫 세 코너에서 갇혔다고 자책했습니다. 그래도 대열이 정리된 뒤 진격은 빨랐습니다. 슬릭으로 바꾼 뒤 고속 코너에서 극심한 오버스티어(뒷바퀴가 미끄러져 차 뒤가 돌아 나가는 현상)가 났는데, 공력 손실 때문으로 봤습니다. 막판 인터미디어트에서는 첫 스틴트와 "완전히 다른 차"였다며 뭔가 잘못됐다는 증거라고 했습니다.</p>
+                <p><b>하자르(승자)</b> — 레드불에서 세 번째 포디움. 첫 스틴트 중반 인터미디어트에서 그립이 부족했고, 페르스타펜과 가까이 완주한 데는 페르스타펜이 맨 뒤에서 출발한 영향도 있습니다. 하지만 슬릭에서 페이스가 좋았고, 포디움을 확보한 안토넬리 추월처럼 날카로운 움직임이 돋보였습니다.</p>
+                <p><b>로슨(승자)</b> — 주말 내내 팀 동료 린드블라드보다 확실히 앞섰고 첫 랩에는 2위까지 달렸습니다. 마르는 노면이 그 자리를 빼앗았지만 르클레르의 페널티 뒤 페라리 두 대를 이겼습니다. 5주 연속 중위권 1위. 2026년 포인트는 알핀을 넉넉히 앞서는데 알핀은 최근 6주말 중 5번 무득점입니다. 레이싱 불스는 토로 로소 시절부터 노린 팀 순위 5위에 가까워졌습니다. 그런데도 레드불이 로슨을 내칠 수 있다고 기사는 짚었습니다.</p>
+                <p><b>휠켄베르크(승자)</b> — 4번 출발, 10위 완주. 많은 중위권보다 잘 버텼습니다. 두 칸 뒤에서 출발한 베어먼은 20초짜리 피트 스톱 뒤 17위로 떨어졌고 "피트에 그렇게 서 있으면 게임 끝"이라고 했습니다. 톱10에서 출발한 알본은 윌리엄스가 "인터미디어트를 망가뜨렸다"며 밀렸습니다. 휠켄베르크는 콜라핀토와 다투며 코스를 잘라 페널티를 받았지만 순위는 바뀌지 않았고, 이 1점은 팀 순위 7위를 다투는 아우디와 하스 사이에서 의미가 있을 수 있습니다.</p>
+                <p><b>안토넬리(패자)</b> — 선두에서 스핀해 5위로 밀렸습니다. 토토 볼프(Toto Wolff)는 셋업이나 타이어 압력 실수가 원인일 것으로 보지만 아직 완전히 진단되지 않았습니다. 언세이프 릴리스(피트 작업 뒤 다른 차 앞으로 위험하게 내보내는 것) 페널티도 받았지만 순위는 바뀌지 않았습니다. 메르세데스의 타이틀은 사실상 몇 달 전에 결정된 것이고, 브라질에서 확정된 것은 페라리의 부진 덕이라고 기사는 적었습니다.</p>
+                <p><b>러셀(패자)</b> — 소프트 타이어 레이스 페이스는 가장 빨랐다며 긍정적으로 받아들였습니다. 4위는 다섯 라운드 전 바쿠 우승 이후 최고 결과이고 바쿠 이후 처음으로 안토넬리를 이겼습니다. 하지만 가장 기억에 남는 장면은 피트 출구 스핀과 느린 복귀였습니다. 막판 타이어 승부수로 순위를 되찾았지만, 안토넬리 대신 우승을 노릴 모습은 아니었습니다.</p>
+                <p><b>페라리(패자)</b> — 유일한 긍정은 르클레르와 해밀턴이 그럭저럭 협력했다는 것. 6점으로 올해 최저 득점이고 르클레르는 로슨 뒤로 내려갔습니다. 두 사람 뒤에서 출발한 페르스타펜이 2위를 했습니다. 아주 빠른 순간이 잠깐씩 있었지만 느린 구간이 훨씬 길었습니다. <b>카마라(패자)</b> — 데뷔전에서 두 랩 뒤진 완주자 최하위. 트랙 리미트로 여러 랩이 삭제됐고, 피트에서 나온 직후 4번 코너 이탈로 흑백기까지 받았습니다. 금요일과 예선에서는 가능성을 보였습니다. <b>보타스(패자)</b> — 그리드에서 휠넛이 어긋나게 조여져 바퀴가 빠지지 않아 출발하지 못했습니다. 팀에 잔류를 설득해야 하는 시점이라 더 아픈 결과입니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.the-race.com/formula-1/winners-and-losers-from-f1-2026-brazilian-grand-prix/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 안토넬리의 결승 중 스핀 원인 설명<span class="smeta">Autosport · 2026.11.08</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://cdn-7.motorsport.com/images/amp/2eZx8n9Y/s6/andrea-kimi-antonelli-mercedes-2.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>안토넬리 "소프트 타이어를 신자 뭔가 이상했다" — 왼쪽 고속 코너에서만 뒤가 풀려 선두에서 스핀, "리어 지오메트리를 확인해야"</h3>
+              <p class="orig">Antonelli explains "weird" spin and car instability which cost F1 Brazilian GP win</p>
+              <div class="meta"><span class="src">Autosport</span><span>·</span><span>2026.11.08</span></div>
+              <p class="sum">새 챔피언 키미 안토넬리는 선두를 달리다 20랩 1번 코너에서 스핀해 우승을 놓친 데 "매우 화가 났다"고 했지만, 팀이 컨스트럭터 타이틀을 확정했기 때문에 그 감정은 접어 두기로 했습니다. 스핀 전부터 서스펜션 문제가 의심되고 가속 때 차가 한쪽으로 쏠린다고 보고했습니다. 문제는 왼쪽 코너, 특히 고속 왼쪽 코너에서만 나타났는데 인터라고스에서는 1구간과 3구간 대부분이 그렇습니다. 스핀으로 네 타이어 모두 플랫 스팟이 생겼고, 두 번째 소프트 세트로 바꾼 뒤에는 랩타임이 눈에 띄게 좋아졌습니다. 안토넬리는 팀이 차의 리어 지오메트리를 확인해야 한다고 했습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>안토넬리는 출발에서 폴시터 노리스를 제치고 선두로 나선 뒤 초반 넉넉한 격차를 만들었습니다. 노면이 슬릭을 신을 만큼 마른 첫 피트 스톱까지 선두를 지켰지만, 노리스의 언더컷(앞차보다 먼저 피트인해 새 타이어로 시간을 벌어 앞서는 전략)이 그 우위를 상당히 깎았습니다.</p>
+                <p>20랩 초입, 안토넬리는 첫 코너에서 차를 놓쳐 스핀했습니다. 복귀는 했지만 이미 노리스가 선두를 가져갔고, 곧 하자르의 사정권에 들어갔습니다. 스핀 전에 이미 서스펜션 문제 가능성과 가속 중 차가 한쪽으로 당기는 증상을 무전으로 알린 상태였습니다. 이 균형 문제는 이후 하자르와 페르스타펜에게 자리를 더 내주는 원인이 됐고, 레이스 중에는 뚜렷한 원인이 나오지 않았습니다.</p>
+                <p>안토넬리는 "소프트 타이어를 신었을 때 뭔가 이상한 걸 느꼈다"고 했습니다. Sky Sports에는 문제가 왼쪽 코너에서만, 특히 고속 왼쪽 코너에서 나타났다고 설명했습니다. 인터라고스는 반시계 방향 서킷이어서 1구간과 3구간의 많은 코너가 왼쪽입니다. 마지막 왼쪽 굽이에 들어갈 때 차 뒤가 아주 헐겁게 느껴졌다고 했습니다.</p>
+                <p>스핀의 대가는 타이어였습니다. 네 바퀴 모두 플랫 스팟(바퀴가 잠긴 채 미끄러져 한 면이 평평하게 닳은 자리)이 생겼습니다. 두 번째 소프트 세트를 끼운 뒤에는 랩타임이 눈에 띄게 좋아졌고, 그 덕에 막판 하자르를 압박할 기회가 생겼습니다.</p>
+                <p>안토넬리는 레이스 뒤 "매우 화가 났다"고 인정하면서도, 팀이 컨스트럭터 타이틀을 확정한 날이라 그 감정을 옆으로 치웠다고 했습니다. 다음 단계로는 팀이 리어 지오메트리(뒷바퀴와 서스펜션이 놓인 각도와 위치)를 점검해 무슨 일이 있었는지 찾아야 한다고 했습니다. The Race 보도에 따르면 볼프는 셋업이나 타이어 압력 실수를 의심하고 있습니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.autosport.com/f1/news/antonelli-explains-weird-spin-and-car-instability-which-cost-f1-brazilian-gp-win/10873132/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 페르스타펜의 결승 뒤 무전과 차 상태 불만<span class="smeta">RaceFans · 2026.11.08</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/11/racefansdotnet-24-11-08-19-38-47-1-SI202611080342.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>페르스타펜 "레이스의 85%를 망가진 차로 달렸다, 2위는 좋지만 이런 식은 아니다" — 21번 출발에서 2위, 8경기 연속 포디움</h3>
+              <p class="orig">Verstappen says he "did 85% of the race with a f***ed car" after finishing second</p>
+              <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.11.08</span></div>
+              <p class="sum">막스 페르스타펜은 21번 그리드에서 출발해 비에 영향받은 인터라고스 레이스를 2위로 마쳤습니다. 8경기 연속 포디움이고 팀 동료 하자르도 포디움에 올랐습니다. 그런데 결승선을 지난 뒤 무전은 축하가 아니라 분노였습니다. "레이스의 85%를 망가진 차로 달렸다", "물론 P2는 좋지만 이런 식은 아니다", "몰기에 재앙이었다, 젖었든 말랐든 이런 건 경험한 적이 없다"고 했습니다. 레드불 대표 로랑 메키스(Laurent Mekies)는 비판을 이해한다며 "끝까지 파헤치겠다"고 했습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>무전 내용은 GPFans가 더 자세히 옮겼습니다. "맙소사, 레이스의 85%를 망가진 차로 달렸다", "물론 P2는 좋지만 이런 식은 아니다", "미안하지만 몰기에 정말 재앙이었다. 믿을 수가 없다", "젖은 데서도 마른 데서도 이런 건 경험한 적이 없다, 정말 정말 나빴다"는 말이 이어졌습니다.</p>
+                <p>차에서 내린 뒤에는 한결 차분해졌습니다. 레이스가 어려웠지만 첫 스틴트는 추월을 많이 하며 아주 강했고, 그 뒤 차가 균형을 잃었다고 했습니다. 주말 내내 몰아 온 차와는 "완전히 반대"되는 느낌이었다며 손상이 있었을 수 있다고 의심했고, 팀이 무엇이 잘못됐는지 알아내야 한다고 했습니다. 그러면서도 21번에서 출발해 2위를 한 것은 아주 좋은 결과라고 덧붙였습니다.</p>
+                <p>The Race의 분석에서는 조금 더 구체적입니다. 페르스타펜은 출발이 나빴던 것을 자신의 탓으로 돌렸습니다. 클러치를 잘못 잡아 느리게 나갔고 첫 세 코너에서 갇혔다는 겁니다. 슬릭으로 바꾼 뒤에는 고속 코너에서 극심한 오버스티어를 겪었고, 공력 손실 때문이라고 봤습니다. 막판 인터미디어트 스틴트는 첫 스틴트와 하늘과 땅 차이였다며, 그것이 뭔가 잘못됐다는 증거라고 했습니다.</p>
+                <p>레드불 대표 메키스는 페르스타펜의 비판을 이해한다면서도 레이스 자체는 칭찬했고, 팀이 원인을 끝까지 파헤치겠다고 했습니다. 페르스타펜도 팀에 "좋은 노력"이었다고 감사를 전했습니다.</p>
+                <p>젖은 노면에서 차의 움직임에 당황한 드라이버는 페르스타펜만이 아니었습니다. 메르세데스 두 드라이버 모두 피트 스톱 직후 심각한 핸들링 문제를 보고했습니다. 중계 중 하자르는 페르스타펜에게 자리를 양보해야 했습니다(GPFans 보도).</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.racefans.net/2026/11/08/verstappen-says-he-did-85-of-the-race-with-a-fed-car-after-finishing-second/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 러셀의 피트 출구 스핀과 결승 소회<span class="smeta">Formula1.com · 2026.11.08</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Brazil/2304171204.webp" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>러셀 "피트 출구에서 무슨 일이 있었는지 모르겠다" — 스핀으로 잃은 자리, 4위 완주, "4년의 힘든 시간 끝에 온 타이틀"</h3>
+              <p class="orig">'No idea what happened on that pit exit' spin – Russell reflects on spin and Mercedes title win in Sao Paulo</p>
+              <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.11.08</span></div>
+              <p class="sum">조지 러셀은 폴을 아깝게 놓친 뒤 엔진 교체 페널티 5칸으로 7번 그리드에서 출발했습니다. 젖은 초반에 4위까지 올라왔지만 슬릭으로 바꾸고 나오던 피트 출구에서 스핀해 여러 자리를 잃었습니다. 막판 비가 오자 가장 먼저 인터미디어트로 바꿔 되치기에 성공했고, 팀 동료 안토넬리가 자리를 양보해 4위로 마쳤습니다. 러셀은 "우승 기회가 보여서 아마 너무 많은 위험을 감수했다"고 했습니다. 메르세데스가 2021년 이후 첫 컨스트럭터 타이틀을 확정한 데 대해서는 "4년의 힘든 시간을 지나온 믿기 어려운 성취"라고 했습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>러셀은 토요일 예선에서 노리스에 0.204초 뒤진 2위였지만, 내연기관(ICE) 교체로 받은 5칸 페널티 때문에 7번 그리드로 밀려 있었습니다. 레이스는 젖은 노면으로 시작했고 러셀은 4위까지 올라왔습니다.</p>
+                <p>문제는 첫 타이어 교체 때였습니다. 슬릭으로 바꾸고 피트 레인을 나오던 러셀은 출구에서 차가 돌아 스핀했습니다. 차에 손상은 없었지만 여러 자리를 잃었습니다. 러셀은 "그 피트 출구에서 무슨 일이 있었는지 전혀 모르겠다"고 했습니다. 스핀 때문에 슬릭 두 번째 세트를 위한 피트 스톱도 건너뛰었고, 결과적으로 사건 전과 비슷한 자리로 돌아간 셈이라고 설명했습니다.</p>
+                <p>그 뒤 되치기가 있었습니다. 막판 비가 다시 내리자 러셀은 61랩에 가장 먼저 인터미디어트로 바꿨고, 이 선택이 순위를 끌어올렸습니다. 안토넬리가 자리를 내줘 4위로 마쳤습니다. 러셀은 "우승 기회가 보여서 아마 너무 많은 위험을 감수했다"고 돌아봤습니다.</p>
+                <p>그래도 주말 전체에 대한 평가는 지난 몇 주보다 밝았습니다. 특히 레이스에서 소프트 타이어 페이스가 좋았다며, 지금은 결과보다 퍼포먼스를 더 신경 쓰고 있고 그것이 자신의 약점이었다고 했습니다. 7번이 아니라 2번에서 출발했다면 결과가 달랐을 것이라고도 했습니다. 2027년 타이틀 도전에 앞서 페이스를 찾는 것이 우선이라고 밝혔습니다.</p>
+                <p>메르세데스는 이 결과로 2021년 이후 첫 컨스트럭터 타이틀을 확정했습니다. 러셀은 2022년에 팀에 합류해 그 공백기를 모두 겪었고, "4년의 힘든 시간을 지나온 믿기 어려운 성취"라고 했습니다. 기사에 따르면 러셀은 드라이버 순위 3위로 페르스타펜에 17점 뒤져 있습니다. 페르스타펜은 21번 그리드에서 2위까지 올라왔습니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.formula1.com/en/latest/article/no-idea-what-happened-on-that-pit-exit-russell-reflects-on-spin-and-mercedes-title-win-in-sao-paulo.1C1TWOL9x9TBOkYyNxid7F" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 페라리 두 드라이버의 결승 소회<span class="smeta">Formula1.com · 2026.11.08</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://media.formula1.com/image/upload/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Brazil/GettyImages-2303961920.webp" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>르클레르 "완전한 재앙", 해밀턴 "비가 더 온다는 말을 못 들었다" — 페라리는 몬차 이후 최저 득점, 8위와 1랩 뒤진 9위</h3>
+              <p class="orig">'A complete disaster' – Leclerc and Hamilton lament 'horrendous' Ferrari performance in Sao Paulo</p>
+              <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.11.08</span></div>
+              <p class="sum">페라리는 상파울루에서 두 드라이버 합쳐 8점(페널티 반영 뒤 6점)에 그쳤습니다. 이탈리아 GP 이후 가장 적은 득점입니다. 르클레르는 10칸 페널티로 14번에서 출발해 첫 스틴트가 "끔찍했다"고 했고, 막판 로슨을 추월해 7위로 들어왔지만 접촉으로 5초 페널티를 받아 8위가 됐습니다. 해밀턴은 20번에서 출발해 초반 11자리를 올라왔지만 뒷타이어가 "풍선처럼 부풀어" 과열됐고, 막판 비가 거세진다는 무전을 듣지 못해 슬릭으로 젖은 1번 코너에 들어가 자리를 잃고 스핀까지 해 1랩 뒤진 9위로 마쳤습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>르클레르는 내연기관 교체로 10칸 페널티를 안고 출발했습니다. 첫 스틴트는 좋지 않아 포인트권으로 올라갈 기미가 없었고, 피트 스톱을 거치며 자리를 벌었습니다. 막판 비가 올 때 인터미디어트로 바꾸는 타이밍은 맞았습니다. 트랙에서 로슨을 제쳐 7위로 들어왔지만, 그 추월 과정의 가벼운 접촉으로 레이스 뒤 5초 페널티를 받아 8위로 내려갔습니다. 르클레르는 첫 스틴트 페이스가 "끔찍했다"며 초반 몇 랩은 차를 몰기가 힘들었다고 했습니다. 레인 타이어 결정은 "동전 던지기 같았다"고 했고, 주말 전체를 "몰기에 완전한 재앙"이라고 표현했습니다.</p>
+                <p>해밀턴은 20번 그리드에서 출발해 첫 랩이 끝날 때 9위, 마지막 포인트 자리까지 올라왔습니다. 그러나 노면이 마르면서 인터미디어트 뒷타이어가 과열됐습니다. 해밀턴은 Crash.net에 "뒷타이어가 그냥 풍선처럼 부풀어 과열됐고 그때부터 고전했다"고 말했습니다. 페라리는 그를 일찍 슬릭으로 바꿔 가장 먼저 교체한 드라이버 중 하나가 되게 했는데, 해밀턴이 먼저 요청하고 무전으로 몇 번 오간 뒤 팀이 동의한 것이었습니다.</p>
+                <p>첫 랩에는 코스를 벗어나 베어먼을 추월한 건으로 조사를 받았고, 페널티를 피하려고 자리를 되돌려 줬습니다. 스튜어드는 결국 "이득을 얻지 않았다"고 판단했습니다(별도 카드 참조).</p>
+                <p>결정적인 장면은 막판이었습니다. 비가 거세지고 있었지만 해밀턴은 "마지막으로 들은 메시지는 계속 가볍게 흩뿌리는 정도로 유지된다는 것이었고, 그래서 지금이 밀어붙일 순간이라고 생각했다"고 했습니다. "1구간에 비가 더 온다는 말을 듣지 못했다"며 슬릭으로 젖은 1번 코너에 들어가 "두 자리 정도를 잃었다"고 했습니다. 이어 추가 피트 스톱이 필요해졌고, 그 때문에 따라잡을 거리가 너무 멀어졌다고 설명했습니다. 복귀 뒤에는 12번 코너 오르막에서 벽을 스치고 스핀했습니다.</p>
+                <p>해밀턴은 400번째 출전을 우승자 노리스에 1랩 뒤진 9위로 마쳤습니다. 팀은 더 많은 포인트를 받을 자격이 있었다며 막판 스핀의 책임 일부를 자신에게 돌렸고, "팀 전체에 정말, 정말, 정말 힘든 하루이자 주말"이었다면서 엔진 교체를 해낸 정비사들을 칭찬했습니다. The Race는 두 드라이버가 서로 협력은 잘했다는 것이 유일한 긍정이라고 평가했습니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.formula1.com/en/latest/article/a-complete-disaster-leclerc-and-hamilton-lament-horrendous-ferrari-performance-in-sao-paulo.sdZmqEEwBaoAC8OmBxvYh" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 로슨, 르클레르의 막판 추월에 이의<span class="smeta">PlanetF1 · 2026.11.08</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F11%2F08192451%2Fracing-bulls-liam-lawson-2026-brazilian-grand-prix.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>로슨 "르클레르의 날개가 내 타이어를 쳤다, 정말 운이 좋았다" — 2017년 아부다비 GP2 알본 추월에 빗대 "그의 특기인가"</h3>
+              <p class="orig">Liam Lawson takes aim at Charles Leclerc over controversial 'F2' move</p>
+              <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.11.08</span></div>
+              <p class="sum">레이싱 불스(Racing Bulls)는 르클레르가 막판에 로슨을 추월하면서 생긴 접촉을 검토하겠다고 했습니다. 로슨이 방어하던 중 르클레르의 차가 로슨의 차를 쳤고, 두 사람은 스튜어드에 소환됐습니다. 르클레르는 로슨보다 2초도 안 되는 차이로 7위에 들어왔습니다. 로슨은 "르클레르의 날개가 내 타이어를 쳤다, 우리는 정말 운이 좋았다"며 2017년 아부다비 GP2(지금의 F2)에서 르클레르가 알본(Alex Albon)의 헤어핀 진입을 흔들어 우승한 장면에 빗댔습니다. 합법적인 추월인지 확신이 없어 팀이 검토할 것이라고 했습니다. 스튜어드는 결국 르클레르에게 5초 페널티를 줬습니다(별도 카드 참조).</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>사건은 69랩 준상(Juncao, 12번 코너)에서 일어났습니다. 7위를 두고 다투던 르클레르가 로슨에게 접촉했고, 그 덕에 7위를 가져갔습니다. 두 차 모두 큰 손상은 없었지만 접촉은 가볍지 않았습니다. 로슨은 접촉으로 왼쪽 뒷바퀴 림이 손상됐다고 주장했습니다.</p>
+                <p>로슨은 "르클레르의 날개가 내 타이어를 쳤다"며 "우리는 정말 운이 좋았다"고 했습니다. 그러면서 2017년 아부다비 GP2 레이스를 떠올렸습니다. 당시 르클레르는 헤어핀에서 알본의 진입 흐름을 흔들어 추월하고 우승했습니다. The Race에는 이것이 르클레르의 "특기"일지 모른다고 꼬집었습니다. 합법적인 움직임인지는 확신하지 못했고, 팀이 검토할 것이라고 했습니다.</p>
+                <p>로슨의 레이스 자체는 좋았습니다. 출발에서 한 자리를 올라 2위로 달리며 선두 안토넬리를 잠깐 압박했습니다. 그러나 페이스가 자리를 잡자 메르세데스가 더 빨랐고, 레이싱 불스는 뒤로 밀리기 시작했습니다. 타이어 마모도 경쟁자들보다 심했습니다. 로슨은 레이스가 계속 젖은 채였다면 더 나은 기회가 있었을 것이라고 했습니다. 팀이 "중위권 최상위"에 있고 그것이 매 주말의 목표라고도 했습니다.</p>
+                <p>2027년 자리는 여전히 미정입니다. 레이싱 불스는 라인업을 발표하지 않았고 F2의 니콜라 솔로프(Nikola Tsolov)가 경쟁자로 꼽힙니다. 결정은 시즌 끝 전에 나올 전망입니다. 로슨은 팬들의 응원에 감사하면서도 "팀에서 더 많이 왔으면 좋았을 것"이라고 했고, 레드불은 "큰 조직"이라고 덧붙였습니다. 팀 대표 앨런 퍼메인(Alan Permane)의 지지는 고맙다고 했습니다.</p>
+                <p>스튜어드 심의 결과 르클레르는 5초 페널티를 받아 8위로 내려갔고, 로슨이 7위로 올라 추가 포인트를 가져갔습니다. 자세한 판정 근거는 FIA 섹션의 스포일러 카드에 있습니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.planetf1.com/news/liam-lawson-charles-leclerc-brazilian-gp-controversial-pass" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 시상식 불꽃 장치 사고<span class="smeta">PlanetF1 · 2026.11.08</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F11%2F08210158%2Flando-norris-mclaren-firework-brazil-2026-planetf1.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>노리스, 포디움에서 샴페인 병 깨지고 불꽃 장치 불똥에 머리 맞아 — 스텔라 "병이 아니라 불꽃 장치 때문, 괜찮다고 들었다"</h3>
+              <p class="orig">Lando Norris hit by firework in dramatic Brazilian GP podium incident</p>
+              <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.11.08</span></div>
+              <p class="sum">인터라고스에서 14.5초 차로 우승한 노리스는 시상식에서 두 번 놀랐습니다. 샴페인 병이 바닥에 떨어져 깨졌고, 이어 포디움에 설치된 분수형 불꽃 장치의 불똥이 오른쪽 머리에 튀어 얼굴 옆을 감싸 쥐는 모습이 보였습니다. 맥라렌 대표 안드레아 스텔라(Andrea Stella)는 아직 노리스와 이야기하지 못했지만 "괜찮은 것으로 안다"며, 문제는 병이 아니라 불꽃 장치였고 노리스가 깜짝 놀란 것 같다고 했습니다. 이번 우승으로 노리스는 드라이버 순위 2위 경쟁에 다시 끼어들었고, 2위 페르스타펜과는 33점 차입니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>노리스는 처음 선두를 안토넬리에게 내줬다가 되찾아 14.5초 차로 우승했습니다. 2위 페르스타펜, 3위 하자르였습니다. 맥라렌은 이번 주말 MCL40에 업그레이드를 들고 왔고, 노리스는 폭풍이 지나가는 변덕스러운 예선에서 그 차로 폴을 잡았습니다.</p>
+                <p>시상식에서는 전통처럼 샴페인을 터뜨리던 중 병이 바닥에 떨어져 깨졌습니다. 이어 포디움에 설치된 스프링클러 모양의 불꽃 장치에서 튄 불똥이 노리스의 오른쪽 머리에 닿았고, 노리스는 얼굴 옆을 손으로 감쌌습니다. RacingNews365는 이를 노리스의 "또 한 번의 포디움 소동"으로 전했습니다.</p>
+                <p>스텔라는 기자들 앞에 설 때까지 노리스와 직접 이야기하지는 못했습니다. 다만 노리스가 "괜찮다"고 들었고, 문제는 병이 아니라 불꽃 장치였으며 노리스가 그것에 놀란 것 같다고 설명했습니다.</p>
+                <p>챔피언십 맥락도 정리했습니다. 안토넬리는 멕시코시티에서 2026년 드라이버 타이틀을 확정해 역대 최연소 챔피언이 됐고, 노리스의 챔피언 자격은 그때 끝났습니다. 메르세데스는 브라질에서 페라리보다 3점만 더 따면 컨스트럭터 타이틀이었고 그것을 달성해 맥라렌의 팀 타이틀 연속 기록도 끊었습니다. 노리스의 우승은 드라이버 순위 2위 싸움을 되살렸습니다. 남은 라운드는 최대 세 번이고 2위 페르스타펜과의 차이는 33점입니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.planetf1.com/news/lando-norris-firework-2026-brazilian-grand-prix" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+  </section>
+
+  <!-- ============================ 🔄 이적/계약 ============================ -->
+  <section id="transfer" data-cat="transfer">
+    <div class="sec-head"><h2>🔄 이적/계약</h2><span class="count">2건</span></div>
+
+    <article class="art">
+          <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/d13302356720d701d572db02b0944f88d29f9809.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>후속: 로슨 "끝까지 미뤄지면 남는 선택지가 없다" — 크라비츠 "지금 자르면 안 된다, 솔로프는 1년 더 리저브로"</h3>
+            <p class="orig">Liam Lawson makes desperate plea as F1 future hangs in the balance</p>
+            <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.11.07</span></div>
+            <p class="sum">계약이 올해 끝나는 리암 로슨(Liam Lawson)은 상파울루에서 내년 F1 자리가 있는지 아직 모른다고 했습니다. 레이싱 불스는 커리어 최고 시즌을 보낸 그를 잡을지 19세(PlanetF1은 20세) F2 드라이버 니콜라 솔로프(Nikola Tsolov)를 올릴지 밝히지 않았습니다. 로슨은 "뭘 더 해야 하는지 모르겠다"며 "이런 일이 끝까지 미뤄지면 남는 선택지가 사실상 없다"고 했습니다. Sky F1의 테드 크라비츠(Ted Kravitz)는 팀 대표 퍼메인에게 "지금 자를 수는 없다"고 따져 물었고, 솔로프를 1년 더 리저브로 두거나 시즌 중반에 교체하는 절충안을 제시했습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>지난 보도 이후 바뀐 점: 11월 6일과 8일 브리핑에서 로슨의 "팀이 나에게 뭘 더 바라는지 모르겠다"는 발언과 브런들의 비판을 전했습니다. 이번에는 로슨이 "선택지가 없다"고 한 발 더 나아갔고, 크라비츠가 솔로프 처리 방안까지 구체적으로 제안했습니다.</p>
+              <p>24세 뉴질랜드인 로슨의 계약은 2026년 끝에 만료됩니다. 멕시코시티 FP2에서는 레드불의 페르스타펜과 충돌했고, 페르스타펜은 "자리를 걸고 싸우는 중이라면 똑똑한 행동은 아니다"라고 말한 바 있습니다.</p>
+              <p>상파울루에서 로슨은 최근 성적이 2027년 자리를 확보해 줄 수 있느냐는 질문에 "모르겠다. 매 주말 최선을 다하려 했을 뿐"이라고 답했습니다. 팀이 "알핀과 싸우고 있고 매 주말 알핀에서 멀어지고 있다"고 했고, 남은 레이스는 몇 경기뿐입니다. 팀 동료 아르비드 린드블라드(Arvid Lindblad)보다 두 배 넘는 포인트를 쌓았습니다. 그러면서 "이런 일이 끝까지 미뤄지면 남는 선택지가 사실상 없다"고 했습니다.</p>
+              <p>크라비츠는 'Ted's Notebook' 코너에서 레이싱 불스 호스피탈리티 앞, 로슨 사진 앞에 서 있는 퍼메인을 보고 이 문제를 꺼냈습니다(PlanetF1·Crash.net 보도). "지금 자를 수는 없다"고 했다가 "그럴 수도 있겠다"고 인정했습니다. 그가 제안한 길은 솔로프에게 1년 더 리저브를 맡겨 FP1을 충분히 뛰게 하고 다른 레이스 프로그램도 병행하게 하는 것입니다. 20세인 솔로프가 멕시코 FP1에서 구형 차 테스트 때 차분하고 빠르게 달린 것은 칭찬했습니다. 절충안으로 로슨을 반 시즌 두고 후반에 솔로프를 넣는 방식도 꺼냈습니다.</p>
+              <p>크라비츠는 지금 로슨을 내보내면 그에게 남는 길이 거의 없다고 했습니다. 2028년에는 많은 자리가 열릴 수 있다며(기사 편집자 주로 2027년에서 2028년으로 수정) 윌리엄스를 한 가능성으로 들었습니다. 로슨 본인은 팬들의 응원에 고마워하면서도 "팀에서 더 많이 왔으면 좋았을 것"이라고 말했습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.gpfans.com/en/f1-news/1092565/f1-liam-lawson-red-bull-racing-bulls-contract-nikola-tsolov/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://motorsportmagazine.b-cdn.net/wp-content/uploads/2026/11/CadillacF1Team_17218_HiRes.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>후속: 캐딜락이 보타스를 허타로 바꾸면 얻는 것과 잃는 것 — "상업적으로는 말이 되지만 스포츠적으로는 훨씬 불분명"</h3>
+            <p class="orig">Would Cadillac gain or lose by replacing Bottas with Herta?</p>
+            <div class="meta"><span class="src">Motor Sport Magazine</span><span>·</span><span>2026.11.05</span></div>
+            <p class="sum">Motor Sport Magazine의 파블로 엘리살데(Pablo Elizalde)는 캐딜락(Cadillac)의 2027년 두 번째 시트 결정을 국적이나 홍보 효과가 아니라 스포츠적 근거로 따져야 한다고 썼습니다. 페레스는 다년 연장을 받았지만 보타스(Valtteri Bottas)는 아무 확인이 없습니다. 올해 예선은 페레스가 11대8, 레이스는 13대4로 앞서는데 보타스는 멕시코까지 리타이어가 10번이라 성적만으로 읽기는 어렵습니다. 콜튼 허타(Colton Herta)는 인디카 9승의 경력이 있지만 F2에서는 두 라운드를 남기고 26점 19위로, 토리스(Dan Towriss) CEO가 목표로 정한 톱10에 크게 못 미칩니다. 결론은 "상업적으로는 말이 되지만 스포츠적으로 말이 되는지는 훨씬 불분명하다"입니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>지난 보도 이후 바뀐 점: 11월 5일과 8일 브리핑에서는 허타의 슈퍼라이선스 점수 확보와 보타스의 "바뀐 건 없다"는 입장을 전했습니다. 이번 글은 두 사람의 수치를 나란히 놓고 대안 후보까지 비교한 분석입니다.</p>
+              <p>캐딜락은 데뷔 시즌에 그랑프리 우승 경력의 베테랑 두 명을 영입했습니다. 페레스(Sergio Perez)는 2026년 이후로 다년 연장했지만 보타스는 그런 확인을 받지 못했습니다. 2027년 그리드 대부분이 이미 정해져 선택지는 좁습니다.</p>
+              <p>보타스의 올해 수치는 이렇습니다. 예선 맞대결 페레스 11승 8패, 레이스에서 페레스가 앞선 횟수 13번 대 4번. 보타스는 멕시코 GP까지 리타이어가 10번이고 멕시코에서는 서스펜션 고장으로 큰 사고가 났습니다. 그래서 결과만으로 평가하기는 어렵습니다. 싱가포르에서는 페레스가 보타스를 거의 한 바퀴 추월할 지경이었고, 보타스 본인도 페이스 차이를 "백만 달러짜리 질문"이라고 했습니다. 팀 대표 마르친 부드코프스키(Marcin Budkowski)는 더 꾸준한 결과를 원하며, 오스틴 주행은 좋았지만 그 수준을 매주 보고 싶다고 했습니다. 팀은 차의 한계와 드라이버의 부족을 분리해야 하는데, 캐딜락 스스로 드라이버가 잠재력을 다 보여 줄 장비를 아직 주지 못한다고 인정했습니다.</p>
+              <p>허타의 경우입니다. 인디카 9승, 2024년 챔피언십 2위. 인디카를 떠나 F2 한 시즌에 나선 것은 큰 도박이었습니다. 캐딜락은 미국인 드라이버를 원하고, 가장 큰 시장에서의 상업적 이야기로는 강력합니다. 부드코프스키는 미국인 드라이버가 프로젝트에 중요하다면서도 시점과 실력도 중요하다고 했습니다. 허타는 여러 차례 금요일 연습 주행과 시뮬레이터 개발에 참여했고, 2025년 인디카 순위 발표 오류로 슈퍼라이선스 40점에 1점이 모자라 브라질에서 다시 기회를 받았습니다.</p>
+              <p>F2 성적은 두 라운드를 남기고 26점 19위입니다. 토리스 CEO가 정한 톱10 목표에 크게 못 미칩니다. 변명거리는 있습니다. 몇 년씩 F1을 준비한 드라이버들과 싸우면서 새 서킷·타이어·절차를 배우고 캐딜락 업무도 병행했습니다. 그러나 F2는 전환을 증명할 기회였고 설득력 있게 증명하지는 못했다고 필자는 봤습니다. 허타는 F2를 한 시즌 더 하고 싶지 않다고 알려져, 캐딜락이 승격시키지 않으면 어색한 선택이 남고 개발 역할로 돌릴 수밖에 없을 수 있습니다.</p>
+              <p>사업 맥락도 있습니다. TWG 글로벌을 통해 팀을 지배하는 마크 월터(Mark Walter)가 지분 매각을 검토 중이라는 보도가 있고, 펜웨이 스포츠 그룹(FSG)이 접촉한 쪽으로 거론됩니다. 평가액은 약 30억 달러이지만 합의된 거래는 없고 TWG는 매각이 임박했다는 보도를 부인했습니다.</p>
+              <p>대안으로 꼽은 이름은 셋입니다. 유키 츠노다(Yuki Tsunoda)는 허타보다 F1 경험이 많고 최고 수준에서 검증됐지만 기복이 있었고, 캐딜락과 연결된 바 있습니다. 에스테반 오콘(Esteban Ocon)은 우승 경력이 있지만 하스 시트를 잃었고 최근 폼과 퇴장 경위를 따져야 합니다. 프레데리크 베스티(Frederik Vesti)는 메르세데스 리저브이자 2023년 F2 2위로, 캐딜락의 내구 레이스 프로그램과 이미 연결돼 있고 멕시코 FP1에서 안토넬리에 0.074초 차 3위를 기록해 러셀도 "기회를 받을 자격이 있다"고 했습니다. 그랑프리 출전 경험은 없습니다. 누구도 확실한 업그레이드는 아니지만, 캐딜락이 '당연한 미국인 선택지' 너머를 봐야 하는 이유라고 필자는 적었습니다.</p>
+              <p>결론은 이렇습니다. 허타에게 기회를 줄 합리적 이유는 있습니다. 캐딜락은 정체성이 필요하고 허타는 F2 이전 기록이 좋고 팀을 이미 알고 있습니다. 하지만 미국인 드라이버를 원하는 것과 허타를 지금 당장 승격시켜야 하는 것은 다른 문제입니다. 캐딜락은 미국인 드라이버도 실력으로 자리를 얻어야 한다고 말해 왔고, 그 원칙이 지금 시험대에 올랐습니다. 보타스를 허타로 바꾸는 것은 "상업적으로는 말이 될지 모르지만 스포츠적으로 말이 되는지는 지금으로서는 훨씬 불분명하다"는 것이 결론입니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.motorsportmagazine.com/articles/single-seaters/f1/would-cadillac-gain-or-lose-by-replacing-bottas-with-herta/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+  </section>
+
+  <!-- ============================ 🔧 기술/규정 ============================ -->
+  <section id="tech" data-cat="tech">
+    <div class="sec-head"><h2>🔧 기술/규정</h2><span class="count">1건</span></div>
+
+    <article class="art">
+          <div class="thumb"><img src="https://cdn-1.motorsport.com/images/amp/0qgK1NQY/s6/rafael-camara-haas-f1-team-3.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>후속: 빗속 예선이 던진 과제들 — 풀 웨트 타이어는 초당 85리터의 물을 밀어내고, 6단·7단에서도 수막현상이 났다</h3>
+            <p class="orig">The wet-weather challenges thrown up by Brazilian GP qualifying</p>
+            <div class="meta"><span class="src">Autosport</span><span>·</span><span>2026.11.08</span></div>
+            <p class="sum">결승 전 아침에 나온 Autosport의 기술 분석입니다. 예선은 1시간 23분 멈췄고, 세이프티카 드라이버 베른트 마일렌더(Bernd Maylander)가 노면을 확인한 뒤 재개됐습니다. 피렐리 추산으로 풀 웨트 타이어는 초당 약 85리터의 물을 흩뿌리는데, 이것이 물보라로 시야를 가리지만 없으면 노면이 더 오래 젖어 있습니다. 사인츠(Carlos Sainz)는 직선에서 6단·7단으로 달리는데도 수막현상이 났다며 재개 결정을 "공격적"이라고 했고, 로슨은 "극도로 불안했지만 개러지에 앉아 있는 것보다 낫다"고 했습니다. 젖은 노면에서는 연습 주행에서 얻은 페이스가 거의 쓸모없어지고, 파워유닛 격차가 줄며 저속 다운포스와 타이어 온도 유지가 중요해진다고 분석했습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>지난 보도 이후 바뀐 점: 11월 8일 브리핑에서는 러셀의 "끔찍한 사고" 경고와 하자르의 웻 타이어 불만을 전했습니다. 이번 기사는 그 조건을 타이어·시야·세션 운영의 기술적 관점에서 풀고 사인츠·로슨·알론소의 새 발언을 담았습니다.</p>
+              <p>예선은 비로 1시간 23분 멈췄습니다. 2024년처럼 예선을 일요일 아침으로 옮기는 상황이 유력해 보였지만, 구름 사이가 열리며 노면이 마르자 마일렌더가 조건을 승인해 세션이 재개됐습니다. 일부 드라이버가 시야를 불평했지만 재개를 받아들이고 주행에 집중했습니다. 레이스 컨트롤은 젖은 조건에서 보통 신중하기 때문에 이 재개는 뜻밖이었습니다.</p>
+              <p>타이어 이야기입니다. 팀들은 풀 웨트(기사는 'x-wet'이라 부름)를 썼습니다. 이 타이어는 흔히 과소평가되지만 고인 물에서 잘 버틴다고 기사는 평가했습니다. 처음에는 수막현상이 흔했고 물이 빠지면서 노면이 달릴 만해졌습니다. 피렐리 추산으로 이 타이어는 초당 약 85리터의 물을 밀어냅니다. 그만큼 물보라가 시야를 가리지만, 그게 없으면 노면이 더 오래 젖어 있습니다. 뒤차는 레인 라이트로 앞차를 보지만 제동 기준점을 잡기 어렵고 제동 거리도 훨씬 길어졌습니다.</p>
+              <p>드라이버들의 평가는 갈렸습니다. 사인츠는 직선에서 6단·7단으로 달리는 차가 수막현상을 일으킬 정도였다며 재개 결정을 "공격적(punchy)"이라고 했습니다. 다른 차를 따라갈 때 시야가 나빴고 마른 라인이 생기기 전 첫 두 랩은 "불안했다"고 했습니다. 로슨은 시작이 "극도로 불안했다"며 모두가 "분명히 한계를 밀고 있었다"고 했지만, 개러지에 앉아 있기보다 트랙에 있는 편이 낫고 사고도 많지 않았다고 했습니다. 알론소는 코너에서 엔진 거동과 운전성이 여전히 문제라고 했습니다.</p>
+              <p>젖은 노면에서 성능을 가르는 요소는 달라집니다. 연습 주행에서 얻은 페이스 이득은 대부분 무의미해졌습니다. 최고 속도와 가속이 덜 중요해져 파워유닛 사이 차이가 줄었습니다. 대신 저속 다운포스와 Q1 내내 타이어를 따뜻하게 유지하는 능력이 중요해졌습니다. 2026년 파워유닛과 뒷브레이크 제어는 또 하나의 과제였습니다.</p>
+              <p>세션 진행은 이렇게 흘렀습니다. Q1에서는 노면과 타이어가 좋아지는 동안 깨끗한 랩을 만들다가 마르면서 제동 구간을 더 세게 공략했습니다. Q2에서는 인터미디어트가 더 나은 선택이 됐습니다. 고인 물이 줄자 풀 웨트는 랩 중간에 과열됐습니다. 로슨은 레이싱 불스가 인터미디어트 타이밍을 정확히 잡았다고 했습니다. 사인츠와 베어먼은 12번 코너에서 코스를 벗어났고, 카마라(Rafael Camara)는 충분히 속도를 줄이지 못해 Q2 끝에 방벽을 쳤습니다. Q3에서는 비가 더 올 것으로 예상돼 모두가 깨끗한 한 랩을 서둘렀습니다.</p>
+              <p>러셀은 빗속 주행이 즐거웠지만 레이스였다면 심각한 사고 위험이 아주 높았을 것이라고 했습니다. 해밀턴과 휠켄베르크는 젖은 조건이 즐거웠다고 했습니다. 안토넬리는 "내가 달려 본 가장 젖은 조건"이라며 즐겁지 않았다고 했고, 베어먼과 함께 Q1 재개 시점의 노면이 한계를 넘었다고 봤습니다. 다만 베어먼은 일찍 달린 덕에 노면이 좋아졌다고 덧붙였습니다. 일요일에도 비 예보가 있어 팀들은 셋업 변경과 피트 레인 출발 여부까지 논의하고 있었습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.autosport.com/f1/news/the-wet-weather-challenges-thrown-up-by-brazilian-gp-qualifying/10872894/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+  </section>
+
+  <!-- ============================ 👤 드라이버/팀 ============================ -->
+  <section id="people" data-cat="people">
+    <div class="sec-head"><h2>👤 드라이버/팀</h2><span class="count">5건</span></div>
+
+    <article class="art">
+          <div class="thumb"><img src="https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Sao%20Paulo%20(Brazil)/GettyImages-2303680431.webp" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>400번째 GP 맞은 해밀턴에게 라이벌들의 축사 — 알론소 "앞으로 400경기 클럽은 늘 것", 러셀 "그는 다르게 만들어진 사람", 노리스 "오래 더 싸울 수 있다고 믿게 해 준다"</h3>
+            <p class="orig">Rivals pay tribute as Lewis Hamilton reaches 400 Formula 1 starts at Sao Paulo Grand Prix</p>
+            <div class="meta"><span class="src">Formula1.com</span><span>·</span><span>2026.11.08</span></div>
+            <p class="sum">루이스 해밀턴(Lewis Hamilton)이 인터라고스에서 400번째 그랑프리 출전을 맞았습니다. 더 많이 출전한 사람은 445경기의 알론소뿐이고, 해밀턴은 쉰 적 없이 20시즌 연속입니다. 7번의 월드 챔피언, 106승, 105번의 폴. 해밀턴 본인은 "그 숫자는 나에게 좀 무의미하다"며 사진기자들처럼 500경기까지 갈 수도 있다고 했습니다. 알론소는 긴 캘린더 덕에 "10년만 뛰어도 250경기가 넘는다"며 클럽이 늘 것이라 했고, 러셀은 "다르게 만들어진 사람"이라며 2026년이 2021년 이후 최고 시즌일 수 있다고 했습니다. 노리스는 해밀턴 덕에 "나도 오래 더 싸울 수 있다고 믿게 된다"고 했습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>해밀턴은 페라리 소속으로 인터라고스에서 400번째 출전을 기록했습니다. 알론소(445경기)만이 더 많은데, 알론소는 중간에 F1을 떠난 기간이 있었고 해밀턴은 20시즌을 쉬지 않고 달렸습니다. 기록은 월드 챔피언 7회, 106승, 폴 105회이고, 가장 최근 폴은 바로 전 주말 멕시코시티 GP였습니다. 기사는 이를 41세에도 여전히 경쟁력이 있다는 증거로 들었습니다.</p>
+              <p>해밀턴 본인은 이 숫자가 "좀 미친 것 같다"며 이런 숫자에 이를 줄은 전혀 몰랐다고 했습니다. 그래도 여전히 젊다고 느끼고 페이스·속도·헌신·집중력이 있다고 했습니다. "나에게 그 숫자는 좀 무의미하다"면서, 일부 사진기자들이 가진 500경기 수준에 결국 이를 수도 있다고 했습니다.</p>
+              <p>알론소는 400이 "큰 숫자"라는 데 동의하면서도, 캘린더가 길어진 덕에 이 클럽에 더 많은 드라이버가 들어올 것이라고 봤습니다. "지금 10년을 뛰면 250경기가 넘는다"는 계산입니다. 해밀턴의 커리어를 칭찬하고 좋은 주말을 빌었습니다.</p>
+              <p>새 챔피언 안토넬리는 한 해 24경기 기준으로 2041년이면 400경기에 이를 수 있습니다. 인터라고스는 그의 44번째 출전인데, 44는 그의 영웅 아일톤 세나(Ayrton Senna)와 연결되는 숫자입니다. 그는 해밀턴을 "믿을 수 없는" 드라이버라 부르며 함께 경쟁하는 것이 "큰 특권"이고 더 많은 싸움을 기대한다고 했습니다.</p>
+              <p>러셀은 메르세데스에서 세 시즌을 해밀턴과 함께했습니다. 해밀턴의 업적을 "믿을 수 없다"고 하면서 많은 운동선수들과 "다르게 만들어진 사람"이라고 했습니다. 해밀턴이 다른 시리즈에 거의 관심이 없는 것은 F1이 "정점"이기 때문이고 그 점을 존중한다고 했으며, 2026년이 2021년 이후 해밀턴의 최고 시즌일 수 있다고 봤습니다.</p>
+              <p>물러나는 챔피언 노리스는 해밀턴의 롱런이 "꽤 믿기 어렵다"고 했습니다. 그리드 최고 중 하나로 꼽는 르클레르와의 싸움을 칭찬했고, 해밀턴이 최근 규정에 덜 만족하는 듯했지만 지금은 다시 앞에서 싸우고 있다고 했습니다. 그리고 해밀턴 덕에 자신도 앞으로 여러 해 더 경쟁할 수 있다고 믿게 된다고 덧붙였습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.formula1.com/en/latest/article/rivals-pay-tribute-as-lewis-hamilton-reaches-400-formula-1-starts-at-sao-paulo-grand-prix.7ahLqNwTWm8Nze2o9hteZB" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://www.crash.net/sites/default/files/2026-11/xpb_1452323_hires.jpg?width=1600&aspect_ratio=16:9" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>페르스타펜, 20년 근속 뒤 떠나는 2번 정비사 슈막에게 헬멧 선물 — 슈막 "가족이 그립다… 페르스타펜은 F1 차 안의 호날두와 메시"</h3>
+            <p class="orig">Max Verstappen's heartwarming gesture as Red Bull F1 veteran leaves</p>
+            <div class="meta"><span class="src">Crash.net</span><span>·</span><span>2026.11.08</span></div>
+            <p class="sum">막스 페르스타펜의 2번 정비사(No.2 mechanic) 올레 슈막(Ole Schack)이 상파울루 GP를 마지막으로 레드불에서의 20년을 마무리합니다. 경쟁 팀으로 가는 것이 아니라 오랜 출장 생활 뒤 가족과 시간을 보내기 위해 떠나며, 네덜란드 매체 더 텔레그라프에 "가족이 그립고 그들에게 무언가 돌려주고 싶다"고 했습니다. 페르스타펜은 자신의 레이스 헬멧 하나를 선물했고, 레드불은 그의 재임 기록을 담은 특별 캔을 만들어 줬습니다. 슈막은 페르스타펜을 "F1 차 안의 호날두와 메시"라고 표현했습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>슈막은 레드불에서 20년을 일했고 상파울루가 마지막 레이스입니다. 레드불은 그를 기리며 팀에서의 커리어 통계를 담은 특별 캔을 선물했습니다. 떠나는 이유는 이직이 아닙니다. 여러 해의 출장 뒤 가족과 시간을 보내기 위해서이고, 그는 "가족이 그립고 그들에게 무언가 돌려주고 싶다"고 했습니다.</p>
+              <p>일하는 방식에 대해 슈막은 매 레이스 같은 루틴을 따르기 때문에 안전벨트가 제대로 고정되지 않은 것 같은 이상을 즉시 알아챈다고 했습니다. GPFans 보도에 따르면 특히 토요일 루틴이 엄격했고 예선이 주말 중 가장 긴장되는 순간이었습니다. 루틴을 빠뜨린 것은 결석한 세 레이스를 빼면 2020년 헝가리 GP 한 번뿐인데, 그때는 페르스타펜이 포메이션 랩에서 사고를 내 정비사들이 그리드에서 차를 고쳐야 했기 때문에 "다른 일로 바빴다"고 했습니다.</p>
+              <p>페르스타펜에 대해서는 차 밖에서는 느긋하고 재미있는 사람이라고 했습니다. 하지만 예선, 특히 Q3가 "정말 중요한 순간"이고 그때는 금요일 연습 주행 때와 눈빛부터 달라져 "전부를 건다"고 했습니다. 2016년 바르셀로나 데뷔 우승에서 키미 라이코넨(Kimi Raikkonen)을 막아 낸 장면과 같은 해 빗속 브라질에서의 3위 주행을 꼽으며, 가르칠 수 없는 타고난 재능이 있다고 했습니다. 그래서 "호날두와 메시 같은데, F1 차 안에서"라고 표현했습니다.</p>
+              <p>페르스타펜은 Viaplay에 슈막이 "믿을 수 없는" 정비사라며 아주 훌륭하고 열정적이며 인생의 많은 부분을 팀에 바쳤다고 칭찬했습니다. 슈막은 팀의 오르막과 내리막을 함께한 것이 자랑스럽고 레드불에 강한 고마움을 느낀다고 마무리했습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.crash.net/f1/news/1109874/1/max-verstappens-heartwarming-gesture-red-bull-f1-veteran-leaves" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <article class="art">
+          <div class="thumb"><img src="https://images.ps-aws.com/c?url=https%3A%2F%2Fd3cm515ijfiu6w.cloudfront.net%2Fwp-content%2Fuploads%2F2026%2F10%2F28165040%2Fkimi-antonelli-austin-trophy-lift-planetf1.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>울프 "다른 팀이었다면 안토넬리는 살아남지 못했을 것" — 평범했던 F2 시즌, 9경기 무득점을 견디게 한 것은 데이터와 '보호'</h3>
+            <p class="orig">Wolff makes Kimi Antonelli 'wouldn't have lasted' Mercedes claim</p>
+            <div class="meta"><span class="src">PlanetF1</span><span>·</span><span>2026.11.08</span></div>
+            <p class="sum">토토 볼프(Toto Wolff)는 Sky F1에 키미 안토넬리가 다른 팀이었다면 버티지 못했을 것이라고 말했습니다. 2024년 F2 시즌은 뛰어나지 않았고, 지난해에는 9경기 연속 무득점 구간도 있었습니다. 18세에 해밀턴의 후임으로 올린 결정에 의문이 많았지만 메르세데스는 데이터와 그의 성격·잠재력에 대한 감을 믿었고, 팀의 역할은 "키우고, 이끌고, 보호하는 것"이었다고 했습니다. 그 결과 안토넬리는 멕시코에서 역대 최연소 챔피언이 됐고, 2020년 해밀턴 이후 메르세데스의 첫 드라이버 챔피언입니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>안토넬리는 멕시코 GP에서 2026년 드라이버 타이틀을 확정해 역대 최연소 월드 챔피언이 됐습니다. 기사는 험난했던 신인 시즌 뒤에 그가 메르세데스의 다음 챔피언으로 떠오를 것이라고 본 사람은 거의 없었다고 적었습니다.</p>
+              <p>의문은 2024년 F2 시즌부터 있었습니다. 그 시즌에도 까다로운 순간들이 있어, 7회 챔피언 해밀턴의 후임으로 18세를 올리는 승격이 옳은지 논란이 됐습니다.</p>
+              <p>볼프는 Sky F1에 안토넬리가 다른 팀에서는 살아남지 못했을 것이라고 했습니다. F2 시즌이 뛰어나지 않았고 지난해 9경기 연속 무득점 구간이 있었다는 것이 근거입니다. 메르세데스는 자체 데이터와 안토넬리의 성격·잠재력에 대한 감에 의지했습니다. 팀의 역할은 드라이버를 키우고, 이끌고, 보호하는 것이었고, 그 뒤 안토넬리는 차 안에서 "정말 놀랍게 해냈다"고 했습니다.</p>
+              <p>안토넬리는 2020년 해밀턴 이후 메르세데스의 첫 드라이버 챔피언입니다. 기사 작성 시점에 메르세데스는 상파울루에서 페라리보다 3점만 더 따면 컨스트럭터 타이틀도 되찾을 상황이었습니다. 볼프는 타이틀 뒤 한 주가 긍정적이었다며 "아주 특별한 젊은이"와 챔피언십을 이뤘다고 했습니다.</p>
+              <p>러셀에 대한 언급도 있었습니다. 러셀의 수학적 타이틀 가능성은 멕시코시티에서 끝났고, 그는 좌절과 기복의 시즌이 커리어에서 전례 없는 것이라며 멕시코 뒤 "그냥 여기서 벗어나야 했다"고 말한 바 있습니다. 볼프는 러셀이 월요일 아침에 전화를 걸어 남은 시즌과 내년을 위해 셋업과 팀 구조를 어떻게 최적화할지 논의했다고 전했습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.planetf1.com/news/kimi-antonelli-mercedes-struggles-toto-wolff" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 컨스트럭터 챔피언십 역대 기록 정리<span class="smeta">RaceFans · 2026.11.08</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/11/racefansdotnet-24-11-08-14-04-39-11-2304145401.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>메르세데스, 9번째 컨스트럭터 타이틀로 윌리엄스와 동률 — 앞에는 페라리 16회·맥라렌 10회만, 메르세데스 엔진은 3년 연속 팀 타이틀</h3>
+              <p class="orig">Mercedes wins the constructors' title for the ninth time, tying with Williams</p>
+              <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.11.08</span></div>
+              <p class="sum">메르세데스가 2026년 컨스트럭터 챔피언십을 확정해 아홉 번째 팀 타이틀을 얻었습니다. 이로써 윌리엄스(9회)와 동률 3위가 됐고, 더 많은 팀은 페라리(16회)와 맥라렌(10회)뿐입니다. 메르세데스는 2014년부터 2021년까지 기록적인 8연속 타이틀을 가졌고, 이번이 2021년 이후 첫 타이틀입니다. 메르세데스 엔진을 쓰는 차가 팀 타이틀을 가져간 것은 2024·2025년 맥라렌에 이어 3년 연속입니다. Formula1.com의 데이비드 트레메인(David Tremayne)은 이 타이틀을 "볼프의 가장 큰 승리 중 하나"로 평가했습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>RaceFans의 키스 콜런틴(Keith Collantine)은 "메르세데스가 아홉 번째로 F1 월드 챔피언십을 확정했다"고 썼습니다. 아홉 번째 타이틀은 윌리엄스와 같은 수이고, 그 위에는 페라리 16회와 맥라렌 10회만 있습니다. 메르세데스는 앞서 2014년부터 2021년까지 8연속 컨스트럭터 타이틀이라는 기록을 세웠습니다.</p>
+                <p>엔진 관점에서는 메르세데스 파워유닛이 3년 연속 팀 타이틀을 차지한 셈입니다. 메르세데스 엔진을 쓰는 맥라렌이 2024년과 2025년에 우승했기 때문입니다.</p>
+                <p>역대 컨스트럭터 챔피언 목록은 이렇습니다. 페라리 16회(1961, 1964, 1975~77, 1979, 1982~83, 1999~2004, 2007~08), 맥라렌 10회(1974, 1984~85, 1988~91, 1998, 2024~25), 윌리엄스 9회(1980~81, 1986~87, 1992~93, 1994, 1996~97), 메르세데스 9회(2014~21, 2026), 로터스 7회, 레드불 6회(2010~13, 2022~23), 쿠퍼·브라밤·르노 각 2회, 반월·BRM·마트라·티렐·베네통·브런 각 1회. 컨스트럭터 타이틀은 1958년부터 수여됐습니다.</p>
+                <p>Formula1.com의 베테랑 기자 트레메인은 별도 칼럼에서 메르세데스를 "F1 최고의 팀"이라 부르며, 안토넬리의 타이틀로 드라이버 챔피언십 10회(판지오, 해밀턴, 로즈버그에 이어), 이번 주말 컨스트럭터 9회를 채웠다고 정리했습니다. 비교하면 페라리는 드라이버 15회·컨스트럭터 16회, 맥라렌은 드라이버 13회·컨스트럭터 10회입니다. 그는 이 타이틀을 볼프의 가장 큰 승리 중 하나로 꼽았습니다(칼럼 본문은 유료 구간이라 도입부만 확인했습니다).</p>
+                <p>Crash.net에 따르면 볼프는 타이틀 확정 직후 첫 소감을 밝혔고, RacingNews365는 그가 "F1 아이콘과 같은 업적"을 이뤘다는 질문에 "가능하다고 생각한 적이 없다"고 답했다고 전했습니다. The Race는 메르세데스가 올해 처음으로 포디움 없는 레이스를 하고도 타이틀을 확정한 점, 그리고 그 확정이 페라리의 부진 덕이었다는 점을 짚었습니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.racefans.net/2026/11/08/mercedes-wins-the-constructors-title-for-the-ninth-time-tying-with-williams/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 스트롤 관련 시즌 통계<span class="smeta">RacingNews365 · 2026.11.08</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://cdn.racingnews365.com/2026/Stroll/XPB_1453363_HiRes.jpg?v=1794160350&width=1800&height=945&quality=75&crop=6000%2C3150%2C0%2C425" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>스트롤, 배터리 문제로 시즌 13번째 리타이어 — 한 시즌 최다 리타이어 기록(14회, 데 체사리스·바리첼로)에 1개 남았다</h3>
+              <p class="orig">Lance Stroll closing in on all-time F1 record after latest Aston Martin failure</p>
+              <div class="meta"><span class="src">RacingNews365</span><span>·</span><span>2026.11.08</span></div>
+              <p class="sum">랜스 스트롤이 젖었다가 마른 상파울루 GP에서 하위권을 달리던 중 배터리 문제로 리타이어했습니다. 2026년 13번째 리타이어로, 한 시즌 최다 리타이어 기록에 하나만 남겼습니다. 기록은 14회로 안드레아 데 체사리스(Andrea de Cesaris, 1986년 미나르디·1987년 브라밤)와 루벤스 바리첼로(Rubens Barrichello, 1997년 스튜어트)가 갖고 있습니다. 올해 최고 성적은 12위입니다. 팀 동료 알론소는 71랩 중 43랩 시점에 11위로 르클레르 바로 뒤에서 포인트를 다투고 있었습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>스트롤은 인터라고스에서 하위권을 달리다 배터리 문제로 차를 세웠습니다. 기사는 레이스 조건을 "젖었다가 마른" 것으로 표현했습니다.</p>
+                <p>2026년 리타이어 목록은 중국, 일본, 모나코, 바르셀로나, 오스트리아, 벨기에, 네덜란드, 이탈리아, 스페인, 아제르바이잔, 싱가포르, 멕시코시티, 그리고 상파울루입니다. 호주에서는 완주 미분류(Not Classified)도 있었습니다. 올해 최고 성적은 12위이고, 기사는 그 레이스를 바레인으로 적으면서 같은 문장에 말레이시아도 언급해 어느 쪽인지 분명하지 않습니다.</p>
+                <p>한 시즌 최다 리타이어 기록은 14회입니다. 데 체사리스가 1986년 미나르디와 1987년 브라밤에서 두 번, 바리첼로가 1997년 스튜어트에서 세웠습니다. 남은 세 라운드에서 한 번 더 멈추면 동률, 두 번이면 단독 기록입니다.</p>
+                <p>같은 레이스에서 알론소는 43랩 시점에 11위로 페라리의 르클레르 바로 뒤에서 포인트권을 노리고 있었습니다. 애스턴 마틴은 직전 멕시코에서도 두 대가 5랩 만에 파워유닛 문제로 멈춰, 혼다가 냉각 회로 대책을 들고 왔지만 신뢰성 문제가 이어지는 모양새입니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://racingnews365.com/lance-stroll-closing-in-on-all-time-f1-record-after-latest-aston-martin-failure" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+  </section>
+
+  <!-- ============================ ⚖️ FIA/거버넌스 ============================ -->
+  <section id="fia" data-cat="fia">
+    <div class="sec-head"><h2>⚖️ FIA/거버넌스</h2><span class="count">3건</span></div>
+
+    <article class="art">
+          <div class="thumb"><img src="https://sportsbase.io/images/gpfans/copy_1200x800/3c3ade06f202fce10bf9bd7c35cc10a222fb515b.jpg" alt="" loading="lazy"></div>
+          <div class="art-body">
+            <h3>리야드 아람코 타워, 요격 미사일 잔해로 파손 — 애스턴 마틴 타이틀 스폰서 건물, F1은 "카타르·아부다비 강행 계획"</h3>
+            <p class="orig">Aston Martin sponsor hit by Riyadh attack amid fears over F1 races</p>
+            <div class="meta"><span class="src">GPFans</span><span>·</span><span>2026.11.08</span></div>
+            <p class="sum">11월 8일 사우디아라비아 리야드에서 사우디 아람코(Saudi Aramco) 소유 사무용 건물이 공격 시도 뒤 떨어진 잔해로 파손됐다고 사우디 에너지부가 밝혔습니다. 아람코는 애스턴 마틴 F1 팀의 타이틀 스폰서입니다. 로이터 기자들은 킹 압둘라 금융지구에서 가장 높은 건물 중 하나인 아람코 타워의 여러 층 창문이 깨진 것을 확인했습니다. 사우디 주도 연합군은 예멘에서 이란 연계 후티 반군이 쏜 순항 미사일 두 발을 요격했다고 발표했습니다. 시즌은 11월 29일 카타르 GP와 12월 6일 아부다비 GP로 끝나는데, 기사는 "현 시점에서 F1은 여전히 레이스를 진행할 계획"이라고 전했습니다.</p>
+            <details class="more">
+              <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+              <div class="detail-body">
+              <p>사건은 일요일인 11월 8일에 일어났습니다. 사우디 에너지부는 아람코 소유 사무용 건물이 공격 시도 뒤 떨어진 잔해로 파손됐다고 밝혔습니다. 로이터 기자들이 현장에서 본 아람코 타워는 킹 압둘라 금융지구(KAFD)에서 가장 높은 건물 중 하나로, 여러 층의 창문이 깨져 있었습니다.</p>
+              <p>그날 더 이른 시간, 사우디 민방위가 잠재적 보안 위협에 대한 조기 경보를 낸 뒤 리야드 전역에서 큰 폭발음이 들렸습니다. 경보는 아람코 본사가 있는 다란을 포함한 동부 지역 여러 곳에도 내려졌고, 당국은 나중에 위협이 지나갔다며 경보를 해제했습니다.</p>
+              <p>이어 사우디 주도 연합군은 예멘에서 이란과 연계된 후티 반군이 리야드를 향해 쐈다고 주장되는 미사일 두 발을 요격했다고 발표했습니다. 연합군은 순항 미사일 두 발이 요격·파괴됐으며 하나는 수도 상공, 하나는 왕국 남부에서였다고 확인했습니다.</p>
+              <p>F1과의 연결 고리는 두 가지입니다. 아람코는 애스턴 마틴 F1 팀의 타이틀 스폰서이자 F1의 글로벌 파트너입니다. 그리고 시즌 마지막 두 라운드가 11월 29일 카타르 GP(루사일)와 12월 6일 아부다비 GP(야스 마리나)로 걸프 지역에서 열립니다. 지난 브리핑들에서 카타르 서킷의 비상 대피 계획 배포, 이란 국영 통신의 '보복 목표' 목록, 볼프의 "불안하면 안 가면 된다" 발언 등을 전했는데, 이번 사건은 그 불안을 키우는 쪽입니다.</p>
+              <p>GPFans의 그레이엄 쇼(Graham Shaw) 컨설턴트 에디터는 "현 시점에서 F1은 여전히 레이스를 진행할 계획"이라고 썼습니다. 일정 변경이나 취소 발표는 없습니다.</p>
+              </div>
+            </details>
+            <a class="go" href="https://www.gpfans.com/en/f1-news/1092643/f1-aston-martin-sponsor-hit-riyadh-attack-aramco/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </article>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 상파울루 GP 결승 뒤 스튜어드 페널티 3건<span class="smeta">Autosport · 2026.11.08</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://cdn-9.motorsport.com/images/amp/0Zq8VdL6/s6/charles-leclerc-ferrari-arvid-.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>르클레르, 로슨 접촉으로 5초 페널티·라이선스 2점 — 7위에서 8위로, 안토넬리·베어먼은 언세이프 릴리스로 각 5초</h3>
+              <p class="orig">Leclerc penalised for Lawson clash; Antonelli and Oliver Bearman also punished after F1 Brazilian GP</p>
+              <div class="meta"><span class="src">Autosport</span><span>·</span><span>2026.11.08</span></div>
+              <p class="sum">레이스 뒤 심의에서 스튜어드는 세 건의 5초 페널티를 내렸습니다. 르클레르는 69랩 준상(12번 코너)에서 로슨과 접촉하며 7위를 가져간 것이 "명백한 스포츠적 결과"를 낳았다고 판단돼 5초를 받아 8위로 내려갔고 로슨이 7위가 됐습니다. 접촉이 가볍고 노면이 젖어 있어 10초가 아닌 5초로 줄였습니다. The Race에 따르면 라이선스 페널티 포인트 2점도 부과됐습니다. 안토넬리는 마지막 피트 스톱에서 콜라핀토 앞으로 나온 언세이프 릴리스로 5초를 받았지만 피아스트리와 20초 넘게 벌어져 5위를 지켰고, 베어먼도 르클레르 앞으로 나온 건으로 5초를 받았지만 17위는 그대로입니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p><b>르클레르</b> — 69랩, 7위를 두고 다투던 르클레르와 로슨이 준상(12번 코너) 진입에서 접촉했고 두 대 모두 완주했습니다. 그 접촉 덕에 르클레르가 로슨에게서 7위를 가져갔고, 사건은 레이스 뒤 심의로 넘어갔습니다. 두 드라이버의 말을 듣고 영상과 데이터를 검토한 스튜어드는 르클레르의 책임으로 판단했습니다. 보고서는 "이것은 명백한 스포츠적 결과였다"며 접촉이 "30번 차(로슨)를 분명히 흔들었고" 르클레르가 옆으로 나올 수 있게 했다고 적었습니다. 로슨은 코너에 대한 권리가 있었고 충돌을 피할 책임은 르클레르에게 있었다는 것입니다(The Race 보도). 로슨은 접촉으로 왼쪽 뒷바퀴 림이 손상됐다고 주장했고, 르클레르 쪽은 사소한 접촉으로 스포츠적 결과가 없다고 주장했지만 받아들여지지 않았습니다. 스튜어드는 로슨이 다섯 코너 뒤 르클레르를 다시 추월했다는 점도 기록했습니다. 접촉이 경미하고 조건이 젖어 있어 가능한 10초에서 5초로 줄였습니다. 결과적으로 르클레르는 7위에서 8위로, 로슨은 7위로 올라갔습니다. 해밀턴은 9위였지만 1랩 뒤져 있어 더 큰 페널티였어도 르클레르가 해밀턴 뒤로 떨어질 일은 없었습니다.</p>
+                <p>The Race의 제목에 따르면 르클레르에게는 라이선스 페널티 포인트(12개월 안에 12점이 쌓이면 한 경기 출전 정지) 2점도 부과됐습니다. 르클레르는 14번 그리드에서 출발해 레이스 대부분을 톱10 밖에서 보냈고, 마지막 스틴트 인터미디어트에서 순위를 끌어올렸습니다.</p>
+                <p><b>안토넬리</b> — 새 챔피언은 마지막 피트 스톱에서 프랑코 콜라핀토(Franco Colapinto)의 알핀 앞으로 나오는 언세이프 릴리스로 5초 페널티를 받았습니다. 피하려고 했지만 스튜어드는 위험한 방출로 판단했습니다. 메르세데스도 더 안전하게 처리할 수 있었다고 인정했습니다(The Race 보도). 안토넬리는 피아스트리보다 20초 넘게 앞서 있어 5위는 그대로입니다.</p>
+                <p><b>베어먼</b> — 하스의 올리버 베어먼도 피트 스톱에서 르클레르 앞으로 나와 르클레르가 피트 레인에서 속도를 줄여야 했던 건으로 5초 페널티를 받았습니다. 베어먼은 17위로 18위 페레스보다 한 랩 앞서 있어 순위 변화는 없습니다.</p>
+                <p>로슨은 레이스 직후 르클레르의 움직임이 합법적인지 확신하지 못한다며 팀이 검토할 것이라고 했는데(레이스 위크 섹션 스포일러 카드 참조), 스튜어드 판정은 그의 손을 들어 준 셈입니다. RaceFans는 이 판정으로 로슨이 7위로 올라 추가 포인트를 얻었다고 전했습니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.autosport.com/f1/news/leclerc-penalised-for-lawson-clash-antonelli-and-oliver-bearman-also-punished-after-f1-brazilian-gp/10873166/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 결승 1랩 해밀턴 코스 이탈 추월 심의 결과<span class="smeta">RaceFans · 2026.11.08</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/11/racefansdotnet-24-11-08-14-04-15-5-2304144987-830.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>스튜어드 "해밀턴은 코스 밖 추월로 이득을 얻지 않았다" — 1랩 베어먼 추월 무혐의, 7랩에 자리를 되돌려 준 점도 참작</h3>
+              <p class="orig">Stewards ruled Hamilton "gained no advantage" by passing Bearman off-track</p>
+              <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.11.08</span></div>
+              <p class="sum">스튜어드는 해밀턴이 첫 랩 데시다 두 라구(Descida do Lago) 출구에서 베어먼을 코스 밖에서 추월한 건에 대해 "이득을 얻지 않았다"며 페널티를 주지 않았습니다. 베어먼은 그 전 쿠르바 두 솔(Curva do Sol)에서 코스를 벗어났었고, 해밀턴은 추월할 만한 속도가 충분했는데 베어먼이 방어하려고 오른쪽으로 움직여 코스 밖으로 밀려났다는 판단입니다. 해밀턴은 조사가 시작된 뒤 7랩에 속도를 줄여 베어먼을 다시 보내 줬습니다. 기사는 2025년 아부다비에서 츠노다가 노리스를 밀어낸 건을 페널티 없이 넘긴 선례를 들었고, 한 독자는 "7랩 가까이 자리를 유지했다면 되돌려 준 것을 참작하기엔 너무 늦다"고 비판했습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>장면은 첫 랩입니다. 베어먼이 쿠르바 두 솔에서 코스를 벗어났고, 해밀턴은 데시다 두 라구 출구에서 베어먼을 추월했습니다. 그 과정에서 해밀턴의 차가 코스 밖으로 나갔습니다. 스튜어드가 조사를 시작한 뒤 해밀턴은 7랩에 속도를 줄여 베어먼을 다시 앞으로 보냈습니다.</p>
+                <p>스튜어드의 판단은 이렇습니다. 해밀턴은 추월을 완성할 충분한 속도가 있었고, 베어먼이 방어하려고 오른쪽으로 움직였기 때문에 코스 밖으로 밀려났습니다. 결정문은 "44번 차는 분명히 추월할 모멘텀이 있었고 코스를 벗어나서 이득을 얻지 않았다"고 적었습니다. 해밀턴이 나중에 자리를 되돌려 준 점도 기록했습니다.</p>
+                <p>절차적 배경도 설명했습니다. 스튜어드는 자리를 바꾸라고 명령하지 않습니다. 코스를 벗어나 자리를 얻은 경우 5초 또는 10초 페널티를 줄 수 있고, 그래서 팀들은 페널티를 피하려고 드라이버에게 자리를 되돌려 주게 하는 경우가 많습니다. PlanetF1도 FIA가 이 결정의 이유를 설명했다고 전했습니다.</p>
+                <p>선례로는 2025년 아부다비 GP가 있습니다. 당시 스튜어드는 유키 츠노다(Yuki Tsunoda)가 노리스를 코스 밖으로 밀어낸 건에 페널티를 주지 않았고 츠노다는 자리를 지켰습니다.</p>
+                <p>독자 반응 가운데 키스 캠벨(Keith Campbell)이라는 댓글 작성자는 해밀턴이 자리를 되돌려 주기 전까지 거의 7랩을 유지했다면 그것을 유효한 참작 사유로 보기에는 너무 길다고 썼습니다. 늦은 반환을 저울질하기보다 페널티를 주거나 아예 조치하지 않는 것 중 하나여야 한다는 주장입니다. 해밀턴 본인은 레이스 뒤 이 조사 때문에 자리를 되돌려 줬고, 그것이 레이스 전개에 영향을 줬다고 말했습니다(레이스 위크 섹션 페라리 카드 참조).</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.racefans.net/2026/11/08/stewards-ruled-hamilton-gained-no-advantage-by-passing-bearman-off-track/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+  </section>
+
+  <!-- ============================ 📰 기타 ============================ -->
+  <section id="etc" data-cat="etc">
+    <div class="sec-head"><h2>📰 기타</h2><span class="count">1건</span></div>
+
+    <details class="spoiler">
+          <summary><span class="lock">🔒</span><span class="label"><span class="tag">스포일러</span> 시상식 그래픽 표기 오류<span class="smeta">RaceFans · 2026.11.08</span></span><span class="hint"></span></summary>
+          <article class="art">
+            <div class="thumb"><img src="https://www.racefans.net/wp-content/uploads/2026/11/fom-wrong-podium-graphic.jpg" alt="" loading="lazy"></div>
+            <div class="art-body">
+              <h3>"또 멕시코?" — 상파울루 GP 포디움 뒤 전광판에 '멕시코시티 그랑프리', FOM이 지난 라운드 제목을 그대로 둔 실수</h3>
+              <p class="orig">Spotlight: F1 displays wrong race name in bizarre podium graphic error</p>
+              <div class="meta"><span class="src">RaceFans</span><span>·</span><span>2026.11.08</span></div>
+              <p class="sum">눈 밝은 팬들이 상파울루 GP(공식 명칭) 시상식 화면에서 잘못된 레이스 이름을 찾아냈습니다. 포뮬러 원 매니지먼트(FOM, F1의 상업·중계 운영사)가 직전 멕시코 라운드의 제목을 그대로 둔 것입니다. 우승자 노리스와 레드불 두 드라이버 뒤의 표지에는 "Gran premio de la Ciudad de Mexico(멕시코시티 그랑프리)"라고 적혀 있었습니다. 기사에는 그 장면을 찍은 사진 두 장이 실렸습니다.</p>
+              <details class="more">
+                <summary><span class="caret">▶</span> 상세 번역 보기</summary>
+                <div class="detail-body">
+                <p>브라질 GP의 공식 명칭은 상파울루 그랑프리입니다. 그런데 시상식 무대 뒤 그래픽에는 스페인어로 "Gran premio de la Ciudad de Mexico", 즉 직전 라운드인 멕시코시티 그랑프리의 이름이 떠 있었습니다. FOM이 지난 라운드의 레이스 제목을 바꾸지 않은 채 그대로 둔 것입니다.</p>
+                <p>그 표지 앞에는 우승자 노리스와 2위·3위를 차지한 레드불의 페르스타펜과 하자르가 서 있었습니다. 기사는 FOM이 "브라질 레이스의 이름을 포디움에서 잘못 썼다"는 설명과 함께 사진 두 장을 실었습니다.</p>
+                <p>독자 반응도 있었습니다. 밥(Bob)이라는 댓글 작성자는 언젠가 해커 집단이 라이브 중계를 망칠 수도 있겠다고 농담했고, 제레(Jere)는 자신은 오류를 눈치채지 못했다고 했습니다. 기사는 '브리프'와 '스포트라이트' 분류로 실렸습니다.</p>
+                </div>
+              </details>
+              <a class="go" href="https://www.racefans.net/2026/11/08/spotlight-f1-displays-wrong-race-name-in-bizarre-podium-graphic-error/" target="_blank" rel="noopener">원문 보기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+          </article>
+        </details>
+  </section>
+
+  <!-- ============================ 📖 용어 ============================ -->
+  <section id="glossary" data-cat="glossary">
+    <div class="sec-head"><h2>📖 오늘의 용어</h2><span class="count">11개</span></div>
+    <dl class="glossary">
+      <div class="term"><dt>언세이프 릴리스 <span>(Unsafe release)</span></dt><dd>피트 작업을 마친 차를 피트 레인을 지나가는 다른 차 앞으로 위험하게 내보내는 것입니다. 보통 5초 페널티를 받고, 충돌이 나면 더 무거워집니다.</dd></div>
+      <div class="term"><dt>언더컷 <span>(Undercut)</span></dt><dd>앞차보다 먼저 피트인해 새 타이어로 빠른 랩을 달려, 앞차가 피트에서 나올 때 앞서 있는 전략입니다. 노면이 마르면서 슬릭으로 바꾸는 타이밍에서 특히 효과가 큽니다.</dd></div>
+      <div class="term"><dt>슬릭 타이어 <span>(Slick tyre)</span></dt><dd>홈이 전혀 없는 마른 노면용 타이어입니다. 접지 면적이 넓어 가장 빠르지만, 젖은 노면에서는 물을 밀어내지 못해 거의 그립이 없습니다.</dd></div>
+      <div class="term"><dt>인터미디어트 <span>(Intermediate tyre)</span></dt><dd>노면이 젖었지만 물이 고이지는 않은 상태에 쓰는 중간 단계 타이어입니다. 노면이 마르면 과열돼 "풍선처럼 부푼다"는 표현이 나옵니다.</dd></div>
+      <div class="term"><dt>풀 웨트 <span>(Full wet / Extreme wet tyre)</span></dt><dd>폭우용으로 홈이 가장 깊은 타이어입니다. 피렐리 추산으로 초당 약 85리터의 물을 밀어내는데, 그 물보라가 뒤차의 시야를 가립니다.</dd></div>
+      <div class="term"><dt>수막현상 <span>(Aquaplaning)</span></dt><dd>타이어가 물을 다 밀어내지 못해 물 위에 떠 버리는 현상입니다. 조향과 제동이 듣지 않아, 6단·7단으로 달리는 직선에서 특히 위험합니다.</dd></div>
+      <div class="term"><dt>플랫 스팟 <span>(Flat spot)</span></dt><dd>바퀴가 잠긴 채 미끄러지거나 스핀하면서 타이어 한 면이 평평하게 닳은 자리입니다. 그 뒤로는 진동이 생기고 그립이 떨어져 타이어를 바꿔야 할 때가 많습니다.</dd></div>
+      <div class="term"><dt>오버스티어 / 언더스티어 <span>(Oversteer / Understeer)</span></dt><dd>오버스티어는 뒷바퀴가 미끄러져 차 뒤가 돌아 나가는 것, 언더스티어는 앞바퀴가 원하는 만큼 돌지 않아 차가 바깥으로 밀리는 것입니다.</dd></div>
+      <div class="term"><dt>슬립 앵글 <span>(Slip angle)</span></dt><dd>타이어가 향하는 방향과 실제로 움직이는 방향 사이의 각도입니다. 일정 각도까지는 그립이 늘지만 그 한계를 넘으면 핸들을 더 꺾어도 차가 돌지 않습니다.</dd></div>
+      <div class="term"><dt>라이선스 페널티 포인트 <span>(Penalty points)</span></dt><dd>위반 때마다 드라이버 라이선스에 쌓이는 점수입니다. 12개월 안에 12점이 되면 다음 레이스에 출전할 수 없습니다.</dd></div>
+      <div class="term"><dt>DNS <span>(Did Not Start)</span></dt><dd>그리드에 섰거나 출전 등록은 했지만 레이스를 출발하지 못한 경우입니다. 보타스처럼 휠넛 문제로 그리드에서 바퀴를 빼지 못한 경우가 여기에 해당합니다.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span class="brand">Claude</span>가 번역·정리한 F1 뉴스 · 2026.11.09<br>
+    원문 저작권은 각 매체에 있으며, 핵심 요약만 제공합니다.
+  </footer>
+</div>
+<script>
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-cat]'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var cat = chip.dataset.cat;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      sections.forEach(function (s) { s.classList.toggle('hidden', cat !== 'all' && s.dataset.cat !== cat); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  var btn = document.getElementById('unlockAll');
+  var spoilers = Array.prototype.slice.call(document.querySelectorAll('details.spoiler'));
+  function render(open) { btn.setAttribute('aria-pressed', String(open)); btn.textContent = open ? '🔒 스포일러 모두 접기' : '🔓 스포일러 모두 펼치기'; }
+  btn.addEventListener('click', function () { var open = btn.getAttribute('aria-pressed') !== 'true'; spoilers.forEach(function (d) { d.open = open; }); render(open); });
+  spoilers.forEach(function (d) { d.addEventListener('toggle', function () { render(spoilers.every(function (x) { return x.open; })); }); });
+  render(false);
+})();
+</script>
+
+</body>
+</html>
