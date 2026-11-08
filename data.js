@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-06",
+    updatedAt: "2026-11-08",
     season: 2026,
     standingsAsOf: { round: 19, name: "멕시코시티 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-08", file: "briefings/f1-news-2026-11-08.html", count: 27, spoilers: 2,
+      headline: "노리스, 폭우로 84분 멈춘 인터라고스 예선에서 폴 — 페널티 5건으로 그리드 뒤섞여 · 드라이버들 “예선 같은 조건이면 끔찍한 사고” 경고 · 브라질 GP, 2035년까지 5년 연장" },
     { date: "2026-11-06", file: "briefings/f1-news-2026-11-06.html", count: 20, spoilers: 12,
       headline: "1980년 월드 챔피언 앨런 존스 별세, 향년 80세 · 카마라 “F2 타이틀 포기 여부는 주말 뒤에 정한다” · 카타르 GP 서킷, F1·MotoGP용 비상 대피 계획 배포" },
     { date: "2026-11-05", file: "briefings/f1-news-2026-11-05.html", count: 21, spoilers: 11,
