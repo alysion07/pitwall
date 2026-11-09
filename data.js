@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-09",
+    updatedAt: "2026-11-10",
     season: 2026,
     standingsAsOf: { round: 20, name: "상파울루 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-10", file: "briefings/f1-news-2026-11-10.html", count: 22, spoilers: 12,
+      headline: "피아스트리, 웨버 부부와 매니지먼트 계약 종료 — “데뷔 초기를 헤쳐 나가는 데 값진 조언” · 호너 “마케팅 회의라며 런던으로 불렀고, 테이블엔 해임 보도자료가 있었다” · 이몰라 대체전 결정 기한은 오늘, 카타르·아부다비 취소 시 라스베이거스가 최종전 될 수도" },
     { date: "2026-11-09", file: "briefings/f1-news-2026-11-09.html", count: 22, spoilers: 13,
       headline: "라이벌들이 전한 해밀턴 400번째 GP 축사 — 알론소 “400경기 클럽은 늘 것” · 로슨 “끝까지 미뤄지면 선택지가 없다”, 크라비츠 “지금 자르면 안 된다” · 리야드 아람코 타워 피격, F1은 카타르·아부다비 강행 방침" },
     { date: "2026-11-08", file: "briefings/f1-news-2026-11-08.html", count: 27, spoilers: 2,
