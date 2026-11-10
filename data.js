@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-10",
+    updatedAt: "2026-11-11",
     season: 2026,
     standingsAsOf: { round: 20, name: "상파울루 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-11", file: "briefings/f1-news-2026-11-11.html", count: 24, spoilers: 10,
+      headline: "F1, 이몰라 대체전 철수 — 시즌은 카타르·아부다비에서 예정대로, 벤 술라옘 “준비돼 있다” · FIA ADUO 최종 판정: 레드불 기준, 메르세데스 2~4%, 아우디·페라리·혼다는 4% 이상 뒤져 · 로슨 기다리게 한 채 솔로프는 헝가로링 테스트, BBC “결정권은 레드불 주주 손에”" },
     { date: "2026-11-10", file: "briefings/f1-news-2026-11-10.html", count: 22, spoilers: 12,
       headline: "피아스트리, 웨버 부부와 매니지먼트 계약 종료 — “데뷔 초기를 헤쳐 나가는 데 값진 조언” · 호너 “마케팅 회의라며 런던으로 불렀고, 테이블엔 해임 보도자료가 있었다” · 이몰라 대체전 결정 기한은 오늘, 카타르·아부다비 취소 시 라스베이거스가 최종전 될 수도" },
     { date: "2026-11-09", file: "briefings/f1-news-2026-11-09.html", count: 22, spoilers: 13,
