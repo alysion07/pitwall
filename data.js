@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-12",
+    updatedAt: "2026-11-13",
     season: 2026,
     standingsAsOf: { round: 20, name: "상파울루 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-13", file: "briefings/f1-news-2026-11-13.html", count: 22, spoilers: 11,
+      headline: "레이싱 불스, 2027년에도 로슨·린드블라드 — 솔로프는 레드불 두 팀의 리저브 드라이버로 · 아우디의 츠노다 항소, 11월 25일 파리에서 비공개 심리 · 리버티 전 CEO “F1, 2년 안에 비상장으로 팔릴 수 있다”" },
     { date: "2026-11-12", file: "briefings/f1-news-2026-11-12.html", count: 24, spoilers: 15,
       headline: "피렐리, 2027년 젖은 노면용 타이어를 새 사양으로 — 12월 FIA 최종 승인 · 볼스 “비용 상한이 격차를 더 벌렸다”, 뉴이 “뒤처진 팀에 예산을 조금 더” · 보타스, 허타의 슈퍼 라이선스 확보에 “모르겠다”" },
     { date: "2026-11-11", file: "briefings/f1-news-2026-11-11.html", count: 24, spoilers: 10,
