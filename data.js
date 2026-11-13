@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-13",
+    updatedAt: "2026-11-14",
     season: 2026,
     standingsAsOf: { round: 20, name: "상파울루 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-14", file: "briefings/f1-news-2026-11-14.html", count: 26, spoilers: 12,
+      headline: "FIA, 데일리 메일 F1 기자의 남은 세 경기 출입 정지 — 신문은 F1 보도 보이콧 · 벤 술라옘 “BYD·지리가 12번째 팀에 관심”, 공식 절차는 아직 · 마드리드 첫 GP 경제 효과 5억 4,400만 유로, 알핀 지분 24% 매각 절차 시작" },
     { date: "2026-11-13", file: "briefings/f1-news-2026-11-13.html", count: 22, spoilers: 11,
       headline: "레이싱 불스, 2027년에도 로슨·린드블라드 — 솔로프는 레드불 두 팀의 리저브 드라이버로 · 아우디의 츠노다 항소, 11월 25일 파리에서 비공개 심리 · 리버티 전 CEO “F1, 2년 안에 비상장으로 팔릴 수 있다”" },
     { date: "2026-11-12", file: "briefings/f1-news-2026-11-12.html", count: 24, spoilers: 15,
