@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-15",
+    updatedAt: "2026-11-16",
     season: 2026,
     standingsAsOf: { round: 20, name: "상파울루 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-16", file: "briefings/f1-news-2026-11-16.html", count: 25, spoilers: 13,
+      headline: "호너 “페르스타펜의 재능은 비정상적” — 그에 맞춘 차가 팀 동료들을 힘들게 했다 · 2027년 돌아오는 튀르키예 GP, 이스탄불 파크 패독 두 배로 넓히고 진입로 새로 · 기자 출입 정지에 에클스턴 “완전히 미친 일”, 언론 단체는 즉시 복구 요구" },
     { date: "2026-11-15", file: "briefings/f1-news-2026-11-15.html", count: 22, spoilers: 9,
       headline: "볼스의 '팀용 ADUO' 구상, 월요일 F1 위원회 안건으로 — 찬성 4팀, 빠르면 2028년 · FIA, 2027년 다운포스 추가 삭감 추진 — 앨리슨 “팀들이 가만히 받아들일지 볼 일” · 호너 “돌아가고 싶은지 잘 모르겠다”, 라스베이거스 GP 결승은 한국 시간 22일 오후 1시" },
     { date: "2026-11-14", file: "briefings/f1-news-2026-11-14.html", count: 26, spoilers: 12,
