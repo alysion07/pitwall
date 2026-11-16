@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-16",
+    updatedAt: "2026-11-17",
     season: 2026,
     standingsAsOf: { round: 20, name: "상파울루 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-17", file: "briefings/f1-news-2026-11-17.html", count: 22, spoilers: 11,
+      headline: "V8 엔진 복귀안, 제조사 지지 표명 앞둬 — 2.1리터 터보에 전기 모터 200kW · 하스, 라스베이거스에서도 카마라 기용 — 첫 연습 주행은 히라카와 · FIA, 임원 75세 나이 제한 폐지안을 다음 달 총회에 상정" },
     { date: "2026-11-16", file: "briefings/f1-news-2026-11-16.html", count: 25, spoilers: 13,
       headline: "호너 “페르스타펜의 재능은 비정상적” — 그에 맞춘 차가 팀 동료들을 힘들게 했다 · 2027년 돌아오는 튀르키예 GP, 이스탄불 파크 패독 두 배로 넓히고 진입로 새로 · 기자 출입 정지에 에클스턴 “완전히 미친 일”, 언론 단체는 즉시 복구 요구" },
     { date: "2026-11-15", file: "briefings/f1-news-2026-11-15.html", count: 22, spoilers: 9,
