@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-18",
+    updatedAt: "2026-11-19",
     season: 2026,
     standingsAsOf: { round: 20, name: "상파울루 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-19", file: "briefings/f1-news-2026-11-19.html", count: 22, spoilers: 9,
+      headline: "캐딜락, 2027년에도 보타스 — 슈퍼 라이선스 딴 허타는 더 기다린다 · 피아스트리, 라스베이거스 GP 10그리드 강등 — 다섯 번째 엔진 · ‘V8 2030년 합의’ 게시물 삭제 — 큰 틀은 2.1리터 터보, 세부는 이견" },
     { date: "2026-11-18", file: "briefings/f1-news-2026-11-18.html", count: 22, spoilers: 12,
       headline: "페라리, 라스베이거스 첫 연습 주행에 해밀턴 대신 베가노비치 — 신인 주행 의무 완료 · 알론소, 2027년 다카르 랠리에 애스턴 마틴으로 출전 · FIA 회장 “V8이 곧 온다” — 다음 엔진 규정 합의 시사" },
     { date: "2026-11-17", file: "briefings/f1-news-2026-11-17.html", count: 22, spoilers: 11,
