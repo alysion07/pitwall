@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-19",
+    updatedAt: "2026-11-20",
     season: 2026,
     standingsAsOf: { round: 20, name: "상파울루 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-20", file: "briefings/f1-news-2026-11-20.html", count: 23, spoilers: 7,
+      headline: "FIA, 2027년부터 상근 스튜어드 도입 — 12~15명 규모로 판정 일관성 높인다 · 알론소 “새 V8 시대에 나는 없다, 100%” — 다카르·르망·인디 500 염두 · 사인츠도 다섯 번째 터보로 10그리드 강등 — 라스베이거스 세 번째 그리드 페널티" },
     { date: "2026-11-19", file: "briefings/f1-news-2026-11-19.html", count: 22, spoilers: 9,
       headline: "캐딜락, 2027년에도 보타스 — 슈퍼 라이선스 딴 허타는 더 기다린다 · 피아스트리, 라스베이거스 GP 10그리드 강등 — 다섯 번째 엔진 · ‘V8 2030년 합의’ 게시물 삭제 — 큰 틀은 2.1리터 터보, 세부는 이견" },
     { date: "2026-11-18", file: "briefings/f1-news-2026-11-18.html", count: 22, spoilers: 12,
