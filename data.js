@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-21",
+    updatedAt: "2026-11-22",
     season: 2026,
     standingsAsOf: { round: 20, name: "상파울루 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-22", file: "briefings/f1-news-2026-11-22.html", count: 21, spoilers: 2,
+      headline: "라스베이거스 GP 예선, 안토넬리가 가장 빨랐지만 폴 포지션은 페르스타펜 — 페라리 두 대는 Q2 탈락 · 러셀 “누군가는 그 사람에게 맞서야 한다” — 연습 주행 충돌로 페르스타펜에 경고 · 도메니칼리 “우리는 바보가 아니다” — V8로 서둘러 돌아가는 이유" },
     { date: "2026-11-21", file: "briefings/f1-news-2026-11-21.html", count: 19, spoilers: 5,
       headline: "비 젖은 라스베이거스는 ‘스케이트장’ — 첫 연습 주행 기록 0, 두 번째는 러셀이 마지막 순간 1위 · FIA, 2030년 2.1리터 터보 V8 규정 틀에 만장일치 합의 공식 발표 · 캐딜락, 자체 엔진 데뷔를 2030년 V8로 늦춘다 — 허타에게는 리저브 자리 제안" },
     { date: "2026-11-20", file: "briefings/f1-news-2026-11-20.html", count: 23, spoilers: 7,
