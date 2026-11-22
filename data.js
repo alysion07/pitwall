@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-22",
+    updatedAt: "2026-11-23",
     season: 2026,
-    standingsAsOf: { round: 20, name: "상파울루 GP" }   // 순위표 기준 시점 (결과 노출 없음)
+    standingsAsOf: { round: 21, name: "라스베이거스 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-23", file: "briefings/f1-news-2026-11-23.html", count: 24, spoilers: 16,
+      headline: "하스, 남은 두 경기도 카마라 — F2 타이틀 도전은 사실상 내려놓는다 · 2030년 V8 규정, 엔진 제조사 한 곳이 두 팀까지만 공급 · 페르스타펜 “카타르보다 집에 있고 싶다” — 그래도 안전 보장을 믿고 출전" },
     { date: "2026-11-22", file: "briefings/f1-news-2026-11-22.html", count: 21, spoilers: 2,
       headline: "라스베이거스 GP 예선, 안토넬리가 가장 빨랐지만 폴 포지션은 페르스타펜 — 페라리 두 대는 Q2 탈락 · 러셀 “누군가는 그 사람에게 맞서야 한다” — 연습 주행 충돌로 페르스타펜에 경고 · 도메니칼리 “우리는 바보가 아니다” — V8로 서둘러 돌아가는 이유" },
     { date: "2026-11-21", file: "briefings/f1-news-2026-11-21.html", count: 19, spoilers: 5,
@@ -239,24 +241,24 @@ window.F1DATA = {
 
   // ⚠️ 스포일러 — 드라이버 순위 (standingsAsOf 기준)
   drivers: [
-    { pos: 1,  code: "ANT", name: "키미 안토넬리",     en: "Kimi Antonelli",    team: "Mercedes",     pts: 390 },
-    { pos: 2,  code: "VER", name: "막스 페르스타펜",   en: "Max Verstappen",    team: "Red Bull",     pts: 279 },
-    { pos: 3,  code: "RUS", name: "조지 러셀",         en: "George Russell",    team: "Mercedes",     pts: 262 },
-    { pos: 4,  code: "HAM", name: "루이스 해밀턴",     en: "Lewis Hamilton",    team: "Ferrari",      pts: 261 },
-    { pos: 5,  code: "LEC", name: "샤를 르클레르",     en: "Charles Leclerc",   team: "Ferrari",      pts: 249 },
-    { pos: 6,  code: "NOR", name: "랜도 노리스",       en: "Lando Norris",      team: "McLaren",      pts: 246 },
-    { pos: 7,  code: "PIA", name: "오스카 피아스트리", en: "Oscar Piastri",     team: "McLaren",      pts: 152 },
+    { pos: 1,  code: "ANT", name: "키미 안토넬리",     en: "Kimi Antonelli",    team: "Mercedes",     pts: 402 },
+    { pos: 2,  code: "VER", name: "막스 페르스타펜",   en: "Max Verstappen",    team: "Red Bull",     pts: 304 },
+    { pos: 3,  code: "HAM", name: "루이스 해밀턴",     en: "Lewis Hamilton",    team: "Ferrari",      pts: 267 },
+    { pos: 4,  code: "RUS", name: "조지 러셀",         en: "George Russell",    team: "Mercedes",     pts: 264 },
+    { pos: 5,  code: "NOR", name: "랜도 노리스",       en: "Lando Norris",      team: "McLaren",      pts: 264 },
+    { pos: 6,  code: "LEC", name: "샤를 르클레르",     en: "Charles Leclerc",   team: "Ferrari",      pts: 250 },
+    { pos: 7,  code: "PIA", name: "오스카 피아스트리", en: "Oscar Piastri",     team: "McLaren",      pts: 167 },
     { pos: 8,  code: "HAD", name: "이자크 하자르",     en: "Isack Hadjar",      team: "Red Bull",     pts: 122 },
     { pos: 9,  code: "LAW", name: "리암 로슨",         en: "Liam Lawson",       team: "Racing Bulls", pts: 89 },
-    { pos: 10, code: "GAS", name: "피에르 가슬리",     en: "Pierre Gasly",      team: "Alpine",       pts: 42 },
+    { pos: 10, code: "GAS", name: "피에르 가슬리",     en: "Pierre Gasly",      team: "Alpine",       pts: 52 },
     { pos: 11, code: "LIN", name: "아르비드 린드블라드", en: "Arvid Lindblad",  team: "Racing Bulls", pts: 38 },
-    { pos: 12, code: "COL", name: "프랑코 콜라핀토",   en: "Franco Colapinto",  team: "Alpine",       pts: 27 },
+    { pos: 12, code: "COL", name: "프랑코 콜라핀토",   en: "Franco Colapinto",  team: "Alpine",       pts: 35 },
     { pos: 13, code: "BEA", name: "올리버 베어먼",     en: "Oliver Bearman",    team: "Haas",         pts: 23 },
     { pos: 14, code: "BOR", name: "가브리엘 보르톨레토", en: "Gabriel Bortoleto", team: "Audi",       pts: 14 },
     { pos: 15, code: "HUL", name: "니코 휠켄베르크",   en: "Nico Hulkenberg",   team: "Audi",         pts: 14 },
-    { pos: 16, code: "OCO", name: "에스테반 오콘",     en: "Esteban Ocon",      team: "Haas",         pts: 7 },
-    { pos: 17, code: "ALO", name: "페르난도 알론소",   en: "Fernando Alonso",   team: "Aston Martin", pts: 7 },
-    { pos: 18, code: "SAI", name: "카를로스 사인츠",   en: "Carlos Sainz",      team: "Williams",     pts: 7 },
+    { pos: 16, code: "SAI", name: "카를로스 사인츠",   en: "Carlos Sainz",      team: "Williams",     pts: 11 },
+    { pos: 17, code: "OCO", name: "에스테반 오콘",     en: "Esteban Ocon",      team: "Haas",         pts: 7 },
+    { pos: 18, code: "ALO", name: "페르난도 알론소",   en: "Fernando Alonso",   team: "Aston Martin", pts: 7 },
     { pos: 19, code: "ALB", name: "알렉산더 알본",     en: "Alexander Albon",   team: "Williams",     pts: 5 },
     { pos: 20, code: "TSU", name: "유키 츠노다",       en: "Yuki Tsunoda",      team: "Racing Bulls", pts: 1 },
     { pos: 21, code: "HIR", name: "료 히라카와",       en: "Ryo Hirakawa",      team: "Haas",         pts: 1 },
@@ -268,15 +270,15 @@ window.F1DATA = {
 
   // ⚠️ 스포일러 — 컨스트럭터 순위
   constructors: [
-    { pos: 1,  team: "Mercedes",     pts: 652 },
-    { pos: 2,  team: "Ferrari",      pts: 510 },
-    { pos: 3,  team: "Red Bull",     pts: 415 },
-    { pos: 4,  team: "McLaren",      pts: 398 },
+    { pos: 1,  team: "Mercedes",     pts: 666 },
+    { pos: 2,  team: "Ferrari",      pts: 517 },
+    { pos: 3,  team: "Red Bull",     pts: 440 },
+    { pos: 4,  team: "McLaren",      pts: 431 },
     { pos: 5,  team: "Racing Bulls", pts: 114 },
-    { pos: 6,  team: "Alpine",       pts: 69 },
+    { pos: 6,  team: "Alpine",       pts: 87 },
     { pos: 7,  team: "Haas",         pts: 31 },
     { pos: 8,  team: "Audi",         pts: 28 },
-    { pos: 9,  team: "Williams",     pts: 12 },
+    { pos: 9,  team: "Williams",     pts: 16 },
     { pos: 10, team: "Aston Martin", pts: 7 },
     { pos: 11, team: "Cadillac",     pts: 0 }
   ]
