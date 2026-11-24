@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-24",
+    updatedAt: "2026-11-25",
     season: 2026,
     standingsAsOf: { round: 21, name: "라스베이거스 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-25", file: "briefings/f1-news-2026-11-25.html", count: 17, spoilers: 8,
+      headline: "슬레이터, 카마라 대신 카타르에서 F2 데뷔 — F3 챔피언 우고추쿠도 한 해 먼저 · 게리 앤더슨의 2030년 V8 대안 — 2.4리터 자연흡기, 최대 700kg 차 · 마카오 GP의 경고 — ‘푸시 투 패스’는 방어 도구가 될 수 있다" },
     { date: "2026-11-24", file: "briefings/f1-news-2026-11-24.html", count: 23, spoilers: 11,
       headline: "베어먼 재계약을 막는 건 연봉 — 아부다비 전 타결 전망 · 카타르 GP 결승은 한국 시간 30일(월) 새벽 1시, 스프린트 없는 주말 · 스텔란티스, 푸조 WEC 즉시 중단·포뮬러 E도 2027년 뒤 철수" },
     { date: "2026-11-23", file: "briefings/f1-news-2026-11-23.html", count: 24, spoilers: 16,
