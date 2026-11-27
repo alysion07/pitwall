@@ -6,13 +6,15 @@ window.F1DATA = {
 
   // 마지막 갱신 정보
   meta: {
-    updatedAt: "2026-11-27",
+    updatedAt: "2026-11-28",
     season: 2026,
     standingsAsOf: { round: 21, name: "라스베이거스 GP" }   // 순위표 기준 시점 (결과 노출 없음)
   },
 
   // 날짜별 브리핑 목록 — 최신이 위. 파일은 briefings/ 폴더에.
   briefings: [
+    { date: "2026-11-28", file: "briefings/f1-news-2026-11-28.html", count: 29, spoilers: 7,
+      headline: "카타르 금요일, 안토넬리가 두 연습 주행 모두 1위 — 메르세데스 연속 1·2위 · 피렐리, 15바퀴 만에 마모 100% 나온 타이어에 공기압 추가 인상 검토 · FIA, 엔진 개발 동결 확정 — 2028년 13번째 경기부터" },
     { date: "2026-11-27", file: "briefings/f1-news-2026-11-27.html", count: 25, spoilers: 13,
       headline: "카타르 GP 앞타이어 최소 공기압 29psi — 올해 가장 높다 · 하스, 베어먼과 2027년 계약 확정 — 내년 드라이버 자리 모두 채워져 · 알론소, 바이러스 감염으로 카타르 미디어 데이 불참 — 금요일 복귀 예정" },
     { date: "2026-11-26", file: "briefings/f1-news-2026-11-26.html", count: 20, spoilers: 11,
